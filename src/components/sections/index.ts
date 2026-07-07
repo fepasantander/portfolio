@@ -1,0 +1,18 @@
+export * from "./Header";
+export * from "./Hero";
+export * from "./Problem";
+export * from "./Approach";
+export * from "./Transformations";
+export * from "./Testimonials";
+export * from "./About";
+export * from "./CTA";
+export * from "./Footer";
+export { default as Header } from "./Header";
+export { default as Hero } from "./Hero";
+export { default as Problem } from "./Problem";
+export { default as Approach } from "./Approach";
+export { default as Transformations } from "./Transformations";
+export { default as Testimonials } from "./Testimonials";
+export { default as About } from "./About";
+export { default as CTA } from "./CTA";
+export { default as Footer } from "./Footer";
