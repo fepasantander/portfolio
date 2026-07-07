@@ -129,15 +129,21 @@ export const Transformations = () => {
     },
     {
       company: "Uniasselvi",
+      logoPath: "/imagem/vitru/logo-uniasselvi-black.png",
+      logoAlt: "Uniasselvi Logo",
+      logoBg: "bg-white",
       challenge: "Conduzir a implantação e a consolidação da disciplina de UX e Product Discovery em portais acadêmicos e administrativos utilizados por milhares de estudantes.",
       contribution: "Evolução do Design System no Figma e concepção de fluxos de alta complexidade acadêmica como a Biblioteca Virtual (PPC) e a Renegociação Financeira.",
       impact: "Redução do retrabalho técnico entre Produto, Negócio e Engenharia através de especificações funcionais e protótipos de alta fidelidade integrados."
     },
     {
-      company: "Innovation Lab",
-      challenge: "Conceber a estratégia e a experiência end-to-end de produtos digitais disruptivos baseados em Inteligência Artificial Generativa sob extrema incerteza.",
-      contribution: "Design de agentes e assistentes conversacionais (SofIA, VitruChat e Hub de Correções) desenhando fluxos de interação, critérios de sucesso e métricas de UX aplicadas a LLMs.",
-      impact: "Consolidação da estratégia de IA da holding, levando o grupo ao 1º lugar na categoria Educação do Prêmio Valor Inovação Brasil 2025."
+      company: "Vitru",
+      logoPath: "/imagem/vitru/logo-vitru-negative.png",
+      logoAlt: "Vitru Logo",
+      logoBg: "bg-zinc-950 dark:bg-black",
+      challenge: "Conceber a estratégia e a experiência de produtos baseados em IA Generativa sob extrema incerteza no Lab de Inovação da holding.",
+      contribution: "Design de agentes conversacionais (SofIA, VitruChat e Hub de Correções), desenhando fluxos de interação, critérios de sucesso e métricas de UX aplicadas a LLMs.",
+      impact: "Consolidação da estratégia de IA da holding, levando o grupo ao 1º lugar no segmento Educação do Prêmio Valor Inovação Brasil 2025."
     }
   ];
 
