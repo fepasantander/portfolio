@@ -2,6 +2,7 @@
 **Data:** 07 de Julho de 2026  
 **Projeto:** Plataforma Felipe Santander (Portfólio Executivo de Produto)  
 **Status Atual:** Release 0.1 Landing Experience  
+**URL de Produção:** https://felipe-santander.vercel.app/  
 
 Este documento registra todo o histórico de alinhamento estratégico, decisões técnicas, arquitetura inicial e implementações executadas hoje pelo agente **Antigravity (AG)**, servindo de ponte para sincronizar com o histórico de estratégia traçado no ChatGPT.
 
@@ -57,9 +58,11 @@ Construção da experiência de ponta a ponta, dividida nas seguintes seções:
 - **Conexão Supabase:** SDK `@supabase/supabase-js` instalado e configurado com sucesso em `src/lib/supabase/client.ts`, consumindo as chaves de API a partir do arquivo `.env.local` de forma segura.
 - **Custom LinkedinIcon:** Devido à remoção de ícones de marcas proprietárias nas versões recentes da biblioteca `lucide-react`, desenvolvemos e injetamos o componente SVG nativo do LinkedIn diretamente nos botões para sanar o erro e passar no compilador de produção.
 
-### 5. Compilação & Servidor Local
-- **Servidor Dev:** O projeto foi configurado e está ativamente rodando no localhost na porta **3005** (`http://localhost:3005`) para evitar colisão com o antigo projeto UBT (porta default 3000).
-- **Compilação Clean:** O comando `npm run build` executa e fecha com sucesso total (100% livre de avisos ou falhas de tipagem no TypeScript e Turbopack), exportando a Home e as rotas mapeadas de forma estática.
+### 5. Compilação, Git & Servidor Local
+- **Servidor Dev:** O projeto está configurado e rodando ativamente na porta **3005** (`http://localhost:3005`).
+- **Repositório Git Local:** Inicializado repositório git local na pasta do projeto, configurado com a identidade do Felipe Santander e efetuado o primeiro commit (`feat: first release initial commit`).
+- **Configuração Remota:** Origin configurado apontando para `https://github.com/fepasantander/portfolio.git`, pronto para o push assim que o repositório for criado no GitHub.
+- **Compilação Clean:** O comando `npm run build` compila 100% limpo com Turbopack.
 
 ---
 
