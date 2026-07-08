@@ -76,7 +76,10 @@ Durante esta fase, implementamos as diretrizes da **Sprint 02 — Home Repositio
 * **Emulador Interativo com Drag-Swipe:** Aprimorei o mock da tela do smartphone do app Diva para ter comportamento premium:
   * Estilização baseada nas diretrizes visuais do "Nano Banana Pro" (sem bordas, fundo preto profundo e sombras suaves).
   * Inclusão de setas de navegação físicas nas laterais do aparelho.
-  * Implementação de detectores de arrastar (`onTouch` e `onMouseDown/Up`) com transições fluidas por hardware (`transition-transform duration-500 ease-out`), permitindo folhear as 10 capturas de tela reais arrastando com o dedo ou mouse.
+  * Implementação de detectores de arrastar (`onTouch` e `onMouseDown/Up`) com transições fluidas por hardware (`transition-transform duration-500 ease-out`), permitindo folhear as capturas de tela reais arrastando com o dedo ou mouse.
+  * **Substituição por Imagens Aprovadas:** Atualizei a lista de slides para utilizar estritamente as 7 capturas autorizadas contidas na pasta `diva/aprovadas` (incluindo a capa do Google Play e os 6 prints verticais oficiais do app beira-leito).
+  * **Renderização da Capa com Fundo Azul:** Configurei o primeiro slide (`capa-google-play-x05.png`) para preencher toda a div com um fundo **azul-escuro assistencial (`bg-[#0b1b3d]`)** e renderização centralizada `bg-transparent contain`, integrando a capa perfeitamente.
+  * **Redução Dimensional:** Reduzi as dimensões máximas do emulador de smartphone de `w-[280px] sm:w-[320px]` para **`w-[220px] sm:w-[260px]`**, aumentando a densidade de pixels e garantindo nitidez e clareza excepcionais mesmo em imagens de menor resolução original.
 * **Aviso de NDA (Confidencialidade):** Adicionado banner proeminente instruindo sobre os limites de divulgação de dados proprietários protegidos por NDA.
 * **Vídeos Youtube:** Removida a div de aviso/placeholder de vídeo retido, mantendo apenas a chamada de ação limpa que abre o canal oficial da Carenet mediada pelo modal de retenção.
 

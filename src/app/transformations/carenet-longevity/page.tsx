@@ -32,17 +32,14 @@ export default function CarenetSubhomePage() {
   const [divaIndex, setDivaIndex] = useState(0);
   const [dragStartX, setDragStartX] = useState<number | null>(null);
 
-  const divaScreenshots = [
-    "/imagem/carenet/Captura de tela 2026-07-02 144926.png",
-    "/imagem/carenet/Captura de tela 2026-07-02 145101.png",
-    "/imagem/carenet/Captura de tela 2026-07-02 145217.png",
-    "/imagem/carenet/Captura de tela 2026-07-02 145313.png",
-    "/imagem/carenet/Captura de tela 2026-07-02 145408.png",
-    "/imagem/carenet/Captura de tela 2026-07-02 145504.png",
-    "/imagem/carenet/Captura de tela 2026-07-02 145603.png",
-    "/imagem/carenet/Captura de tela 2026-07-02 145646.png",
-    "/imagem/carenet/Captura de tela 2026-07-02 145756.png",
-    "/imagem/carenet/179d2d_2dfd7c30f5b74f0286b34b2db394cefe~mv2.avif"
+  const divaSlides = [
+    { src: "/imagem/carenet/diva/aprovadas/capa-google-play-x05.png", mode: "contain", label: "Capa do Aplicativo na Google Play Store" },
+    { src: "/imagem/carenet/diva/aprovadas/Captura de tela 2026-07-02 145217.png", mode: "vertical", label: "Triagem - Seleção de Leito" },
+    { src: "/imagem/carenet/diva/aprovadas/Captura de tela 2026-07-02 145313.png", mode: "vertical", label: "Registro de Temperatura e Sinais Vitais" },
+    { src: "/imagem/carenet/diva/aprovadas/Captura de tela 2026-07-02 145408.png", mode: "vertical", label: "Cálculo Automatizado da Escala MEWS" },
+    { src: "/imagem/carenet/diva/aprovadas/Captura de tela 2026-07-02 145504.png", mode: "vertical", label: "Resumo Clínico e Confirmação de Envio" },
+    { src: "/imagem/carenet/diva/aprovadas/Captura de tela 2026-07-02 145603.png", mode: "vertical", label: "Histórico de Medições do Paciente" },
+    { src: "/imagem/carenet/diva/aprovadas/Captura de tela 2026-07-02 145646.png", mode: "vertical", label: "Resumo da Escala de Risco Assistencial" }
   ];
 
   const handleExternalLinkClick = (label: string, url: string) => {
@@ -51,11 +48,11 @@ export default function CarenetSubhomePage() {
   };
 
   const nextDiva = () => {
-    setDivaIndex((prev) => (prev + 1) % divaScreenshots.length);
+    setDivaIndex((prev) => (prev + 1) % divaSlides.length);
   };
 
   const prevDiva = () => {
-    setDivaIndex((prev) => (prev - 1 + divaScreenshots.length) % divaScreenshots.length);
+    setDivaIndex((prev) => (prev - 1 + divaSlides.length) % divaSlides.length);
   };
 
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -292,7 +289,7 @@ export default function CarenetSubhomePage() {
 
                 {/* Animated Interactive Smartphone with Nav arrows and Drag */}
                 <div className="lg:col-span-6 flex flex-col items-center select-none">
-                  <div className="relative w-[280px] sm:w-[320px] aspect-[9/19]">
+                  <div className="relative w-[220px] sm:w-[260px] aspect-[9/19]">
                     
                     {/* Device Navigation Arrows */}
                     <button 
@@ -329,18 +326,69 @@ export default function CarenetSubhomePage() {
                           className="flex h-full w-full transition-transform duration-500 ease-out"
                           style={{ transform: `translateX(-${divaIndex * 100}%)` }}
                         >
-                          {divaScreenshots.map((src, idx) => (
-                            <div key={idx} className="w-full h-full shrink-0 relative flex items-center justify-center p-3">
-                              {/* Content Screen Image */}
-                              <div className="w-full h-full relative">
-                                <Image
-                                  src={src}
-                                  alt={`Diva Screen ${idx + 1}`}
-                                  fill
-                                  sizes="(max-width: 640px) 280px, 320px"
-                                  className="object-contain pointer-events-none rounded-2xl"
-                                />
-                              </div>
+                          {divaSlides.map((slide, idx) => (
+                            <div key={idx} className={`w-full h-full shrink-0 relative flex items-center justify-center ${idx === 0 ? "bg-[#0b1b3d]" : "bg-black"}`}>
+                              {slide.mode === "vertical" ? (
+                                <div className="w-full h-full relative">
+                                  <Image
+                                    src={slide.src}
+                                    alt={slide.label}
+                                    fill
+                                    sizes="(max-width: 640px) 280px, 320px"
+                                    className="object-cover pointer-events-none"
+                                  />
+                                </div>
+                              ) : slide.mode === "contain" ? (
+                                <div className="w-full h-full relative p-2 flex items-center justify-center bg-transparent">
+                                  <Image
+                                    src={slide.src}
+                                    alt={slide.label}
+                                    fill
+                                    sizes="(max-width: 640px) 280px, 320px"
+                                    className="object-contain pointer-events-none"
+                                  />
+                                </div>
+                              ) : slide.mode === "split-2-left" ? (
+                                <div className="w-full h-full relative overflow-hidden">
+                                  <img
+                                    src={slide.src}
+                                    alt={slide.label}
+                                    className="absolute top-0 left-0 h-full w-[200%] max-w-none object-cover object-left pointer-events-none"
+                                  />
+                                </div>
+                              ) : slide.mode === "split-2-right" ? (
+                                <div className="w-full h-full relative overflow-hidden">
+                                  <img
+                                    src={slide.src}
+                                    alt={slide.label}
+                                    className="absolute top-0 left-0 h-full w-[200%] max-w-none object-cover object-right pointer-events-none"
+                                  />
+                                </div>
+                              ) : slide.mode === "split-3-left" ? (
+                                <div className="w-full h-full relative overflow-hidden">
+                                  <img
+                                    src={slide.src}
+                                    alt={slide.label}
+                                    className="absolute top-0 left-0 h-full w-[300%] max-w-none object-cover object-left pointer-events-none"
+                                  />
+                                </div>
+                              ) : slide.mode === "split-3-center" ? (
+                                <div className="w-full h-full relative overflow-hidden">
+                                  <img
+                                    src={slide.src}
+                                    alt={slide.label}
+                                    className="absolute top-0 left-1/2 -translate-x-1/2 h-full w-[300%] max-w-none object-cover pointer-events-none"
+                                  />
+                                </div>
+                              ) : (
+                                <div className="w-full h-full relative overflow-hidden">
+                                  <img
+                                    src={slide.src}
+                                    alt={slide.label}
+                                    className="absolute top-0 right-0 h-full w-[300%] max-w-none object-cover object-right pointer-events-none"
+                                  />
+                                </div>
+                              )}
                             </div>
                           ))}
                         </div>
@@ -350,7 +398,7 @@ export default function CarenetSubhomePage() {
 
                   {/* Dot selectors */}
                   <div className="mt-8 flex flex-wrap justify-center gap-2 max-w-md">
-                    {divaScreenshots.map((_, idx) => (
+                    {divaSlides.map((_, idx) => (
                       <button
                         key={idx}
                         onClick={() => setDivaIndex(idx)}
@@ -364,7 +412,7 @@ export default function CarenetSubhomePage() {
                     ))}
                   </div>
                   <span className="text-[10px] text-zinc-400 dark:text-zinc-600 block text-center mt-3 font-mono">
-                    Slide {divaIndex + 1} de {divaScreenshots.length} — Telas de Registro do App Diva
+                    Slide {divaIndex + 1} de {divaSlides.length} — {divaSlides[divaIndex].label}
                   </span>
                 </div>
               </div>
