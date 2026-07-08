@@ -24,7 +24,8 @@ export const Header = () => {
 
   const navItems = [
     { label: "Problema", href: "#problem" },
-    { label: "Abordagem", href: "#approach" },
+    { label: "Como Penso", href: "#how-i-think" },
+    { label: "Capacidades", href: "#why-hire-me" },
     { label: "Transformações", href: "#transformations" },
     { label: "Filosofia", href: "#about" },
   ];

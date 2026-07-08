@@ -15,9 +15,10 @@ Este documento registra todo o histórico de alinhamento estratégico, decisões
 | **01-Brand-Constitution.md** | `/md/01-Brand-Constitution.md` | **FEITO** | Diretrizes de marca, posicionamento, tom de voz (primeira pessoa) e minimalismo estético. |
 | **02-Product-Constitution.md** | `/md/02-Product-Constitution.md` | **FEITO** | Definição de stack (Next.js, Tailwind v4, TS, Supabase), acessibilidade (WCAG AA) e SEO. |
 | **03-Release-0.1-Landing.md** | `/md/03-Release-0.1-Landing.md` | **FEITO** | Escopo detalhado da página Home (Landing Page) e seções obrigatórias. |
-| **04-Product-Decisions-Log.md** | `/md/04-Product-Decisions-Log.md` | **AGUARDANDO** | Registro detalhado de decisões de engenharia de produto (a ser preenchido). |
-| **initial-start-feedback-antigravity.md** | `/md/initial-start-feedback-antigravity.md` | **EM ANDAMENTO** | Este diário de bordo mantido pelo AG detalhando as execuções técnicas de hoje. |
-| **README.md** | `/README.md` | **AGUARDANDO** | Documentação de onboarding e execução do projeto (a ser criada). |
+| **05-Product-Decisions-Log.md** | `/md/05-Product-Decisions-Log.md` | **FEITO** | Registro detalhado de decisões de engenharia de produto. |
+| **initial-start-feedback-antigravity.md** | `/md/initial-start-feedback-antigravity.md` | **FEITO** | Primeiro diário de bordo com o histórico das Releases 0.1 e 0.2. |
+| **README.md** | `/README.md` | **FEITO** | Documentação de onboarding e execução do projeto. |
+| **06-strategic-log-antigravity.md** | `/md/06-strategic-log-antigravity.md` | **EM ANDAMENTO** | Novo diário de bordo estratégico ativo a partir de 08/07/2026. |
 
 ---
 
@@ -26,12 +27,13 @@ Este documento registra todo o histórico de alinhamento estratégico, decisões
 ### 1. Inicialização e Estrutura Arquitetural
 - **Next.js & Turbopack:** Bootstrappado com sucesso um projeto Next.js (App Router, v16.2), React v19, TypeScript e Tailwind CSS v4.
 - **Portabilidade Física:** O projeto foi configurado fisicamente em `C:\Users\MacInBox\Documents\profissional\portfolio`.
-- **Rotas Reservadas:** Criados placeholders limpos e funcionais para as futuras rotas exigidas na Product Constitution:
+- **Rotas Reservadas:** Criados placeholders limpos e funcionais para as futuras rotas:
   - `/about` (Sobre Felipe)
   - `/transformations` (Estudos de caso detalhados)
   - `/playbook` (Frameworks de produto e artigos)
   - `/admin` (Painel administrativo restrito)
-- **Ativos de Imagem:** Movida a pasta de imagens corporativas (`carenet/`, `listo/`, `vm/`) de forma íntegra para `/public/imagem/` para que sejam resolvidas no Next.js como recursos estáticos públicos.
+- **Rotas Dinâmicas de Portfólio:** Criada a rota `/transformations/[slug]/page.tsx` e banco de dados `src/data/case-studies.ts` contendo o caso **VitruChat LLM** integrado com o protótipo navegável do Figma e sistema de segurança de domínio (modal acolhedor ao tentar acessar links externos).
+- **Ativos de Imagem:** Movida a pasta de imagens corporativas (`carenet/`, `listo/`, `vm/`, `vitru/`) de forma íntegra para `/public/imagem/` para que sejam resolvidas no Next.js como recursos estáticos públicos.
 
 ### 2. Design System & Componentes Reutilizáveis (`src/components/ui`)
 Implementados componentes atômicos em TypeScript estruturando o Grid de 12 colunas e espaçamentos minimalistas:
@@ -45,10 +47,10 @@ Construção da experiência de ponta a ponta, dividida nas seguintes seções:
 - **Header:** Barra de navegação responsiva, fixa ao rolar a página (com blur de fundo), contendo links âncora com rastreamento de cliques e menu móvel acessível.
 - **Hero:**
   - Headline traduzida: *"Quando Produto, Negócio e Engenharia deixam de compartilhar a mesma visão, a inovação desacelera."*
-  - Composição de Branding: Integrado elemento visual abstrato gerado via tecnologia **Nano Banana Pro** (Google DeepMind) representando a convergência entre *Estratégia*, *Design* e *Impacto*, refinado com gradiente radial (vignette) para integração de cor suave, altura equivalente ao bloco de texto (480px) e tag em destaque ampliada.
-- **The Problem:** 3 cards interconectados demonstrando os pontos de falha e o retrabalho causados por departamentos isolados.
+  - Composição de Branding: Ilustração abstrata da **Nano Banana Pro** com fundo de opacidade suave (alpha 1%) e sem bordas perceptíveis (com vinheta de 75% que funde a imagem de forma invisível ao background), apresentando um reflexo vertical espelhado, tag "Estratégia, Design e Impacto" ampliada e uma grade de linhas retas (grid pattern) no background da Hero a 33% de opacidade.
+- **The Problem:** 3 cards interconectados. Ao passar o mouse (hover), a borda do card acende e projeta um detalhe sutil e elegante de **neon sob o box (underglow)** em tom **Cyan puro (#00ffff)** de forma suave e direcionada para baixo, destacando de forma sincronizada as palavras-chave mais importantes.
 - **My Approach:** 4 cards conceituais detalhando a atuação prática de Felipe (Strategy, Design, Technology, Artificial Intelligence).
-- **Transformations (Cases):** 5 cartões de projetos de mercado (Listo, Carenet, Odonto1, Uniasselvi, Vitru - Lab de Inovação) contendo logotipos oficiais integrados e descrições executivas fiéis ao currículo do Felipe, exibindo Desafio, Contribuição, Impacto e botão "Em breve" desativado.
+- **Transformations (Cases):** 5 cartões de projetos de mercado. O caso **Vitru (Lab de Inovação)** foi atualizado com logotipo e textos de IA, e agora possui um botão ativo que redireciona para a sub-rota `/transformations/vitru-chat-llm` contendo o detalhamento do projeto e placeholder do Figma.
 - **Testimonials:** Carrossel infinito horizontal responsivo exibindo 5 depoimentos reais de mercado (Marcos Valesk, Thiago Velloso, Anderson Venancio, Rafael Medeiros, Débora Lopes) condensados de forma homogênea, com navegação por setas e indicadores de paginação.
 - **About (Filosofia):** Texto redigido em primeira pessoa, mantendo um tom de voz calmo, estratégico e analítico sobre a concepção de produtos.
 - **CTA & Footer:** Área de captação integrada ao LinkedIn, download do currículo completo, novos contatos diretos (e-mail e WhatsApp com link contendo mensagem pré-definida de contato) e rodapé traduzido (*Líder de Produto & Executivo de Estratégia*).
@@ -134,9 +136,40 @@ Conectar sistemas, pessoas e decisões para transformar complexidade em produtos
 
 ---
 
+## 🛠️ Evoluções Realizadas (Release 0.2 — Local)
+
+Durante a sessão de hoje, evoluímos a plataforma local com novos recursos interativos de produto e refinamentos estéticos:
+
+### 1. Rota Dinâmica de Estudos de Caso
+* **Estrutura:** Criada a rota dinâmica `/transformations/[slug]/page.tsx` no Next.js (App Router).
+* **Banco de Dados Local:** Criado o arquivo `src/data/case-studies.ts` centralizando as informações estruturadas dos projetos.
+* **VitruChat LLM:** Primeiro estudo de caso cadastrado e funcional, contendo storytelling executivo detalhado (Contexto, Discovery, Design, Resultados), fatos rápidos e nota de confidencialidade (NDA).
+* **Ativação na Home:** O card da **Vitru** na seção de Transformações agora possui o botão ativo que direciona para a sub-rota `/transformations/vitru-chat-llm`.
+
+### 2. Integração e Segurança do Protótipo Figma
+* **Figma Embed:** Incorporado o iframe oficial do protótipo navegável do VitruChat na página de detalhes.
+* **Retenção de Domínio (Modal):** Adicionado um interceptador na página de detalhes. Ao clicar em "Abrir Externamente", o usuário é avisado por um modal acolhedor com design premium (backdrop-blur) sobre a permanência segura no domínio principal, mantendo-o no funil e convidando ao contato direto.
+* **Custom FigmaIcon:** Criado um componente SVG nativo local do Figma para evitar dependências e erros de importação na compilação.
+
+### 3. Refinamento Estético da Hero
+* **Grid de Linhas:** Adicionado um grid de linhas retas ($48px \times 48px$) no fundo da seção Hero com opacidade calibrada em exatamente **33%**.
+* **Ilustração Integrada:** Removida a borda e o preenchimento do container da imagem da Hero, aplicando fundo com opacidade ultra suave de **1%** (`bg-zinc-100/[0.01]` / `dark:bg-zinc-900/[0.01]`). As bordas da imagem gerada pela **Nano Banana Pro** foram fundidas ao background usando uma máscara radial agressiva de **75%**.
+* **Reflexo Tridimensional:** Criado um reflexo espelhado vertical (`scale-y-[-1]`) da ilustração abaixo da imagem, esvanecendo suavemente em degradê.
+* **Tag Ampliada:** A tag "Estratégia, Design e Impacto." foi expandida em tamanho de caixa, preenchimento e espaçamento de texto (`tracking-[0.25em]`).
+
+### 4. Estética de Neon sob o Box (CMYK Cyan)
+* **Underglow Skyline GT-R:** Removida a sombra ao redor dos boxes de "O Desafio Organizacional". Adicionado um filete de luz horizontal de 1px a 30% de opacidade na base do box.
+* **Cyan Puro CMYK:** O brilho do underglow no hover projeta uma sombra concentrada apenas para baixo e para trás no tom exato de Cyan do CMYK (`#00ffff` / `rgba(0, 255, 255, 0.35)`).
+* **Destaques de Texto:** No hover do card, palavras-chave e termos técnicos específicos de cada pilar transitam para a cor Cyan (respeitando a legibilidade WCAG AA no modo claro).
+
+### 5. Finalização de Documentos Pendentes
+* **Decisions Log:** Criado o arquivo `md/05-Product-Decisions-Log.md` registrando as decisões históricas de design e produto.
+* **README:** Criado o `README.md` detalhando a stack, estrutura de rotas, porta local de desenvolvimento (3005) e instruções de deploy.
+
+---
+
 ## 🔮 Próximos Passos (Plano para hoje / próximas interações)
 
-1. **Ajustes de UI / UX baseados no seu feedback:** Refinar qualquer espaçamento ou interação na Home que você queira lapidar.
-2. **Criação do `04-Product-Decisions-Log.md`:** Documentar as decisões arquiteturais tomadas para registro histórico.
-3. **Criação do `README.md`:** Criar uma documentação de projeto moderna, limpa e premium para instruir qualquer desenvolvedor que assumir a stack no futuro.
-4. **Preparação para o dia de amanhã:** Deixar tudo estruturado para que você possa colar com facilidade os novos artefatos e insights refinados no ChatGPT.
+1. **Aprovação e Publicação (Release 0.2):** Validar os ajustes locais na porta `3005` e dar início ao push para produção no GitHub e Vercel.
+2. **Novos Estudos de Caso:** Cadastrar os demais 4 estudos de caso em `case-studies.ts` quando seus respectivos protótipos Figma forem vinculados.
+

@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Header from "@/components/sections/Header";
 import Hero from "@/components/sections/Hero";
 import Problem from "@/components/sections/Problem";
-import Approach from "@/components/sections/Approach";
+import HowIThink from "@/components/sections/HowIThink";
+import WhyHireMe from "@/components/sections/WhyHireMe";
 import Transformations from "@/components/sections/Transformations";
 import Testimonials from "@/components/sections/Testimonials";
 import About from "@/components/sections/About";
@@ -29,7 +30,8 @@ export default function Home() {
       <main className="flex-grow">
         <Hero />
         <Problem />
-        <Approach />
+        <HowIThink />
+        <WhyHireMe />
         <Transformations />
         <Testimonials />
         <About />

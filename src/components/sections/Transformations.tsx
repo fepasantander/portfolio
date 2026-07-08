@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { Container } from "../ui/Container";
 import { Heading } from "../ui/Heading";
 import { Paragraph } from "../ui/Paragraph";
@@ -9,7 +10,7 @@ import { Button } from "../ui/Button";
 import Image from "next/image";
 import { analytics } from "@/lib/analytics";
 
-interface CaseCardProps {
+interface TransformationCardProps {
   company: string;
   logoPath?: string;
   logoAlt?: string;
@@ -17,11 +18,25 @@ interface CaseCardProps {
   contribution: string;
   impact: string;
   logoBg?: string;
+  slug?: string;
 }
 
-const CaseCard = ({ company, logoPath, logoAlt, challenge, contribution, impact, logoBg = "bg-zinc-50 dark:bg-zinc-900" }: CaseCardProps) => {
+const TransformationCard = ({ 
+  company, 
+  logoPath, 
+  logoAlt, 
+  challenge, 
+  contribution, 
+  impact, 
+  logoBg = "bg-zinc-50 dark:bg-zinc-900",
+  slug
+}: TransformationCardProps) => {
+  const handleTransformationClick = () => {
+    analytics.trackCTA(`Transformation: ${company}`, `/transformations/${slug}`);
+  };
+
   const handleComingSoonClick = () => {
-    analytics.trackEvent("Transformations: Case Clicked (Coming Soon)", { company });
+    analytics.trackEvent("Transformations: Clicked (Coming Soon)", { company });
   };
 
   return (
@@ -51,7 +66,7 @@ const CaseCard = ({ company, logoPath, logoAlt, challenge, contribution, impact,
           </div>
           
           <span className="text-[10px] tracking-wider uppercase font-mono px-2 py-1 rounded bg-zinc-50 dark:bg-zinc-900 text-zinc-400 dark:text-zinc-500 border border-zinc-200/30 dark:border-zinc-800/50">
-            Estudo de Caso
+            Transformação
           </span>
         </div>
 
@@ -86,23 +101,40 @@ const CaseCard = ({ company, logoPath, logoAlt, challenge, contribution, impact,
         </div>
       </div>
 
-      {/* Button Coming Soon */}
+      {/* Button Action */}
       <div className="mt-8 pt-6 border-t border-zinc-100 dark:border-zinc-900/50">
-        <Button 
-          variant="secondary" 
-          disabled 
-          onClick={handleComingSoonClick} 
-          className="w-full text-zinc-400 border-zinc-200 dark:text-zinc-600 dark:border-zinc-900 bg-zinc-50/50 dark:bg-zinc-950/20"
-        >
-          Em breve
-        </Button>
+        {slug ? (
+          <Link href={`/transformations/${slug}`} onClick={handleTransformationClick} className="w-full block">
+            <Button 
+              variant="secondary" 
+              className="w-full hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors"
+            >
+              Visualizar Transformação
+            </Button>
+          </Link>
+        ) : (
+          <Button 
+            variant="secondary" 
+            disabled 
+            onClick={handleComingSoonClick} 
+            className="w-full text-zinc-400 border-zinc-200 dark:text-zinc-600 dark:border-zinc-900 bg-zinc-50/50 dark:bg-zinc-950/20"
+          >
+            Em breve
+          </Button>
+        )}
       </div>
     </Card>
   );
 };
 
 export const Transformations = () => {
-  const cases = [
+  const cases: TransformationCardProps[] = [
+    {
+      company: "Odonto1",
+      challenge: "Desenhar e desenvolver a plataforma de educação odontológica unificada integrando canais editoriais e ferramentas digitais para profissionais.",
+      contribution: "Gestão do time de desenvolvimento e liderança do Product Discovery, conduzindo a maior pesquisa de usuários do grupo para estruturar a estratégia de UX e arquitetura da informação.",
+      impact: "Consolidação da maior plataforma integrada de educação continuada da área e aumento da conversão de novos usuários a partir de decisões guiadas por dados."
+    },
     {
       company: "Listo",
       logoPath: "/imagem/listo/logo_listo_22a683e3e4.svg",
@@ -120,12 +152,6 @@ export const Transformations = () => {
       contribution: "Estruturação da equipe de UX, evolução do Design System e concepção e especificação de interfaces críticas para sistemas médicos (Orchestra, Diva e Harmonia).",
       impact: "Redução de ambiguidades e alinhamento de requisitos entre Produto, Negócio e Engenharia, otimizando o fluxo assistencial em ambientes de alta complexidade médica.",
       logoBg: "bg-white"
-    },
-    {
-      company: "Odonto1",
-      challenge: "Desenhar e desenvolver a plataforma de educação odontológica unificada integrando canais editoriais e ferramentas digitais para profissionais.",
-      contribution: "Gestão do time de desenvolvimento e liderança do Product Discovery, conduzindo a maior pesquisa de usuários do grupo para estruturar a estratégia de UX e arquitetura da informação.",
-      impact: "Consolidação da maior plataforma integrada de educação continuada da área e aumento da conversão de novos usuários a partir de decisões guiadas por dados."
     },
     {
       company: "Uniasselvi",
@@ -162,10 +188,10 @@ export const Transformations = () => {
           </Paragraph>
         </div>
 
-        {/* 5 Case Cards Grid */}
+        {/* 5 Transformation Cards Grid */}
         <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {cases.map((c) => (
-            <CaseCard 
+            <TransformationCard 
               key={c.company}
               company={c.company}
               logoPath={c.logoPath}
@@ -174,6 +200,7 @@ export const Transformations = () => {
               contribution={c.contribution}
               impact={c.impact}
               logoBg={c.logoBg}
+              slug={c.slug}
             />
           ))}
         </div>

@@ -11,21 +11,81 @@ export const Problem = () => {
   const pillars = [
     {
       title: "Negócio (Business)",
-      icon: <Briefcase className="h-6 w-6 text-zinc-700 dark:text-zinc-300" />,
-      description: "Foca em receitas, mercados, crescimento e viabilidade comercial. Freqüentemente avança sem entender a complexidade técnica e a viabilidade da engenharia.",
-      disconnect: "Falta de alinhamento com a engenharia leva a promessas de produtos inviáveis."
+      icon: <Briefcase className="h-6 w-6 text-zinc-700 dark:text-zinc-300 transition-colors duration-300 group-hover:text-cyan-600 dark:group-hover:text-[#00ffff]" />,
+      description: (
+        <>
+          Foca em receitas, mercados, crescimento e{" "}
+          <span className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-cyan-600 dark:group-hover:text-[#00ffff] transition-colors duration-300">
+            viabilidade comercial
+          </span>
+          . Frequentemente avança sem entender a{" "}
+          <span className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-cyan-600 dark:group-hover:text-[#00ffff] transition-colors duration-300">
+            complexidade técnica
+          </span>{" "}
+          e a viabilidade da engenharia.
+        </>
+      ),
+      disconnect: (
+        <>
+          Falta de alinhamento com a engenharia leva a promessas de{" "}
+          <span className="font-semibold text-zinc-700 dark:text-zinc-300 group-hover:text-cyan-600 dark:group-hover:text-[#00ffff] transition-colors duration-300">
+            produtos inviáveis
+          </span>
+          .
+        </>
+      )
     },
     {
       title: "Produto (Product)",
-      icon: <Compass className="h-6 w-6 text-zinc-700 dark:text-zinc-300" />,
-      description: "Foca na experiência de usuário, no valor do produto e nos caminhos de evolução (UX/Design). Muitas vezes esmagado entre demandas de negócio e restrições técnicas.",
-      disconnect: "Falta de alinhamento com ambos resulta em features sem impacto real ou valor estratégico."
+      icon: <Compass className="h-6 w-6 text-zinc-700 dark:text-zinc-300 transition-colors duration-300 group-hover:text-cyan-600 dark:group-hover:text-[#00ffff]" />,
+      description: (
+        <>
+          Foca na{" "}
+          <span className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-cyan-600 dark:group-hover:text-[#00ffff] transition-colors duration-300">
+            experiência de usuário
+          </span>
+          , no valor do produto e nos caminhos de evolução (UX/Design). Muitas vezes esmagado entre demandas de negócio e{" "}
+          <span className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-cyan-600 dark:group-hover:text-[#00ffff] transition-colors duration-300">
+            restrições técnicas
+          </span>
+          .
+        </>
+      ),
+      disconnect: (
+        <>
+          Falta de alinhamento com ambos resulta em features{" "}
+          <span className="font-semibold text-zinc-700 dark:text-zinc-300 group-hover:text-cyan-600 dark:group-hover:text-[#00ffff] transition-colors duration-300">
+            sem impacto real
+          </span>{" "}
+          ou valor estratégico.
+        </>
+      )
     },
     {
       title: "Engenharia (Engineering)",
-      icon: <Cpu className="h-6 w-6 text-zinc-700 dark:text-zinc-300" />,
-      description: "Foca em estabilidade, performance, arquitetura e débito técnico. Freqüentemente deixada de fora das decisões estratégicas iniciais de design e negócio.",
-      disconnect: "Falta de alinhamento estratégico resulta em retrabalho e arquiteturas inadequadas."
+      icon: <Cpu className="h-6 w-6 text-zinc-700 dark:text-zinc-300 transition-colors duration-300 group-hover:text-cyan-600 dark:group-hover:text-[#00ffff]" />,
+      description: (
+        <>
+          Foca em{" "}
+          <span className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-cyan-600 dark:group-hover:text-[#00ffff] transition-colors duration-300">
+            estabilidade, performance
+          </span>
+          , arquitetura e débito técnico. Frequentemente deixada de fora das{" "}
+          <span className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-cyan-600 dark:group-hover:text-[#00ffff] transition-colors duration-300">
+            decisões estratégicas
+          </span>{" "}
+          iniciais de design e negócio.
+        </>
+      ),
+      disconnect: (
+        <>
+          Falta de alinhamento estratégico resulta em{" "}
+          <span className="font-semibold text-zinc-700 dark:text-zinc-300 group-hover:text-cyan-600 dark:group-hover:text-[#00ffff] transition-colors duration-300">
+            retrabalho
+          </span>{" "}
+          e arquiteturas inadequadas.
+        </>
+      )
     }
   ];
 
@@ -53,25 +113,25 @@ export const Problem = () => {
           {pillars.map((pillar, index) => (
             <Card 
               key={pillar.title} 
-              className="relative z-10 flex flex-col justify-between h-full bg-white dark:bg-zinc-950 border border-zinc-200/60 dark:border-zinc-900 shadow-sm"
+              className="relative z-10 flex flex-col justify-between h-full bg-white dark:bg-zinc-950 border border-zinc-200/60 dark:border-zinc-900 shadow-sm group hover:border-cyan-500/80 dark:hover:border-[#00ffff]/80 transition-all duration-300"
             >
               <div>
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="p-2 rounded-md bg-zinc-50 dark:bg-zinc-900 border border-zinc-200/40 dark:border-zinc-800">
+                  <div className="p-2 rounded-md bg-zinc-50 dark:bg-zinc-900 border border-zinc-200/40 dark:border-zinc-800 transition-colors duration-300 group-hover:border-cyan-500/40 dark:group-hover:border-[#00ffff]/40">
                     {pillar.icon}
                   </div>
-                  <Heading level={3} className="text-lg font-semibold m-0">
+                  <Heading level={3} className="text-lg font-semibold m-0 transition-colors duration-300 group-hover:text-cyan-600 dark:group-hover:text-[#00ffff]">
                     {pillar.title}
                   </Heading>
                 </div>
                 
-                <Paragraph variant="base" className="text-zinc-600 dark:text-zinc-400">
+                <Paragraph variant="base" className="text-zinc-650 dark:text-zinc-450">
                   {pillar.description}
                 </Paragraph>
               </div>
 
               {/* Disconnect indicator block at the bottom */}
-              <div className="mt-8 pt-6 border-t border-zinc-100 dark:border-zinc-900">
+              <div className="mt-8 pt-6 border-t border-zinc-100 dark:border-zinc-900 transition-colors duration-300 group-hover:border-cyan-500/20 dark:group-hover:border-[#00ffff]/20">
                 <span className="text-[10px] uppercase font-mono tracking-widest text-zinc-400 dark:text-zinc-600 block mb-1">
                   Ponto de Falha
                 </span>
@@ -79,6 +139,9 @@ export const Problem = () => {
                   {pillar.disconnect}
                 </p>
               </div>
+
+              {/* Neon Underglow below the card body (GT-R Skyline underglow effect - Pure CMYK Cyan & Subtle) */}
+              <div className="absolute -bottom-[1px] left-12 right-12 h-[1px] bg-[#00ffff]/30 rounded-full opacity-0 group-hover:opacity-100 blur-[3px] group-hover:blur-[6px] group-hover:shadow-[0_8px_20px_6px_rgba(0,255,255,0.35)] transition-all duration-500 pointer-events-none z-0" />
             </Card>
           ))}
         </div>

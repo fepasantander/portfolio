@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Plataforma Felipe Santander — Portfólio Executivo de Produto
 
-## Getting Started
+Este é o repositório da plataforma profissional de Felipe Santander, projetada como uma experiência digital de alta fidelidade para comunicar posicionamento, credibilidade e liderança em Produto, Design e Engenharia.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Tecnologias e Design System
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+* **Core:** Next.js (App Router, v16.2), React v19, TypeScript
+* **Styling:** Tailwind CSS v4, Lucide React (Ícones)
+* **Acessibilidade:** Conformidade com padrões WCAG AA (contraste de cores e semântica de tags)
+* **Performance:** Build estático otimizado e pré-renderização Turbopack
+* **Integração:** Supabase SDK integrado e agnóstico a falhas no pipeline de build.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📦 Estrutura de Diretórios do Projeto
 
-## Learn More
+* `src/app/` — Rotas do Next.js:
+  * `src/app/page.tsx` — Página principal da Landing Experience.
+  * `src/app/transformations/[slug]/page.tsx` — Rota dinâmica dos estudos de caso detalhados com embeds de Figma e proteção de domínio.
+* `src/components/` — Componentes React modulares e UI atômicos reutilizáveis.
+* `src/data/` — Bancos de dados locais (ex: `case-studies.ts` para estudos de caso).
+* `src/lib/` — Clientes de SDK (Supabase, camada de Analytics customizada).
+* `md/` — Diretrizes estratégicas, Brand/Product Constitutions e histórico de decisões de produto.
+* `public/` — Imagens, logotipos corporativos oficiais e documentos em PDF (currículos).
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🛠️ Executando o Projeto Localmente
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Instale as dependências:
+   ```bash
+   npm install
+   ```
 
-## Deploy on Vercel
+2. Crie o arquivo `.env.local` na raiz com suas credenciais do Supabase:
+   ```env
+   NEXT_PUBLIC_SUPABASE_URL=seu-url-supabase
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=sua-chave-anon-supabase
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. Inicie o servidor de desenvolvimento na porta **3005** (configurada para evitar conflitos locais):
+   ```bash
+   npm run dev -- -p 3005
+   ```
+   Acesse no navegador: **[http://localhost:3005](http://localhost:3005)**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4. Para rodar um teste completo de compilação de produção localmente:
+   ```bash
+   npm run build
+   ```
+
+---
+
+## 🌐 Publicação (Vercel)
+
+O projeto possui integração automática com a Vercel através de commits enviados para a branch `main` do repositório GitHub.
+O link de produção oficial é: **[felipe-santander.vercel.app](https://felipe-santander.vercel.app/)**
