@@ -148,6 +148,7 @@ export const Transformations = () => {
       company: "Carenet",
       logoPath: "/imagem/carenet/Logotipo_Carenet.avif",
       logoAlt: "Carenet Logo",
+      slug: "carenet-longevity",
       challenge: "Apoiar a maturidade de design e conceber a experiência de produtos estratégicos e portais de monitoramento hospitalar presencial e remoto.",
       contribution: "Estruturação da equipe de UX, evolução do Design System e concepção e especificação de interfaces críticas para sistemas médicos (Orchestra, Diva e Harmonia).",
       impact: "Redução de ambiguidades e alinhamento de requisitos entre Produto, Negócio e Engenharia, otimizando o fluxo assistencial em ambientes de alta complexidade médica.",
@@ -167,6 +168,7 @@ export const Transformations = () => {
       logoPath: "/imagem/vitru/logo-vitru-negative.png",
       logoAlt: "Vitru Logo",
       logoBg: "bg-zinc-950 dark:bg-black",
+      slug: "vitru-chat-llm",
       challenge: "Conceber a estratégia e a experiência de produtos baseados em IA Generativa sob extrema incerteza no Lab de Inovação da holding.",
       contribution: "Design de agentes conversacionais (SofIA, VitruChat e Hub de Correções), desenhando fluxos de interação, critérios de sucesso e métricas de UX aplicadas a LLMs.",
       impact: "Consolidação da estratégia de IA da holding, levando o grupo ao 1º lugar no segmento Educação do Prêmio Valor Inovação Brasil 2025."

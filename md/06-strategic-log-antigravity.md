@@ -62,6 +62,24 @@ Durante esta fase, implementamos as diretrizes da **Sprint 02 — Home Repositio
 ### 8. Atualização de Menus de Navegação
 * **Âncoras de Navegação:** Atualizei o array `navItems` em [Header.tsx](file:///C:/Users/MacInBox/Documents/profissional/portfolio/src/components/sections/Header.tsx) para refletir os novos IDs de ancoragem das seções (`#how-i-think`, `#why-hire-me`).
 
+### 9. Otimização de Link Preview (WhatsApp & OpenGraph)
+* **Tradução e Localização:** Corrigi os metadados globais em [layout.tsx](file:///C:/Users/MacInBox/Documents/profissional/portfolio/src/app/layout.tsx) traduzindo títulos e descrições para o português: *"Felipe Santander — Líder de Produto & Executivo de Estratégia"*.
+* **Remoção de Redundâncias:** Excluí o bloco de metadados em inglês em [page.tsx](file:///C:/Users/MacInBox/Documents/profissional/portfolio/src/app/page.tsx) para evitar conflitos de cache e priorizar a configuração global.
+* **Banner de Visualização Rica (og:image):** Criei uma imagem de compartilhamento premium de 1200x630 pixels em [og-image.png](file:///C:/Users/MacInBox/Documents/profissional/portfolio/public/og-image.png) com fundo preto e tipografia executiva refinada.
+* **Twitter Card Large:** Ativei a diretiva `card: "summary_large_image"` garantindo que o WhatsApp e outras redes sociais renderizem o card em tamanho de banner horizontal completo em vez de um pequeno ícone quadrado.
+
+### 10. Hub Subhome Carenet Longevity (Orchestra & Diva)
+* **Ativação de Links na Home:** Habilitei novamente o slug da **Vitru** (`vitru-chat-llm`) e configurei o slug da **Carenet** (`carenet-longevity`) no componente [Transformations.tsx](file:///C:/Users/MacInBox/Documents/profissional/portfolio/src/components/sections/Transformations.tsx).
+* **Criação da Rota Dedicada:** Criei a rota específica `/transformations/carenet-longevity/page.tsx` no Next.js App Router para servir como uma subhome unificada dos produtos da Carenet.
+* **Orchestra & Diva (Simplificação de Abas):** Renomeei os títulos das abas de navegação interna para apenas **"Orchestra"** e **"Diva"**, deixando o painel mais limpo.
+* **Integração de Dados Curriculares Reais:** Substituí os textos genéricos por dados específicos extraídos do currículo oficial do Felipe Santander, detalhando sua atuação como Consultor de UX & Product Design (Freelancer) desde Abril de 2021, a estruturação da área de UX, consolidação do Design System integrado e a liderança de Product Discovery para mitigar ambiguidades técnicas.
+* **Emulador Interativo com Drag-Swipe:** Aprimorei o mock da tela do smartphone do app Diva para ter comportamento premium:
+  * Estilização baseada nas diretrizes visuais do "Nano Banana Pro" (sem bordas, fundo preto profundo e sombras suaves).
+  * Inclusão de setas de navegação físicas nas laterais do aparelho.
+  * Implementação de detectores de arrastar (`onTouch` e `onMouseDown/Up`) com transições fluidas por hardware (`transition-transform duration-500 ease-out`), permitindo folhear as 10 capturas de tela reais arrastando com o dedo ou mouse.
+* **Aviso de NDA (Confidencialidade):** Adicionado banner proeminente instruindo sobre os limites de divulgação de dados proprietários protegidos por NDA.
+* **Vídeos Youtube:** Removida a div de aviso/placeholder de vídeo retido, mantendo apenas a chamada de ação limpa que abre o canal oficial da Carenet mediada pelo modal de retenção.
+
 ---
 
 ## 🔮 Próximos Passos
