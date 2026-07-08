@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Felipe Santander — Product Leader & Strategy Executive",
+    default: "Felipe Santander — Líder de Produto & Executivo de Estratégia",
     template: "%s | Felipe Santander"
   },
   description: "Transformo desafios complexos de negócios em produtos digitais escaláveis conectando Produto, Negócio e Engenharia.",
@@ -27,17 +27,26 @@ export const metadata: Metadata = {
     follow: true,
   },
   openGraph: {
-    title: "Felipe Santander — Product Leader & Strategy Executive",
+    title: "Felipe Santander — Líder de Produto & Executivo de Estratégia",
     description: "Transformo desafios complexos de negócios em produtos digitais escaláveis conectando Produto, Negócio e Engenharia.",
     url: "https://felipesantander.com",
-    siteName: "Felipe Santander",
+    siteName: "Felipe Santander Platform",
     type: "website",
     locale: "pt_BR",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Felipe Santander — Líder de Produto & Executivo de Estratégia",
+      }
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Felipe Santander — Product Leader & Strategy Executive",
+    title: "Felipe Santander — Líder de Produto & Executivo de Estratégia",
     description: "Transformo desafios complexos de negócios em produtos digitais escaláveis conectando Produto, Negócio e Engenharia.",
+    images: ["/og-image.png"],
   }
 };
 

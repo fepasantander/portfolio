@@ -10,16 +10,7 @@ import About from "@/components/sections/About";
 import CTA from "@/components/sections/CTA";
 import Footer from "@/components/sections/Footer";
 
-export const metadata: Metadata = {
-  title: "Felipe Santander — Product Leader & Strategy Executive",
-  description: "I transform complex business challenges into scalable digital products through Strategy, UX Design, Design Systems and Artificial Intelligence.",
-  openGraph: {
-    title: "Felipe Santander — Product Leader & Strategy Executive",
-    description: "I transform complex business challenges into scalable digital products through Strategy, UX Design, Design Systems and Artificial Intelligence.",
-    type: "website",
-    locale: "pt_BR",
-  },
-};
+
 
 export default function Home() {
   return (
