@@ -123,6 +123,12 @@ Durante esta fase, implementamos as diretrizes da **Sprint 02 — Home Repositio
   * O menu esquerdo permite alternar de forma limpa entre **Orchestra** e **Diva**.
   * Preservei o smartphone virtual de alta interatividade do Diva com navegação drag-swipe e visualização de chevrons no painel direito quando selecionado.
 
+### 13. Duplos Botões de Download de CV no Contato
+* **Dois Formatos (Completo e Resumo):** Substituí o botão único de download do currículo na seção `#contact` ([CTA.tsx](file:///C:/Users/MacInBox/Documents/profissional/portfolio/src/components/sections/CTA.tsx)) por dois botões de ação distintos e bem dimensionados:
+  * **CV Completo (PDF):** Aponta para o PDF detalhado de 4 páginas com o histórico de consultorias, squads e liderança.
+  * **CV Resumo (PDF):** Aponta para a versão executiva de 2 páginas focada em rápidas leituras de recrutamento.
+* **Métricas Separadas:** Integrei manipuladores de eventos dedicados para rastrear cliques e downloads de cada arquivo PDF independentemente no analítico local.
+
 ---
 
 ## 🔮 Próximos Passos

@@ -32,9 +32,14 @@ export const CTA = () => {
     analytics.trackCTA("CTA Section: LinkedIn", "https://www.linkedin.com/in/felipe-santander/");
   };
 
-  const handleDownloadCVClick = () => {
+  const handleDownloadCVCompletoClick = () => {
     analytics.trackDownload("cv-2026-07--felipe-santander-completo.pdf");
-    analytics.trackCTA("CTA Section: Download CV", "/pdf/cv-2026-07--felipe-santander-completo.pdf");
+    analytics.trackCTA("CTA Section: Download CV Completo", "/pdf/cv-2026-07--felipe-santander-completo.pdf");
+  };
+
+  const handleDownloadCVResumoClick = () => {
+    analytics.trackDownload("cv-2026-07--felipe-santander-resumo.pdf");
+    analytics.trackCTA("CTA Section: Download CV Resumo", "/pdf/cv-2026-07--felipe-santander-resumo.pdf");
   };
 
   const handleExecutivePortfolioClick = () => {
@@ -96,12 +101,24 @@ export const CTA = () => {
           <a 
             href="/pdf/cv-2026-07--felipe-santander-completo.pdf" 
             download="cv-2026-07--felipe-santander-completo.pdf"
-            onClick={handleDownloadCVClick}
+            onClick={handleDownloadCVCompletoClick}
             className="w-full sm:w-auto"
           >
             <Button variant="secondary" className="w-full sm:w-auto gap-2">
               <Download className="h-4 w-4" />
-              Download CV (PDF)
+              CV Completo (PDF)
+            </Button>
+          </a>
+
+          <a 
+            href="/pdf/cv-2026-07--felipe-santander-resumo.pdf" 
+            download="cv-2026-07--felipe-santander-resumo.pdf"
+            onClick={handleDownloadCVResumoClick}
+            className="w-full sm:w-auto"
+          >
+            <Button variant="secondary" className="w-full sm:w-auto gap-2">
+              <Download className="h-4 w-4" />
+              CV Resumo (PDF)
             </Button>
           </a>
 
