@@ -128,17 +128,21 @@ const TransformationCard = ({
 };
 
 export const Transformations = () => {
+  const isDev = process.env.NODE_ENV === "development";
+
   const cases: TransformationCardProps[] = [
     {
-      company: "Odonto1",
+      company: "VM Comunicação",
+      slug: "vm-comunicacao",
       challenge: "Desenhar e desenvolver a plataforma de educação odontológica unificada integrando canais editoriais e ferramentas digitais para profissionais.",
-      contribution: "Gestão do time de desenvolvimento e liderança do Product Discovery, conduzindo a maior pesquisa de usuários do grupo para estruturar a estratégia de UX e arquitetura da informação.",
+      contribution: "Gestão do time de desenvolvimento e liderança do Product Discovery, conduzindo a maior pesquisa de usuários del grupo para estruturar a estratégia de UX e arquitetura da informação.",
       impact: "Consolidação da maior plataforma integrada de educação continuada da área e aumento da conversão de novos usuários a partir de decisões guiadas por dados."
     },
     {
       company: "Listo",
       logoPath: "/imagem/listo/logo_listo_22a683e3e4.svg",
       logoAlt: "Listo Logo",
+      slug: isDev ? "listo-sistemas" : undefined,
       challenge: "Implantar a área de UX e a esteira de Product Discovery em um cenário complexo de serviços financeiros de crédito (CDC) e meios de pagamento.",
       contribution: "Responsável pela implantação da área de UX, estruturando processos e governança, além de liderar o alinhamento entre Produto, Engenharia e Negócio.",
       impact: "Redução aproximada de 80% nos custos de desenvolvimento e mitigação de retrabalho por meio de validação antecipada com protótipos, conquistando o Prêmio 'Cada Real Importa' 2020.",
@@ -158,6 +162,7 @@ export const Transformations = () => {
       company: "Uniasselvi",
       logoPath: "/imagem/vitru/logo-uniasselvi-black.png",
       logoAlt: "Uniasselvi Logo",
+      slug: isDev ? "uniasselvi-plataformas-educacionais" : undefined,
       logoBg: "bg-white",
       challenge: "Conduzir a implantação e a consolidação da disciplina de UX e Product Discovery em portais acadêmicos e administrativos utilizados por milhares de estudantes.",
       contribution: "Evolução do Design System no Figma e concepção de fluxos de alta complexidade acadêmica como a Biblioteca Virtual (PPC) e a Renegociação Financeira.",
@@ -168,7 +173,7 @@ export const Transformations = () => {
       logoPath: "/imagem/vitru/logo-vitru-negative.png",
       logoAlt: "Vitru Logo",
       logoBg: "bg-zinc-950 dark:bg-black",
-      slug: "vitru-chat-llm",
+      slug: isDev ? "vitru-oportunidades-tecnologicas" : undefined,
       challenge: "Conceber a estratégia e a experiência de produtos baseados em IA Generativa sob extrema incerteza no Lab de Inovação da holding.",
       contribution: "Design de agentes conversacionais (SofIA, VitruChat e Hub de Correções), desenhando fluxos de interação, critérios de sucesso e métricas de UX aplicadas a LLMs.",
       impact: "Consolidação da estratégia de IA da holding, levando o grupo ao 1º lugar no segmento Educação do Prêmio Valor Inovação Brasil 2025."

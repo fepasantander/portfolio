@@ -83,6 +83,46 @@ Durante esta fase, implementamos as diretrizes da **Sprint 02 — Home Repositio
 * **Aviso de NDA (Confidencialidade):** Adicionado banner proeminente instruindo sobre os limites de divulgação de dados proprietários protegidos por NDA.
 * **Vídeos Youtube:** Removida a div de aviso/placeholder de vídeo retido, mantendo apenas a chamada de ação limpa que abre o canal oficial da Carenet mediada pelo modal de retenção.
 
+### 11. Hub Subhome Vitru — Oportunidades Tecnológicas (IA & Inovação)
+* **Redirecionamento na Home:** Mapeei o slug do card da **Vitru** para apontar para a nova subhome `/transformations/vitru-oportunidades-tecnologicas` em [Transformations.tsx](file:///C:/Users/MacInBox/Documents/profissional/portfolio/src/components/sections/Transformations.tsx).
+* **Criação da Rota de Inovação:** Desenvolvi a página [page.tsx](file:///C:/Users/MacInBox/Documents/profissional/portfolio/src/app/transformations/vitru-oportunidades-tecnologicas/page.tsx) representando a squad de Oportunidades Tecnológicas do grupo Vitru (Innovation Lab).
+* **Filtro de Projetos de IA (3 Itivos):** Reorganizei a listagem lateral para conter exclusivamente os 3 produtos baseados em Inteligência Artificial Generativa e LLMs desenvolvidos no Lab de Inovação da holding:
+  * **VitruChat LLM:** Plataforma corporativa de IA Generativa multiagente (com diagrama arquitetural integrado).
+  * **SofIA:** Assistente conversacional de alunos baseada em LLM.
+  * **Hub de Correções:** Motor de IA para correção automatizada de redações e provas discursivas.
+* **Estudo de Caso VitruChat LLM (Ativo):**
+  * Detalhei a atuação de Felipe como Senior UX Designer (IA) desde Junho de 2025.
+  * Inseri suas contribuições em design de latência, Design System adaptável para LLMs e Chain of Thought.
+  * Criei um **diagrama conceitual de arquitetura em React/CSS** mostrando a integração entre Interface (UI), Roteador Conversacional (Router) e o motor de Multiagentes (LLM).
+  * Incluí a conquista do **1º lugar no Prêmio Valor Inovação Brasil 2025** na categoria Educação.
+* **Sem NDA (Divulgação Aberta):** Mantive o case sem qualquer aviso ou tarja de confidencialidade (NDA), detalhando abertamente as métricas e a estratégia de produto.
+
+### 11.2. Hub Subhome Uniasselvi — Plataformas Educacionais
+* **Redirecionamento na Home:** Mapeei o slug do card da **Uniasselvi** para apontar para a nova subhome `/transformations/uniasselvi-plataformas-educacionais` em [Transformations.tsx](file:///C:/Users/MacInBox/Documents/profissional/portfolio/src/components/sections/Transformations.tsx).
+* **Criação da Rota de Plataformas Acadêmicas:** Desenvolvi a página [page.tsx](file:///C:/Users/MacInBox/Documents/profissional/portfolio/src/app/transformations/uniasselvi-plataformas-educacionais/page.tsx) representando as inovações em escala nacional da Uniasselvi (Grupo Vitru).
+* **Desenvolvimento dos 6 Casos (Menu Ativo):** Estruturei o menu lateral para gerenciar as 6 soluções corporativas acadêmicas mapeadas:
+  * **SERP:** Portal de gestão operacional e acadêmica unificado.
+  * **Renegociação:** Autoatendimento financeiro e renegociação digital de mensalidades.
+  * **Curricularização Extensão:** Gestão de atividades extensionistas comunitárias de acordo com portarias do MEC.
+  * **Biblioteca Virtual PPC:** Catálogo e leitor de livros em conformidade com as visitas e avaliações do MEC.
+  * **Autonomia Docência:** Portal de registro rápido e produtividade para diários de classe docentes.
+  * **Agendamento de Provas:** Central de reservas e aplicação escalável de avaliações em polos físicos e online.
+* **Storytelling Baseado no Currículo:** Preenchi todas as seções de desafios, atuações de Felipe como Senior UX Designer de Julho de 2022 a Junho de 2025, e as métricas de impacto regulatório e eficiência financeira.
+
+### 12. Unificação Visual das Subhomes (Listo, VM Comunicação e Carenet)
+* **Listo Sistemas (`listo-sistemas`):**
+  * Desenvolvi a subhome `/transformations/listo-sistemas` utilizando o layout split-layout (menu à esquerda + conteúdo detalhado à direita).
+  * Preenchi o caso de uso do **CDC Listo** utilizando os dados reais do currículo (implantação da área de UX, Product Discovery e o resultado de 80% de redução em custo de desenvolvimento).
+* **VM Comunicação (`vm-comunicacao`):**
+  * Criei a subhome `/transformations/vm-comunicacao` mapeando as 3 verticais de Felipe:
+    * **Odonto 1:** Remodelei o caso de uso para destacar a substituição de visões empíricas por decisões orientadas a dados. Inseri a pesquisa quali-quanti com centenas de respondentes via SurveyMonkey, entrevistas com o conselho editorial, o insight do podcast de 15 minutos (tempo médio de trânsito dos dentistas), as trilhas de especialidades, o Inbound Marketing com foco em cross-sell de congressos e o planejamento pioneiro de lives (transmissão online de eventos) pré-pandemia. Removi também as imagens obsoletas da plataforma.
+    * **Revistas:** Portais editoriais e periódicos científicos de odontologia (INPN, ImplantNews, etc.).
+    * **Eventos:** Plataformas digitais e websites para grandes congressos científicos nacionais.
+* **Refatoração da Carenet Longevity (`carenet-longevity`):**
+  * Refiz a página do case Carenet, adaptando-a para a mesma estrutura visual de menu lateral + detalhes.
+  * O menu esquerdo permite alternar de forma limpa entre **Orchestra** e **Diva**.
+  * Preservei o smartphone virtual de alta interatividade do Diva com navegação drag-swipe e visualização de chevrons no painel direito quando selecionado.
+
 ---
 
 ## 🔮 Próximos Passos
