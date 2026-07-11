@@ -18,3 +18,7 @@ export { default as Testimonials } from "./Testimonials";
 export { default as About } from "./About";
 export { default as CTA } from "./CTA";
 export { default as Footer } from "./Footer";
+export * from "./ProblemsEncountered";
+export * from "./FitAndSelection";
+export { default as ProblemsEncountered } from "./ProblemsEncountered";
+export { default as FitAndSelection } from "./FitAndSelection";

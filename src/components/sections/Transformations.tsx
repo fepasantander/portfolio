@@ -134,18 +134,18 @@ export const Transformations = () => {
     {
       company: "VM Comunicação",
       slug: "vm-comunicacao",
-      challenge: "Desenhar e desenvolver a plataforma de educação odontológica unificada integrando canais editoriais e ferramentas digitais para profissionais.",
-      contribution: "Gestão do time de desenvolvimento e liderança do Product Discovery, conduzindo a maior pesquisa de usuários del grupo para estruturar a estratégia de UX e arquitetura da informação.",
-      impact: "Consolidação da maior plataforma integrada de educação continuada da área e aumento da conversão de novos usuários a partir de decisões guiadas por dados."
+      challenge: "Unificar múltiplos canais científicos e educacionais fragmentados que dependiam de decisões conceituais empíricas da diretoria.",
+      contribution: "Condução de pesquisa quali-quanti com centenas de usuários da base (SurveyMonkey) e conselho editorial, definindo trilhas de conhecimento e canais multimídia integrados.",
+      impact: "Consolidação do principal portal odontológico unificado do país, substituindo visões internas anedóticas por navegação baseada em necessidades reais validadas."
     },
     {
       company: "Listo",
       logoPath: "/imagem/listo/logo_listo_22a683e3e4.svg",
       logoAlt: "Listo Logo",
       slug: isDev ? "listo-sistemas" : undefined,
-      challenge: "Implantar a área de UX e a esteira de Product Discovery em um cenário complexo de serviços financeiros de crédito (CDC) e meios de pagamento.",
-      contribution: "Responsável pela implantação da área de UX, estruturando processos e governança, além de liderar o alinhamento entre Produto, Engenharia e Negócio.",
-      impact: "Redução aproximada de 80% nos custos de desenvolvimento e mitigação de retrabalho por meio de validação antecipada com protótipos, conquistando o Prêmio 'Cada Real Importa' 2020.",
+      challenge: "Desperdício recorrente de esforço em engenharia e retrabalho de desenvolvimento em fluxos de crédito CDC e meios de pagamento.",
+      contribution: "Implantação da governança de UX e estruturação da esteira de Product Discovery focado em validação antecipada com protótipos funcionais integrados.",
+      impact: "Redução de 80% nos custos de desenvolvimento através de validação de jornadas com usuários antes da escrita de código (Prêmio 'Cada Real Importa').",
       logoBg: "bg-white"
     },
     {
@@ -153,10 +153,9 @@ export const Transformations = () => {
       logoPath: "/imagem/carenet/Logotipo_Carenet.avif",
       logoAlt: "Carenet Logo",
       slug: "carenet-longevity",
-      challenge: "Apoiar a maturidade de design e conceber a experiência de produtos estratégicos e portais de monitoramento hospitalar presencial e remoto.",
-      contribution: "Estruturação da equipe de UX, evolução do Design System e concepção e especificação de interfaces críticas para sistemas médicos (Orchestra, Diva e Harmonia).",
-      impact: "Redução de ambiguidades e alinhamento de requisitos entre Produto, Negócio e Engenharia, otimizando o fluxo assistencial em ambientes de alta complexidade médica.",
-      logoBg: "bg-white"
+      challenge: "Desalinhamento estratégico e risco assistencial crítico no monitoramento beira-leito em painéis e aplicativos hospitalares complexos.",
+      contribution: "Estruturação do time de design, centralização de Design System robusto e modelagem funcional rígida de layouts para telemetria de UTI móvel e registro de sinais vitais.",
+      impact: "Mitigação de ambiguidades de requisitos entre Produto e Engenharia, eliminando fricções de entrega e otimizando a segurança do fluxo clínico em campo."
     },
     {
       company: "Uniasselvi",
@@ -164,9 +163,9 @@ export const Transformations = () => {
       logoAlt: "Uniasselvi Logo",
       slug: isDev ? "uniasselvi-plataformas-educacionais" : undefined,
       logoBg: "bg-white",
-      challenge: "Conduzir a implantação e a consolidação da disciplina de UX e Product Discovery em portais acadêmicos e administrativos utilizados por milhares de estudantes.",
-      contribution: "Evolução do Design System no Figma e concepção de fluxos de alta complexidade acadêmica como a Biblioteca Virtual (PPC) e a Renegociação Financeira.",
-      impact: "Redução do retrabalho técnico entre Produto, Negócio e Engenharia através de especificações funcionais e protótipos de alta fidelidade integrados."
+      challenge: "Lentidão sistêmica no desenvolvimento e alta fricção de uso em fluxos acadêmicos críticos de escala nacional para milhares de estudantes.",
+      contribution: "Integração contínua entre design e engenharia com evolução de Design System corporativo e especificação detalhada de jornadas (renegociação financeira e acervo virtual).",
+      impact: "Redução drástica no retrabalho de front-end e aprovação de novos cursos com nota máxima em conformidade regulatória nas visitas avaliativas do MEC."
     },
     {
       company: "Vitru",
@@ -174,9 +173,9 @@ export const Transformations = () => {
       logoAlt: "Vitru Logo",
       logoBg: "bg-zinc-950 dark:bg-black",
       slug: isDev ? "vitru-oportunidades-tecnologicas" : undefined,
-      challenge: "Conceber a estratégia e a experiência de produtos baseados em IA Generativa sob extrema incerteza no Lab de Inovação da holding.",
-      contribution: "Design de agentes conversacionais (SofIA, VitruChat e Hub de Correções), desenhando fluxos de interação, critérios de sucesso e métricas de UX aplicadas a LLMs.",
-      impact: "Consolidação da estratégia de IA da holding, levando o grupo ao 1º lugar no segmento Educação do Prêmio Valor Inovação Brasil 2025."
+      challenge: "Extrema incerteza técnica e de jornada do usuário no desenho de produtos e interfaces orientadas a IA Generativa e LLMs.",
+      contribution: "Design estratégico de agentes conversacionais, fluxograma cognitivo (Chain of Thought) e tratamento operacional de latência e feedbacks de status de IA.",
+      impact: "Consolidação da infraestrutura estratégica de IA corporativa do grupo, conquistando o 1º lugar no segmento Educação do Prêmio Valor Inovação Brasil 2025."
     }
   ];
 

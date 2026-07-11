@@ -12,6 +12,9 @@ interface TestimonialData {
   initials: string;
   name: string;
   role: string;
+  linkedin: string;
+  whatsapp?: string;
+  whatsappLocked?: boolean;
   text: React.ReactNode;
 }
 
@@ -52,6 +55,9 @@ export const Testimonials = () => {
       initials: "MO",
       name: "Marcos V. O. Belice",
       role: "Gerente Executivo TI na Listo",
+      linkedin: "https://www.linkedin.com/in/marcos-valesk-oliveira-belice-b7a02162/",
+      whatsapp: "5511965734682",
+      whatsappLocked: false,
       text: (
         <>
           Trabalho há anos com o Felipe, passamos por três empresas em comum (...). Recomendo-o tanto pela{" "}
@@ -70,6 +76,8 @@ export const Testimonials = () => {
       initials: "TV",
       name: "Thiago Velloso",
       role: "Cyber & Information Security Executivo",
+      linkedin: "https://www.linkedin.com/in/thiago-velloso-85535b54/",
+      whatsappLocked: true,
       text: (
         <>
           O Felipe é um profissional extremamente habilidoso,{" "}
@@ -92,6 +100,9 @@ export const Testimonials = () => {
       initials: "AV",
       name: "Anderson Venancio",
       role: "Analista UX Sênior | Sr. Product Designer",
+      linkedin: "https://www.linkedin.com/in/andivenancio/",
+      whatsapp: "5511977580846",
+      whatsappLocked: false,
       text: (
         <>
           Felipe Santander é um grande profissional! Humano,{" "}
@@ -110,6 +121,9 @@ export const Testimonials = () => {
       initials: "RM",
       name: "Rafael Medeiros",
       role: "Development Lead na Carenet Longevity",
+      linkedin: "https://www.linkedin.com/in/rafaelmedeiros/",
+      whatsapp: "5511976686881",
+      whatsappLocked: true,
       text: (
         <>
           Profissional excepcional! Se dedica em{" "}
@@ -132,6 +146,9 @@ export const Testimonials = () => {
       initials: "DL",
       name: "Débora Lopes",
       role: "IA & Cultura de Inovação Organizacional",
+      linkedin: "https://www.linkedin.com/in/deboralopes09/",
+      whatsapp: "5521969366654",
+      whatsappLocked: true,
       text: (
         <>
           Felipe é{" "}
@@ -167,18 +184,97 @@ export const Testimonials = () => {
     return (currentIndex + offset) % testimonials.length;
   };
 
+  const presetMessage = "Bom dia, encontrei sua recomendação profissional sobre o Felipe Santander nas redes do mesmo, poderíamos conversar sobre este profissional?";
+
+  const renderCard = (offset: number) => {
+    const realIdx = getVisibleIndex(offset);
+    const styles = getHoverStyles(realIdx);
+    const item = testimonials[realIdx];
+
+    return (
+      <Card className={`relative z-10 flex flex-col justify-between h-full bg-white dark:bg-zinc-950 border border-zinc-200/60 dark:border-zinc-900 shadow-sm p-6 sm:p-8 group ${styles.border} transition-all duration-300`}>
+        <div className="z-10 relative">
+          <Quote className={`h-8 w-8 text-zinc-200 dark:text-zinc-800 mb-6 transition-colors duration-300 ${styles.quote}`} />
+          <Paragraph variant="base" className="text-zinc-650 dark:text-zinc-400 italic text-sm sm:text-base leading-relaxed">
+            &ldquo;{item.text}&rdquo;
+          </Paragraph>
+        </div>
+        
+        <div className="mt-8 flex items-center justify-between pt-4 border-t border-zinc-100 dark:border-zinc-900/50 z-10 relative gap-3">
+          <div className="flex items-center gap-3 overflow-hidden">
+            <div className={`h-10 w-10 shrink-0 rounded-full bg-zinc-100 dark:bg-zinc-900 text-zinc-800 dark:text-zinc-250 font-sans font-semibold text-xs flex items-center justify-center border border-zinc-200/40 dark:border-zinc-800 transition-colors duration-300 ${styles.initials}`}>
+              {item.initials}
+            </div>
+            <div className="overflow-hidden">
+              <h4 className="text-sm font-semibold text-zinc-950 dark:text-zinc-50 m-0 truncate">
+                {item.name}
+              </h4>
+              <p className="text-xs text-zinc-400 dark:text-zinc-600 truncate">
+                {item.role}
+              </p>
+            </div>
+          </div>
+
+          {/* Social Links */}
+          <div className="flex gap-2 shrink-0">
+            {/* LinkedIn */}
+            <a
+              href={item.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-1.5 rounded-full border border-zinc-200 dark:border-zinc-850 text-zinc-450 dark:text-zinc-500 hover:text-cyan-600 dark:hover:text-cyan-400 hover:border-cyan-500/40 dark:hover:border-cyan-400/40 transition-all duration-300 bg-zinc-50/50 dark:bg-zinc-900/20 flex items-center justify-center"
+              title={`Linkedin de ${item.name}`}
+            >
+              <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+            </a>
+
+            {/* WhatsApp */}
+            {!item.whatsappLocked && item.whatsapp ? (
+              <a
+                href={`https://wa.me/${item.whatsapp}?text=${encodeURIComponent(presetMessage)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-1.5 rounded-full border border-zinc-200 dark:border-zinc-850 text-zinc-450 dark:text-zinc-500 hover:text-green-600 dark:hover:text-green-400 hover:border-green-500/40 dark:hover:border-green-400/40 transition-all duration-300 bg-zinc-50/50 dark:bg-zinc-900/20 flex items-center justify-center"
+                title={`WhatsApp de ${item.name}`}
+              >
+                <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.005 5.219 5.221.002 11.626.002c3.102.001 6.021 1.209 8.216 3.407 2.195 2.198 3.4 5.12 3.4 8.225-.005 6.409-5.221 11.627-11.626 11.627-2.005-.002-3.974-.52-5.716-1.503L0 24zm6.273-3.82c1.624.965 3.238 1.486 4.903 1.488 5.437.002 9.855-4.414 9.86-9.854.002-2.635-1.025-5.114-2.894-6.985C16.326 2.957 13.854 1.93 11.222 1.93 5.787 1.93 1.368 6.35 1.364 11.789c-.002 1.737.458 3.43 1.332 4.945l-1.008 3.682 3.771-.989zM17.02 14.28c-.287-.143-1.696-.838-1.959-.933-.263-.096-.454-.143-.646.143-.192.287-.741.933-.909 1.123-.168.19-.336.215-.622.072-.287-.143-1.21-.447-2.306-1.427-.852-.76-1.428-1.701-1.595-1.988-.168-.287-.018-.442.125-.584.129-.127.287-.335.43-.502.143-.168.191-.287.287-.478.096-.191.048-.359-.024-.502-.072-.143-.646-1.554-.885-2.127-.233-.56-.47-.483-.646-.492-.167-.008-.359-.01-.55-.01-.192 0-.502.072-.765.359-.263.287-1.004.981-1.004 2.392 0 1.41 1.028 2.77 1.171 2.962.143.191 2.023 3.09 4.901 4.331.685.295 1.219.471 1.636.604.689.219 1.316.188 1.812.114.553-.083 1.696-.693 1.935-1.363.239-.67.239-1.243.168-1.363-.072-.12-.263-.192-.55-.335z"/>
+                </svg>
+              </a>
+            ) : (
+              <button
+                disabled
+                className="p-1.5 rounded-full border border-zinc-100 dark:border-zinc-900/50 text-zinc-300 dark:text-zinc-700 bg-transparent opacity-35 cursor-not-allowed flex items-center justify-center"
+                title="Contato via WhatsApp indisponível"
+              >
+                <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.005 5.219 5.221.002 11.626.002c3.102.001 6.021 1.209 8.216 3.407 2.195 2.198 3.4 5.12 3.4 8.225-.005 6.409-5.221 11.627-11.626 11.627-2.005-.002-3.974-.52-5.716-1.503L0 24zm6.273-3.82c1.624.965 3.238 1.486 4.903 1.488 5.437.002 9.855-4.414 9.86-9.854.002-2.635-1.025-5.114-2.894-6.985C16.326 2.957 13.854 1.93 11.222 1.93 5.787 1.93 1.368 6.35 1.364 11.789c-.002 1.737.458 3.43 1.332 4.945l-1.008 3.682 3.771-.989zM17.02 14.28c-.287-.143-1.696-.838-1.959-.933-.263-.096-.454-.143-.646.143-.192.287-.741.933-.909 1.123-.168.19-.336.215-.622.072-.287-.143-1.21-.447-2.306-1.427-.852-.76-1.428-1.701-1.595-1.988-.168-.287-.018-.442.125-.584.129-.127.287-.335.43-.502.143-.168.191-.287.287-.478.096-.191.048-.359-.024-.502-.072-.143-.646-1.554-.885-2.127-.233-.56-.47-.483-.646-.492-.167-.008-.359-.01-.55-.01-.192 0-.502.072-.765.359-.263.287-1.004.981-1.004 2.392 0 1.41 1.028 2.77 1.171 2.962.143.191 2.023 3.09 4.901 4.331.685.295 1.219.471 1.636.604.689.219 1.316.188 1.812.114.553-.083 1.696-.693 1.935-1.363.239-.67.239-1.243.168-1.363-.072-.12-.263-.192-.55-.335z"/>
+                </svg>
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* Neon Underglow below the card body */}
+        <div className={`absolute -bottom-[1px] left-12 right-12 h-[1px] rounded-full opacity-0 group-hover:opacity-100 blur-[3px] group-hover:blur-[6px] transition-all duration-500 pointer-events-none z-0 ${styles.underglow}`} />
+      </Card>
+    );
+  };
+
   return (
     <section id="testimonials" className="py-24 bg-zinc-50/10 dark:bg-zinc-950/20 overflow-hidden">
       <Container>
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="max-w-3xl">
-            <span className="text-xs uppercase tracking-widest font-mono text-zinc-400 dark:text-zinc-600 block mb-3">
+            <span className="text-xs uppercase tracking-widest font-mono text-zinc-400 dark:text-zinc-655 block mb-3">
               Reconhecimento de Mercado
             </span>
             <Heading level={2}>
               O que dizem sobre Felipe.
             </Heading>
-            <Paragraph variant="lead" className="mt-4 max-w-2xl">
+            <Paragraph variant="lead" className="mt-4 max-w-2xl text-zinc-700 dark:text-zinc-300">
               Depoimentos de líderes de tecnologia, segurança da informação, design e engenharia com quem trabalhei.
             </Paragraph>
           </div>
@@ -207,107 +303,17 @@ export const Testimonials = () => {
           
           {/* Card 1: Always visible */}
           <div className="block animate-in fade-in duration-300">
-            {(() => {
-              const realIdx = getVisibleIndex(0);
-              const styles = getHoverStyles(realIdx);
-              return (
-                <Card className={`relative z-10 flex flex-col justify-between h-full bg-white dark:bg-zinc-950 border border-zinc-200/60 dark:border-zinc-900 shadow-sm p-6 sm:p-8 group ${styles.border} transition-all duration-300`}>
-                  <div className="z-10 relative">
-                    <Quote className={`h-8 w-8 text-zinc-200 dark:text-zinc-800 mb-6 transition-colors duration-300 ${styles.quote}`} />
-                    <Paragraph variant="base" className="text-zinc-600 dark:text-zinc-400 italic text-sm sm:text-base leading-relaxed">
-                      &ldquo;{testimonials[realIdx].text}&rdquo;
-                    </Paragraph>
-                  </div>
-                  
-                  <div className="mt-8 flex items-center gap-3 pt-4 border-t border-zinc-100 dark:border-zinc-900/50 z-10 relative">
-                    <div className={`h-10 w-10 rounded-full bg-zinc-100 dark:bg-zinc-900 text-zinc-800 dark:text-zinc-200 font-sans font-semibold text-xs flex items-center justify-center border border-zinc-200/40 dark:border-zinc-800 transition-colors duration-300 ${styles.initials}`}>
-                      {testimonials[realIdx].initials}
-                    </div>
-                    <div className="overflow-hidden">
-                      <h4 className="text-sm font-semibold text-zinc-950 dark:text-zinc-50 m-0 truncate">
-                        {testimonials[realIdx].name}
-                      </h4>
-                      <p className="text-xs text-zinc-400 dark:text-zinc-600 truncate">
-                        {testimonials[realIdx].role}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Neon Underglow below the card body */}
-                  <div className={`absolute -bottom-[1px] left-12 right-12 h-[1px] rounded-full opacity-0 group-hover:opacity-100 blur-[3px] group-hover:blur-[6px] transition-all duration-500 pointer-events-none z-0 ${styles.underglow}`} />
-                </Card>
-              );
-            })()}
+            {renderCard(0)}
           </div>
 
           {/* Card 2: Visible on md (tablet) and up */}
           <div className="hidden md:block animate-in fade-in duration-300">
-            {(() => {
-              const realIdx = getVisibleIndex(1);
-              const styles = getHoverStyles(realIdx);
-              return (
-                <Card className={`relative z-10 flex flex-col justify-between h-full bg-white dark:bg-zinc-950 border border-zinc-200/60 dark:border-zinc-900 shadow-sm p-6 sm:p-8 group ${styles.border} transition-all duration-300`}>
-                  <div className="z-10 relative">
-                    <Quote className={`h-8 w-8 text-zinc-200 dark:text-zinc-800 mb-6 transition-colors duration-300 ${styles.quote}`} />
-                    <Paragraph variant="base" className="text-zinc-600 dark:text-zinc-400 italic text-sm sm:text-base leading-relaxed">
-                      &ldquo;{testimonials[realIdx].text}&rdquo;
-                    </Paragraph>
-                  </div>
-                  
-                  <div className="mt-8 flex items-center gap-3 pt-4 border-t border-zinc-100 dark:border-zinc-900/50 z-10 relative">
-                    <div className={`h-10 w-10 rounded-full bg-zinc-100 dark:bg-zinc-900 text-zinc-800 dark:text-zinc-200 font-sans font-semibold text-xs flex items-center justify-center border border-zinc-200/40 dark:border-zinc-800 transition-colors duration-300 ${styles.initials}`}>
-                      {testimonials[realIdx].initials}
-                    </div>
-                    <div className="overflow-hidden">
-                      <h4 className="text-sm font-semibold text-zinc-950 dark:text-zinc-50 m-0 truncate">
-                        {testimonials[realIdx].name}
-                      </h4>
-                      <p className="text-xs text-zinc-400 dark:text-zinc-600 truncate">
-                        {testimonials[realIdx].role}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Neon Underglow below the card body */}
-                  <div className={`absolute -bottom-[1px] left-12 right-12 h-[1px] rounded-full opacity-0 group-hover:opacity-100 blur-[3px] group-hover:blur-[6px] transition-all duration-500 pointer-events-none z-0 ${styles.underglow}`} />
-                </Card>
-              );
-            })()}
+            {renderCard(1)}
           </div>
 
           {/* Card 3: Visible on lg (desktop) and up */}
           <div className="hidden lg:block animate-in fade-in duration-300">
-            {(() => {
-              const realIdx = getVisibleIndex(2);
-              const styles = getHoverStyles(realIdx);
-              return (
-                <Card className={`relative z-10 flex flex-col justify-between h-full bg-white dark:bg-zinc-950 border border-zinc-200/60 dark:border-zinc-900 shadow-sm p-6 sm:p-8 group ${styles.border} transition-all duration-300`}>
-                  <div className="z-10 relative">
-                    <Quote className={`h-8 w-8 text-zinc-200 dark:text-zinc-800 mb-6 transition-colors duration-300 ${styles.quote}`} />
-                    <Paragraph variant="base" className="text-zinc-600 dark:text-zinc-400 italic text-sm sm:text-base leading-relaxed">
-                      &ldquo;{testimonials[realIdx].text}&rdquo;
-                    </Paragraph>
-                  </div>
-                  
-                  <div className="mt-8 flex items-center gap-3 pt-4 border-t border-zinc-100 dark:border-zinc-900/50 z-10 relative">
-                    <div className={`h-10 w-10 rounded-full bg-zinc-100 dark:bg-zinc-900 text-zinc-800 dark:text-zinc-200 font-sans font-semibold text-xs flex items-center justify-center border border-zinc-200/40 dark:border-zinc-800 transition-colors duration-300 ${styles.initials}`}>
-                      {testimonials[realIdx].initials}
-                    </div>
-                    <div className="overflow-hidden">
-                      <h4 className="text-sm font-semibold text-zinc-950 dark:text-zinc-50 m-0 truncate">
-                        {testimonials[realIdx].name}
-                      </h4>
-                      <p className="text-xs text-zinc-400 dark:text-zinc-600 truncate">
-                        {testimonials[realIdx].role}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Neon Underglow below the card body */}
-                  <div className={`absolute -bottom-[1px] left-12 right-12 h-[1px] rounded-full opacity-0 group-hover:opacity-100 blur-[3px] group-hover:blur-[6px] transition-all duration-500 pointer-events-none z-0 ${styles.underglow}`} />
-                </Card>
-              );
-            })()}
+            {renderCard(2)}
           </div>
 
         </div>

@@ -12,13 +12,17 @@ import Footer from "@/components/sections/Footer";
 import { 
   ArrowLeft, 
   CheckCircle2,
-  Cpu,
   Coins,
   Sparkles,
   Award,
   Calendar,
   User,
-  Activity
+  Activity,
+  X,
+  Video,
+  ExternalLink,
+  LayoutGrid,
+  Image as ImageIcon
 } from "lucide-react";
 
 interface ProjectItem {
@@ -36,10 +40,14 @@ interface CaseStudyData {
   role: string;
   duration: string;
   metric: string;
+  prototypeUrl?: string;
+  videoUrl?: string;
+  boardUrl?: string;
 }
 
 export default function ListoSubhomePage() {
   const [selectedProjectId, setSelectedProjectId] = useState<string>("cdc-listo");
+  const [activeModal, setActiveModal] = useState<"imagens" | "videos" | "prototipos" | "boards" | null>(null);
 
   const projects: ProjectItem[] = [
     {
@@ -52,14 +60,14 @@ export default function ListoSubhomePage() {
 
   const caseStudies: Record<string, CaseStudyData> = {
     "cdc-listo": {
-      title: "CDC Listo: Plataforma de Crédito Automotivo",
-      challenge: "Como implantar a área de UX e a esteira de Product Discovery em um cenário complexo de serviços financeiros de crédito (CDC) e meios de pagamento, garantindo validação antecipada e mitigando riscos operacionais.",
+      title: "Estruturando a esteira de Discovery e validação para crédito CDC",
+      challenge: "O desperdício recorrente de esforço em engenharia e custos elevados devido à ausência de processos de validação antecipada com lojistas e compradores no fluxo de financiamento veicular (CDC).",
       contribution: [
-        "Implantação da Cultura de UX: Estruturação da área de UX Design, definindo processos, governança e integração da equipe de design nas tomadas de decisão entre Produto, Engenharia e Negócio.",
-        "Esteira de Product Discovery: Liderança de processos estruturados de Discovery, pesquisas com usuários (UX Research), mapeamento de jornadas de crédito complexas, fluxos de usuários, wireframes e protótipos de alta fidelidade.",
-        "Redução de Ambiguidades Técnicas: Criação de especificações funcionais e documentações detalhadas, facilitando decisões céleres entre stakeholders e times de tecnologia e otimizando a previsibilidade das entregas."
+        "Estruturação de UX & Governança: Liderança na implantação da área de design na fintech, conectando times de negócio, produto e desenvolvimento sob uma esteira de trabalho ágil e previsível.",
+        "Esteira de Discovery Quanti-Quali: Mapeamento detalhado de jornadas de crédito veicular complexas, conduzindo testes de usabilidade e prototipagem interativa funcional antes da implementação.",
+        "Decisões e Handoff Técnico: Elaboração de especificações de interface e regras de fluxo clínico no front-end, mitigando ambiguidades e acelerando a entrega final da squad de tecnologia."
       ],
-      results: "Redução aproximada de 80% nos custos mensais de desenvolvimento por meio de validação prévia com protótipos interativos, conquistando o Prêmio nominal 'Cada Real Importa' (2020) concedido pelo impacto de eficiência na entrega de produtos.",
+      results: "Redução de 80% nos custos mensais de desenvolvimento por validação antecipada de fluxos complexos, conquistando o Prêmio 'Cada Real Importa' por eficiência operacional.",
       role: "Senior UX Designer / Líder de UX",
       duration: "Abril de 2019 – Dezembro de 2021",
       metric: "80% de economia no desenvolvimento"
@@ -88,19 +96,19 @@ export default function ListoSubhomePage() {
           {/* Subhome Header */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pb-12 border-b border-zinc-100 dark:border-zinc-900">
             <div className="lg:col-span-8">
-              <span className="text-xs uppercase tracking-widest font-mono text-zinc-400 dark:text-zinc-600 block mb-3">
+              <span className="text-xs uppercase tracking-widest font-mono text-zinc-400 dark:text-zinc-650 block mb-3">
                 Hub de Transformação • Listo Sistemas
               </span>
               <Heading level={1} className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight leading-tight">
                 Listo — Crédito &amp; Meios de Pagamento
               </Heading>
-              <Paragraph variant="lead" className="mt-4 max-w-2xl">
+              <Paragraph variant="lead" className="mt-4 max-w-2xl text-zinc-700 dark:text-zinc-300">
                 Liderei a implantação da área de UX, estruturando processos de Product Discovery e governança que resultaram em economia de custos e prêmios de eficiência institucional.
               </Paragraph>
             </div>
 
             <div className="lg:col-span-4 flex lg:justify-end">
-              <div className="h-20 w-44 rounded-2xl flex items-center justify-center border border-zinc-200/50 dark:border-zinc-800/80 p-4 shadow-sm bg-white dark:bg-white">
+              <div className="h-20 w-44 rounded-2xl flex items-center justify-center border border-zinc-200/50 dark:border-zinc-800/80 p-4 shadow-sm bg-white">
                 <Image
                   src="/imagem/listo/logo_listo_22a683e3e4.svg"
                   alt="Listo Logo"
@@ -117,7 +125,7 @@ export default function ListoSubhomePage() {
             
             {/* Left Sidebar Menu */}
             <div className="lg:col-span-4 space-y-3">
-              <span className="text-[10px] uppercase font-mono tracking-widest text-zinc-400 dark:text-zinc-600 block mb-4">
+              <span className="text-[10px] uppercase font-mono tracking-widest text-zinc-400 dark:text-zinc-550 block mb-4">
                 Projetos da Fintech (1)
               </span>
 
@@ -130,7 +138,7 @@ export default function ListoSubhomePage() {
                     onClick={() => setSelectedProjectId(proj.id)}
                     className={`w-full text-left p-4 rounded-xl border transition-all duration-300 flex items-start gap-3.5 relative overflow-hidden group ${
                       isActive
-                        ? "bg-zinc-950 border-zinc-950 dark:bg-zinc-900 dark:border-zinc-800 text-white shadow-md shadow-cyan-500/5"
+                        ? "bg-zinc-950 border-zinc-950 dark:bg-zinc-905 dark:border-zinc-800 text-white shadow-md shadow-cyan-500/5"
                         : "bg-white dark:bg-zinc-950 border-zinc-200/60 dark:border-zinc-900 hover:border-zinc-400 dark:hover:border-zinc-700 text-zinc-800 dark:text-zinc-200"
                     }`}
                   >
@@ -149,7 +157,7 @@ export default function ListoSubhomePage() {
 
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
-                        <span className="font-semibold text-sm leading-none block">
+                        <span className="font-semibold text-sm leading-none block text-zinc-900 dark:text-zinc-100">
                           {proj.title}
                         </span>
                         {isActive && (
@@ -159,7 +167,7 @@ export default function ListoSubhomePage() {
                         )}
                       </div>
                       <p className={`text-[11px] leading-relaxed ${
-                        isActive ? "text-zinc-400" : "text-zinc-500"
+                        isActive ? "text-zinc-300" : "text-zinc-500"
                       }`}>
                         {proj.description}
                       </p>
@@ -179,22 +187,22 @@ export default function ListoSubhomePage() {
                     <Sparkles className="h-4 w-4" />
                     Estudo de Caso Ativo
                   </span>
-                  <Heading level={2} className="text-3xl font-semibold tracking-tight">
+                  <Heading level={2} className="text-3xl font-semibold tracking-tight text-zinc-900 dark:text-white">
                     {activeCase.title}
                   </Heading>
-                  <Paragraph variant="base" className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                  <Paragraph variant="base" className="text-zinc-650 dark:text-zinc-300 leading-relaxed">
                     {activeCase.challenge}
                   </Paragraph>
                 </div>
 
                 {/* Core Challenges & UX contributions */}
                 <div className="space-y-6">
-                  <Heading level={3} className="text-lg font-semibold">
+                  <Heading level={3} className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
                     Minha Atuação e Impacto no Design:
                   </Heading>
                   <ul className="space-y-4">
                     {activeCase.contribution.map((item, index) => (
-                      <li key={index} className="flex gap-3 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                      <li key={index} className="flex gap-3 text-sm text-zinc-650 dark:text-zinc-300 leading-relaxed">
                         <CheckCircle2 className="h-5 w-5 text-cyan-500 shrink-0 mt-0.5" />
                         <span>{item}</span>
                       </li>
@@ -203,39 +211,169 @@ export default function ListoSubhomePage() {
                 </div>
 
                 {/* Results and recognitions */}
-                <div className="p-6 rounded-2xl border border-zinc-200/50 dark:border-zinc-900 bg-zinc-50/20 dark:bg-zinc-950/20 space-y-4">
-                  <h4 className="text-sm font-semibold flex items-center gap-2">
-                    <Award className="h-4.5 w-4.5 text-zinc-800 dark:text-zinc-200" />
+                <div className="p-6 rounded-2xl border border-zinc-200/50 dark:border-zinc-900 bg-zinc-50/20 dark:bg-zinc-900/10 space-y-4">
+                  <h4 className="text-sm font-semibold flex items-center gap-2 text-zinc-900 dark:text-zinc-100">
+                    <Award className="h-4.5 w-4.5 text-zinc-800 dark:text-zinc-250" />
                     Resultados de Impacto
                   </h4>
-                  <Paragraph variant="base" className="text-xs leading-relaxed text-zinc-500 dark:text-zinc-500">
+                  <Paragraph variant="base" className="text-xs leading-relaxed text-zinc-600 dark:text-zinc-300">
                     {activeCase.results}
                   </Paragraph>
                 </div>
 
+                {/* Media Thumbnails Row (Alteração Solicitada) */}
+                <div className="space-y-4 pt-6 border-t border-zinc-100 dark:border-zinc-900">
+                  <Heading level={3} className="text-xs font-mono uppercase tracking-widest text-zinc-400 dark:text-zinc-500 block mb-2">
+                    Evidências e Apoio à Decisão (Anexos)
+                  </Heading>
+                  
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    {/* Thumbnail 1: Imagens */}
+                    <button
+                      disabled
+                      className="flex flex-col items-start p-4 rounded-xl border border-zinc-100 dark:border-zinc-900 bg-zinc-50/10 dark:bg-zinc-950/10 text-left opacity-40 cursor-not-allowed w-full"
+                    >
+                      <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-900 text-zinc-400 dark:text-zinc-600 mb-3">
+                        <ImageIcon className="h-5 w-5" />
+                      </div>
+                      <span className="text-xs font-semibold text-zinc-400 dark:text-zinc-500 block mb-1">
+                        Imagens / Mocks
+                      </span>
+                      <span className="text-[10px] text-zinc-400 dark:text-zinc-600">
+                        Em breve
+                      </span>
+                    </button>
+
+                    {/* Thumbnail 2: Vídeos */}
+                    {activeCase.videoUrl ? (
+                      <a
+                        href={activeCase.videoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex flex-col items-start p-4 rounded-xl border border-zinc-250/60 dark:border-zinc-800 bg-zinc-50/30 dark:bg-zinc-900/20 hover:border-cyan-500 dark:hover:border-cyan-400 text-left transition-all duration-300 relative overflow-hidden shadow-sm w-full"
+                      >
+                        <div className="p-2 rounded-lg bg-white dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 group-hover:bg-cyan-500/10 group-hover:text-cyan-500 transition-colors mb-3 border border-zinc-200/50 dark:border-zinc-700">
+                          <Video className="h-5 w-5" />
+                        </div>
+                        <span className="text-xs font-semibold text-zinc-850 dark:text-zinc-100 block mb-1">
+                          Vídeos / Demo
+                        </span>
+                        <span className="text-[10px] text-cyan-600 dark:text-cyan-400 font-medium">
+                          Assistir
+                        </span>
+                      </a>
+                    ) : (
+                      <button
+                        disabled
+                        className="flex flex-col items-start p-4 rounded-xl border border-zinc-100 dark:border-zinc-900 bg-zinc-50/10 dark:bg-zinc-950/10 text-left opacity-40 cursor-not-allowed w-full"
+                      >
+                        <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-900 text-zinc-400 dark:text-zinc-600 mb-3">
+                          <Video className="h-5 w-5" />
+                        </div>
+                        <span className="text-xs font-semibold text-zinc-400 dark:text-zinc-500 block mb-1">
+                          Vídeos / Demo
+                        </span>
+                        <span className="text-[10px] text-zinc-400 dark:text-zinc-600">
+                          Em breve
+                        </span>
+                      </button>
+                    )}
+
+                    {/* Thumbnail 3: Protótipos */}
+                    {activeCase.prototypeUrl ? (
+                      <a
+                        href={activeCase.prototypeUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex flex-col items-start p-4 rounded-xl border border-zinc-250/60 dark:border-zinc-800 bg-zinc-50/30 dark:bg-zinc-900/20 hover:border-cyan-500 dark:hover:border-cyan-400 text-left transition-all duration-300 relative overflow-hidden shadow-sm w-full"
+                      >
+                        <div className="p-2 rounded-lg bg-white dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 group-hover:bg-cyan-500/10 group-hover:text-cyan-500 transition-colors mb-3 border border-zinc-200/50 dark:border-zinc-700">
+                          <ExternalLink className="h-5 w-5" />
+                        </div>
+                        <span className="text-xs font-semibold text-zinc-850 dark:text-zinc-100 block mb-1">
+                          Protótipo Figma
+                        </span>
+                        <span className="text-[10px] text-cyan-600 dark:text-cyan-400 font-medium">
+                          Acessar
+                        </span>
+                      </a>
+                    ) : (
+                      <button
+                        disabled
+                        className="flex flex-col items-start p-4 rounded-xl border border-zinc-100 dark:border-zinc-900 bg-zinc-50/10 dark:bg-zinc-950/10 text-left opacity-40 cursor-not-allowed w-full"
+                      >
+                        <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-900 text-zinc-400 dark:text-zinc-600 mb-3">
+                          <ExternalLink className="h-5 w-5" />
+                        </div>
+                        <span className="text-xs font-semibold text-zinc-400 dark:text-zinc-500 block mb-1">
+                          Protótipo Figma
+                        </span>
+                        <span className="text-[10px] text-zinc-400 dark:text-zinc-600">
+                          Em breve
+                        </span>
+                      </button>
+                    )}
+
+                    {/* Thumbnail 4: Boards */}
+                    {activeCase.boardUrl ? (
+                      <a
+                        href={activeCase.boardUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex flex-col items-start p-4 rounded-xl border border-zinc-250/60 dark:border-zinc-800 bg-zinc-50/30 dark:bg-zinc-900/20 hover:border-cyan-500 dark:hover:border-cyan-400 text-left transition-all duration-300 relative overflow-hidden shadow-sm w-full"
+                      >
+                        <div className="p-2 rounded-lg bg-white dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 group-hover:bg-cyan-500/10 group-hover:text-cyan-500 transition-colors mb-3 border border-zinc-200/50 dark:border-zinc-700">
+                          <LayoutGrid className="h-5 w-5" />
+                        </div>
+                        <span className="text-xs font-semibold text-zinc-850 dark:text-zinc-100 block mb-1">
+                          Decisão / Boards
+                        </span>
+                        <span className="text-[10px] text-cyan-600 dark:text-cyan-400 font-medium">
+                          Acessar
+                        </span>
+                      </a>
+                    ) : (
+                      <button
+                        disabled
+                        className="flex flex-col items-start p-4 rounded-xl border border-zinc-100 dark:border-zinc-900 bg-zinc-50/10 dark:bg-zinc-950/10 text-left opacity-40 cursor-not-allowed w-full"
+                      >
+                        <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-900 text-zinc-400 dark:text-zinc-600 mb-3">
+                          <LayoutGrid className="h-5 w-5" />
+                        </div>
+                        <span className="text-xs font-semibold text-zinc-400 dark:text-zinc-500 block mb-1">
+                          Decisão / Boards
+                        </span>
+                        <span className="text-[10px] text-zinc-400 dark:text-zinc-600">
+                          Em breve
+                        </span>
+                      </button>
+                    )}
+                  </div>
+                </div>
+
                 {/* Fact Sheet */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 border-t border-zinc-100 dark:border-zinc-900">
-                  <Card hoverEffect={false} className="p-5 bg-zinc-50/25 dark:bg-zinc-950/10 flex gap-3 items-start">
-                    <User className="h-5 w-5 text-zinc-400 shrink-0" />
+                  <Card hoverEffect={false} className="p-5 bg-zinc-50/50 dark:bg-zinc-900/30 border border-zinc-200/50 dark:border-zinc-800/50 flex gap-3 items-start">
+                    <User className="h-5 w-5 text-zinc-400 dark:text-zinc-500 shrink-0" />
                     <div>
-                      <span className="text-[9px] uppercase tracking-wider font-mono text-zinc-400 block mb-1">Cargo / Escopo</span>
-                      <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-250">{activeCase.role}</span>
+                      <span className="text-[9px] uppercase tracking-wider font-mono text-zinc-400 dark:text-zinc-500 block mb-1">Cargo / Escopo</span>
+                      <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">{activeCase.role}</span>
                     </div>
                   </Card>
 
-                  <Card hoverEffect={false} className="p-5 bg-zinc-50/25 dark:bg-zinc-950/10 flex gap-3 items-start">
-                    <Calendar className="h-5 w-5 text-zinc-400 shrink-0" />
+                  <Card hoverEffect={false} className="p-5 bg-zinc-50/50 dark:bg-zinc-900/30 border border-zinc-200/50 dark:border-zinc-800/50 flex gap-3 items-start">
+                    <Calendar className="h-5 w-5 text-zinc-400 dark:text-zinc-500 shrink-0" />
                     <div>
-                      <span className="text-[9px] uppercase tracking-wider font-mono text-zinc-400 block mb-1">Duração</span>
-                      <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-250">{activeCase.duration}</span>
+                      <span className="text-[9px] uppercase tracking-wider font-mono text-zinc-400 dark:text-zinc-500 block mb-1">Duração</span>
+                      <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">{activeCase.duration}</span>
                     </div>
                   </Card>
 
-                  <Card hoverEffect={false} className="p-5 bg-zinc-50/25 dark:bg-zinc-950/10 flex gap-3 items-start">
-                    <Activity className="h-5 w-5 text-zinc-400 shrink-0" />
+                  <Card hoverEffect={false} className="p-5 bg-zinc-50/50 dark:bg-zinc-900/30 border border-zinc-200/50 dark:border-zinc-800/50 flex gap-3 items-start">
+                    <Activity className="h-5 w-5 text-zinc-400 dark:text-zinc-500 shrink-0" />
                     <div>
-                      <span className="text-[9px] uppercase tracking-wider font-mono text-zinc-400 block mb-1">Resultados de Projeto</span>
-                      <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-250">{activeCase.metric}</span>
+                      <span className="text-[9px] uppercase tracking-wider font-mono text-zinc-400 dark:text-zinc-500 block mb-1">Resultados de Projeto</span>
+                      <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">{activeCase.metric}</span>
                     </div>
                   </Card>
                 </div>
@@ -247,6 +385,36 @@ export default function ListoSubhomePage() {
 
         </Container>
       </main>
+
+      {/* FULLSCREEN OVERLAY MODAL */}
+      {activeModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/15 backdrop-blur-md p-4 animate-in fade-in duration-200">
+          <div className="relative w-full max-w-4xl bg-zinc-950 border border-zinc-200/20 dark:border-zinc-800 rounded-3xl p-6 sm:p-8 overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
+            
+            {/* Modal Header */}
+            <div className="flex items-center justify-between pb-4 border-b border-zinc-900 mb-6">
+              <div>
+                <span className="text-[10px] uppercase font-mono tracking-widest text-zinc-500">
+                  CDC Listo — Anexo de Projeto
+                </span>
+                <Heading level={3} className="text-lg sm:text-xl font-semibold text-white m-0">
+                  {activeModal === "imagens" && "Galeria de Capturas de Tela"}
+                </Heading>
+              </div>
+              <button
+                onClick={() => setActiveModal(null)}
+                className="p-2 rounded-full border border-zinc-800 bg-zinc-900 text-zinc-400 hover:text-white transition-colors"
+                aria-label="Fechar modal"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            {/* Modal Content */}
+            <div className="flex-grow overflow-y-auto flex items-center justify-center p-2 min-h-0" />
+          </div>
+        </div>
+      )}
 
       <Footer />
     </div>

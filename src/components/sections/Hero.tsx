@@ -47,8 +47,8 @@ export const Hero = () => {
   }, []);
 
   const handlePrimaryClick = () => {
-    analytics.trackCTA("Hero: Explore Approach", "#approach");
-    const element = document.getElementById("approach");
+    analytics.trackCTA("Hero: Explore Problems", "#problem");
+    const element = document.getElementById("problem");
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
@@ -74,12 +74,12 @@ export const Hero = () => {
           </Heading>
           
           <Paragraph variant="lead" className="mt-6 max-w-xl">
-            Conecto essas três disciplinas para transformar desafios complexos de negócios em produtos digitais escaláveis através de Estratégia, UX Design, Design Systems e Inteligência Artificial.
+            Acelerar a evolução de produtos complexos exige alinhar estratégia comercial, experiência do usuário e viabilidade de engenharia. Alinhar essas frentes elimina o retrabalho técnico, reduz o tempo de lançamento no mercado e garante que as soluções gerem valor prático de negócio.
           </Paragraph>
           
           <div className="mt-10 flex flex-wrap gap-4 items-center">
             <Button variant="primary" onClick={handlePrimaryClick} className="gap-2 group">
-              Conheça minha abordagem
+              Analisar o desafio
               <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
             </Button>
             

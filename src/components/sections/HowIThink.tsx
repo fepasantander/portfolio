@@ -10,54 +10,54 @@ import { Search, Target, Code, Brain } from "lucide-react";
 export const HowIThink = () => {
   const pillars = [
     {
-      title: "Pesquisa antes da opinião",
+      title: "Pesquisa quanti-quali aplicada",
       icon: <Search className="h-5 w-5 text-zinc-950 dark:text-zinc-50 transition-colors duration-300 group-hover:text-yellow-600 dark:group-hover:text-[#ffff00]" />,
       description: (
         <>
-          Decisões de design devem ser baseadas em{" "}
+          Redução de incerteza operacional por meio de{" "}
           <span className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-yellow-600 dark:group-hover:text-[#ffff00] transition-colors duration-300">
-            dados comportamentais e evidências de negócios
-          </span>
-          , não em preferências subjetivas. Entender o usuário no contexto real é o único caminho para mitigar riscos de desenvolvimento.
+            pesquisas de amostragem, entrevistas estruturadas
+          </span>{" "}
+          e testes de usabilidade com usuários finais e conselhos consultivos de especialistas.
         </>
       ),
     },
     {
-      title: "Estratégia antes da interface",
+      title: "Concepção de fluxos e viabilidade",
       icon: <Target className="h-5 w-5 text-zinc-950 dark:text-zinc-50 transition-colors duration-300 group-hover:text-yellow-600 dark:group-hover:text-[#ffff00]" />,
       description: (
         <>
-          Telas bonitas são inúteis se o produto não resolve um{" "}
+          Mapeamento detalhado de jornadas complexas,{" "}
           <span className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-yellow-600 dark:group-hover:text-[#ffff00] transition-colors duration-300">
-            problema real de negócio ou de mercado
-          </span>
-          . O design de interface é a materialização física de um alinhamento estratégico prévio.
+            fluxogramas funcionais e protótipos de alta fidelidade
+          </span>{" "}
+          antes da escrita do código, eliminando ambiguidades estratégicas iniciais.
         </>
       ),
     },
     {
-      title: "Engenharia desde o primeiro dia",
+      title: "Integração técnica e Handoff",
       icon: <Code className="h-5 w-5 text-zinc-950 dark:text-zinc-50 transition-colors duration-300 group-hover:text-yellow-600 dark:group-hover:text-[#ffff00]" />,
       description: (
         <>
-          Designers e engenheiros devem trabalhar de forma{" "}
+          Alinhamento simbiótico diário com engenharia, definindo{" "}
           <span className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-yellow-600 dark:group-hover:text-[#ffff00] transition-colors duration-300">
-            simbiótica desde o início da concepção
-          </span>
-          . Compreender restrições técnicas economiza tempo de desenvolvimento e evita retrabalho.
+            limitações de banco de dados, APIs e arquitetura
+          </span>{" "}
+          de componentes reutilizáveis para mitigar retrabalho de código.
         </>
       ),
     },
     {
-      title: "IA amplia a inteligência. Não a substitui",
+      title: "UX aplicada a IA & Data Systems",
       icon: <Brain className="h-5 w-5 text-zinc-950 dark:text-zinc-50 transition-colors duration-300 group-hover:text-yellow-600 dark:group-hover:text-[#ffff00]" />,
       description: (
         <>
-          A inteligência artificial deve ser integrada para resolver{" "}
+          Modelagem de interfaces inteligentes tratando{" "}
           <span className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-yellow-600 dark:group-hover:text-[#ffff00] transition-colors duration-300">
-            gargalos reais e acelerar o processo
-          </span>
-          , e não como um artifício estético de marketing. Projetar para IA exige governança e responsabilidade ética.
+            problemas de latência, tolerância a falhas
+          </span>{" "}
+          e feedback de status em tempo real em jornadas de agentes conversacionais e LLMs.
         </>
       ),
     },
@@ -68,13 +68,13 @@ export const HowIThink = () => {
       <Container>
         <div className="max-w-3xl">
           <span className="text-xs uppercase tracking-widest font-mono text-zinc-400 dark:text-zinc-600 block mb-3">
-            Como Eu Penso
+            Estratégia e Execução
           </span>
           <Heading level={2}>
-            Princípios claros guiam execuções previsíveis.
+            Como resolvo problemas.
           </Heading>
           <Paragraph variant="lead" className="mt-4 max-w-2xl">
-            A maturidade de um produto digital começa no alinhamento de quem o constrói. Sigo diretrizes que eliminam o desperdício de esforço e focam no que de fato gera impacto.
+            A evolução de um produto digital começa na clareza do método de trabalho. Sigo processos estruturados que reduzem o desperdício de esforço técnico e alinham a equipe aos objetivos do negócio.
           </Paragraph>
         </div>
 

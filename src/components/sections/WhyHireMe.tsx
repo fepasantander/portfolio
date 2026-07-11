@@ -10,80 +10,80 @@ import { Compass, TrendingUp, Layers, Zap, Brain, Activity } from "lucide-react"
 export const WhyHireMe = () => {
   const capabilities = [
     {
-      title: "Conectar Produto, Negócio e Engenharia",
+      title: "Alinhamento estratégico contínuo",
       icon: <Compass className="h-5 w-5 text-zinc-950 dark:text-zinc-50 transition-colors duration-300 group-hover:text-pink-600 dark:group-hover:text-[#ff00ff]" />,
       description: (
         <>
-          Traduzo objetivos comerciais em{" "}
+          Produto, Negócio e Engenharia passam a{" "}
           <span className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-pink-600 dark:group-hover:text-[#ff00ff] transition-colors duration-300">
-            arquitetura técnica e experiência de uso
+            operar sob a mesma visão estratégica
           </span>
-          , estabelecendo um vocabulário comum entre as diretorias.
+          , reduzindo ciclos de alinhamento ineficientes e direcionando esforços ao valor real.
         </>
       ),
     },
     {
-      title: "Aumentar a maturidade de UX",
+      title: "Cultura de design integrada",
       icon: <TrendingUp className="h-5 w-5 text-zinc-950 dark:text-zinc-50 transition-colors duration-300 group-hover:text-pink-600 dark:group-hover:text-[#ff00ff]" />,
       description: (
         <>
-          Estruturo e escalo a{" "}
+          A disciplina de UX deixa de ser um departamento estético reativo e assume papel de{" "}
           <span className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-pink-600 dark:group-hover:text-[#ff00ff] transition-colors duration-300">
-            cultura de design em organizações tradicionais
-          </span>
-          , transformando UX de departamento operacional em motor de inovação.
+            pesquisa e descoberta proativa
+          </span>{" "}
+          nas decisões do negócio.
         </>
       ),
     },
     {
-      title: "Construir fundações de produto escaláveis",
+      title: "Redução de custo de desenvolvimento",
       icon: <Layers className="h-5 w-5 text-zinc-950 dark:text-zinc-50 transition-colors duration-300 group-hover:text-pink-600 dark:group-hover:text-[#ff00ff]" />,
       description: (
         <>
-          Crio{" "}
+          A consolidação de Design Systems escaláveis no Figma e no código{" "}
           <span className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-pink-600 dark:group-hover:text-[#ff00ff] transition-colors duration-300">
-            Design Systems robustos e bibliotecas de componentes
+            reduz sensivelmente o tempo
           </span>{" "}
-          reutilizáveis que reduzem o custo de desenvolvimento no Figma e na Engenharia.
+          de especificação de novas telas e componentização técnica.
         </>
       ),
     },
     {
-      title: "Reduzir a fricção entre Design e Desenvolvimento",
+      title: "Previsibilidade técnica em handoffs",
       icon: <Zap className="h-5 w-5 text-zinc-950 dark:text-zinc-50 transition-colors duration-300 group-hover:text-pink-600 dark:group-hover:text-[#ff00ff]" />,
       description: (
         <>
-          Desenho{" "}
+          Especificações claras e protótipos interativos integrados{" "}
           <span className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-pink-600 dark:group-hover:text-[#ff00ff] transition-colors duration-300">
-            especificações funcionais e protótipos de alta fidelidade
+            minimizam inconsistências de front-end
           </span>{" "}
-          integrados que otimizam a entrega técnica e a qualidade final.
+          e otimizam a velocidade de entrega final dos engenheiros.
         </>
       ),
     },
     {
-      title: "Estruturar produtos baseados em IA com responsabilidade",
+      title: "Adoção sustentável de IA",
       icon: <Brain className="h-5 w-5 text-zinc-950 dark:text-zinc-50 transition-colors duration-300 group-hover:text-pink-600 dark:group-hover:text-[#ff00ff]" />,
       description: (
         <>
-          Concebo{" "}
+          Interfaces com IA Generativa passam a ser estruturadas com foco em{" "}
           <span className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-pink-600 dark:group-hover:text-[#ff00ff] transition-colors duration-300">
-            interfaces inteligentes conversacionais
+            casos de uso concretos de jornada
           </span>
-          , definindo métricas de usabilidade de IA e fluxos seguros de multiagentes.
+          , contornando gargalos de latência e alucinações.
         </>
       ),
     },
     {
-      title: "Transformar complexidade em execução clara",
+      title: "Velocidade de evolução (Time-to-Market)",
       icon: <Activity className="h-5 w-5 text-zinc-950 dark:text-zinc-50 transition-colors duration-300 group-hover:text-pink-600 dark:group-hover:text-[#ff00ff]" />,
       description: (
         <>
-          Decomponho fluxos complexos em{" "}
+          A redução de complexidades desnecessárias nas jornadas do usuário{" "}
           <span className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-pink-600 dark:group-hover:text-[#ff00ff] transition-colors duration-300">
-            jornadas lineares intuitivas
-          </span>
-          , acelerando o tempo de lançamento do produto (time-to-market).
+            acelera o lançamento de melhorias
+          </span>{" "}
+          e a validação rápida de hipóteses no ar.
         </>
       ),
     },
@@ -94,13 +94,13 @@ export const WhyHireMe = () => {
       <Container>
         <div className="max-w-3xl">
           <span className="text-xs uppercase tracking-widest font-mono text-zinc-400 dark:text-zinc-600 block mb-3">
-            Por Que Empresas Me Contratam
+            Impacto e Resultados
           </span>
           <Heading level={2}>
-            Capacidades executivas focadas em entrega de valor.
+            O que normalmente muda.
           </Heading>
           <Paragraph variant="lead" className="mt-4 max-w-2xl">
-            Não se trata de colecionar softwares ou dominar apenas ferramentas de design. Trata-se de ter a competência técnica de conduzir produtos digitais da concepção ao lançamento técnico.
+            A integração entre Produto, Negócio e Engenharia gera reflexos práticos e mensuráveis no dia a dia da organização, elevando a eficiência e previsibilidade das squads.
           </Paragraph>
         </div>
 

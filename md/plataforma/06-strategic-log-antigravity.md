@@ -129,8 +129,12 @@ Durante esta fase, implementamos as diretrizes da **Sprint 02 — Home Repositio
   * **CV Resumo (PDF):** Aponta para a versão executiva de 2 páginas focada em rápidas leituras de recrutamento.
 * **Métricas Separadas:** Integrei manipuladores de eventos dedicados para rastrear cliques e downloads de cada arquivo PDF independentemente no analítico local.
 
+### 14. Organização Estruturada de Documentos Markdown (MD)
+* **Nova Estrutura de Pastas:** Registrada a migração dos arquivos markdown referentes à construção e documentação do portfólio para a pasta unificada **`md/plataforma/`** (localizada em `C:\Users\MacInBox\Documents\profissional\portfolio\md\plataforma`).
+* **Segregação:** Separação entre documentos sobre a evolução técnica da plataforma e documentos de carreira no diretório pai `md/`.
+
 ---
 
 ## 🔮 Próximos Passos
 1. **Validação de Build local:** Executar o teste de compilação estática final.
-2. **Push de Produção:** Aguardar validação do usuário em `localhost:3005` e enviar os commits para o GitHub/Vercel de produção.
+2. **Refinamentos Locais:** Seguir refinando os casos Listo, Vitru e Uniasselvi no `localhost:3005`.

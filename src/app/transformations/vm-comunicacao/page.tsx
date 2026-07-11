@@ -20,7 +20,12 @@ import {
   Activity,
   CalendarDays,
   FileText,
-  Lock
+  Lock,
+  X,
+  Video,
+  ExternalLink,
+  LayoutGrid,
+  Image as ImageIcon
 } from "lucide-react";
 
 interface ProjectItem {
@@ -41,10 +46,14 @@ interface CaseStudyData {
   metric: string;
   imagePath?: string;
   imageAlt?: string;
+  prototypeUrl?: string;
+  videoUrl?: string;
+  boardUrl?: string;
 }
 
 export default function VmComunicacaoSubhomePage() {
   const [selectedProjectId, setSelectedProjectId] = useState<string>("odonto1");
+  const [activeModal, setActiveModal] = useState<"imagens" | "videos" | "prototipos" | "boards" | null>(null);
   const isDev = process.env.NODE_ENV === "development";
 
   const projects: ProjectItem[] = [
@@ -73,44 +82,42 @@ export default function VmComunicacaoSubhomePage() {
 
   const caseStudies: Record<string, CaseStudyData> = {
     odonto1: {
-      title: "Odonto 1: Plataforma Multimídia e Educação Odontológica",
-      challenge: "Como estruturar um ecossistema digital integrado substituindo visões empíricas internas por decisões orientadas a dados e necessidades reais de profissionais da odontologia.",
+      title: "Substituindo decisões conceituais empíricas por dados e podcasts na transição digital",
+      challenge: "O ecossistema digital da editora carecia de integração e suas diretrizes editoriais baseavam-se em convicções empíricas internas em detrimento de dados comportamentais reais.",
       contribution: [
-        "Pesquisa Quali-Quanti com Usuários: Liderança de uma robusta pesquisa com centenas de respondentes da base de clientes via SurveyMonkey combinada com entrevistas em profundidade com dentistas consagrados do conselho editorial, superando achados empíricos internos.",
-        "O Insight de 15 Minutos (Podcasts Pioneiros): Descoberta de que os dentistas gastavam em média 15 minutos no deslocamento diário, culminando na decisão de criar podcasts de notícias do ecossistema odontológico em um período pioneiro pré-pandemia.",
-        "Trilhas de Aprendizagem Especializadas: Criação de jornadas de conhecimento em formato multimídia (artigos técnicos e vídeos) direcionadas para as especialidades cobertas (Ortodontia, Implantodontia, Estética, Prótese, Periodontia, etc.).",
-        "Estratégia de Inbound & Cross-sell: Implementação de réguas de relacionamento para nutrição de leads a cada visita do profissional aos portais, viabilizando o cross-selling estratégico para palestras e congressos promovidos pela editora.",
-        "Transmissão Digital de Eventos (Lives): Concepção e modelagem para a venda de transmissões ao vivo dos congressos presenciais para dentistas impossibilitados de comparecer in loco, antecipando uma competência que viria a ser fonte crucial de receita na pandemia."
+        "Pesquisa de Campo SurveyMonkey: Liderança e execução de pesquisa quanti-quali estruturada com centenas de dentistas, revelando hábitos e dores reais da base.",
+        "Mapeamento do Tempo de Trânsito (Podcast): Descoberta do tempo médio de deslocamento de 15 minutos dos profissionais, fundamentando o desenho e a produção de podcasts diários de notícias clínicas.",
+        "Nutrição Inbound e Lives: Estruturação de réguas de relacionamento para cross-sell de congressos e modelagem pioneira de transmissões online (lives) pagas como fonte de receita adicional."
       ],
-      results: "Criação de um canal digital integrado pioneiro e unificado, convertendo visitas em engajamento científico e estruturando a competência digital da editora.",
+      results: "Substituição do empirismo interno por canais unificados de alta conversão em assinaturas de revistas e ingressos de congressos nacionais.",
       role: "Coordenador Web",
       duration: "Agosto de 2014 – Abril de 2019",
-      metric: "Validação de hipóteses por pesquisa"
+      metric: "Validação de hipóteses por dados reais"
     },
     revistas: {
-      title: "Revistas Científicas: Portais Editoriais Digitais",
-      challenge: "Como modernizar e digitalizar a entrega e usabilidade de múltiplos periódicos científicos impressos (como ImplantNews, PerioNews, PróteseNews, OrtociênciaSPO) mantendo a autoridade editorial.",
+      title: "Digitalizando periódicos científicos impressos preservando a autoridade editorial",
+      challenge: "O declínio na leitura de mídias impressas exigia modernizar e disponibilizar múltiplos periódicos odontológicos de prestígio em formato digital de alto desempenho.",
       contribution: [
-        "Modernização Tecnológica: Planejamento e coordenação técnica do handoff de engenharia para atualizar a infraestrutura de portais de conteúdo.",
-        "Consistência de Interfaces: Design de leiaute responsivo e limpo focado na leitura imersiva e indexação acadêmica de artigos técnicos.",
-        "Otimização de Arquitetura de Informação: Padronização taxonômica facilitando a busca e categorização por especialidades odontológicas."
+        "Handoff de Arquitetura de Portais: Planejamento técnico e coordenação da reestruturação de múltiplos portais científicos de conteúdo.",
+        "Consistência de Interface de Leitura: Design responsivo focado em legibilidade imersiva e taxonomia simplificada para indexação acadêmica.",
+        "Padronização de Componentes: Criação de bibliotecas reutilizáveis para reduzir o custo de desenvolvimento de novas edições digitais."
       ],
-      results: "Evolução na usabilidade de múltiplos periódicos editoriais, facilitando o acesso e ampliando significativamente a leitura digital de artigos científicos.",
+      results: "Migração fluida do acervo físico de múltiplos títulos editoriais para portais responsivos de alta usabilidade e tempo de carregamento otimizado.",
       role: "Coordenador Web",
       duration: "Agosto de 2014 – Abril de 2019",
-      metric: "Evolução de múltiplos portais editoriais",
+      metric: "Modernização digital do acervo impresso",
       imagePath: "/imagem/vm/IMPLANT NEWS.png",
       imageAlt: "Logo ImplantNews"
     },
     eventos: {
-      title: "Eventos: Plataformas de Congressos & Relacionamento",
-      challenge: "Como criar canais digitais atraentes e eficientes para a comercialização de ingressos, submissão de painéis científicos e relacionamento com expositores para grandes congressos de odontologia.",
+      title: "Otimizando a captação de congressos nacionais e submissões científicas digitais",
+      challenge: "A ineficiência operacional na comercialização física de ingressos e na submissão de painéis acadêmicos em grandes eventos nacionais da editora.",
       contribution: [
-        "Gestão Integrada de Eventos: Desenvolvimento do fluxo de inscrição, credenciamento e envio de pôsteres científicos integrado ao ecossistema dos congressos.",
-        "Pesquisa e Validação com Usuários: Mapeamento de dores de palestrantes e profissionais participantes durante eventos reais para desenhar soluções digitais assertivas.",
-        "Alinhamento Multidisciplinar: Integração de marketing, comercial, conteúdo e tecnologia para desenvolvimento ágil de websites e plataformas específicas para congressos (IPS, Abross, IN)."
+        "Jornada de Inscrição Integrada: Modelagem e especificação funcional da plataforma de vendas, credenciamento e envio de pôsteres científicos.",
+        "UX Research em Congressos Físicos: Condução de entrevistas de campo com congressistas e expositores em eventos reais para mapeamento de dores de fluxo.",
+        "Alinhamento Multidisciplinar: Coordenação ágil integrando comercial, marketing e engenharia para lançamento célere de portais de congressos."
       ],
-      results: "Facilitação no fluxo de inscrições de congressos nacionais e no recebimento e avaliação de painéis acadêmicos por comissões científicas.",
+      results: "Otimização no fluxo de vendas online e credenciamento ágil de milhares de congressistas e submissões científicas integradas.",
       role: "Coordenador Web",
       duration: "Agosto de 2014 – Abril de 2019",
       metric: "Otimização de fluxos de eventos nacionais",
@@ -141,13 +148,13 @@ export default function VmComunicacaoSubhomePage() {
           {/* Subhome Header */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pb-12 border-b border-zinc-100 dark:border-zinc-900">
             <div className="lg:col-span-8">
-              <span className="text-xs uppercase tracking-widest font-mono text-zinc-400 dark:text-zinc-600 block mb-3">
+              <span className="text-xs uppercase tracking-widest font-mono text-zinc-400 dark:text-zinc-655 block mb-3">
                 Hub de Transformação • VM Comunicação
               </span>
               <Heading level={1} className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight leading-tight">
                 VM Comunicação — Educação Científica
               </Heading>
-              <Paragraph variant="lead" className="mt-4 max-w-2xl">
+              <Paragraph variant="lead" className="mt-4 max-w-2xl text-zinc-700 dark:text-zinc-300">
                 Coordenei a equipe de desenvolvimento, UX e projetos digitais na modernização e unificação de ecossistemas educacionais e editoriais na área da Odontologia.
               </Paragraph>
             </div>
@@ -164,7 +171,7 @@ export default function VmComunicacaoSubhomePage() {
             
             {/* Left Sidebar Menu */}
             <div className="lg:col-span-4 space-y-3">
-              <span className="text-[10px] uppercase font-mono tracking-widest text-zinc-400 dark:text-zinc-600 block mb-4">
+              <span className="text-[10px] uppercase font-mono tracking-widest text-zinc-400 dark:text-zinc-550 block mb-4">
                 Projetos da Editora (3)
               </span>
 
@@ -179,7 +186,7 @@ export default function VmComunicacaoSubhomePage() {
                     onClick={() => setSelectedProjectId(proj.id)}
                     className={`w-full text-left p-4 rounded-xl border transition-all duration-300 flex items-start gap-3.5 relative overflow-hidden group ${
                       isActive
-                        ? "bg-zinc-950 border-zinc-950 dark:bg-zinc-900 dark:border-zinc-800 text-white shadow-md shadow-cyan-500/5"
+                        ? "bg-zinc-950 border-zinc-950 dark:bg-zinc-905 dark:border-zinc-800 text-white shadow-md shadow-cyan-500/5"
                         : isComingSoon
                         ? "bg-zinc-50/50 dark:bg-zinc-950/20 border-zinc-100 dark:border-zinc-900 opacity-60 cursor-not-allowed"
                         : "bg-white dark:bg-zinc-950 border-zinc-200/60 dark:border-zinc-900 hover:border-zinc-400 dark:hover:border-zinc-700 text-zinc-800 dark:text-zinc-200"
@@ -200,7 +207,7 @@ export default function VmComunicacaoSubhomePage() {
 
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
-                        <span className="font-semibold text-sm leading-none block">
+                        <span className="font-semibold text-sm leading-none block text-zinc-900 dark:text-zinc-100">
                           {proj.title}
                         </span>
                         {isComingSoon && (
@@ -216,7 +223,7 @@ export default function VmComunicacaoSubhomePage() {
                         )}
                       </div>
                       <p className={`text-[11px] leading-relaxed ${
-                        isActive ? "text-zinc-400" : "text-zinc-500"
+                        isActive ? "text-zinc-300" : "text-zinc-500"
                       }`}>
                         {proj.description}
                       </p>
@@ -236,36 +243,22 @@ export default function VmComunicacaoSubhomePage() {
                     <Sparkles className="h-4 w-4" />
                     Estudo de Caso Ativo
                   </span>
-                  <Heading level={2} className="text-3xl font-semibold tracking-tight">
+                  <Heading level={2} className="text-3xl font-semibold tracking-tight text-zinc-900 dark:text-white">
                     {activeCase.title}
                   </Heading>
-                  <Paragraph variant="base" className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                  <Paragraph variant="base" className="text-zinc-650 dark:text-zinc-300 leading-relaxed">
                     {activeCase.challenge}
                   </Paragraph>
                 </div>
 
-                {/* Optional Image */}
-                {activeCase.imagePath && (
-                  <div className="rounded-2xl border border-zinc-200 dark:border-zinc-900 overflow-hidden bg-zinc-50 dark:bg-zinc-950 p-4 max-w-md mx-auto">
-                    <div className="relative w-full aspect-video">
-                      <Image
-                        src={activeCase.imagePath}
-                        alt={activeCase.imageAlt || activeCase.title}
-                        fill
-                        className="object-contain rounded-lg"
-                      />
-                    </div>
-                  </div>
-                )}
-
                 {/* Core Challenges & UX contributions */}
                 <div className="space-y-6">
-                  <Heading level={3} className="text-lg font-semibold">
+                  <Heading level={3} className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
                     Minha Atuação e Impacto no Design:
                   </Heading>
                   <ul className="space-y-4">
                     {activeCase.contribution.map((item, index) => (
-                      <li key={index} className="flex gap-3 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                      <li key={index} className="flex gap-3 text-sm text-zinc-655 dark:text-zinc-300 leading-relaxed">
                         <CheckCircle2 className="h-5 w-5 text-cyan-500 shrink-0 mt-0.5" />
                         <span>{item}</span>
                       </li>
@@ -274,39 +267,186 @@ export default function VmComunicacaoSubhomePage() {
                 </div>
 
                 {/* Results and recognitions */}
-                <div className="p-6 rounded-2xl border border-zinc-200/50 dark:border-zinc-900 bg-zinc-50/20 dark:bg-zinc-950/20 space-y-4">
-                  <h4 className="text-sm font-semibold flex items-center gap-2">
-                    <Award className="h-4.5 w-4.5 text-zinc-800 dark:text-zinc-200" />
+                <div className="p-6 rounded-2xl border border-zinc-200/50 dark:border-zinc-900 bg-zinc-50/20 dark:bg-zinc-900/10 space-y-4">
+                  <h4 className="text-sm font-semibold flex items-center gap-2 text-zinc-900 dark:text-zinc-100">
+                    <Award className="h-4.5 w-4.5 text-zinc-800 dark:text-zinc-250" />
                     Resultados de Impacto
                   </h4>
-                  <Paragraph variant="base" className="text-xs leading-relaxed text-zinc-500 dark:text-zinc-500">
+                  <Paragraph variant="base" className="text-xs leading-relaxed text-zinc-600 dark:text-zinc-300">
                     {activeCase.results}
                   </Paragraph>
                 </div>
 
+                {/* Media Thumbnails Row (Alteração Solicitada) */}
+                <div className="space-y-4 pt-6 border-t border-zinc-100 dark:border-zinc-900">
+                  <Heading level={3} className="text-xs font-mono uppercase tracking-widest text-zinc-400 dark:text-zinc-500 block mb-2">
+                    Evidências e Apoio à Decisão (Anexos)
+                  </Heading>
+                  
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    {/* Thumbnail 1: Imagens */}
+                    {activeCase.imagePath ? (
+                      <button
+                        onClick={() => setActiveModal("imagens")}
+                        className="group flex flex-col items-start p-4 rounded-xl border border-zinc-250/60 dark:border-zinc-800 bg-zinc-50/30 dark:bg-zinc-900/20 hover:border-cyan-500 dark:hover:border-cyan-400 text-left transition-all duration-300 relative overflow-hidden shadow-sm w-full"
+                      >
+                        <div className="p-2 rounded-lg bg-white dark:bg-zinc-850 text-zinc-600 dark:text-zinc-300 group-hover:bg-cyan-500/10 group-hover:text-cyan-500 transition-colors mb-3 border border-zinc-200/50 dark:border-zinc-700">
+                          <ImageIcon className="h-5 w-5" />
+                        </div>
+                        <span className="text-xs font-semibold text-zinc-850 dark:text-zinc-100 block mb-1">
+                          Imagens / Mocks
+                        </span>
+                        <span className="text-[10px] text-cyan-600 dark:text-cyan-400 font-medium">
+                          Visualizar (1 tela)
+                        </span>
+                      </button>
+                    ) : (
+                      <button
+                        disabled
+                        className="flex flex-col items-start p-4 rounded-xl border border-zinc-100 dark:border-zinc-900 bg-zinc-50/10 dark:bg-zinc-950/10 text-left opacity-40 cursor-not-allowed w-full"
+                      >
+                        <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-900 text-zinc-400 dark:text-zinc-600 mb-3">
+                          <ImageIcon className="h-5 w-5" />
+                        </div>
+                        <span className="text-xs font-semibold text-zinc-400 dark:text-zinc-500 block mb-1">
+                          Imagens / Mocks
+                        </span>
+                        <span className="text-[10px] text-zinc-400 dark:text-zinc-600">
+                          Em breve
+                        </span>
+                      </button>
+                    )}
+
+                    {/* Thumbnail 2: Vídeos */}
+                    {activeCase.videoUrl ? (
+                      <a
+                        href={activeCase.videoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex flex-col items-start p-4 rounded-xl border border-zinc-250/60 dark:border-zinc-800 bg-zinc-50/30 dark:bg-zinc-900/20 hover:border-cyan-500 dark:hover:border-cyan-400 text-left transition-all duration-300 relative overflow-hidden shadow-sm w-full"
+                      >
+                        <div className="p-2 rounded-lg bg-white dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 group-hover:bg-cyan-500/10 group-hover:text-cyan-500 transition-colors mb-3 border border-zinc-200/50 dark:border-zinc-700">
+                          <Video className="h-5 w-5" />
+                        </div>
+                        <span className="text-xs font-semibold text-zinc-850 dark:text-zinc-100 block mb-1">
+                          Vídeos / Demo
+                        </span>
+                        <span className="text-[10px] text-cyan-600 dark:text-cyan-400 font-medium">
+                          Assistir
+                        </span>
+                      </a>
+                    ) : (
+                      <button
+                        disabled
+                        className="flex flex-col items-start p-4 rounded-xl border border-zinc-100 dark:border-zinc-900 bg-zinc-50/10 dark:bg-zinc-950/10 text-left opacity-40 cursor-not-allowed w-full"
+                      >
+                        <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-900 text-zinc-400 dark:text-zinc-650 mb-3">
+                          <Video className="h-5 w-5" />
+                        </div>
+                        <span className="text-xs font-semibold text-zinc-400 dark:text-zinc-500 block mb-1">
+                          Vídeos / Demo
+                        </span>
+                        <span className="text-[10px] text-zinc-400 dark:text-zinc-600">
+                          Em breve
+                        </span>
+                      </button>
+                    )}
+
+                    {/* Thumbnail 3: Protótipos */}
+                    {activeCase.prototypeUrl ? (
+                      <a
+                        href={activeCase.prototypeUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex flex-col items-start p-4 rounded-xl border border-zinc-250/60 dark:border-zinc-800 bg-zinc-50/30 dark:bg-zinc-900/20 hover:border-cyan-500 dark:hover:border-cyan-400 text-left transition-all duration-300 relative overflow-hidden shadow-sm w-full"
+                      >
+                        <div className="p-2 rounded-lg bg-white dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 group-hover:bg-cyan-500/10 group-hover:text-cyan-500 transition-colors mb-3 border border-zinc-200/50 dark:border-zinc-700">
+                          <ExternalLink className="h-5 w-5" />
+                        </div>
+                        <span className="text-xs font-semibold text-zinc-850 dark:text-zinc-100 block mb-1">
+                          Protótipo Figma
+                        </span>
+                        <span className="text-[10px] text-cyan-600 dark:text-cyan-400 font-medium">
+                          Acessar
+                        </span>
+                      </a>
+                    ) : (
+                      <button
+                        disabled
+                        className="flex flex-col items-start p-4 rounded-xl border border-zinc-100 dark:border-zinc-900 bg-zinc-50/10 dark:bg-zinc-950/10 text-left opacity-40 cursor-not-allowed w-full"
+                      >
+                        <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-900 text-zinc-400 dark:text-zinc-650 mb-3">
+                          <ExternalLink className="h-5 w-5" />
+                        </div>
+                        <span className="text-xs font-semibold text-zinc-400 dark:text-zinc-500 block mb-1">
+                          Protótipo Figma
+                        </span>
+                        <span className="text-[10px] text-zinc-400 dark:text-zinc-600">
+                          Em breve
+                        </span>
+                      </button>
+                    )}
+
+                    {/* Thumbnail 4: Boards */}
+                    {activeCase.boardUrl ? (
+                      <a
+                        href={activeCase.boardUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex flex-col items-start p-4 rounded-xl border border-zinc-250/60 dark:border-zinc-800 bg-zinc-50/30 dark:bg-zinc-900/20 hover:border-cyan-500 dark:hover:border-cyan-400 text-left transition-all duration-300 relative overflow-hidden shadow-sm w-full"
+                      >
+                        <div className="p-2 rounded-lg bg-white dark:bg-zinc-850 text-zinc-600 dark:text-zinc-300 group-hover:bg-cyan-500/10 group-hover:text-cyan-500 transition-colors mb-3 border border-zinc-200/50 dark:border-zinc-700">
+                          <LayoutGrid className="h-5 w-5" />
+                        </div>
+                        <span className="text-xs font-semibold text-zinc-850 dark:text-zinc-100 block mb-1">
+                          Decisão / Boards
+                        </span>
+                        <span className="text-[10px] text-cyan-600 dark:text-cyan-400 font-medium">
+                          Acessar
+                        </span>
+                      </a>
+                    ) : (
+                      <button
+                        disabled
+                        className="flex flex-col items-start p-4 rounded-xl border border-zinc-100 dark:border-zinc-900 bg-zinc-50/10 dark:bg-zinc-950/10 text-left opacity-40 cursor-not-allowed w-full"
+                      >
+                        <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-900 text-zinc-400 dark:text-zinc-650 mb-3">
+                          <LayoutGrid className="h-5 w-5" />
+                        </div>
+                        <span className="text-xs font-semibold text-zinc-400 dark:text-zinc-500 block mb-1">
+                          Decisão / Boards
+                        </span>
+                        <span className="text-[10px] text-zinc-400 dark:text-zinc-600">
+                          Em breve
+                        </span>
+                      </button>
+                    )}
+                  </div>
+                </div>
+
                 {/* Fact Sheet */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 border-t border-zinc-100 dark:border-zinc-900">
-                  <Card hoverEffect={false} className="p-5 bg-zinc-50/25 dark:bg-zinc-950/10 flex gap-3 items-start">
-                    <User className="h-5 w-5 text-zinc-400 shrink-0" />
+                  <Card hoverEffect={false} className="p-5 bg-zinc-50/50 dark:bg-zinc-900/30 border border-zinc-200/50 dark:border-zinc-800/50 flex gap-3 items-start">
+                    <User className="h-5 w-5 text-zinc-400 dark:text-zinc-500 shrink-0" />
                     <div>
-                      <span className="text-[9px] uppercase tracking-wider font-mono text-zinc-400 block mb-1">Cargo / Escopo</span>
-                      <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-250">{activeCase.role}</span>
+                      <span className="text-[9px] uppercase tracking-wider font-mono text-zinc-400 dark:text-zinc-500 block mb-1">Cargo / Escopo</span>
+                      <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">{activeCase.role}</span>
                     </div>
                   </Card>
 
-                  <Card hoverEffect={false} className="p-5 bg-zinc-50/25 dark:bg-zinc-950/10 flex gap-3 items-start">
-                    <Calendar className="h-5 w-5 text-zinc-400 shrink-0" />
+                  <Card hoverEffect={false} className="p-5 bg-zinc-50/50 dark:bg-zinc-900/30 border border-zinc-200/50 dark:border-zinc-800/50 flex gap-3 items-start">
+                    <Calendar className="h-5 w-5 text-zinc-400 dark:text-zinc-500 shrink-0" />
                     <div>
-                      <span className="text-[9px] uppercase tracking-wider font-mono text-zinc-400 block mb-1">Duração</span>
-                      <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-250">{activeCase.duration}</span>
+                      <span className="text-[9px] uppercase tracking-wider font-mono text-zinc-400 dark:text-zinc-500 block mb-1">Duração</span>
+                      <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">{activeCase.duration}</span>
                     </div>
                   </Card>
 
-                  <Card hoverEffect={false} className="p-5 bg-zinc-50/25 dark:bg-zinc-950/10 flex gap-3 items-start">
-                    <Activity className="h-5 w-5 text-zinc-400 shrink-0" />
+                  <Card hoverEffect={false} className="p-5 bg-zinc-50/50 dark:bg-zinc-900/30 border border-zinc-200/50 dark:border-zinc-800/50 flex gap-3 items-start">
+                    <Activity className="h-5 w-5 text-zinc-400 dark:text-zinc-500 shrink-0" />
                     <div>
-                      <span className="text-[9px] uppercase tracking-wider font-mono text-zinc-400 block mb-1">Resultados de Projeto</span>
-                      <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-250">{activeCase.metric}</span>
+                      <span className="text-[9px] uppercase tracking-wider font-mono text-zinc-400 dark:text-zinc-500 block mb-1">Resultados de Projeto</span>
+                      <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">{activeCase.metric}</span>
                     </div>
                   </Card>
                 </div>
@@ -318,6 +458,55 @@ export default function VmComunicacaoSubhomePage() {
 
         </Container>
       </main>
+
+      {/* FULLSCREEN OVERLAY MODAL */}
+      {activeModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/15 backdrop-blur-md p-4 animate-in fade-in duration-200">
+          <div className="relative w-full max-w-4xl bg-zinc-950 border border-zinc-200/20 dark:border-zinc-800 rounded-3xl p-6 sm:p-8 overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
+            
+            {/* Modal Header */}
+            <div className="flex items-center justify-between pb-4 border-b border-zinc-900 mb-6">
+              <div>
+                <span className="text-[10px] uppercase font-mono tracking-widest text-zinc-500">
+                  {selectedProjectId === "odonto1" ? "Odonto 1" : selectedProjectId === "revistas" ? "Revistas Científicas" : "Eventos Científicos"} — Anexo de Projeto
+                </span>
+                <Heading level={3} className="text-lg sm:text-xl font-semibold text-white m-0">
+                  {activeModal === "imagens" && "Galeria de Capturas de Tela"}
+                </Heading>
+              </div>
+              <button
+                onClick={() => setActiveModal(null)}
+                className="p-2 rounded-full border border-zinc-800 bg-zinc-900 text-zinc-400 hover:text-white transition-colors"
+                aria-label="Fechar modal"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            {/* Modal Content */}
+            <div className="flex-grow overflow-y-auto flex items-center justify-center p-2 min-h-0">
+              
+              {/* IMAGENS MODAL */}
+              {activeModal === "imagens" && activeCase.imagePath && (
+                <div className="w-full max-w-2xl bg-zinc-900/30 border border-zinc-800 rounded-2xl p-4 flex flex-col justify-between">
+                  <div className="relative w-full aspect-video">
+                    <Image
+                      src={activeCase.imagePath}
+                      alt={activeCase.imageAlt || activeCase.title}
+                      fill
+                      className="object-contain rounded-lg"
+                    />
+                  </div>
+                  <span className="text-[10px] text-zinc-550 block text-center mt-3 font-mono">
+                    {activeCase.imageAlt || activeCase.title}
+                  </span>
+                </div>
+              )}
+              
+            </div>
+          </div>
+        </div>
+      )}
 
       <Footer />
     </div>
