@@ -123,7 +123,7 @@ export const Testimonials = () => {
       role: "Development Lead na Carenet Longevity",
       linkedin: "https://www.linkedin.com/in/rafaelmedeiros/",
       whatsapp: "5511976686881",
-      whatsappLocked: true,
+      whatsappLocked: false,
       text: (
         <>
           Profissional excepcional! Se dedica em{" "}

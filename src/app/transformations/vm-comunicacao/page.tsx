@@ -25,7 +25,9 @@ import {
   Video,
   ExternalLink,
   LayoutGrid,
-  Image as ImageIcon
+  Image as ImageIcon,
+  ChevronLeft,
+  ChevronRight
 } from "lucide-react";
 
 interface ProjectItem {
@@ -54,6 +56,8 @@ interface CaseStudyData {
 export default function VmComunicacaoSubhomePage() {
   const [selectedProjectId, setSelectedProjectId] = useState<string>("odonto1");
   const [activeModal, setActiveModal] = useState<"imagens" | "videos" | "prototipos" | "boards" | null>(null);
+  const [revistasIndex, setRevistasIndex] = useState(0);
+  const [eventosIndex, setEventosIndex] = useState(0);
   const isDev = process.env.NODE_ENV === "development";
 
   const projects: ProjectItem[] = [
@@ -67,7 +71,7 @@ export default function VmComunicacaoSubhomePage() {
     {
       id: "revistas",
       title: "Revistas",
-      description: "Portais editoriais e periódicos científicos de odontologia (INPN, ImplantNews, etc.).",
+      description: "Portais editoriais e periódicos científicos de odontologia (INPN, ImplantNews, PerioNews, PróteseNews, ImplantNewsPerio, OrtociênciaSPO, PCP).",
       icon: <FileText className="h-5 w-5" />,
       status: isDev ? "active" : "coming-soon"
     },
@@ -78,6 +82,22 @@ export default function VmComunicacaoSubhomePage() {
       icon: <CalendarDays className="h-5 w-5" />,
       status: isDev ? "active" : "coming-soon"
     }
+  ];
+
+  const revistasSlides = [
+    { src: "/imagem/vm/revistas/aprovadas/1-capa-revistaimplantnews.png", label: "Capa - Revista ImplantNews" },
+    { src: "/imagem/vm/revistas/aprovadas/2-site-revistaimplantnews.png", label: "Portal Web - ImplantNews" },
+    { src: "/imagem/vm/revistas/aprovadas/3-capa-revistaimplantnewsperio.png", label: "Capa - Revista ImplantNewsPerio" },
+    { src: "/imagem/vm/revistas/aprovadas/4-site-revistaimplantnewsperio.png", label: "Portal Web - ImplantNewsPerio" },
+    { src: "/imagem/vm/revistas/aprovadas/5-capa-ortodontiaSPO.png", label: "Capa - Revista Ortodontia SPO" },
+    { src: "/imagem/vm/revistas/aprovadas/6-site-ortodontiaSPO.png", label: "Portal Web - Ortodontia SPO" },
+    { src: "/imagem/vm/revistas/aprovadas/7-capa-revistaprotesenews.png", label: "Capa - Revista Prótese News" },
+    { src: "/imagem/vm/revistas/aprovadas/8-site-revistaprotesenews.png", label: "Portal Web - Prótese News" }
+  ];
+
+  const eventosSlides = [
+    { src: "/imagem/vm/eventos/aprovadas/site-in26.png", label: "Portal Web - Congresso IN 2026" },
+    { src: "/imagem/vm/eventos/aprovadas/site-orto26.png", label: "Portal Web - Congresso ORTO 2026" }
   ];
 
   const caseStudies: Record<string, CaseStudyData> = {
@@ -96,37 +116,61 @@ export default function VmComunicacaoSubhomePage() {
     },
     revistas: {
       title: "Digitalizando periódicos científicos impressos preservando a autoridade editorial",
-      challenge: "O declínio na leitura de mídias impressas exigia modernizar e disponibilizar múltiplos periódicos odontológicos de prestígio em formato digital de alto desempenho.",
+      challenge: "Como modernizar a distribuição física de periódicos científicos de alta autoridade da editora (INPN, ImplantNews, PerioNews, PróteseNews, ImplantNewsPerio, OrtociênciaSPO e PCP) para plataformas digitais de alto desempenho, conectando o rigor científico dos artigos impressos a uma experiência de publicação ágil na web.",
       contribution: [
-        "Handoff de Arquitetura de Portais: Planejamento técnico e coordenação da reestruturação de múltiplos portais científicos de conteúdo.",
-        "Consistência de Interface de Leitura: Design responsivo focado em legibilidade imersiva e taxonomia simplificada para indexação acadêmica.",
-        "Padronização de Componentes: Criação de bibliotecas reutilizáveis para reduzir o custo de desenvolvimento de novas edições digitais."
+        "Origem Editorial Premium: Estruturação dos portais digitais como extensões diretas do acervo impresso, garantindo que as matérias científicas e entrevistas aprofundadas tivessem os mesmos critérios rigorosos de curadoria da revista física.",
+        "Parser e Workflow de Diagramação Impressa: Criação, junto à equipe de TI, de um parser customizado que exporta o layout dos arquivos digitais de diagramação (InDesign) diretamente em blocos de código HTML tabulados e folhas de estilo CSS, acelerando drasticamente o ciclo de publicação online.",
+        "Arquitetura de Conteúdo e SEO Acadêmico: Redesenho taxonômico e design responsivo focado na leitura longa de artigos científicos complexos, otimizando a indexação em bases acadêmicas e mecanismos de busca."
       ],
-      results: "Migração fluida do acervo físico de múltiplos títulos editoriais para portais responsivos de alta usabilidade e tempo de carregamento otimizado.",
+      results: "Redução a zero no retrabalho e no tempo de digitação manual de artigos físicos, permitindo a transição digital fluida de todo o acervo histórico da editora.",
       role: "Coordenador Web",
       duration: "Agosto de 2014 – Abril de 2019",
-      metric: "Modernização digital do acervo impresso",
+      metric: "Automação no fluxo de publicação impresso-web",
       imagePath: "/imagem/vm/IMPLANT NEWS.png",
       imageAlt: "Logo ImplantNews"
     },
     eventos: {
       title: "Otimizando a captação de congressos nacionais e submissões científicas digitais",
-      challenge: "A ineficiência operacional na comercialização física de ingressos e na submissão de painéis acadêmicos em grandes eventos nacionais da editora.",
+      challenge: "A ineficiência operacional na comercialização física de inscrições e na submissão de painéis acadêmicos em grandes eventos nacionais recorrentes (IN, Orto, Abross, Ateliê Oral, Goiânia Dental Meeting, Celebration, Consenso e IPS) que mantêm as mesmas URLs ao longo das edições de 2014 a 2019.",
       contribution: [
-        "Jornada de Inscrição Integrada: Modelagem e especificação funcional da plataforma de vendas, credenciamento e envio de pôsteres científicos.",
-        "UX Research em Congressos Físicos: Condução de entrevistas de campo com congressistas e expositores em eventos reais para mapeamento de dores de fluxo.",
-        "Alinhamento Multidisciplinar: Coordenação ágil integrando comercial, marketing e engenharia para lançamento célere de portais de congressos."
+        "Estratégia Inbound & Cross-Sell (Odonto1): Criação de réguas automatizadas de inbound marketing integradas à plataforma Odonto1 para nutrir a base de leads clínicos e gerar conversão em vendas cruzadas para ingressos dos congressos nacionais.",
+        "Sistema Próprio de Ticketing e Vendas: Especificação funcional e modelagem da plataforma interna de comercialização, credenciamento automatizado e jornada transacional para controle operacional dos eventos.",
+        "Produção Audiovisual e Google Ads: Roteirização e produção de campanhas de vídeos promocionais de alta qualidade no YouTube, impulsionados via Google Ads direcionados a especialidades odontológicas de nicho.",
+        "Evolução e Reaproveitamento Tecnológico de URLs: Manutenção e evolução contínua da arquitetura web dos portais sob domínios consolidados para as edições anuais de 2014 a 2019, maximizando o valor de SEO e histórico transacional acumulado."
       ],
-      results: "Otimização no fluxo de vendas online e credenciamento ágil de milhares de congressistas e submissões científicas integradas.",
+      results: "Otimização no fluxo de vendas online, credenciamento ágil de milhares de congressistas e submissões científicas integradas.",
       role: "Coordenador Web",
       duration: "Agosto de 2014 – Abril de 2019",
-      metric: "Otimização de fluxos de eventos nacionais",
+      metric: "Otimização de domínios e conversão de eventos",
       imagePath: "/imagem/vm/in24.png",
       imageAlt: "Logo Congresso IN"
     }
   };
 
   const activeCase = caseStudies[selectedProjectId] || caseStudies.odonto1;
+  
+  const hasImages = selectedProjectId === "revistas" || selectedProjectId === "eventos";
+  const imageCountText = selectedProjectId === "revistas" 
+    ? `${revistasSlides.length} telas` 
+    : selectedProjectId === "eventos"
+    ? `${eventosSlides.length} telas`
+    : "1 tela";
+
+  const nextRevista = () => {
+    setRevistasIndex((prev) => (prev + 1) % revistasSlides.length);
+  };
+
+  const prevRevista = () => {
+    setRevistasIndex((prev) => (prev - 1 + revistasSlides.length) % revistasSlides.length);
+  };
+
+  const nextEvento = () => {
+    setEventosIndex((prev) => (prev + 1) % eventosSlides.length);
+  };
+
+  const prevEvento = () => {
+    setEventosIndex((prev) => (prev - 1 + eventosSlides.length) % eventosSlides.length);
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-white dark:bg-black text-zinc-950 dark:text-zinc-50 font-sans transition-colors duration-300">
@@ -171,7 +215,7 @@ export default function VmComunicacaoSubhomePage() {
             
             {/* Left Sidebar Menu */}
             <div className="lg:col-span-4 space-y-3">
-              <span className="text-[10px] uppercase font-mono tracking-widest text-zinc-400 dark:text-zinc-550 block mb-4">
+              <span className="text-[10px] uppercase font-mono tracking-widest text-zinc-400 dark:text-zinc-555 block mb-4">
                 Projetos da Editora (3)
               </span>
 
@@ -183,7 +227,11 @@ export default function VmComunicacaoSubhomePage() {
                   <button
                     key={proj.id}
                     disabled={isComingSoon}
-                    onClick={() => setSelectedProjectId(proj.id)}
+                    onClick={() => {
+                      setSelectedProjectId(proj.id);
+                      setRevistasIndex(0);
+                      setEventosIndex(0);
+                    }}
                     className={`w-full text-left p-4 rounded-xl border transition-all duration-300 flex items-start gap-3.5 relative overflow-hidden group ${
                       isActive
                         ? "bg-zinc-950 border-zinc-950 dark:bg-zinc-905 dark:border-zinc-800 text-white shadow-md shadow-cyan-500/5"
@@ -246,7 +294,7 @@ export default function VmComunicacaoSubhomePage() {
                   <Heading level={2} className="text-3xl font-semibold tracking-tight text-zinc-900 dark:text-white">
                     {activeCase.title}
                   </Heading>
-                  <Paragraph variant="base" className="text-zinc-650 dark:text-zinc-300 leading-relaxed">
+                  <Paragraph variant="base" className="text-zinc-655 dark:text-zinc-300 leading-relaxed">
                     {activeCase.challenge}
                   </Paragraph>
                 </div>
@@ -285,19 +333,19 @@ export default function VmComunicacaoSubhomePage() {
                   
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                     {/* Thumbnail 1: Imagens */}
-                    {activeCase.imagePath ? (
+                    {hasImages ? (
                       <button
                         onClick={() => setActiveModal("imagens")}
                         className="group flex flex-col items-start p-4 rounded-xl border border-zinc-250/60 dark:border-zinc-800 bg-zinc-50/30 dark:bg-zinc-900/20 hover:border-cyan-500 dark:hover:border-cyan-400 text-left transition-all duration-300 relative overflow-hidden shadow-sm w-full"
                       >
-                        <div className="p-2 rounded-lg bg-white dark:bg-zinc-850 text-zinc-600 dark:text-zinc-300 group-hover:bg-cyan-500/10 group-hover:text-cyan-500 transition-colors mb-3 border border-zinc-200/50 dark:border-zinc-700">
+                        <div className="p-2 rounded-lg bg-white dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 group-hover:bg-cyan-500/10 group-hover:text-cyan-500 transition-colors mb-3 border border-zinc-200/50 dark:border-zinc-700">
                           <ImageIcon className="h-5 w-5" />
                         </div>
                         <span className="text-xs font-semibold text-zinc-850 dark:text-zinc-100 block mb-1">
                           Imagens / Mocks
                         </span>
                         <span className="text-[10px] text-cyan-600 dark:text-cyan-400 font-medium">
-                          Visualizar (1 tela)
+                          Visualizar ({imageCountText})
                         </span>
                       </button>
                     ) : (
@@ -305,7 +353,7 @@ export default function VmComunicacaoSubhomePage() {
                         disabled
                         className="flex flex-col items-start p-4 rounded-xl border border-zinc-100 dark:border-zinc-900 bg-zinc-50/10 dark:bg-zinc-950/10 text-left opacity-40 cursor-not-allowed w-full"
                       >
-                        <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-900 text-zinc-400 dark:text-zinc-600 mb-3">
+                        <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-900 text-zinc-400 dark:text-zinc-650 mb-3">
                           <ImageIcon className="h-5 w-5" />
                         </div>
                         <span className="text-xs font-semibold text-zinc-400 dark:text-zinc-500 block mb-1">
@@ -360,7 +408,7 @@ export default function VmComunicacaoSubhomePage() {
                         rel="noopener noreferrer"
                         className="group flex flex-col items-start p-4 rounded-xl border border-zinc-250/60 dark:border-zinc-800 bg-zinc-50/30 dark:bg-zinc-900/20 hover:border-cyan-500 dark:hover:border-cyan-400 text-left transition-all duration-300 relative overflow-hidden shadow-sm w-full"
                       >
-                        <div className="p-2 rounded-lg bg-white dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 group-hover:bg-cyan-500/10 group-hover:text-cyan-500 transition-colors mb-3 border border-zinc-200/50 dark:border-zinc-700">
+                        <div className="p-2 rounded-lg bg-white dark:bg-zinc-850 text-zinc-600 dark:text-zinc-300 group-hover:bg-cyan-500/10 group-hover:text-cyan-500 transition-colors mb-3 border border-zinc-200/50 dark:border-zinc-700">
                           <ExternalLink className="h-5 w-5" />
                         </div>
                         <span className="text-xs font-semibold text-zinc-850 dark:text-zinc-100 block mb-1">
@@ -427,7 +475,7 @@ export default function VmComunicacaoSubhomePage() {
                 {/* Fact Sheet */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 border-t border-zinc-100 dark:border-zinc-900">
                   <Card hoverEffect={false} className="p-5 bg-zinc-50/50 dark:bg-zinc-900/30 border border-zinc-200/50 dark:border-zinc-800/50 flex gap-3 items-start">
-                    <User className="h-5 w-5 text-zinc-400 dark:text-zinc-500 shrink-0" />
+                    <User className="h-5 w-5 text-zinc-400 dark:text-zinc-550 shrink-0" />
                     <div>
                       <span className="text-[9px] uppercase tracking-wider font-mono text-zinc-400 dark:text-zinc-500 block mb-1">Cargo / Escopo</span>
                       <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">{activeCase.role}</span>
@@ -435,7 +483,7 @@ export default function VmComunicacaoSubhomePage() {
                   </Card>
 
                   <Card hoverEffect={false} className="p-5 bg-zinc-50/50 dark:bg-zinc-900/30 border border-zinc-200/50 dark:border-zinc-800/50 flex gap-3 items-start">
-                    <Calendar className="h-5 w-5 text-zinc-400 dark:text-zinc-500 shrink-0" />
+                    <Calendar className="h-5 w-5 text-zinc-400 dark:text-zinc-550 shrink-0" />
                     <div>
                       <span className="text-[9px] uppercase tracking-wider font-mono text-zinc-400 dark:text-zinc-500 block mb-1">Duração</span>
                       <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">{activeCase.duration}</span>
@@ -443,7 +491,7 @@ export default function VmComunicacaoSubhomePage() {
                   </Card>
 
                   <Card hoverEffect={false} className="p-5 bg-zinc-50/50 dark:bg-zinc-900/30 border border-zinc-200/50 dark:border-zinc-800/50 flex gap-3 items-start">
-                    <Activity className="h-5 w-5 text-zinc-400 dark:text-zinc-500 shrink-0" />
+                    <Activity className="h-5 w-5 text-zinc-400 dark:text-zinc-550 shrink-0" />
                     <div>
                       <span className="text-[9px] uppercase tracking-wider font-mono text-zinc-400 dark:text-zinc-500 block mb-1">Resultados de Projeto</span>
                       <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">{activeCase.metric}</span>
@@ -467,7 +515,7 @@ export default function VmComunicacaoSubhomePage() {
             {/* Modal Header */}
             <div className="flex items-center justify-between pb-4 border-b border-zinc-900 mb-6">
               <div>
-                <span className="text-[10px] uppercase font-mono tracking-widest text-zinc-500">
+                <span className="text-[10px] uppercase font-mono tracking-widest text-zinc-555">
                   {selectedProjectId === "odonto1" ? "Odonto 1" : selectedProjectId === "revistas" ? "Revistas Científicas" : "Eventos Científicos"} — Anexo de Projeto
                 </span>
                 <Heading level={3} className="text-lg sm:text-xl font-semibold text-white m-0">
@@ -476,7 +524,7 @@ export default function VmComunicacaoSubhomePage() {
               </div>
               <button
                 onClick={() => setActiveModal(null)}
-                className="p-2 rounded-full border border-zinc-800 bg-zinc-900 text-zinc-400 hover:text-white transition-colors"
+                className="p-2 rounded-full border border-zinc-850 bg-zinc-900 text-zinc-400 hover:text-white transition-colors"
                 aria-label="Fechar modal"
               >
                 <X className="h-5 w-5" />
@@ -487,20 +535,109 @@ export default function VmComunicacaoSubhomePage() {
             <div className="flex-grow overflow-y-auto flex items-center justify-center p-2 min-h-0">
               
               {/* IMAGENS MODAL */}
-              {activeModal === "imagens" && activeCase.imagePath && (
-                <div className="w-full max-w-2xl bg-zinc-900/30 border border-zinc-800 rounded-2xl p-4 flex flex-col justify-between">
-                  <div className="relative w-full aspect-video">
-                    <Image
-                      src={activeCase.imagePath}
-                      alt={activeCase.imageAlt || activeCase.title}
-                      fill
-                      className="object-contain rounded-lg"
-                    />
+              {activeModal === "imagens" && (
+                selectedProjectId === "revistas" ? (
+                  /* Revistas covers and websites slideshow */
+                  <div className="flex flex-col items-center select-none w-full max-w-2xl">
+                    <div className="relative w-full aspect-video border border-zinc-800 rounded-2xl bg-zinc-950 p-2 flex items-center justify-center overflow-hidden">
+                      <button 
+                        onClick={prevRevista}
+                        className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full border border-zinc-800 bg-zinc-900/90 text-zinc-200 hover:bg-zinc-800 transition-colors z-30 shadow-md"
+                        aria-label="Slide anterior"
+                      >
+                        <ChevronLeft className="h-5 w-5" />
+                      </button>
+                      <button 
+                        onClick={nextRevista}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full border border-zinc-800 bg-zinc-900/90 text-zinc-200 hover:bg-zinc-800 transition-colors z-30 shadow-md"
+                        aria-label="Próximo slide"
+                      >
+                        <ChevronRight className="h-5 w-5" />
+                      </button>
+                      <div className="relative w-full h-full">
+                        <Image
+                          src={revistasSlides[revistasIndex].src}
+                          alt={revistasSlides[revistasIndex].label}
+                          fill
+                          className="object-contain"
+                        />
+                      </div>
+                    </div>
+                    <div className="mt-4 flex flex-wrap justify-center gap-1.5">
+                      {revistasSlides.map((_, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => setRevistasIndex(idx)}
+                          className={`h-1.5 rounded-full transition-all duration-300 ${
+                            revistasIndex === idx ? "w-6 bg-cyan-400" : "w-1.5 bg-zinc-800"
+                          }`}
+                        />
+                      ))}
+                    </div>
+                    <span className="text-[11px] text-zinc-400 text-center mt-3 font-mono">
+                      {revistasSlides[revistasIndex].label}
+                    </span>
                   </div>
-                  <span className="text-[10px] text-zinc-550 block text-center mt-3 font-mono">
-                    {activeCase.imageAlt || activeCase.title}
-                  </span>
-                </div>
+                ) : selectedProjectId === "eventos" ? (
+                  /* Eventos slideshow */
+                  <div className="flex flex-col items-center select-none w-full max-w-2xl">
+                    <div className="relative w-full aspect-video border border-zinc-800 rounded-2xl bg-zinc-950 p-2 flex items-center justify-center overflow-hidden">
+                      <button 
+                        onClick={prevEvento}
+                        className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full border border-zinc-800 bg-zinc-900/90 text-zinc-200 hover:bg-zinc-800 transition-colors z-30 shadow-md"
+                        aria-label="Slide anterior"
+                      >
+                        <ChevronLeft className="h-5 w-5" />
+                      </button>
+                      <button 
+                        onClick={nextEvento}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full border border-zinc-800 bg-zinc-900/90 text-zinc-200 hover:bg-zinc-800 transition-colors z-30 shadow-md"
+                        aria-label="Próximo slide"
+                      >
+                        <ChevronRight className="h-5 w-5" />
+                      </button>
+                      <div className="relative w-full h-full">
+                        <Image
+                          src={eventosSlides[eventosIndex].src}
+                          alt={eventosSlides[eventosIndex].label}
+                          fill
+                          className="object-contain"
+                        />
+                      </div>
+                    </div>
+                    <div className="mt-4 flex flex-wrap justify-center gap-1.5">
+                      {eventosSlides.map((_, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => setEventosIndex(idx)}
+                          className={`h-1.5 rounded-full transition-all duration-300 ${
+                            eventosIndex === idx ? "w-6 bg-cyan-400" : "w-1.5 bg-zinc-800"
+                          }`}
+                        />
+                      ))}
+                    </div>
+                    <span className="text-[11px] text-zinc-400 text-center mt-3 font-mono">
+                      {eventosSlides[eventosIndex].label}
+                    </span>
+                  </div>
+                ) : (
+                  /* Standard single image for other cases */
+                  activeCase.imagePath && (
+                    <div className="w-full max-w-2xl bg-zinc-900/30 border border-zinc-800 rounded-2xl p-4 flex flex-col justify-between">
+                      <div className="relative w-full aspect-video">
+                        <Image
+                          src={activeCase.imagePath}
+                          alt={activeCase.imageAlt || activeCase.title}
+                          fill
+                          className="object-contain rounded-lg"
+                        />
+                      </div>
+                      <span className="text-[10px] text-zinc-550 block text-center mt-3 font-mono">
+                        {activeCase.imageAlt || activeCase.title}
+                      </span>
+                    </div>
+                  )
+                )
               )}
               
             </div>

@@ -46,10 +46,22 @@ Este documento inicia o histórico de alinhamento estratégico, decisões técni
 * **Mensagem Automática do WhatsApp:** Configurada via API (`https://wa.me/...`) para abrir em nova aba (`target="_blank"`) carregando a seguinte mensagem padrão: *"Bom dia, encontrei sua recomendação profissional sobre o Felipe Santander nas redes do mesmo, poderíamos conversar sobre este profissional?"*.
 * **Estados Ativos / Bloqueados:**
   * **Débora Lopes:** LinkedIn Ativo | WhatsApp Bloqueado (Disabled)
-  * **Rafael Medeiros:** LinkedIn Ativo | WhatsApp Bloqueado (Disabled)
+  * **Rafael Medeiros:** LinkedIn Ativo | WhatsApp Ativo (Liberado)
   * **Anderson Venancio:** LinkedIn Ativo | WhatsApp Ativo
   * **Marcos Valesk:** LinkedIn Ativo | WhatsApp Ativo
   * **Thiago Velloso:** LinkedIn Ativo | WhatsApp Bloqueado (Disabled)
+
+### 5. Evolução da Transformação da VM Comunicação (Caso: Revistas e Eventos)
+* **Caso de Uso - Revistas:**
+  * Re-escrevi a cópia do caso de uso de **Revistas** para esclarecer o papel das mídias científicas impressas premium como a fonte de autoridade e origem das matérias e entrevistas dos portais web.
+  * Atualizei a lista de portais editoriais criados: **INPN, ImplantNews, PerioNews, PróteseNews, ImplantNewsPerio, OrtociênciaSPO e PCP**.
+  * Detalhei no item de contribuição o desenvolvimento (em conjunto com TI) de um **parser de automação de diagramação** que traduz arquivos de diagramação física (InDesign) diretamente em código tabulado HTML/CSS, otimizando o fluxo e eliminando a necessidade de digitação manual de artigos.
+  * Ajustei a galeria de **Revistas** para exibir exatamente os **8 slides** ordenados e nomeados pelo usuário (ImplantNews Capa $\rightarrow$ ImplantNews Site $\rightarrow$ ImplantNewsPerio Capa $\rightarrow$ ImplantNewsPerio Site $\rightarrow$ Ortodontia Capa $\rightarrow$ Ortodontia Site $\rightarrow$ Prótese News Capa $\rightarrow$ Prótese News Site).
+* **Caso de Uso - Eventos:**
+  * **Cópia e Storytelling:** Atualizei o caso de **Eventos** detalhando a estratégia de inbound marketing e nutrição na plataforma Odonto1 para cross-sell de ingressos de congressos, a modelagem da plataforma interna transacional de ticketing e vendas, e a produção de roteiros e vídeos promocionais no YouTube veiculados via Google Ads.
+  * **Eventos e URLs:** Especifiquei os eventos atendidos (**IN, Orto, Abross, Ateliê Oral, Goiânia Dental Meeting, Celebration, Consenso e IPS**) ao longo das edições de **2014 a 2019**, esclarecendo que a estratégia tecnológica manteve as mesmas URLs (reaproveitamento dinâmico de domínios) para preservar o SEO e histórico.
+  * **Galeria de Ativos:** Restringi os slides do modal de imagens do caso de **Eventos** estritamente aos ativos aprovados da pasta `eventos/aprovadas` (`site-in26.png` e `site-orto26.png`).
+* **Correção de Estrutura Estática:** Copiei a árvore de ativos de imagem da raiz (`imagem/vm`) para a pasta pública do Next.js (`public/imagem/vm`), incluindo as subpastas `aprovadas`, garantindo o carregamento correto das imagens no servidor de desenvolvimento local e em produção.
 
 ---
 
