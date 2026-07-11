@@ -75,11 +75,11 @@ export default function VitruSubhomePage() {
   const caseStudies: Record<string, CaseStudyData> = {
     vitruchat: {
       title: "Estruturando uma plataforma corporativa baseada em IA Generativa para automação",
-      challenge: "A alta latência e imprevisibilidade de saídas de texto em sistemas multiagentes baseados em LLMs, gerando atrito de uso e quebras de interface em fluxos corporativos complexos.",
+      challenge: "Incerteza estratégica no alinhamento de interfaces de IA Generativa. A alta latência e a imprevisibilidade técnica de LLMs causavam desconfiança no uso corporativo, quebrando telas devido a respostas dinâmicas inesperadas.",
       contribution: [
-        "Tratamento de Latência na UI: Design de componentes de streaming progressivo de texto e indicadores dinâmicos que diminuem o tempo de percepção de espera do usuário.",
-        "Design System Adaptável para IA: Criação de elementos de layout flexíveis preparados para saídas dinâmicas em Markdown, blocos de código ricos e feedbacks de status de IA.",
-        "Navegação Multiagentes: Estruturação UX para acompanhamento de fluxos multiagente (Chain of Thought), permitindo ao usuário entender qual módulo da IA está processando o prompt."
+        "Cenário Encontrado: Gargalos de latência em sistemas multiagentes causavam sensação de travamento no front-end, gerando abandono e chamados de suporte técnico.",
+        "Decisões Tomadas: Modelagem de fluxogramas cognitivos de streaming progressivo de dados e design de interfaces adaptáveis com feedbacks dinâmicos de status (Chain of Thought).",
+        "Impacto Gerado: Alinhamento de limites de requisições de LLM com a squad de engenharia, construindo uma arquitetura robusta de UX para IA corporativa da holding."
       ],
       results: "Consolidação da infraestrutura estratégica de IA da holding, auxiliando o Grupo Vitru a alcançar o 1º lugar no segmento Educação do Prêmio Valor Inovação Brasil 2025.",
       role: "Senior UX Designer (IA)",
@@ -88,11 +88,11 @@ export default function VitruSubhomePage() {
     },
     sofia: {
       title: "Otimizando a retenção e humanização do atendimento estudantil escalável com IA",
-      challenge: "O alto volume de chamados de atendimento acadêmico de rotina congestionando os times de suporte e gerando lentidão nas respostas aos alunos.",
+      challenge: "Gargalo no suporte ao cliente e custo operacional elevado devido à sobrecarga de chamados de atendimento acadêmico de rotina em polo e canais manuais de triagem.",
       contribution: [
-        "Mapeamento de Fluxos Conversacionais: Desenho de caminhos de decisão em linguagem natural integrando regras pedagógicas, financeiras e de secretaria.",
-        "Design de Onboarding da IA: Criação de guias visuais e micro-interações que educam o estudante sobre como elaborar perguntas eficientes para o assistente conversacional.",
-        "Métricas de Resolução Rápida: Definição de metas de contenção de suporte no primeiro contato sem comprometer os índices de satisfação geral (NPS)."
+        "Cenário Encontrado: Estudantes enfrentavam longas esperas para dúvidas básicas de matrícula/notas, sobrecarregando atendentes físicos com tarefas repetitivas.",
+        "Decisões Tomadas: Concepção de fluxos conversacionais integrando regras pedagógicas em linguagem natural e micro-interações de onboarding para guiar o usuário no prompt.",
+        "Impacto Gerado: Implementação de metas de contenção baseadas em árvore de decisão integrada a APIs de secretaria, organizando a esteira de suporte da instituição."
       ],
       results: "Redução do fluxo de transbordo de chamados de atendimento repetitivo na plataforma Uniasselvi, otimizando o suporte acadêmico diário.",
       role: "Senior UX Designer (IA)",
@@ -101,11 +101,11 @@ export default function VitruSubhomePage() {
     },
     "hub-correcoes": {
       title: "Garantindo precisão e acessibilidade na correção automatizada de redações com IA",
-      challenge: "A falta de transparência e o risco de desconfiança docente na atribuição automática de notas e feedbacks detalhados em provas discursivas por algoritmos de IA.",
+      challenge: "Falta de credibilidade e resistência de revisores na adoção de algoritmos de inteligência artificial para correção automática de provas discursivas de grande escala.",
       contribution: [
-        "UX da Trilha de Auditoria: Desenho de visualizações que mostram as razões de cada pontuação recomendada pelo modelo, restabelecendo a confiança do revisor.",
-        "Painel Docente de Validação: Criação de interface de revisão rápida que permite ao professor editar, auditar ou subscrever notas recomendadas pela IA de forma ágil.",
-        "Acessibilidade de Feedbacks: Estruturação de fluxos acessíveis (WCAG) para leitura de comentários de provas, permitindo inclusão e escalabilidade acadêmica."
+        "Cenário Encontrado: Adoção nula do motor de IA por falta de transparência na atribuição automática de notas, com alta taxa de contestação docente.",
+        "Decisões Tomadas: Design de uma trilha de auditoria transparente exibindo as regras de recomendação do modelo e criação de um painel de validação rápida para o professor editar notas.",
+        "Impacto Gerado: Estruturação de fluxos de acessibilidade digital (WCAG), integrando o motor matemático às necessidades reais dos avaliadores docentes."
       ],
       results: "Aumento considerável na velocidade e consistência de correções avaliativas de larga escala, oferecendo segurança operacional aos revisores.",
       role: "Senior UX Designer (IA)",

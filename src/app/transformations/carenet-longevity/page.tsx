@@ -83,26 +83,26 @@ export default function CarenetSubhomePage() {
   const caseStudies: Record<string, CaseStudyData> = {
     orchestra: {
       title: "Consolidando telemetria em tempo real para múltiplos leitos de UTI",
-      challenge: "A dificuldade em integrar múltiplos equipamentos de IoMT de UTIs e consolidações clínicas críticas em painéis responsivos e seguros para acompanhamento médico remoto.",
+      challenge: "Ineficiência clínica e risco assistencial devido ao tempo excessivo de resposta na triagem e monitoramento IoMT. A equipe médica encontrava dificuldades em integrar múltiplos equipamentos de UTI em painéis responsivos, atrasando a intervenção em leitos críticos.",
       contribution: [
-        "Monitoramento Remoto Responsivo: Adaptação de dashboards de altíssima complexidade clínica para telas móveis de médicos intensivos à distância.",
-        "Apoio a Decisões na COVID-19: Consultoria estratégica e prototipagem de interfaces ágeis que reduziram o tempo de resposta clínico em momentos graves de ocupação de leitos.",
-        "Handoff de Missão Crítica: Especificações e protótipos de alta fidelidade desenhados em tempo recorde sob alta pressão assistencial."
+        "Cenário Encontrado: Atrasos críticos no acesso a dados de UTIs em tempo real por equipes médicas remotas devido à complexidade técnica e fragmentação visual dos painéis de IoMT.",
+        "Decisões Tomadas: Modelagem de painéis responsivos de alta densidade focados em redução de carga cognitiva assistencial e especificação de barramentos visuais ágeis durante momentos graves da COVID-19.",
+        "Impacto Gerado: Alinhamento imediato de entrega com engenharia sob altíssima pressão, resultando em tomadas de decisão clínica remotas mais rápidas e seguras."
       ],
-      results: "Tomada de decisão clínica remota segura e ágil durante crises de ocupação de UTIs, garantindo estabilidade e acompanhamento no tratamento intensivo.",
+      results: "Substituição da complexidade visual do IoMT por painéis centralizados responsivos, mitigando riscos de resposta clínica e apoiando UTIs sobrecarregadas.",
       role: "Consultor de UX & Product Design",
       duration: "Abril de 2021 – Julho de 2021 (Colaboração Pontual)",
       metric: "Redução no tempo de decisão clínica"
     },
     diva: {
       title: "Minimizando erros assistenciais no registro de sinais vitais beira-leito",
-      challenge: "A alta taxa de erro humano e lentidão operacional na coleta manual e digitação de sinais vitais de pacientes nas rotinas de enfermagem hospitalar.",
+      challenge: "Erros operacionais e tempo excessivo de enfermagem dedicados ao lançamento manual de dados clínicos vitais beira-leito, gerando atraso na identificação de deterioração clínica do paciente.",
       contribution: [
-        "Design de UI de Baixo Atrito: Desenvolvimento de interfaces móveis simplificadas com alto contraste e navegação adaptada para plantões médicos intensos.",
-        "Concepção da Marca e UX: Concepção visual da marca Diva e regras funcionais de validação automática para a Escala MEWS (risco de deterioração clínica).",
-        "Documentação e Viabilidade: Entrega de handoff detalhado para engenharia, eliminando desalinhamento de front-end com os limites de processamento dos tablets beira-leito."
+        "Cenário Encontrado: Elevada taxa de erro humano no preenchimento manual de planilhas físicas beira-leito e latência no cálculo manual da escala assistencial MEWS.",
+        "Decisões Tomadas: Prototipagem de fluxo de digitação de baixo atrito para tablets hospitalares e implementação de rotinas de validação automática e cálculo da escala de risco em tempo real.",
+        "Impacto Gerado: Especificação funcional detalhada que alinhou design de hardware/software com as limitações técnicas de processamento de tablets, reduzindo inconsistências de engenharia."
       ],
-      results: "Redução expressiva em descompassos assistenciais no lançamento manual e maior velocidade no histórico clínico de pacientes à beira do leito.",
+      results: "Automatização do cálculo de risco assistencial e redução de erros de lançamento beira-leito, organizando a esteira operacional de enfermagem através do aplicativo.",
       role: "Consultor de UX & Product Design",
       duration: "Abril de 2021 – Julho de 2021",
       metric: "Mitigação de erros de preenchimento manual"

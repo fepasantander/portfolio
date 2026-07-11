@@ -103,13 +103,13 @@ export default function VmComunicacaoSubhomePage() {
   const caseStudies: Record<string, CaseStudyData> = {
     odonto1: {
       title: "Substituindo decisões conceituais empíricas por dados e podcasts na transição digital",
-      challenge: "O ecossistema digital da editora carecia de integração e suas diretrizes editoriais baseavam-se em convicções empíricas internas em detrimento de dados comportamentais reais.",
+      challenge: "Baixa maturidade digital e fragmentação na tomada de decisões de produto. As estratégias editoriais e comerciais baseavam-se em convicções empíricas internas da diretoria, gerando canais desintegrados e desperdício de esforço na captação de leads.",
       contribution: [
-        "Pesquisa de Campo SurveyMonkey: Liderança e execução de pesquisa quanti-quali estruturada com centenas de dentistas, revelando hábitos e dores reais da base.",
-        "Mapeamento do Tempo de Trânsito (Podcast): Descoberta do tempo médio de deslocamento de 15 minutos dos profissionais, fundamentando o desenho e a produção de podcasts diários de notícias clínicas.",
-        "Nutrição Inbound e Lives: Estruturação de réguas de relacionamento para cross-sell de congressos e modelagem pioneira de transmissões online (lives) pagas como fonte de receita adicional."
+        "Cenário Encontrado: Ecossistema digital fragmentado e sem processos estruturados de validação, resultando em decisões baseadas em empirismo e intuições isoladas.",
+        "Decisões Tomadas: Diagnóstico estruturado da base de clientes via pesquisa quanti-quali (SurveyMonkey) e mapeamento do tempo médio de deslocamento do público para guiar a criação de podcasts diários e trilhas de conhecimento.",
+        "Impacto Gerado: Integração de réguas de relacionamento inbound ligando conteúdo gratuito a transmissões ao vivo pagas e vendas de ingressos, evoluindo a maturidade digital das equipes editoriais e comerciais."
       ],
-      results: "Substituição do empirismo interno por canais unificados de alta conversão em assinaturas de revistas e ingressos de congressos nacionais.",
+      results: "Substituição do empirismo na tomada de decisões por processos consistentes de validação comportamental por dados, organizando a editora através do ecossistema digital.",
       role: "Coordenador Web",
       duration: "Agosto de 2014 – Abril de 2019",
       metric: "Validação de hipóteses por dados reais"
@@ -118,9 +118,9 @@ export default function VmComunicacaoSubhomePage() {
       title: "Digitalizando periódicos científicos impressos preservando a autoridade editorial",
       challenge: "Como modernizar a distribuição física de periódicos científicos de alta autoridade da editora (INPN, ImplantNews, PerioNews, PróteseNews, ImplantNewsPerio, OrtociênciaSPO e PCP) para plataformas digitais de alto desempenho, conectando o rigor científico dos artigos impressos a uma experiência de publicação ágil na web.",
       contribution: [
-        "Origem Editorial Premium: Estruturação dos portais digitais como extensões diretas do acervo impresso, garantindo que as matérias científicas e entrevistas aprofundadas tivessem os mesmos critérios rigorosos de curadoria da revista física.",
-        "Parser e Workflow de Diagramação Impressa: Criação, junto à equipe de TI, de um parser customizado que exporta o layout dos arquivos digitais de diagramação (InDesign) diretamente em blocos de código HTML tabulados e folhas de estilo CSS, acelerando drasticamente o ciclo de publicação online.",
-        "Arquitetura de Conteúdo e SEO Acadêmico: Redesenho taxonômico e design responsivo focado na leitura longa de artigos científicos complexos, otimizando a indexação em bases acadêmicas e mecanismos de busca."
+        "Cenário Encontrado: Processos de publicação web manuais e ineficientes geravam alto custo de redigitação, lentidão na publicação online e retrabalho contínuo de front-end devido à falta de consistência visual.",
+        "Decisões Tomadas: Criação de um parser de diagramação (InDesign para HTML/CSS) em parceria com a equipe de TI e centralização de layouts responsivos sob um modelo unificado para todas as revistas.",
+        "Impacto Gerado: Integração entre a produção impressa tradicional e o desenvolvimento de software, reduzindo a zero o retrabalho operacional e modernizando o acervo histórico científico."
       ],
       results: "Redução a zero no retrabalho e no tempo de digitação manual de artigos físicos, permitindo a transição digital fluida de todo o acervo histórico da editora.",
       role: "Coordenador Web",
@@ -133,10 +133,9 @@ export default function VmComunicacaoSubhomePage() {
       title: "Otimizando a captação de congressos nacionais e submissões científicas digitais",
       challenge: "A ineficiência operacional na comercialização física de inscrições e na submissão de painéis acadêmicos em grandes eventos nacionais recorrentes (IN, Orto, Abross, Ateliê Oral, Goiânia Dental Meeting, Celebration, Consenso e IPS) que mantêm as mesmas URLs ao longo das edições de 2014 a 2019.",
       contribution: [
-        "Estratégia Inbound & Cross-Sell (Odonto1): Criação de réguas automatizadas de inbound marketing integradas à plataforma Odonto1 para nutrir a base de leads clínicos e gerar conversão em vendas cruzadas para ingressos dos congressos nacionais.",
-        "Sistema Próprio de Ticketing e Vendas: Especificação funcional e modelagem da plataforma interna de comercialização, credenciamento automatizado e jornada transacional para controle operacional dos eventos.",
-        "Produção Audiovisual e Google Ads: Roteirização e produção de campanhas de vídeos promocionais de alta qualidade no YouTube, impulsionados via Google Ads direcionados a especialidades odontológicas de nicho.",
-        "Evolução e Reaproveitamento Tecnológico de URLs: Manutenção e evolução contínua da arquitetura web dos portais sob domínios consolidados para as edições anuais de 2014 a 2019, maximizando o valor de SEO e histórico transacional acumulado."
+        "Cenário Encontrado: Falta de padronização tecnológica e comercial em eventos recorrentes, exigindo retrabalho de desenvolvimento anual de novos portais sob o mesmo domínio.",
+        "Decisões Tomadas: Modelagem de uma plataforma própria de ticketing, credenciamento e envio de pôsteres científicos integrada ao comercial, e reaproveitamento de domínios históricos para preservar relevância SEO.",
+        "Impacto Gerado: Condução de pesquisas de campo com congressistas para otimização de fluxo e produção de campanhas promocionais em vídeo com segmentação via Google Ads no YouTube."
       ],
       results: "Otimização no fluxo de vendas online, credenciamento ágil de milhares de congressistas e submissões científicas integradas.",
       role: "Coordenador Web",

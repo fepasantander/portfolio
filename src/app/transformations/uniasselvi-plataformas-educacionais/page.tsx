@@ -94,78 +94,78 @@ export default function UniasselviSubhomePage() {
   const caseStudies: Record<string, CaseStudyData> = {
     serp: {
       title: "Centralizando a gestão de milhões de matrículas sob um sistema operacional unificado",
-      challenge: "A fragmentação operacional e lentidão de carregamento em requisições críticas de secretaria no fechamento de turmas e matrículas.",
+      challenge: "Gargalo operacional e alto custo de suporte acadêmico devido à fragmentação de múltiplos sistemas de secretaria de escala nacional no processamento de matrículas e fechamentos de turmas.",
       contribution: [
-        "Descoberta Operacional (Discovery): Condução de pesquisas e mapeamento direto de processos em secretarias para eliminar redundâncias e gargalos.",
-        "Consistência de Formulários Acadêmicos: Redesenho do banco de dados conceitual em layouts administrativos limpos de alto desempenho.",
-        "Especificação e Handoff de API: Elaboração de regras funcionais diminuindo o retrabalho entre produto e engenharia."
+        "Cenário Encontrado: Sistemas lentos e dispersos causavam filas de atendimento físico, erros de enturmação de alunos e sobrecarga no back-office administrativo.",
+        "Decisões Tomadas: Condução de mapeamento presencial de dores das secretarias e especificação detalhada de uma interface centralizada de matrículas de alto desempenho.",
+        "Impacto Gerado: Unificação e simplificação no processamento de requisições críticas, otimizando o fluxo operacional e acelerando o handoff para o desenvolvimento front-end."
       ],
-      results: "Simplificação drástica na rotina operacional administrativa, estabilizando e otimizando o fluxo de matrículas.",
+      results: "Simplificação drástica na rotina operacional administrativa, estabilizando e otimizando o fluxo de matrículas de milhões de alunos.",
       role: "Senior UX Designer",
       duration: "Julho de 2022 – Junho de 2025",
       metric: "Otimização operacional do fluxo administrativo"
     },
     renegociacao: {
       title: "Reduzindo a inadimplência estudantil via portal financeiro autoatendível",
-      challenge: "Altos índices de inadimplência ativa combinados à sobrecarga de atendimento humano para simulação e renegociação de mensalidades atrasadas.",
+      challenge: "Altos índices de inadimplência estudantil ativa e sobrecarga nas equipes de atendimento humano dedicadas à simulação e cobrança manual de mensalidades em atraso.",
       contribution: [
-        "Simulação Dinâmica de Parcelas: Criação de fluxo interativo passo a passo exibindo descontos progressivos e opções de boleto, PIX ou cartão.",
-        "Redução de Fricção Cognitiva: Simplificação da exibição de taxas e juros de forma clara e amigável para o aluno em débito.",
-        "Protótipo Integrado com Cobrança: Validação e desenho técnico de regras de fluxo financeiro antes do desenvolvimento."
+        "Cenário Encontrado: Fricção cognitiva no entendimento de taxas acumuladas afastava alunos do acerto financeiro, centralizando negociações em canais caros como telefone.",
+        "Decisões Tomadas: Modelagem e prototipagem rápida de uma esteira interativa de autoatendimento financeiro com propostas dinâmicas de descontos progressivos e opções instantâneas de boleto/PIX/cartão.",
+        "Impacto Gerado: Validação de regras transacionais em parceria com engenharia de sistemas de cobrança antes da escrita de código, reduzindo erros de desenvolvimento."
       ],
-      results: "Aumento considerável na recuperação de receita através de canal digital de autoatendimento sem custos humanos adicionais.",
+      results: "Aumento considerável na recuperação de receita através de canal digital de autoatendimento, reduzindo o custo operacional por transação de acordo.",
       role: "Senior UX Designer",
       duration: "Julho de 2022 – Junho de 2025",
       metric: "Recuperação de receita digital via autoatendimento"
     },
     curricularizacao: {
       title: "Adequando portfólios comunitários acadêmicos à conformidade regulatória do MEC",
-      challenge: "A necessidade legal de registrar e comprovar milhares de atividades extensionistas de alunos em escala nacional de acordo com portarias rígidas do MEC.",
+      challenge: "Risco regulatório crítico de descredenciamento institucional de cursos caso não houvesse comprovação auditável e simplificada de milhares de horas de extensão comunitária de alunos.",
       contribution: [
-        "Envio Guiado de Evidências: Modelagem de fluxo para upload simplificado de relatórios, fotos de projetos de extensão e declarações comunitárias.",
-        "Aprovação e Conferência em Lote: Design de ferramentas internas para tutores avaliarem e deferirem horas de extensão em massa.",
-        "Integração no Design System: Padronização das interfaces regulatórias nas bibliotecas corporativas globais da holding."
+        "Cenário Encontrado: Falta de padronização no envio de portfólios comunitários gerava pilhas de relatórios físicos desconexos e retrabalho para tutores validarem horas.",
+        "Decisões Tomadas: Concepção de uma interface de upload e validação em lote integrada, alinhando regras do MEC com a jornada de tutoria no portal de ensino.",
+        "Impacto Gerado: Componentização escalável no Design System corporativo da holding, garantindo consistência visual e velocidade de implantação em diversos portais acadêmicos."
       ],
-      results: "Adequação legal de 100% dos cursos da Uniasselvi e do Grupo Vitru às portarias do MEC de curricularização da extensão.",
+      results: "Adequação regulatória de 100% dos cursos da Uniasselvi, eliminando multas regulatórias e garantindo conformidade total de extensão.",
       role: "Senior UX Designer",
       duration: "Julho de 2022 – Junho de 2025",
       metric: "100% de adequação regulatória legal"
     },
     biblioteca: {
       title: "Aprovando novos cursos com nota máxima em acervo digital do MEC",
-      challenge: "A obrigatoriedade regulatória de disponibilizar buscas integradas e leitura acessível do acervo digital no plano pedagógico do curso (PPC).",
+      challenge: "Barreira regulatória e potencial perda de nota de aprovação de novos cursos EAD e presenciais devido à ausência de leitores online acessíveis de acervo pedagógico.",
       contribution: [
-        "Busca Bibliográfica Integrada: Desenvolvimento de busca taxonômica separando títulos básicos e complementares recomendados do curso.",
-        "Leitor Online Acessível (WCAG): Ajustes finos de usabilidade do leitor (fontes, contraste, espaçamento e leitura de tela) para conformidade total.",
-        "Unificação de APIs de Editoras: Padronização visual para acervos de editoras externas para manter experiência de leitura uniforme."
+        "Cenário Encontrado: APIs e interfaces de editoras parceiras eram inconsistentes, não acessíveis (incompatíveis com leitores de tela) e dificultavam buscas acadêmicas estruturadas.",
+        "Decisões Tomadas: Padronização das requisições visuais de leitura sob diretrizes WCAG e redesenho taxonômico de buscas por títulos básicos e complementares.",
+        "Impacto Gerado: Garantia de acessibilidade total na leitura de acervo pedagógico virtual, alinhando engenharia e curadoria pedagógica sob padrões estritos de auditoria."
       ],
-      results: "Conquista de nota máxima em itens de biblioteca virtual nas visitas avaliativas do MEC de novos cursos presenciais e EAD.",
+      results: "Conquista de nota máxima em itens de biblioteca virtual nas visitas avaliativas oficiais do MEC para autorização de novos cursos.",
       role: "Senior UX Designer",
       duration: "Julho de 2022 – Junho de 2025",
       metric: "Aprovação nota máxima MEC"
     },
     autonomia: {
       title: "Eliminando a sobrecarga administrativa de diários de classe de professores",
-      challenge: "O desperdício de tempo e fadiga burocrática dos docentes com preenchimentos lentos e cliques repetitivos de notas e frequências em diários de classe.",
+      challenge: "Sobrecarga de atividades administrativas de docentes que desviavam o foco da qualidade acadêmica devido a sistemas de diários de classe lentos e burocráticos.",
       contribution: [
-        "Digitação Contínua em Lote: Desenvolvimento de tabelas funcionais estruturadas para preenchimento ágil via teclado físico, eliminando cliques.",
-        "Salvamento Automático Preventivo: Lógica de persistência em lote para evitar perda de lançamentos em conexões instáveis nos polos de ensino.",
-        "Co-criação com Docentes: Testes de usabilidade diretos com professores de diversos polos do Brasil para lapidação de fluxos."
+        "Cenário Encontrado: Professores gastavam horas em cliques repetitivos para preencher notas e frequências, com constante perda de dados devido a oscilações de conexão.",
+        "Decisões Tomadas: Co-criação de uma planilha de digitação rápida em lote compatível com atalhos de teclado e inclusão de lógica de persistência offline.",
+        "Impacto Gerado: Alinhamento de limites de requisições de rede com engenharia de banco de dados, resultando em uma experiência de alta performance sem perdas de registros."
       ],
-      results: "Redução no tempo médio de preenchimento e conclusão antecipada de diários de classe no fechamento de semestres acadêmicos.",
+      results: "Redução expressiva no tempo docente de preenchimento e conclusão antecipada de diários de classe no fechamento de semestres acadêmicos.",
       role: "Senior UX Designer",
       duration: "Julho de 2022 – Junho de 2025",
       metric: "Redução no ciclo de fechamento de notas"
     },
     agendamento: {
       title: "Orquestrando reservas de provas remotas e presenciais sem picos de instabilidade",
-      challenge: "Instabilidades sistêmicas e picos severos de acessos simultâneos durante os agendamentos online de provas em polos de ensino em todo o país.",
+      challenge: "Instabilidades sistêmicas e perda de infraestrutura durante períodos de avaliações nacionais devido a picos maciços de acessos de alunos tentando reservar datas de provas.",
       contribution: [
-        "Jornada de Agendamento em 3 Etapas: Interface simplificada guiando o aluno na escolha rápida de data, horário e polo disponível.",
-        "Painel de Capacidade Física: Design de controle de lotação de laboratórios físicos de polo acadêmico para tutores e administradores.",
-        "Lógica de Contenção de Tráfego: Protótipos de jornadas e filas digitais de contenção para amortecer picos de acessos de servidores."
+        "Cenário Encontrado: Picos severos de acessos derrubavam servidores e geravam enxurradas de chamados de reclamação no suporte acadêmico de polos físicos.",
+        "Decisões Tomadas: Modelagem de fluxo de agendamento em 3 etapas e design de controle de capacidade e contenção de tráfego de laboratórios físicos.",
+        "Impacto Gerado: Especificação de filas virtuais de agendamento que amorteciam picos de tráfego nos servidores de banco de dados de provas."
       ],
-      results: "Distribuição e agendamento fluidos de milhões de avaliações, minimizando reclamações de instabilidade técnica de rede.",
+      results: "Distribuição e agendamento fluidos de milhões de avaliações, estabilizando a infraestrutura técnica sem custos adicionais de servidores.",
       role: "Senior UX Designer",
       duration: "Julho de 2022 – Junho de 2025",
       metric: "Estabilização de agendamentos em polo"

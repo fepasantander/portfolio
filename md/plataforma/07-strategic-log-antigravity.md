@@ -63,8 +63,14 @@ Este documento inicia o histórico de alinhamento estratégico, decisões técni
   * **Galeria de Ativos:** Restringi os slides do modal de imagens do caso de **Eventos** estritamente aos ativos aprovados da pasta `eventos/aprovadas` (`site-in26.png` e `site-orto26.png`).
 * **Correção de Estrutura Estática:** Copiei a árvore de ativos de imagem da raiz (`imagem/vm`) para a pasta pública do Next.js (`public/imagem/vm`), incluindo as subpastas `aprovadas`, garantindo o carregamento correto das imagens no servidor de desenvolvimento local e em produção.
 
+### 6. Reposicionamento Narrativo Transversal (Design Directive 0001)
+* **Diretriz Executada:** Re-roteirizei todos os estudos de caso da plataforma (incluindo as 5 subhomes de transformação e o feed da homepage) para migrar o foco de "atividades operacionais executadas" para "problemas organizacionais resolvidos".
+* **Estrutura de Storytelling unificada:** Cada caso de uso agora adota a lógica implícita de **Cenário Encontrado** (diagnóstico de dores), **Decisões Tomadas** (estratégia e processos de squads) e **Impacto Gerado** (retorno prático ao negócio, engenharia e produto).
+* **Documentação Técnica:** Elaborei o relatório consolidado [md/plataforma/IMPLEMENTATION-DD-0001.md](file:///C:/Users/MacInBox/Documents/profissional/portfolio/md/plataforma/IMPLEMENTATION-DD-0001.md) descrevendo as mudanças efetuadas, itens mantidos e próximos passos de conformidade.
+
 ---
 
 ## 🔮 Próximos Passos
-1. **Refinamento de Cases:** Continuar os ajustes de conteúdo e UX nos portais da Listo, Vitru e Uniasselvi em ambiente local.
-2. **Review de Marca:** Integrar feedbacks conceituais de marca e posicionamento decorrentes da avaliação externa.
+1. **Playbook Alignment:** Validar se a página metodológica `/playbook` reflete o mesmo tom focado em destravar gargalos operacionais e sistêmicos.
+2. **Review de Marca:** Integrar novos feedbacks conceituais decorrentes do review executivo de portfólio.
+

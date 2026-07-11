@@ -134,18 +134,18 @@ export const Transformations = () => {
     {
       company: "VM Comunicação",
       slug: "vm-comunicacao",
-      challenge: "Unificar múltiplos canais científicos e educacionais fragmentados que dependiam de decisões conceituais empíricas da diretoria.",
-      contribution: "Condução de pesquisa quali-quanti com centenas de usuários da base (SurveyMonkey) e conselho editorial, definindo trilhas de conhecimento e canais multimídia integrados.",
-      impact: "Consolidação do principal portal odontológico unificado do país, substituindo visões internas anedóticas por navegação baseada em necessidades reais validadas."
+      challenge: "Maturidade digital incipiente e fragmentação de canais científicos baseados em intuições internas da diretoria.",
+      contribution: "Diagnóstico da base de clientes e estruturação de novos processos integrados de publicação automática impresso-web e inbound marketing.",
+      impact: "Consolidação de um ecossistema digital unificado, substituindo o empirismo por tomadas de decisão estruturadas baseadas em dados."
     },
     {
       company: "Listo",
       logoPath: "/imagem/listo/logo_listo_22a683e3e4.svg",
       logoAlt: "Listo Logo",
       slug: isDev ? "listo-sistemas" : undefined,
-      challenge: "Desperdício recorrente de esforço em engenharia e retrabalho de desenvolvimento em fluxos de crédito CDC e meios de pagamento.",
-      contribution: "Implantação da governança de UX e estruturação da esteira de Product Discovery focado em validação antecipada com protótipos funcionais integrados.",
-      impact: "Redução de 80% nos custos de desenvolvimento através de validação de jornadas com usuários antes da escrita de código (Prêmio 'Cada Real Importa').",
+      challenge: "Desperdício recorrente em engenharia e retrabalho de desenvolvimento em fluxos de crédito veicular complexos.",
+      contribution: "Implantação da governança de UX e modelagem da esteira de Product Discovery para testes e validação com lojistas antes da escrita de código.",
+      impact: "Redução de 80% nos custos de desenvolvimento de squads e conquista do Prêmio 'Cada Real Importa' por eficiência operacional.",
       logoBg: "bg-white"
     },
     {
@@ -153,9 +153,9 @@ export const Transformations = () => {
       logoPath: "/imagem/carenet/Logotipo_Carenet.avif",
       logoAlt: "Carenet Logo",
       slug: "carenet-longevity",
-      challenge: "Desalinhamento estratégico e risco assistencial crítico no monitoramento beira-leito em painéis e aplicativos hospitalares complexos.",
-      contribution: "Estruturação do time de design, centralização de Design System robusto e modelagem funcional rígida de layouts para telemetria de UTI móvel e registro de sinais vitais.",
-      impact: "Mitigação de ambiguidades de requisitos entre Produto e Engenharia, eliminando fricções de entrega e otimizando a segurança do fluxo clínico em campo."
+      challenge: "Risco assistencial clínico e descompasso na triagem beira-leito por atraso e falhas na leitura IoMT.",
+      contribution: "Modelagem funcional detalhada de barramentos visuais para telemetria hospitalar e especificação rígida de jornadas integradas para enfermagem.",
+      impact: "Mitigação de erros assistenciais e alinhamento de alta fidelidade que eliminou retrabalhos de código na squad de tecnologia."
     },
     {
       company: "Uniasselvi",
@@ -163,9 +163,9 @@ export const Transformations = () => {
       logoAlt: "Uniasselvi Logo",
       slug: isDev ? "uniasselvi-plataformas-educacionais" : undefined,
       logoBg: "bg-white",
-      challenge: "Lentidão sistêmica no desenvolvimento e alta fricção de uso em fluxos acadêmicos críticos de escala nacional para milhares de estudantes.",
-      contribution: "Integração contínua entre design e engenharia com evolução de Design System corporativo e especificação detalhada de jornadas (renegociação financeira e acervo virtual).",
-      impact: "Redução drástica no retrabalho de front-end e aprovação de novos cursos com nota máxima em conformidade regulatória nas visitas avaliativas do MEC."
+      challenge: "Lentidão operacional e risco regulatório severo do MEC no fluxo de biblioteca e curricularização nacional.",
+      contribution: "Integração contínua de Design System corporativo e especificação taxonômica das jornadas de tutoria e autoatendimento de alunos.",
+      impact: "Aprovação de novos cursos EAD/presenciais com nota máxima e eliminação de retrabalhos nas squads de front-end."
     },
     {
       company: "Vitru",
@@ -173,9 +173,9 @@ export const Transformations = () => {
       logoAlt: "Vitru Logo",
       logoBg: "bg-zinc-950 dark:bg-black",
       slug: isDev ? "vitru-oportunidades-tecnologicas" : undefined,
-      challenge: "Extrema incerteza técnica e de jornada do usuário no desenho de produtos e interfaces orientadas a IA Generativa e LLMs.",
-      contribution: "Design estratégico de agentes conversacionais, fluxograma cognitivo (Chain of Thought) e tratamento operacional de latência e feedbacks de status de IA.",
-      impact: "Consolidação da infraestrutura estratégica de IA corporativa do grupo, conquistando o 1º lugar no segmento Educação do Prêmio Valor Inovação Brasil 2025."
+      challenge: "Imprevisibilidade e quebra de interfaces corporativas em sistemas multiagentes baseados em IA Generativa.",
+      contribution: "Modelagem de fluxogramas cognitivos de dados e design de interfaces adaptáveis com streaming e controle de latência de LLM.",
+      impact: "Consolidação da infraestrutura estratégica de IA do grupo, alcançando o 1º lugar nacional do Prêmio Valor Inovação Brasil 2025."
     }
   ];
 

@@ -61,11 +61,11 @@ export default function ListoSubhomePage() {
   const caseStudies: Record<string, CaseStudyData> = {
     "cdc-listo": {
       title: "Estruturando a esteira de Discovery e validação para crédito CDC",
-      challenge: "O desperdício recorrente de esforço em engenharia e custos elevados devido à ausência de processos de validação antecipada com lojistas e compradores no fluxo de financiamento veicular (CDC).",
+      challenge: "Desperdício recorrente de esforço em engenharia, refações caras de código e atraso na esteira de desenvolvimento devido à ausência de processos de validação de negócios e de fluxos de jornada financeira complexa (financiamento veicular/CDC).",
       contribution: [
-        "Estruturação de UX & Governança: Liderança na implantação da área de design na fintech, conectando times de negócio, produto e desenvolvimento sob uma esteira de trabalho ágil e previsível.",
-        "Esteira de Discovery Quanti-Quali: Mapeamento detalhado de jornadas de crédito veicular complexas, conduzindo testes de usabilidade e prototipagem interativa funcional antes da implementação.",
-        "Decisões e Handoff Técnico: Elaboração de especificações de interface e regras de fluxo clínico no front-end, mitigando ambiguidades e acelerando a entrega final da squad de tecnologia."
+        "Cenário Encontrado: Desalinhamento crônico entre desenvolvimento, produto e comercial, resultando em deploys de jornadas complexas de crédito (CDC) com severos gargalos de usabilidade e retrabalho.",
+        "Decisões Tomadas: Implantação e consolidação da governança de UX na fintech, estabelecendo processos estruturados de Product Discovery quanti-quali e prototipagem funcional para testes operacionais com lojistas e tomadores.",
+        "Impacto Gerado: Eliminação de ambiguidades em handoffs de engenharia através de documentações técnicas interativas, minimizando retrabalhos no front-end e alinhando objetivos de receita comercial com limitações sistêmicas."
       ],
       results: "Redução de 80% nos custos mensais de desenvolvimento por validação antecipada de fluxos complexos, conquistando o Prêmio 'Cada Real Importa' por eficiência operacional.",
       role: "Senior UX Designer / Líder de UX",
