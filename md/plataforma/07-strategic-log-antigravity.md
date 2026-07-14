@@ -83,10 +83,19 @@ Este documento inicia o histórico de alinhamento estratégico, decisões técni
   * Integrar mockups e mídias visuais assim que forem liberados e catalogados.
   * Executar a estruturação rica para os demais estudos de caso (`sofia` e `hub-correcoes`) quando houver fontes de verdade dedicadas.
 
+### 8. Adição de Novo Depoimento (Caio Cesar Barreira Luvisotto)
+* **Objetivo:** Incluir a recomendação profissional de Caio Cesar Barreira Luvisotto na landing page principal.
+* **Componentes Criados/Reutilizados:**
+  * **Reutilizados:** Componente de carrossel `Testimonials.tsx` e estrutura de exibição social (botões de redirecionamento do LinkedIn e WhatsApp com mensagens pré-configuradas).
+* **Decisões Tomadas:**
+  * Utilizado o estilo de destaque `pink` no hover (`group-hover:text-pink-600 dark:group-hover:text-[#ff00ff]`) para contrastar visualmente com os cards adjacentes.
+  * O WhatsApp foi cadastrado como Ativo (`whatsappLocked: false`) utilizando o número fornecido.
+
 ---
 
 ## 🔮 Próximos Passos
 1. **Playbook Alignment:** Validar se a página metodológica `/playbook` reflete o mesmo tom focado em destravar gargalos operacionais e sistêmicos.
 2. **Review de Marca:** Integrar novos feedbacks conceituais decorrentes do review executivo de portfólio.
+
 
 

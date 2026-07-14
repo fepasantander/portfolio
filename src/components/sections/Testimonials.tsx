@@ -166,6 +166,27 @@ export const Testimonials = () => {
           .
         </>
       )
+    },
+    {
+      initials: "CL",
+      name: "Caio Cesar Barreira Luvisotto",
+      role: "Coordenador de TI | Squad Lead | PSM | SM",
+      linkedin: "https://www.linkedin.com/in/caio-cesar-barreira-luvisotto/",
+      whatsapp: "5511955514555",
+      whatsappLocked: false,
+      text: (
+        <>
+          O período que trabalhei com Felipe Santander foi de grande satisfação, um profissional{" "}
+          <span className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-pink-600 dark:group-hover:text-[#ff00ff] transition-colors duration-300">
+            muito comprometido e criativo
+          </span>
+          , habilidoso tanto no âmbito técnico quanto em relacionamentos interpessoais. Suas entregas contribuíram muito à organização, bem como suas{" "}
+          <span className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-pink-600 dark:group-hover:text-[#ff00ff] transition-colors duration-300">
+            ideias inovadoras que tracionaram bastante a evolução
+          </span>{" "}
+          das soluções sustentadas pelo time. Recomendo Felipe Santander com segurança e espero poder voltar a trabalhar com ele.
+        </>
+      )
     }
   ];
 
