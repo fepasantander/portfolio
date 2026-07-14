@@ -91,11 +91,17 @@ Este documento inicia o histórico de alinhamento estratégico, decisões técni
   * Utilizado o estilo de destaque `pink` no hover (`group-hover:text-pink-600 dark:group-hover:text-[#ff00ff]`) para contrastar visualmente com os cards adjacentes.
   * O WhatsApp foi cadastrado como Ativo (`whatsappLocked: false`) utilizando o número fornecido.
 
+### 9. Liberação de Acesso ao Case da Vitru em Produção
+* **Objetivo:** Liberar o acesso público à subhome da Vitru (`/transformations/vitru-oportunidades-tecnologicas`) através do card correspondente na landing page.
+* **Componentes Criados/Reutilizados:**
+  * **Modificados:** [Transformations.tsx](file:///C:/Users/MacInBox/Documents/profissional/portfolio/src/components/sections/Transformations.tsx) (unlocked the card by setting the slug directly instead of only in dev mode `isDev`).
+
 ---
 
 ## 🔮 Próximos Passos
 1. **Playbook Alignment:** Validar se a página metodológica `/playbook` reflete o mesmo tom focado em destravar gargalos operacionais e sistêmicos.
 2. **Review de Marca:** Integrar novos feedbacks conceituais decorrentes do review executivo de portfólio.
+
 
 
 

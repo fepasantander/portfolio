@@ -172,7 +172,7 @@ export const Transformations = () => {
       logoPath: "/imagem/vitru/logo-vitru-negative.png",
       logoAlt: "Vitru Logo",
       logoBg: "bg-zinc-950 dark:bg-black",
-      slug: isDev ? "vitru-oportunidades-tecnologicas" : undefined,
+      slug: "vitru-oportunidades-tecnologicas",
       challenge: "Imprevisibilidade e quebra de interfaces corporativas em sistemas multiagentes baseados em IA Generativa.",
       contribution: "Modelagem de fluxogramas cognitivos de dados e design de interfaces adaptáveis com streaming e controle de latência de LLM.",
       impact: "Consolidação da infraestrutura estratégica de IA do grupo, alcançando o 1º lugar nacional do Prêmio Valor Inovação Brasil 2025."
