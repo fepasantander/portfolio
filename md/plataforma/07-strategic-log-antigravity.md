@@ -96,11 +96,16 @@ Este documento inicia o histórico de alinhamento estratégico, decisões técni
 * **Componentes Criados/Reutilizados:**
   * **Modificados:** [Transformations.tsx](file:///C:/Users/MacInBox/Documents/profissional/portfolio/src/components/sections/Transformations.tsx) (unlocked the card by setting the slug directly instead of only in dev mode `isDev`).
 
+### 10. Bloqueio das Abas SofIA e Hub de Correções em Vitru
+* **Objetivo:** Garantir que apenas o case do VitruChat LLM esteja ativo na subhome da Vitru, bloqueando as abas das oportunidades "SofIA" e "Hub de Correções" com badges de "Em breve" e desabilitando cliques.
+* **Componentes Modificados:** [page.tsx](file:///C:/Users/MacInBox/Documents/profissional/portfolio/src/app/transformations/vitru-oportunidades-tecnologicas/page.tsx) (added `locked` property to `ProjectItem` interface and conditional styles in the sidebar rendering).
+
 ---
 
 ## 🔮 Próximos Passos
 1. **Playbook Alignment:** Validar se a página metodológica `/playbook` reflete o mesmo tom focado em destravar gargalos operacionais e sistêmicos.
 2. **Review de Marca:** Integrar novos feedbacks conceituais decorrentes do review executivo de portfólio.
+
 
 
 

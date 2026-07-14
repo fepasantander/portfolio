@@ -32,6 +32,7 @@ interface ProjectItem {
   title: string;
   description: string;
   icon: React.ReactNode;
+  locked?: boolean;
 }
 
 interface CaseStudyData {
@@ -62,13 +63,15 @@ export default function VitruSubhomePage() {
       id: "sofia",
       title: "SofIA",
       description: "Assistente conversacional baseado em LLM para suporte pedagógico ao aluno.",
-      icon: <Brain className="h-5 w-5" />
+      icon: <Brain className="h-5 w-5" />,
+      locked: true
     },
     {
       id: "hub-correcoes",
       title: "Hub de Correções",
       description: "Motor de inteligência artificial para correção automatizada de provas discursivas.",
-      icon: <FileCheck2 className="h-5 w-5" />
+      icon: <FileCheck2 className="h-5 w-5" />,
+      locked: true
     }
   ];
 
@@ -169,9 +172,12 @@ export default function VitruSubhomePage() {
                 return (
                   <button
                     key={proj.id}
+                    disabled={proj.locked}
                     onClick={() => setSelectedProjectId(proj.id)}
                     className={`w-full text-left p-4 rounded-xl border transition-all duration-300 flex items-start gap-3.5 relative overflow-hidden group ${
-                      isActive
+                      proj.locked
+                        ? "bg-zinc-50/50 dark:bg-zinc-950/40 border-zinc-200/40 dark:border-zinc-900/60 opacity-55 cursor-not-allowed text-zinc-400 dark:text-zinc-650"
+                        : isActive
                         ? "bg-zinc-950 border-zinc-950 dark:bg-zinc-905 dark:border-zinc-800 text-white shadow-md shadow-cyan-500/5"
                         : "bg-white dark:bg-zinc-950 border-zinc-200/60 dark:border-zinc-900 hover:border-zinc-400 dark:hover:border-zinc-700 text-zinc-800 dark:text-zinc-200"
                     }`}
@@ -182,7 +188,9 @@ export default function VitruSubhomePage() {
                     )}
 
                     <div className={`p-2 rounded-lg shrink-0 ${
-                      isActive 
+                      proj.locked
+                        ? "bg-zinc-100/50 dark:bg-zinc-900/50 text-zinc-400 dark:text-zinc-650"
+                        : isActive 
                         ? "bg-zinc-800 text-cyan-400" 
                         : "bg-zinc-100 dark:bg-zinc-900 text-zinc-500"
                     }`}>
@@ -191,17 +199,29 @@ export default function VitruSubhomePage() {
 
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
-                        <span className="font-semibold text-sm leading-none block text-zinc-900 dark:text-zinc-100">
+                        <span className={`font-semibold text-sm leading-none block ${
+                          proj.locked
+                            ? "text-zinc-400 dark:text-zinc-550"
+                            : "text-zinc-900 dark:text-zinc-100"
+                        }`}>
                           {proj.title}
                         </span>
-                        {isActive && (
+                        {proj.locked ? (
+                          <span className="inline-flex items-center gap-0.5 text-[8px] font-mono tracking-wide uppercase px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-900 text-zinc-400 dark:text-zinc-500 shrink-0 font-semibold border border-zinc-200/50 dark:border-zinc-800/50">
+                            Em breve
+                          </span>
+                        ) : isActive && (
                           <span className="inline-flex items-center gap-0.5 text-[8px] font-mono tracking-wide uppercase px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-400 shrink-0 font-semibold">
                             Ativo
                           </span>
                         )}
                       </div>
                       <p className={`text-[11px] leading-relaxed ${
-                        isActive ? "text-zinc-300" : "text-zinc-500"
+                        proj.locked
+                          ? "text-zinc-400/80 dark:text-zinc-650"
+                          : isActive 
+                          ? "text-zinc-300" 
+                          : "text-zinc-500"
                       }`}>
                         {proj.description}
                       </p>
