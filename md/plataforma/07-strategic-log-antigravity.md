@@ -68,9 +68,25 @@ Este documento inicia o histórico de alinhamento estratégico, decisões técni
 * **Estrutura de Storytelling unificada:** Cada caso de uso agora adota a lógica implícita de **Cenário Encontrado** (diagnóstico de dores), **Decisões Tomadas** (estratégia e processos de squads) e **Impacto Gerado** (retorno prático ao negócio, engenharia e produto).
 * **Documentação Técnica:** Elaborei o relatório consolidado [md/plataforma/IMPLEMENTATION-DD-0001.md](file:///C:/Users/MacInBox/Documents/profissional/portfolio/md/plataforma/IMPLEMENTATION-DD-0001.md) descrevendo as mudanças efetuadas, itens mantidos e próximos passos de conformidade.
 
+### 7. Implementação do Estudo de Caso 001 - VitruChat LLM (Versão 1.0)
+* **Objetivo:** Implementação da narrativa integral baseada no documento oficial de verdade `case-001-vitru-generative-ai-platform-v1.0.md`.
+* **Componentes Criados/Reutilizados:**
+  * **Reutilizados:** Contêineres, painel de abas lateral, botões de anexos com estado `disabled` para itens em NDA/em breve, componentes tipográficos (`Heading`, `Paragraph`) e componentes de cartão (`Card`).
+  * **Criados/Modificados:** Adicionado bloco condicional de layout na subhome `/transformations/vitru-oportunidades-tecnologicas` para renderizar uma estrutura rica exclusiva para o Case 001.
+* **Decisões Tomadas:**
+  * Foco na governança de dados e segurança de informações corporativas versus mero design de interface.
+  * Inclusão detalhada dos diferenciais (Contextualização Acadêmica e Camada Gerencial com acompanhamento de consumo de tokens e sustentabilidade).
+  * Inclusão transparente das limitações (despriorização de pesquisa corporativa) e aprendizados (integração interdisciplinar desde o início).
+* **Dificuldades Encontradas:**
+  * Mapeamento fino de formatação no parser de diff do Next.js para substituição limpa e sem quebras de compilação. Resolvido com checkout manual e aplicação focada.
+* **Sugestões para a Próxima Sprint:**
+  * Integrar mockups e mídias visuais assim que forem liberados e catalogados.
+  * Executar a estruturação rica para os demais estudos de caso (`sofia` e `hub-correcoes`) quando houver fontes de verdade dedicadas.
+
 ---
 
 ## 🔮 Próximos Passos
 1. **Playbook Alignment:** Validar se a página metodológica `/playbook` reflete o mesmo tom focado em destravar gargalos operacionais e sistêmicos.
 2. **Review de Marca:** Integrar novos feedbacks conceituais decorrentes do review executivo de portfólio.
+
 
