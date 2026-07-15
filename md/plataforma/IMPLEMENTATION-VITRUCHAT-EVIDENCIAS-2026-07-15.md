@@ -32,6 +32,9 @@ Atualizar os ativos visuais do Case VitruChat e posicionar as evidências logo a
 - Revisão estática: uma imagem por vez, modal responsivo em `90vw` por `90vh`, controles com rótulos e hierarquia semântica preservada.
 - O build de produção não pôde ser reexecutado neste momento porque um processo externo mantém um artefato em `.next` bloqueado por `EPERM`.
 
-## Pendência de publicação
+## Publicação
 
-O repositório não contém configuração Vercel versionada nem a CLI Vercel disponível. O deploy depende de uma integração ou credencial Vercel fora deste workspace.
+- Publicado em produção no projeto isolado `portfolio-vitruchat-deploy` da Vercel.
+- URL de produção: `https://portfolio-vitruchat-deploy.vercel.app`.
+- O deploy foi executado a partir de uma worktree limpa do commit VitruChat, sem alterações pendentes de outros Cases.
+- Build remoto concluído com sucesso: TypeScript, pré-renderização e geração de 13 rotas.
