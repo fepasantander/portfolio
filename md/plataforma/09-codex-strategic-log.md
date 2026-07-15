@@ -34,7 +34,7 @@ Criar um diário independente para preservar a rastreabilidade entre os ciclos d
 ## 2. Finalização do Case VitruChat LLM
 
 **Data:** 15 de julho de 2026  
-**Status:** Em andamento
+**Status:** Pronta para publicação canônica
 
 ### Objetivo
 
@@ -53,4 +53,7 @@ Concluir a publicação canônica do Case VitruChat LLM antes de iniciar outro p
 
 ### Validação e publicação
 
-- Lint, build e publicação canônica serão registrados após a conclusão.
+- O lint específico da página do VitruChat foi aprovado.
+- O lint completo foi executado e permanece bloqueado por um erro preexistente em `src/lib/analytics.ts` (`no-explicit-any`), fora do escopo desta finalização.
+- O build de produção foi aprovado com TypeScript e pré-renderização das 13 rotas.
+- A publicação canônica será registrada após a integração em `main`.

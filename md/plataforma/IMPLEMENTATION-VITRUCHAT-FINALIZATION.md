@@ -39,5 +39,6 @@ Finalizar o Case VitruChat LLM na aplicação canônica, preservando o históric
 
 ## Validação
 
-- Lint: pendente.
-- Build de produção: pendente.
+- Lint específico da página do VitruChat: aprovado.
+- Lint completo: executado, com falha preexistente em `src/lib/analytics.ts` por `no-explicit-any`; não alterado por estar fora do escopo do Case. Há também três avisos preexistentes em arquivos fora do Case.
+- Build de produção: aprovado com compilação, TypeScript, coleta de dados e pré-renderização das 13 rotas.
