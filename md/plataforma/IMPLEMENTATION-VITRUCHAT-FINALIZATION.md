@@ -35,7 +35,9 @@ Finalizar o Case VitruChat LLM na aplicação canônica, preservando o históric
 ## Histórico e publicação
 
 - A finalização reutiliza os commits validados de evidências visuais e de seu registro de publicação em uma branch dedicada.
-- A integração em `main`, a validação final e a publicação na aplicação canônica serão registradas após sua conclusão.
+- A branch dedicada foi integrada em `main` por fast-forward, preservando a sequência de commits do Case.
+- Publicação canônica confirmada: `https://felipe-santander.vercel.app/transformations/vitru-oportunidades-tecnologicas`.
+- O projeto isolado utilizado na validação inicial não representa a URL pública definitiva do Case.
 
 ## Validação
 

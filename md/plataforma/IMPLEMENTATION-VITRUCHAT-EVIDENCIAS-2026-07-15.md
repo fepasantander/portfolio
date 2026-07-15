@@ -34,7 +34,5 @@ Atualizar os ativos visuais do Case VitruChat e posicionar as evidências logo a
 
 ## Publicação
 
-- Publicado em produção no projeto isolado `portfolio-vitruchat-deploy` da Vercel.
-- URL de produção: `https://portfolio-vitruchat-deploy.vercel.app`.
-- O deploy foi executado a partir de uma worktree limpa do commit VitruChat, sem alterações pendentes de outros Cases.
-- Build remoto concluído com sucesso: TypeScript, pré-renderização e geração de 13 rotas.
+- O projeto isolado `portfolio-vitruchat-deploy` foi usado somente para validar o deploy inicial em uma worktree limpa do commit VitruChat.
+- A publicação pública definitiva do Case está na aplicação canônica: `https://felipe-santander.vercel.app/transformations/vitru-oportunidades-tecnologicas`.
