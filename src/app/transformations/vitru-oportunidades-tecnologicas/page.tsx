@@ -24,7 +24,9 @@ import {
   Video,
   ExternalLink,
   LayoutGrid,
-  Image as ImageIcon
+  Image as ImageIcon,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 
 interface ProjectItem {
@@ -48,15 +50,40 @@ interface CaseStudyData {
   boardUrl?: string;
 }
 
+const vitruchatImages = [
+  ...["Chat_filterOpen&Boxes.png", "Indicadores_filterClose&boxes.png", "Indicadores_filterClose&lista.png", "VitruChat_AprendaUsar.png", "VitruChat_home.png"].map((filename) => ({ src: `/imagem/vitru/vitruchat/v1-light/${filename.replaceAll("&", "%26")}`, alt: "VitruChat LLM — versão 1.0, tema claro", caption: "VitruChat LLM — versão 1.0 · Tema claro" })),
+  ...["tour_home-step-01.png", "tour_home-step-10-b.png", "tour_home-step-15.png", "tour_home-step-17-b.png"].map((filename) => ({ src: `/imagem/vitru/vitruchat/v1-tour-guiado/${filename}`, alt: "VitruChat LLM — Tour Guiado", caption: "VitruChat LLM — Tour Guiado" })),
+  ...["Pastas_MenuClosed&PropClosed&PromptClosed.png", "Pastas_MenuClosed&PropClosed&PromptOpen-2.png", "Pastas_MenuClosed&PropOpen&PromptClosed-2.png", "Pastas_MenuClosed&PropOpen&PromptOpen-2.png", "Pastas_MenuOpen&PropClosed&PromptClosed-2.png", "Pastas_MenuOpen&PropClosed&PromptOpen-2.png", "Pastas_MenuOpen&PropOpen&PromptClosed-3.png", "Pastas_MenuOpen&PropOpen&PromptClosed.png", "Pastas_MenuOpen&PropOpen&PromptOpen-2.png"].map((filename) => ({ src: `/imagem/vitru/vitruchat/v2-dark/${filename.replaceAll("&", "%26")}`, alt: "VitruChat LLM — versão 2.0, tema escuro", caption: "VitruChat LLM — versão 2.0 · Tema escuro" })),
+  ...["Acessibilidade_MenuOpen&PropOpen&PromptClosed.png", "chatViewProposta.png", "Pastas_MenuClosed&PropClosed&PromptClosed-2.png", "Pastas_MenuClosed&PropClosed&PromptOpen.png", "Pastas_MenuClosed&PropOpen&PromptClosed.png", "Pastas_MenuClosed&PropOpen&PromptOpen.png", "Pastas_MenuOpen&PropClosed&PromptClosed.png", "Pastas_MenuOpen&PropClosed&PromptOpen.png", "Pastas_MenuOpen&PropOpen&PromptClosed-2.png", "Pastas_MenuOpen&PropOpen&PromptOpen.png"].map((filename) => ({ src: `/imagem/vitru/vitruchat/v2-light/${filename.replaceAll("&", "%26")}`, alt: "VitruChat LLM — versão 2.0, tema claro", caption: "VitruChat LLM — versão 2.0 · Tema claro" })),
+];
+
+const unavailableEvidence = [
+  { label: "Vídeos / Demo", Icon: Video },
+  { label: "Protótipo Figma", Icon: ExternalLink },
+  { label: "Decisão / Boards", Icon: LayoutGrid },
+];
+
 export default function VitruSubhomePage() {
   const [selectedProjectId, setSelectedProjectId] = useState<string>("vitruchat");
   const [activeModal, setActiveModal] = useState<"imagens" | "videos" | "prototipos" | "boards" | null>(null);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+
+  React.useEffect(() => {
+    if (!activeModal) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setActiveModal(null);
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [activeModal]);
 
   const projects: ProjectItem[] = [
     {
       id: "vitruchat",
       title: "VitruChat LLM",
-      description: "Plataforma de inteligência artificial de suporte e automação interna via múltiplos agentes.",
+      description: "Plataforma corporativa de IA Generativa para uso interno dos colaboradores.",
       icon: <Brain className="h-5 w-5" />
     },
     {
@@ -76,19 +103,6 @@ export default function VitruSubhomePage() {
   ];
 
   const caseStudies: Record<string, CaseStudyData> = {
-    vitruchat: {
-      title: "Estruturando uma plataforma corporativa baseada em IA Generativa para automação",
-      challenge: "Incerteza estratégica no alinhamento de interfaces de IA Generativa. A alta latência e a imprevisibilidade técnica de LLMs causavam desconfiança no uso corporativo, quebrando telas devido a respostas dinâmicas inesperadas.",
-      contribution: [
-        "Cenário Encontrado: Gargalos de latência em sistemas multiagentes causavam sensação de travamento no front-end, gerando abandono e chamados de suporte técnico.",
-        "Decisões Tomadas: Modelagem de fluxogramas cognitivos de streaming progressivo de dados e design de interfaces adaptáveis com feedbacks dinâmicos de status (Chain of Thought).",
-        "Impacto Gerado: Alinhamento de limites de requisições de LLM com a squad de engenharia, construindo uma arquitetura robusta de UX para IA corporativa da holding."
-      ],
-      results: "Consolidação da infraestrutura estratégica de IA da holding, auxiliando o Grupo Vitru a alcançar o 1º lugar no segmento Educação do Prêmio Valor Inovação Brasil 2025.",
-      role: "Senior UX Designer (IA)",
-      duration: "Junho de 2025 – Atual",
-      metric: "1º Lugar Prêmio Valor Inovação"
-    },
     sofia: {
       title: "Otimizando a retenção e humanização do atendimento estudantil escalável com IA",
       challenge: "Gargalo no suporte ao cliente e custo operacional elevado devido à sobrecarga de chamados de atendimento acadêmico de rotina em polo e canais manuais de triagem.",
@@ -117,7 +131,20 @@ export default function VitruSubhomePage() {
     }
   };
 
-  const activeCase = caseStudies[selectedProjectId] || caseStudies.vitruchat;
+  const activeCase = caseStudies[selectedProjectId] || caseStudies.sofia;
+  const evidenceBox = (
+    <section className="space-y-4 border-t border-zinc-100 pt-6 dark:border-zinc-900" aria-labelledby="evidences-title">
+      <Heading id="evidences-title" level={3} className="mb-2 block text-xs font-mono uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Evidências e Apoio à Decisão (Anexos)</Heading>
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+        <button type="button" onClick={() => { setActiveImageIndex(0); setActiveModal("imagens"); }} className="group flex w-full flex-col items-start rounded-xl border border-zinc-200/60 bg-zinc-50/30 p-4 text-left shadow-sm transition-all duration-300 hover:border-cyan-500 dark:border-zinc-800 dark:bg-zinc-900/20 dark:hover:border-cyan-400">
+          <div className="mb-3 rounded-lg border border-zinc-200/50 bg-white p-2 text-zinc-600 transition-colors group-hover:bg-cyan-500/10 group-hover:text-cyan-500 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"><ImageIcon className="h-5 w-5" /></div>
+          <span className="mb-1 block text-xs font-semibold text-zinc-850 dark:text-zinc-100">Imagens / Mocks</span>
+          <span className="text-[10px] font-medium text-cyan-600 dark:text-cyan-400">Ver galeria</span>
+        </button>
+        {unavailableEvidence.map(({ label, Icon }) => <button key={label} type="button" disabled className="flex w-full cursor-not-allowed flex-col items-start rounded-xl border border-zinc-100 bg-zinc-50/10 p-4 text-left opacity-40 dark:border-zinc-900 dark:bg-zinc-950/10"><div className="mb-3 rounded-lg bg-zinc-100 p-2 text-zinc-400 dark:bg-zinc-900 dark:text-zinc-600"><Icon className="h-5 w-5" /></div><span className="mb-1 block text-xs font-semibold text-zinc-400 dark:text-zinc-500">{label}</span><span className="text-[10px] text-zinc-400 dark:text-zinc-600">Em breve</span></button>)}
+      </div>
+    </section>
+  );
 
   return (
     <div className="min-h-screen flex flex-col bg-white dark:bg-black text-zinc-950 dark:text-zinc-50 font-sans transition-colors duration-300">
@@ -146,7 +173,7 @@ export default function VitruSubhomePage() {
                 Vitru — Oportunidades Tecnológicas
               </Heading>
               <Paragraph variant="lead" className="mt-4 max-w-2xl text-zinc-700 dark:text-zinc-300">
-                Liderei a especificação estratégica de UX, caminhos de decisão e fluxos conversacionais inteligentes para systems baseados em Modelos de Linguagem (LLMs).
+                Uma iniciativa estratégica do Innovation Lab para permitir o uso seguro de IA Generativa pelos colaboradores da Vitru.
               </Paragraph>
             </div>
 
@@ -240,7 +267,7 @@ export default function VitruSubhomePage() {
                   <div className="space-y-4">
                     <span className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-cyan-600 dark:text-cyan-400">
                       <Sparkles className="h-4 w-4" />
-                      Case 001 • Versão 1.0 • Official Source
+                      Case 001 • Versão 2.0 • Official Source
                     </span>
                     <Heading level={2} className="text-3xl font-semibold tracking-tight text-zinc-900 dark:text-white leading-tight">
                       Estruturando uma Plataforma Corporativa de IA Generativa para Escalar Produtividade com Segurança
@@ -254,22 +281,35 @@ export default function VitruSubhomePage() {
                       <Sparkles className="h-4.5 w-4.5" />
                       Executive Summary
                     </h4>
-                    <Paragraph variant="base" className="text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
-                      Fui convidado pelo Innovation Lab da Vitru para colaborar na evolução do VitruChat, uma plataforma corporativa de IA Generativa para uso exclusivo dos colaboradores. Minha participação começou na construção da interface, mas rapidamente evoluiu para uma contribuição mais ampla, propondo uma arquitetura de produto preparada para crescimento, reutilização de componentes, Design System e evolução contínua.
-                    </Paragraph>
+                    <div className="space-y-4">
+                      <Paragraph variant="base" className="text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
+                        A popularização das IAs generativas criou um paradoxo para grandes organizações. Quanto maior a adoção de ferramentas públicas, maior o ganho de produtividade. Ao mesmo tempo, maior o risco de vazamento de informações estratégicas.
+                      </Paragraph>
+                      <Paragraph variant="base" className="text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
+                        O desafio do Innovation Lab era encontrar um equilíbrio entre produtividade, governança e segurança, criando uma plataforma corporativa preparada para a evolução da Inteligência Artificial dentro da Vitru.
+                      </Paragraph>
+                      <Paragraph variant="base" className="text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
+                        Minha contribuição começou pelo desenho da interface, mas rapidamente evoluiu para uma visão mais ampla de produto, propondo uma arquitetura preparada para escalar, reutilizar componentes e aproximar a IA do contexto acadêmico da organização.
+                      </Paragraph>
+                    </div>
                   </div>
+
+                  {evidenceBox}
 
                   {/* Contexto Organizacional */}
                   <div className="space-y-4">
                     <h3 className="text-lg font-semibold flex items-center gap-2 text-zinc-900 dark:text-zinc-100">
                       <Brain className="h-5 w-5 text-cyan-500 shrink-0" />
-                      Contexto Organizacional
+                      O Contexto
                     </h3>
                     <Paragraph variant="base" className="text-sm text-zinc-650 dark:text-zinc-300 leading-relaxed">
-                      A adoção de ferramentas públicas de IA aumentava a produtividade, mas também elevava o risco de vazamento de informações estratégicas. Bloquear essas ferramentas reduziria a competitividade; liberá-las sem controle aumentaria riscos de governança.
+                      O VitruChat nasceu como uma iniciativa estratégica do Innovation Lab, autorizada pela Diretoria. Seu objetivo era criar um ambiente interno para utilização de IA Generativa pelos colaboradores da empresa.
                     </Paragraph>
                     <Paragraph variant="base" className="text-sm text-zinc-650 dark:text-zinc-300 leading-relaxed">
-                      O Innovation Lab iniciou então a construção do VitruChat para centralizar o uso da IA, proteger informações corporativas e iniciar o letramento em agentes inteligentes.
+                      A decisão não buscava restringir o uso da Inteligência Artificial. Buscava permitir seu uso com segurança.
+                    </Paragraph>
+                    <Paragraph variant="base" className="text-sm text-zinc-650 dark:text-zinc-300 leading-relaxed">
+                      Ao centralizar a experiência em uma plataforma corporativa, a empresa reduzia riscos de exposição de informações sensíveis e iniciava o processo de letramento em agentes inteligentes.
                     </Paragraph>
                   </div>
 
@@ -280,16 +320,17 @@ export default function VitruSubhomePage() {
                       O Desafio
                     </h3>
                     <Paragraph variant="base" className="text-sm text-zinc-650 dark:text-zinc-300 leading-relaxed">
-                      O objetivo não era criar apenas um chat, mas uma plataforma preparada para:
+                      O desafio nunca foi construir apenas um chat. Era necessário criar uma plataforma preparada para:
                     </Paragraph>
                     <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pl-1">
                       {[
-                        "Escalabilidade;",
-                        "Múltiplos agentes;",
-                        "Evolução contínua;",
-                        "Governança futura;",
-                        "Contextualização ao universo acadêmico;",
-                        "Reutilização de componentes."
+                        "adoção em larga escala;",
+                        "múltiplos agentes;",
+                        "governança futura;",
+                        "diferentes motores de IA;",
+                        "crescimento contínuo;",
+                        "reutilização de componentes;",
+                        "evolução do produto sem reconstruções frequentes."
                       ].map((item, i) => (
                         <li key={i} className="flex gap-2.5 text-sm text-zinc-650 dark:text-zinc-300 leading-relaxed items-center">
                           <CheckCircle2 className="h-4.5 w-4.5 text-cyan-500 shrink-0" />
@@ -297,6 +338,9 @@ export default function VitruSubhomePage() {
                         </li>
                       ))}
                     </ul>
+                    <Paragraph variant="base" className="text-sm text-zinc-650 dark:text-zinc-300 leading-relaxed">
+                      Além disso, a própria equipe ainda consolidava conhecimentos sobre RAG, custos de tokens, governança de agentes e arquitetura LLM.
+                    </Paragraph>
                   </div>
 
                   {/* Minha Contribuição */}
@@ -306,18 +350,28 @@ export default function VitruSubhomePage() {
                       Minha Contribuição
                     </h3>
                     <Paragraph variant="base" className="text-sm text-zinc-650 dark:text-zinc-300 leading-relaxed">
-                      Procurei ampliar o escopo inicialmente solicitado propondo:
+                      Fui inicialmente convidado para estruturar a interface da plataforma. Ao compreender melhor o contexto do projeto, procurei ampliar essa contribuição propondo uma visão mais sistêmica.
+                    </Paragraph>
+                    <Paragraph variant="base" className="text-sm text-zinc-650 dark:text-zinc-300 leading-relaxed">
+                      Minha intenção passou a ser transformar uma interface em uma plataforma preparada para evolução.
+                    </Paragraph>
+                    <Paragraph variant="base" className="text-sm text-zinc-650 dark:text-zinc-300 leading-relaxed">
+                      Entre as principais contribuições estavam:
                     </Paragraph>
                     <ul className="space-y-3.5 pl-1">
                       {[
-                        "Arquitetura de interface escalável;",
-                        "Design System desenvolvido em paralelo ao produto;",
-                        "Componentes reutilizáveis;",
-                        "Dark Mode;",
-                        "Drag & Drop para anexos;",
-                        "Estrutura preparada para múltiplos agentes;",
-                        "Compatibilidade futura com diferentes motores LLM;",
-                        "Área gerencial de métricas."
+                        "arquitetura escalável;",
+                        "Design System desenvolvido em paralelo;",
+                        "componentes reutilizáveis;",
+                        "navegação preparada para crescimento;",
+                        "menus expansíveis;",
+                        "drag and drop para anexos;",
+                        "suporte a múltiplos motores de IA;",
+                        "preparação para múltiplos agentes;",
+                        "temas claro e escuro;",
+                        "estrutura de prompts voltada ao letramento em IA;",
+                        "fluxo de avaliação por NPS;",
+                        "central de acessibilidade."
                       ].map((item, i) => (
                         <li key={i} className="flex gap-3 text-sm text-zinc-655 dark:text-zinc-300 leading-relaxed">
                           <CheckCircle2 className="h-5 w-5 text-cyan-500 shrink-0 mt-0.5" />
@@ -327,49 +381,89 @@ export default function VitruSubhomePage() {
                     </ul>
                   </div>
 
-                  {/* Diferenciais Estratégicos */}
+                  {/* Contextualização acadêmica e camada gerencial */}
                   <div className="space-y-6">
                     <h3 className="text-lg font-semibold flex items-center gap-2 text-zinc-900 dark:text-zinc-100">
                       <Award className="h-5 w-5 text-cyan-500 shrink-0" />
-                      Diferenciais Estratégicos
+                      Aproximando a IA do Universo Acadêmico
                     </h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-4">
+                      <Paragraph variant="base" className="text-sm text-zinc-650 dark:text-zinc-300 leading-relaxed">
+                        Um dos pontos que considerei mais importantes foi evitar que o VitruChat se tornasse apenas uma interface genérica de LLM.
+                      </Paragraph>
+                      <Paragraph variant="base" className="text-sm text-zinc-650 dark:text-zinc-300 leading-relaxed">
+                        Por atuar em um grupo educacional, fazia mais sentido aproximar a experiência do cotidiano de professores, pesquisadores e colaboradores.
+                      </Paragraph>
+                      <Paragraph variant="base" className="text-sm text-zinc-650 dark:text-zinc-300 leading-relaxed">
+                        Propus funcionalidades voltadas ao contexto acadêmico, incluindo:
+                      </Paragraph>
+                    </div>
+                    <div className="grid grid-cols-1 gap-6">
                       <Card hoverEffect={false} className="p-5 border-zinc-200/60 dark:border-zinc-900 space-y-3 bg-zinc-50/10 dark:bg-zinc-950/10">
                         <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
                           <Sparkles className="h-4.5 w-4.5 text-cyan-500" />
-                          Contextualização Acadêmica
+                          Contexto Acadêmico
                         </h4>
-                        <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
-                          Propus aproximar a IA do contexto educacional prevendo funcionalidades como:
-                        </p>
                         <ul className="space-y-2 text-xs text-zinc-600 dark:text-zinc-300 pl-1">
-                          {["Coautoria;", "Bibliografia em ABNT;", "Geração de palavras-chave;", "Apoio à produção científica."].map((feat, i) => (
+                          {["geração de palavras-chave;", "apoio à escrita científica;", "organização bibliográfica;", "estrutura preparada para referências em ABNT;", "previsão de coautores."].map((feat, i) => (
                             <li key={i} className="flex gap-2 items-center">
                               <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0" />
                               <span>{feat}</span>
                             </li>
                           ))}
                         </ul>
+                        <Paragraph variant="base" className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
+                          Minha intenção era contextualizar a IA à realidade da empresa, aumentando sua utilidade prática.
+                        </Paragraph>
                       </Card>
 
                       <Card hoverEffect={false} className="p-5 border-zinc-200/60 dark:border-zinc-900 space-y-3 bg-zinc-50/10 dark:bg-zinc-950/10">
                         <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
                           <Activity className="h-4.5 w-4.5 text-cyan-500" />
-                          Camada Gerencial
+                          Pensando Além da Experiência do Usuário
                         </h4>
-                        <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
-                          Propus indicadores voltados à gestão:
-                        </p>
+                        <Paragraph variant="base" className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
+                          Também propus uma camada dedicada à gestão da plataforma. A ideia era permitir que gestores acompanhassem indicadores relacionados ao uso da IA.
+                        </Paragraph>
+                        <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">Entre os indicadores previstos estavam:</p>
                         <ul className="space-y-2 text-xs text-zinc-600 dark:text-zinc-300 pl-1">
-                          {["Consumo de Tokens;", "Efetividade dos prompts;", "Custos estimados;", "Consumo energético;", "Estimativa de emissão de CO₂."].map((feat, i) => (
+                          {["consumo de tokens;", "efetividade dos prompts;", "custo financeiro estimado;", "consumo energético (kWh);", "estimativa de emissão de CO₂."].map((feat, i) => (
                             <li key={i} className="flex gap-2 items-center">
                               <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0" />
                               <span>{feat}</span>
                             </li>
                           ))}
                         </ul>
+                        <Paragraph variant="base" className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
+                          Essa proposta ampliava a discussão sobre IA para temas de governança, sustentabilidade e eficiência operacional.
+                        </Paragraph>
                       </Card>
                     </div>
+                  </div>
+
+                  {/* Escalabilidade */}
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-semibold flex items-center gap-2 text-zinc-900 dark:text-zinc-100">
+                      <Cpu className="h-5 w-5 text-cyan-500 shrink-0" />
+                      Escalabilidade
+                    </h3>
+                    <Paragraph variant="base" className="text-sm text-zinc-650 dark:text-zinc-300 leading-relaxed">
+                      Grande parte das decisões de UX buscava reduzir retrabalho nas versões futuras.
+                    </Paragraph>
+                    <Paragraph variant="base" className="text-sm text-zinc-650 dark:text-zinc-300 leading-relaxed">
+                      Por isso a arquitetura foi pensada para suportar:
+                    </Paragraph>
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pl-1">
+                      {["crescimento funcional;", "novos agentes;", "novos motores LLM;", "novas integrações;", "novos componentes;", "evolução contínua do produto."].map((item, i) => (
+                        <li key={i} className="flex gap-2.5 text-sm text-zinc-650 dark:text-zinc-300 leading-relaxed items-center">
+                          <CheckCircle2 className="h-4.5 w-4.5 text-cyan-500 shrink-0" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <Paragraph variant="base" className="text-sm text-zinc-650 dark:text-zinc-300 leading-relaxed">
+                      A intenção sempre foi construir uma base sólida para futuras versões.
+                    </Paragraph>
                   </div>
 
                   {/* Limitações */}
@@ -378,9 +472,17 @@ export default function VitruSubhomePage() {
                       <X className="h-4.5 w-4.5 text-red-500 shrink-0" />
                       Limitações
                     </h4>
-                    <Paragraph variant="base" className="text-xs leading-relaxed text-zinc-650 dark:text-zinc-300">
-                      Uma pesquisa quantitativa corporativa foi estruturada para orientar a evolução do produto, porém acabou despriorizada antes de sua execução.
-                    </Paragraph>
+                    <Paragraph variant="base" className="text-xs leading-relaxed text-zinc-650 dark:text-zinc-300">Durante minha participação foi estruturada uma pesquisa quantitativa corporativa segmentada por vice-presidências.</Paragraph>
+                    <Paragraph variant="base" className="text-xs leading-relaxed text-zinc-650 dark:text-zinc-300">O objetivo era compreender:</Paragraph>
+                    <ul className="space-y-2 text-xs text-zinc-600 dark:text-zinc-300 pl-1">
+                      {["uso atual da IA;", "necessidades futuras;", "integrações desejadas;", "oportunidades de evolução."].map((item, i) => (
+                        <li key={i} className="flex gap-2 items-center">
+                          <span className="w-1.5 h-1.5 rounded-full bg-zinc-400 shrink-0" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <Paragraph variant="base" className="text-xs leading-relaxed text-zinc-650 dark:text-zinc-300">A pesquisa acabou sendo despriorizada antes de sua aplicação. Mesmo assim, a arquitetura proposta permaneceu preparada para incorporar esses aprendizados posteriormente.</Paragraph>
                   </div>
 
                   {/* Aprendizados */}
@@ -389,82 +491,20 @@ export default function VitruSubhomePage() {
                       <Brain className="h-4.5 w-4.5 text-cyan-400 shrink-0" />
                       Aprendizados
                     </h4>
-                    <Paragraph variant="base" className="text-xs leading-relaxed text-zinc-650 dark:text-zinc-300 font-medium italic">
-                      "Projetar produtos baseados em IA exige integrar UX, Produto, Engenharia, escalabilidade, governança e sustentabilidade desde as primeiras decisões."
-                    </Paragraph>
+                    <Paragraph variant="base" className="text-xs leading-relaxed text-zinc-650 dark:text-zinc-300">O VitruChat reforçou uma percepção que hoje orienta toda a minha forma de atuar.</Paragraph>
+                    <Paragraph variant="base" className="text-xs leading-relaxed text-zinc-650 dark:text-zinc-300">Projetar produtos baseados em Inteligência Artificial não significa apenas desenhar boas interfaces. Exige compreender governança, escalabilidade, sustentabilidade, custos operacionais, arquitetura e estratégia de produto.</Paragraph>
+                    <Paragraph variant="base" className="text-xs leading-relaxed text-zinc-650 dark:text-zinc-300">Minha intenção passou a ser antecipar necessidades futuras e aproximar Produto, Negócio e Engenharia desde o início do projeto.</Paragraph>
                   </div>
 
-                  {/* Media Thumbnails Row */}
-                  <div className="space-y-4 pt-6 border-t border-zinc-100 dark:border-zinc-900">
-                    <Heading level={3} className="text-xs font-mono uppercase tracking-widest text-zinc-400 dark:text-zinc-500 block mb-2">
-                      Evidências e Apoio à Decisão (Anexos)
-                    </Heading>
-                    
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                      {/* Thumbnail 1: Imagens */}
-                      <button
-                        disabled
-                        className="flex flex-col items-start p-4 rounded-xl border border-zinc-100 dark:border-zinc-900 bg-zinc-50/10 dark:bg-zinc-950/10 text-left opacity-40 cursor-not-allowed w-full"
-                      >
-                        <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-900 text-zinc-400 dark:text-zinc-600 mb-3">
-                          <ImageIcon className="h-5 w-5" />
-                        </div>
-                        <span className="text-xs font-semibold text-zinc-400 dark:text-zinc-500 block mb-1">
-                          Imagens / Mocks
-                        </span>
-                        <span className="text-[10px] text-zinc-400 dark:text-zinc-600">
-                          Em breve
-                        </span>
-                      </button>
-
-                      {/* Thumbnail 2: Vídeos */}
-                      <button
-                        disabled
-                        className="flex flex-col items-start p-4 rounded-xl border border-zinc-100 dark:border-zinc-900 bg-zinc-50/10 dark:bg-zinc-950/10 text-left opacity-40 cursor-not-allowed w-full"
-                      >
-                        <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-900 text-zinc-400 dark:text-zinc-600 mb-3">
-                          <Video className="h-5 w-5" />
-                        </div>
-                        <span className="text-xs font-semibold text-zinc-400 dark:text-zinc-500 block mb-1">
-                          Vídeos / Demo
-                        </span>
-                        <span className="text-[10px] text-zinc-400 dark:text-zinc-600">
-                          Em breve
-                        </span>
-                      </button>
-
-                      {/* Thumbnail 3: Protótipos */}
-                      <button
-                        disabled
-                        className="flex flex-col items-start p-4 rounded-xl border border-zinc-100 dark:border-zinc-900 bg-zinc-50/10 dark:bg-zinc-950/10 text-left opacity-40 cursor-not-allowed w-full"
-                      >
-                        <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-900 text-zinc-400 dark:text-zinc-600 mb-3">
-                          <ExternalLink className="h-5 w-5" />
-                        </div>
-                        <span className="text-xs font-semibold text-zinc-400 dark:text-zinc-500 block mb-1">
-                          Protótipo Figma
-                        </span>
-                        <span className="text-[10px] text-zinc-400 dark:text-zinc-600">
-                          Em breve
-                        </span>
-                      </button>
-
-                      {/* Thumbnail 4: Boards */}
-                      <button
-                        disabled
-                        className="flex flex-col items-start p-4 rounded-xl border border-zinc-100 dark:border-zinc-900 bg-zinc-50/10 dark:bg-zinc-950/10 text-left opacity-40 cursor-not-allowed w-full"
-                      >
-                        <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-900 text-zinc-400 dark:text-zinc-600 mb-3">
-                          <LayoutGrid className="h-5 w-5" />
-                        </div>
-                        <span className="text-xs font-semibold text-zinc-400 dark:text-zinc-500 block mb-1">
-                          Decisão / Boards
-                        </span>
-                        <span className="text-[10px] text-zinc-400 dark:text-zinc-600">
-                          Em breve
-                        </span>
-                      </button>
-                    </div>
+                  {/* Resultado */}
+                  <div className="p-6 rounded-2xl border border-cyan-500/20 dark:border-cyan-500/10 bg-cyan-500/[0.02] dark:bg-cyan-500/[0.01] space-y-3">
+                    <h4 className="text-sm font-semibold flex items-center gap-2 text-cyan-600 dark:text-cyan-400">
+                      <Award className="h-4.5 w-4.5 shrink-0" />
+                      Resultado
+                    </h4>
+                    <Paragraph variant="base" className="text-xs leading-relaxed text-zinc-650 dark:text-zinc-300">Mais do que participar da construção de uma plataforma baseada em IA, este projeto consolidou uma forma de pensar produtos.</Paragraph>
+                    <Paragraph variant="base" className="text-xs leading-relaxed text-zinc-650 dark:text-zinc-300">Hoje procuro estruturar soluções capazes de evoluir continuamente, reduzir retrabalho e conectar diferentes áreas da organização em torno de uma visão comum.</Paragraph>
+                    <Paragraph variant="base" className="text-xs leading-relaxed text-zinc-650 dark:text-zinc-300">Essa visão sistêmica é o principal aprendizado que levo do VitruChat e que continuo aplicando nos projetos seguintes.</Paragraph>
                   </div>
 
                   {/* Fact Sheet */}
@@ -472,24 +512,24 @@ export default function VitruSubhomePage() {
                     <Card hoverEffect={false} className="p-5 bg-zinc-50/50 dark:bg-zinc-900/30 border border-zinc-200/50 dark:border-zinc-800/50 flex gap-3 items-start">
                       <User className="h-5 w-5 text-zinc-400 dark:text-zinc-500 shrink-0" />
                       <div>
-                        <span className="text-[9px] uppercase tracking-wider font-mono text-zinc-400 dark:text-zinc-500 block mb-1">Cargo / Escopo</span>
-                        <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">{activeCase.role}</span>
+                        <span className="text-[9px] uppercase tracking-wider font-mono text-zinc-400 dark:text-zinc-500 block mb-1">Empresa</span>
+                        <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">Vitru Educação</span>
                       </div>
                     </Card>
 
                     <Card hoverEffect={false} className="p-5 bg-zinc-50/50 dark:bg-zinc-900/30 border border-zinc-200/50 dark:border-zinc-800/50 flex gap-3 items-start">
                       <Calendar className="h-5 w-5 text-zinc-400 dark:text-zinc-500 shrink-0" />
                       <div>
-                        <span className="text-[9px] uppercase tracking-wider font-mono text-zinc-400 dark:text-zinc-500 block mb-1">Duração</span>
-                        <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">{activeCase.duration}</span>
+                        <span className="text-[9px] uppercase tracking-wider font-mono text-zinc-400 dark:text-zinc-500 block mb-1">Área</span>
+                        <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">Innovation Lab</span>
                       </div>
                     </Card>
 
                     <Card hoverEffect={false} className="p-5 bg-zinc-50/50 dark:bg-zinc-900/30 border border-zinc-200/50 dark:border-zinc-800/50 flex gap-3 items-start">
                       <Activity className="h-5 w-5 text-zinc-400 dark:text-zinc-500 shrink-0" />
                       <div>
-                        <span className="text-[9px] uppercase tracking-wider font-mono text-zinc-400 dark:text-zinc-500 block mb-1">Resultado Estratégico</span>
-                        <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">{activeCase.metric}</span>
+                        <span className="text-[9px] uppercase tracking-wider font-mono text-zinc-400 dark:text-zinc-500 block mb-1">Produto</span>
+                        <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">VitruChat LLM</span>
                       </div>
                     </Card>
                   </div>
@@ -707,7 +747,7 @@ export default function VitruSubhomePage() {
       {/* FULLSCREEN OVERLAY MODAL */}
       {activeModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/15 backdrop-blur-md p-4 animate-in fade-in duration-200">
-          <div className="relative w-full max-w-4xl bg-zinc-950 border border-zinc-200/20 dark:border-zinc-800 rounded-3xl p-6 sm:p-8 overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
+          <div role="dialog" aria-modal="true" aria-label="Visualização de material de projeto" className="relative flex h-[90vh] w-[90vw] max-w-none flex-col overflow-hidden rounded-3xl border border-zinc-200/20 bg-zinc-950 p-4 shadow-2xl sm:p-6 lg:p-8">
             
             {/* Modal Header */}
             <div className="flex items-center justify-between pb-4 border-b border-zinc-900 mb-6">
@@ -721,6 +761,7 @@ export default function VitruSubhomePage() {
               </div>
               <button
                 onClick={() => setActiveModal(null)}
+                autoFocus
                 className="p-2 rounded-full border border-zinc-800 bg-zinc-900 text-zinc-400 hover:text-white transition-colors"
                 aria-label="Fechar modal"
               >
@@ -729,7 +770,49 @@ export default function VitruSubhomePage() {
             </div>
 
             {/* Modal Content */}
-            <div className="flex-grow overflow-y-auto flex items-center justify-center p-2 min-h-0" />
+            <div className="min-h-0 flex-grow p-2">
+              {activeModal === "imagens" && selectedProjectId === "vitruchat" && (
+                <div className="flex h-full flex-col gap-4">
+                  <figure className="flex min-h-0 flex-1 flex-col items-center justify-center overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900 p-2 sm:p-4">
+                    <div className="relative min-h-0 w-full flex-1">
+                      <Image
+                        src={vitruchatImages[activeImageIndex].src}
+                        alt={vitruchatImages[activeImageIndex].alt}
+                        width={1440}
+                        height={900}
+                        className="h-full w-full object-contain"
+                        sizes="90vw"
+                        priority
+                      />
+                    </div>
+                    <figcaption className="pt-3 text-center text-sm font-medium text-zinc-200" aria-live="polite">
+                      {vitruchatImages[activeImageIndex].caption} · Imagem {activeImageIndex + 1} de {vitruchatImages.length}
+                    </figcaption>
+                  </figure>
+
+                  <div className="flex items-center justify-between gap-4">
+                    <button
+                      type="button"
+                      onClick={() => setActiveImageIndex((index) => Math.max(0, index - 1))}
+                      disabled={activeImageIndex === 0}
+                      className="inline-flex items-center gap-2 rounded-lg border border-zinc-700 px-4 py-2 text-sm font-medium text-zinc-200 transition-colors hover:border-zinc-500 hover:text-white disabled:cursor-not-allowed disabled:opacity-40"
+                    >
+                      <ChevronLeft className="size-4" aria-hidden="true" />
+                      Anterior
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setActiveImageIndex((index) => Math.min(vitruchatImages.length - 1, index + 1))}
+                      disabled={activeImageIndex === vitruchatImages.length - 1}
+                      className="inline-flex items-center gap-2 rounded-lg bg-white px-4 py-2 text-sm font-semibold text-zinc-900 transition-colors hover:bg-zinc-200 disabled:cursor-not-allowed disabled:opacity-40"
+                    >
+                      Próxima
+                      <ChevronRight className="size-4" aria-hidden="true" />
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       )}
