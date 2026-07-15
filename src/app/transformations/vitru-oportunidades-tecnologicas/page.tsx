@@ -50,29 +50,121 @@ interface CaseStudyData {
   boardUrl?: string;
 }
 
-const vitruchatImages = [
-  ...["Chat_filterOpen&Boxes.png", "Indicadores_filterClose&boxes.png", "Indicadores_filterClose&lista.png", "VitruChat_AprendaUsar.png", "VitruChat_home.png"].map((filename) => ({ src: `/imagem/vitru/vitruchat/v1-light/${filename.replaceAll("&", "%26")}`, alt: "VitruChat LLM — versão 1.0, tema claro", caption: "VitruChat LLM — versão 1.0 · Tema claro" })),
-  ...["tour_home-step-01.png", "tour_home-step-10-b.png", "tour_home-step-15.png", "tour_home-step-17-b.png"].map((filename) => ({ src: `/imagem/vitru/vitruchat/v1-tour-guiado/${filename}`, alt: "VitruChat LLM — Tour Guiado", caption: "VitruChat LLM — Tour Guiado" })),
-  ...["Pastas_MenuClosed&PropClosed&PromptClosed.png", "Pastas_MenuClosed&PropClosed&PromptOpen-2.png", "Pastas_MenuClosed&PropOpen&PromptClosed-2.png", "Pastas_MenuClosed&PropOpen&PromptOpen-2.png", "Pastas_MenuOpen&PropClosed&PromptClosed-2.png", "Pastas_MenuOpen&PropClosed&PromptOpen-2.png", "Pastas_MenuOpen&PropOpen&PromptClosed-3.png", "Pastas_MenuOpen&PropOpen&PromptClosed.png", "Pastas_MenuOpen&PropOpen&PromptOpen-2.png"].map((filename) => ({ src: `/imagem/vitru/vitruchat/v2-dark/${filename.replaceAll("&", "%26")}`, alt: "VitruChat LLM — versão 2.0, tema escuro", caption: "VitruChat LLM — versão 2.0 · Tema escuro" })),
-  ...["Acessibilidade_MenuOpen&PropOpen&PromptClosed.png", "chatViewProposta.png", "Pastas_MenuClosed&PropClosed&PromptClosed-2.png", "Pastas_MenuClosed&PropClosed&PromptOpen.png", "Pastas_MenuClosed&PropOpen&PromptClosed.png", "Pastas_MenuClosed&PropOpen&PromptOpen.png", "Pastas_MenuOpen&PropClosed&PromptClosed.png", "Pastas_MenuOpen&PropClosed&PromptOpen.png", "Pastas_MenuOpen&PropOpen&PromptClosed-2.png", "Pastas_MenuOpen&PropOpen&PromptOpen.png"].map((filename) => ({ src: `/imagem/vitru/vitruchat/v2-light/${filename.replaceAll("&", "%26")}`, alt: "VitruChat LLM — versão 2.0, tema claro", caption: "VitruChat LLM — versão 2.0 · Tema claro" })),
+interface EvidenceImage {
+  src: string;
+  alt: string;
+  caption: string;
+}
+
+interface EvidenceGroup {
+  id: string;
+  label: string;
+  images: EvidenceImage[];
+}
+
+const imagePath = (folder: string, filename: string) => `/imagem/vitru/vitruchat/${folder}/${filename.replaceAll("&", "%26")}`;
+
+const vitruchatEvidenceGroups: EvidenceGroup[] = [
+  {
+    id: "v1-light",
+    label: "Versão 1.0 — Tema claro",
+    images: ["Chat_filterOpen&Boxes.png", "Indicadores_filterClose&boxes.png", "Indicadores_filterClose&lista.png", "VitruChat_AprendaUsar.png", "VitruChat_home.png"].map((filename) => ({
+      src: imagePath("v1-light", filename),
+      alt: "VitruChat LLM — versão 1.0, tema claro",
+      caption: "VitruChat LLM — versão 1.0 · Tema claro",
+    })),
+  },
+  {
+    id: "v1-tour-guiado",
+    label: "Versão 1.0 — Tour guiado",
+    images: ["tour_home-step-01.png", "tour_home-step-10-b.png", "tour_home-step-15.png", "tour_home-step-17-b.png"].map((filename) => ({
+      src: imagePath("v1-tour-guiado", filename),
+      alt: "VitruChat LLM — Tour Guiado",
+      caption: "VitruChat LLM — Tour Guiado",
+    })),
+  },
+  {
+    id: "v2-light",
+    label: "Versão 2.0 — Tema claro",
+    images: ["Acessibilidade_MenuOpen&PropOpen&PromptClosed.png", "chatViewProposta.png", "Pastas_MenuClosed&PropClosed&PromptClosed-2.png", "Pastas_MenuClosed&PropClosed&PromptOpen.png", "Pastas_MenuClosed&PropOpen&PromptClosed.png", "Pastas_MenuClosed&PropOpen&PromptOpen.png", "Pastas_MenuOpen&PropClosed&PromptClosed.png", "Pastas_MenuOpen&PropClosed&PromptOpen.png", "Pastas_MenuOpen&PropOpen&PromptClosed-2.png", "Pastas_MenuOpen&PropOpen&PromptOpen.png"].map((filename) => ({
+      src: imagePath("v2-light", filename),
+      alt: "VitruChat LLM — versão 2.0, tema claro",
+      caption: "VitruChat LLM — versão 2.0 · Tema claro",
+    })),
+  },
+  {
+    id: "v2-dark",
+    label: "Versão 2.0 — Tema escuro",
+    images: ["Pastas_MenuClosed&PropClosed&PromptClosed.png", "Pastas_MenuClosed&PropClosed&PromptOpen-2.png", "Pastas_MenuClosed&PropOpen&PromptClosed-2.png", "Pastas_MenuClosed&PropOpen&PromptOpen-2.png", "Pastas_MenuOpen&PropClosed&PromptClosed-2.png", "Pastas_MenuOpen&PropClosed&PromptOpen-2.png", "Pastas_MenuOpen&PropOpen&PromptClosed-3.png", "Pastas_MenuOpen&PropOpen&PromptClosed.png", "Pastas_MenuOpen&PropOpen&PromptOpen-2.png"].map((filename) => ({
+      src: imagePath("v2-dark", filename),
+      alt: "VitruChat LLM — versão 2.0, tema escuro",
+      caption: "VitruChat LLM — versão 2.0 · Tema escuro",
+    })),
+  },
 ];
 
-const unavailableEvidence = [
-  { label: "Vídeos / Demo", Icon: Video },
-  { label: "Protótipo Figma", Icon: ExternalLink },
-  { label: "Decisão / Boards", Icon: LayoutGrid },
-];
+const vitruchatImages = vitruchatEvidenceGroups.flatMap((group) => group.images.map((image) => ({ ...image, groupId: group.id, groupLabel: group.label })));
+const priorityEvidenceIndexes = [4, 0, 5, 8, 9, 17, 19, 20];
 
 export default function VitruSubhomePage() {
   const [selectedProjectId, setSelectedProjectId] = useState<string>("vitruchat");
   const [activeModal, setActiveModal] = useState<"imagens" | "videos" | "prototipos" | "boards" | null>(null);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const triggerRef = React.useRef<HTMLElement | null>(null);
+  const modalRef = React.useRef<HTMLDivElement | null>(null);
+  const closeButtonRef = React.useRef<HTMLButtonElement | null>(null);
+
+  const closeModal = () => setActiveModal(null);
+  const openGallery = (imageIndex: number, event: React.MouseEvent<HTMLButtonElement>) => {
+    triggerRef.current = event.currentTarget;
+    setActiveImageIndex(imageIndex);
+    setActiveModal("imagens");
+  };
 
   React.useEffect(() => {
-    if (!activeModal) return;
+    if (!activeModal) {
+      triggerRef.current?.focus();
+      return;
+    }
+
+    closeButtonRef.current?.focus();
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setActiveModal(null);
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeModal();
+        return;
+      }
+
+      if (activeModal === "imagens" && event.key === "ArrowLeft") {
+        event.preventDefault();
+        setActiveImageIndex((index) => Math.max(0, index - 1));
+        return;
+      }
+
+      if (activeModal === "imagens" && event.key === "ArrowRight") {
+        event.preventDefault();
+        setActiveImageIndex((index) => Math.min(vitruchatImages.length - 1, index + 1));
+        return;
+      }
+
+      if (event.key !== "Tab" || !modalRef.current) return;
+
+      const focusableElements = Array.from(
+        modalRef.current.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])')
+      );
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      if (!firstElement || !lastElement) return;
+
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
+      }
     };
 
     window.addEventListener("keydown", handleKeyDown);
@@ -132,16 +224,29 @@ export default function VitruSubhomePage() {
   };
 
   const activeCase = caseStudies[selectedProjectId] || caseStudies.sofia;
+  const activeImage = vitruchatImages[activeImageIndex];
+  const activeGroup = vitruchatEvidenceGroups.find((group) => group.id === activeImage.groupId) ?? vitruchatEvidenceGroups[0];
+  const activeGroupImageIndex = activeGroup.images.findIndex((image) => image.src === activeImage.src) + 1;
+  const priorityEvidence = priorityEvidenceIndexes.map((index) => ({ image: vitruchatImages[index], index }));
   const evidenceBox = (
-    <section className="space-y-4 border-t border-zinc-100 pt-6 dark:border-zinc-900" aria-labelledby="evidences-title">
-      <Heading id="evidences-title" level={3} className="mb-2 block text-xs font-mono uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Evidências e Apoio à Decisão (Anexos)</Heading>
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-        <button type="button" onClick={() => { setActiveImageIndex(0); setActiveModal("imagens"); }} className="group flex w-full flex-col items-start rounded-xl border border-zinc-200/60 bg-zinc-50/30 p-4 text-left shadow-sm transition-all duration-300 hover:border-cyan-500 dark:border-zinc-800 dark:bg-zinc-900/20 dark:hover:border-cyan-400">
-          <div className="mb-3 rounded-lg border border-zinc-200/50 bg-white p-2 text-zinc-600 transition-colors group-hover:bg-cyan-500/10 group-hover:text-cyan-500 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"><ImageIcon className="h-5 w-5" /></div>
-          <span className="mb-1 block text-xs font-semibold text-zinc-850 dark:text-zinc-100">Imagens / Mocks</span>
-          <span className="text-[10px] font-medium text-cyan-600 dark:text-cyan-400">Ver galeria</span>
+    <section className="space-y-3 border-t border-zinc-100 pt-6 dark:border-zinc-900" aria-labelledby="evidences-title">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <Heading id="evidences-title" level={3} className="block text-xs font-mono uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Evidências e Apoio à Decisão (Anexos)</Heading>
+          <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">Seleção inicial: 8 de {vitruchatImages.length} capturas.</p>
+        </div>
+        <button type="button" onClick={(event) => openGallery(0, event)} className="inline-flex items-center gap-2 rounded-lg border border-zinc-200 px-3 py-2 text-xs font-semibold text-zinc-700 transition-colors hover:border-cyan-500 hover:text-cyan-700 dark:border-zinc-800 dark:text-zinc-200 dark:hover:border-cyan-400 dark:hover:text-cyan-300">
+          <ImageIcon className="size-4" aria-hidden="true" />
+          Abrir galeria completa
         </button>
-        {unavailableEvidence.map(({ label, Icon }) => <button key={label} type="button" disabled className="flex w-full cursor-not-allowed flex-col items-start rounded-xl border border-zinc-100 bg-zinc-50/10 p-4 text-left opacity-40 dark:border-zinc-900 dark:bg-zinc-950/10"><div className="mb-3 rounded-lg bg-zinc-100 p-2 text-zinc-400 dark:bg-zinc-900 dark:text-zinc-600"><Icon className="h-5 w-5" /></div><span className="mb-1 block text-xs font-semibold text-zinc-400 dark:text-zinc-500">{label}</span><span className="text-[10px] text-zinc-400 dark:text-zinc-600">Em breve</span></button>)}
+      </div>
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+        {priorityEvidence.map(({ image, index }) => (
+          <button key={image.src} type="button" onClick={(event) => openGallery(index, event)} aria-label={`Abrir ${image.caption}`} className="group relative aspect-[16/9] overflow-hidden rounded-lg border border-zinc-200 bg-zinc-100 text-left transition-colors hover:border-cyan-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-cyan-400">
+            <Image src={image.src} alt="" fill sizes="(min-width: 640px) 20vw, 45vw" className="object-cover transition-transform duration-300 group-hover:scale-[1.02]" />
+            <span className="sr-only">{image.caption}</span>
+          </button>
+        ))}
       </div>
     </section>
   );
@@ -747,7 +852,7 @@ export default function VitruSubhomePage() {
       {/* FULLSCREEN OVERLAY MODAL */}
       {activeModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/15 backdrop-blur-md p-4 animate-in fade-in duration-200">
-          <div role="dialog" aria-modal="true" aria-label="Visualização de material de projeto" className="relative flex h-[90vh] w-[90vw] max-w-none flex-col overflow-hidden rounded-3xl border border-zinc-200/20 bg-zinc-950 p-4 shadow-2xl sm:p-6 lg:p-8">
+          <div ref={modalRef} role="dialog" aria-modal="true" aria-labelledby="gallery-title" aria-describedby="gallery-position" className="relative flex h-[90vh] w-[90vw] max-w-none flex-col overflow-hidden rounded-3xl border border-zinc-200/20 bg-zinc-950 p-4 shadow-2xl sm:p-6 lg:p-8">
             
             {/* Modal Header */}
             <div className="flex items-center justify-between pb-4 border-b border-zinc-900 mb-6">
@@ -755,13 +860,14 @@ export default function VitruSubhomePage() {
                 <span className="text-[10px] uppercase font-mono tracking-widest text-zinc-500">
                   {selectedProjectId === "vitruchat" ? "VitruChat LLM" : selectedProjectId === "sofia" ? "SofIA" : "Hub de Correções"} — Anexo de Projeto
                 </span>
-                <Heading level={3} className="text-lg sm:text-xl font-semibold text-white m-0">
+                <Heading id="gallery-title" level={3} className="text-lg sm:text-xl font-semibold text-white m-0">
                   {activeModal === "imagens" && "Galeria de Capturas de Tela"}
                 </Heading>
               </div>
               <button
-                onClick={() => setActiveModal(null)}
-                autoFocus
+                ref={closeButtonRef}
+                type="button"
+                onClick={closeModal}
                 className="p-2 rounded-full border border-zinc-800 bg-zinc-900 text-zinc-400 hover:text-white transition-colors"
                 aria-label="Fechar modal"
               >
@@ -773,11 +879,31 @@ export default function VitruSubhomePage() {
             <div className="min-h-0 flex-grow p-2">
               {activeModal === "imagens" && selectedProjectId === "vitruchat" && (
                 <div className="flex h-full flex-col gap-4">
+                  <div className="flex flex-wrap items-center gap-2" aria-label="Grupos de evidências">
+                    {vitruchatEvidenceGroups.map((group) => {
+                      const groupStartIndex = vitruchatImages.findIndex((image) => image.groupId === group.id);
+
+                      return (
+                        <button
+                          key={group.id}
+                          type="button"
+                          aria-pressed={activeGroup.id === group.id}
+                          onClick={() => setActiveImageIndex(groupStartIndex)}
+                          className="rounded-full border border-zinc-700 px-3 py-1.5 text-xs font-medium text-zinc-300 transition-colors hover:border-zinc-500 hover:text-white aria-pressed:border-cyan-400 aria-pressed:bg-cyan-400/10 aria-pressed:text-cyan-200"
+                        >
+                          {group.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                  <p id="gallery-position" className="text-xs text-zinc-400" aria-live="polite">
+                    Grupo atual: {activeGroup.label} · {activeGroupImageIndex} de {activeGroup.images.length} · Total: {activeImageIndex + 1} de {vitruchatImages.length}
+                  </p>
                   <figure className="flex min-h-0 flex-1 flex-col items-center justify-center overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900 p-2 sm:p-4">
                     <div className="relative min-h-0 w-full flex-1">
                       <Image
-                        src={vitruchatImages[activeImageIndex].src}
-                        alt={vitruchatImages[activeImageIndex].alt}
+                        src={activeImage.src}
+                        alt={activeImage.alt}
                         width={1440}
                         height={900}
                         className="h-full w-full object-contain"
@@ -786,7 +912,7 @@ export default function VitruSubhomePage() {
                       />
                     </div>
                     <figcaption className="pt-3 text-center text-sm font-medium text-zinc-200" aria-live="polite">
-                      {vitruchatImages[activeImageIndex].caption} · Imagem {activeImageIndex + 1} de {vitruchatImages.length}
+                      {activeImage.caption}
                     </figcaption>
                   </figure>
 
