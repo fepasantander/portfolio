@@ -36,6 +36,7 @@ interface ProjectItem {
   icon: React.ReactNode;
   href?: string;
   locked?: boolean;
+  preparing?: boolean;
 }
 
 interface CaseStudyData {
@@ -367,9 +368,10 @@ export function VitruSubhomePage({ initialProjectId = "vitruchat" }: { initialPr
     {
       id: "hub-correcoes",
       title: "Hub de Correções",
-      description: "Motor de inteligência artificial para correção automatizada de provas discursivas.",
+      description: "Conteúdo em preparação.",
       icon: <FileCheck2 className="h-5 w-5" />,
-      locked: true
+      href: "/transformations/hub-correcoes",
+      preparing: true
     }
   ];
 
@@ -466,7 +468,7 @@ export function VitruSubhomePage({ initialProjectId = "vitruchat" }: { initialPr
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
                         <span className={`font-semibold text-sm leading-none block ${proj.locked ? "text-zinc-400 dark:text-zinc-550" : "text-zinc-900 dark:text-zinc-100"}`}>{proj.title}</span>
-                        {proj.locked ? <span className="inline-flex items-center gap-0.5 text-[8px] font-mono tracking-wide uppercase px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-900 text-zinc-400 dark:text-zinc-500 shrink-0 font-semibold border border-zinc-200/50 dark:border-zinc-800/50">Em breve</span> : isActive && <span className="inline-flex items-center gap-0.5 text-[8px] font-mono tracking-wide uppercase px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-400 shrink-0 font-semibold">Ativo</span>}
+                        {proj.locked ? <span className="inline-flex items-center gap-0.5 text-[8px] font-mono tracking-wide uppercase px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-900 text-zinc-400 dark:text-zinc-500 shrink-0 font-semibold border border-zinc-200/50 dark:border-zinc-800/50">Em breve</span> : proj.preparing ? <span className="inline-flex items-center gap-0.5 text-[8px] font-mono tracking-wide uppercase px-1.5 py-0.5 rounded bg-zinc-100 text-zinc-500 shrink-0 font-semibold dark:bg-zinc-900 dark:text-zinc-400">Em preparação</span> : isActive && <span className="inline-flex items-center gap-0.5 text-[8px] font-mono tracking-wide uppercase px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-400 shrink-0 font-semibold">Ativo</span>}
                       </div>
                       <p className={`text-[11px] leading-relaxed ${proj.locked ? "text-zinc-400/80 dark:text-zinc-650" : isActive ? "text-zinc-300" : "text-zinc-500"}`}>{proj.description}</p>
                     </div>
@@ -982,6 +984,8 @@ export function VitruSubhomePage({ initialProjectId = "vitruchat" }: { initialPr
             ) : <span aria-disabled="true" className="text-zinc-400 dark:text-zinc-500">Case anterior</span>}
             {selectedProjectId === "vitruchat" ? (
               <Link href="/transformations/sofia-administrative-ai-assistant" className="inline-flex items-center gap-2 font-medium text-zinc-600 transition-colors hover:text-zinc-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500 dark:text-zinc-300 dark:hover:text-white">Próximo case: SofIA<ChevronRight className="size-4" aria-hidden="true" /></Link>
+            ) : selectedProjectId === "sofia" ? (
+              <Link href="/transformations/hub-correcoes" className="inline-flex items-center gap-2 font-medium text-zinc-600 transition-colors hover:text-zinc-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500 dark:text-zinc-300 dark:hover:text-white">Próximo case: Hub de Correções<ChevronRight className="size-4" aria-hidden="true" /></Link>
             ) : <span aria-disabled="true" className="text-zinc-400 dark:text-zinc-500">Próximo case</span>}
           </nav>
 

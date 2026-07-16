@@ -12,8 +12,11 @@ const availableCases = [
   { title: "SofIA", href: "/transformations/sofia-administrative-ai-assistant", icon: Brain, problem: "How to reduce administrative friction and introduce students to the learning platform through an intelligent onboarding experience.", contribution: "Onboarding e assistência administrativa que prepara a evolução para um Agente de Secretaria.", evidence: "Evidências visuais em atualização." },
 ];
 
+const preparingCases = [
+  { title: "Hub de Correções", href: "/transformations/hub-correcoes", icon: FileCheck2 },
+];
+
 const futureInitiatives = [
-  { title: "Hub de Correções", icon: FileCheck2 },
   { title: "Pesquisa Corporativa de IA", icon: Search },
 ];
 
@@ -48,6 +51,12 @@ export default function VitruInnovationLabPage() {
                   <Link href={href} className="mt-8 inline-flex items-center gap-2 self-start rounded-lg bg-violet-600 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-violet-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-500 dark:focus-visible:outline-violet-400">Explorar case <ArrowRight className="size-4" aria-hidden="true" /></Link>
                 </Card>
               ))}
+            </div>
+          </section>
+          <section className="border-t border-zinc-200 py-16 dark:border-zinc-800" aria-labelledby="preparing-cases-title">
+            <div className="mb-8 max-w-3xl"><Heading id="preparing-cases-title" level={2}>Case em preparação</Heading><Paragraph className="mt-4">Esta estrutura já está disponível para navegação; a narrativa será incluída quando houver Documento Mestre aprovado.</Paragraph></div>
+            <div className="grid gap-6 md:grid-cols-2">
+              {preparingCases.map(({ title, href, icon: Icon }) => <Card key={title} className="flex h-full flex-col border-dashed border-violet-200 dark:border-violet-900/60"><div className="mb-5 flex items-start justify-between gap-4"><div className="rounded-xl bg-violet-100 p-3 text-violet-700 dark:bg-violet-950/60 dark:text-violet-300"><Icon className="size-6" aria-hidden="true" /></div><span className="rounded-full bg-violet-100 px-3 py-1 text-xs font-semibold text-violet-700 dark:bg-violet-950/60 dark:text-violet-300">Conteúdo em preparação</span></div><Heading level={3} className="text-2xl">{title}</Heading><Link href={href} className="mt-8 inline-flex items-center gap-2 self-start rounded-lg border border-violet-200 px-4 py-2.5 text-sm font-semibold text-violet-700 transition-colors hover:border-violet-400 hover:text-violet-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-500 dark:border-violet-900 dark:text-violet-300 dark:hover:border-violet-600 dark:hover:text-violet-100">Ver estrutura do case <ArrowRight className="size-4" aria-hidden="true" /></Link></Card>)}
             </div>
           </section>
           <section className="border-t border-zinc-200 py-16 dark:border-zinc-800" aria-labelledby="future-initiatives-title">

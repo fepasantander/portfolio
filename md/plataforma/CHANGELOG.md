@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-07-16 — Hub de Correções: Preparação Estrutural
+
+- Added the public canonical route `/transformations/hub-correcoes`.
+- Added a case-preparation page with no narrative or visual-evidence content.
+- Prepared evidence slots for images, boards, FigJam and documents.
+- Added Hub de Correções to the Innovation Lab as `Conteúdo em preparação`, separate from future initiatives.
+- Extended Case navigation to VitruChat → SofIA → Hub de Correções.
+
 ## 2026-07-16 — Navigation Vitru Innovation Lab Cases
 
 - Added the public Innovation Lab hub at `/transformations/vitru-innovation-lab`.

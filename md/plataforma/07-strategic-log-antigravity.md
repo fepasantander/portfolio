@@ -113,6 +113,12 @@ Este documento inicia o histórico de alinhamento estratégico, decisões técni
 * **Navegação:** Foram adicionados breadcrumbs, ação `Voltar ao Innovation Lab`, links reais entre os Cases e estados explícitos de foco, hover, ativo e indisponível. Iniciativas futuras permanecem visíveis e sem interação simulada.
 * **Evidências:** O bloco de evidências permanece logo após o Executive Summary, agora compacto, com CTA `Ver evidências visuais`. Quatro destaques selecionados foram posicionados após a contribuição do VitruChat; a galeria completa preserva as 28 imagens e sua navegação por teclado e foco controlado.
 
+### 13. Sprint 08 — Hub de Correções: Preparação Estrutural
+* **Objetivo:** Preparar a rota canônica `/transformations/hub-correcoes` para receber o terceiro Case do Innovation Lab sem antecipar narrativa, métricas ou evidências.
+* **Estrutura:** A página recebeu a mesma ordem estrutural dos Cases existentes: Executive Summary, Evidências e Apoio à Decisão, Contexto, Problema, Minha Atuação, Processo, Decisões de Produto, Resultados, Aprendizados e navegação entre Cases. Todas as seções sem Documento Mestre exibem somente `Conteúdo em preparação`.
+* **Evidências:** O bloco está preparado para imagens, boards, FigJam e documentos, sem ativos, legendas ou controles fictícios.
+* **Navegação:** O Hub do Innovation Lab apresenta o Hub de Correções como `Case em preparação`, separado das iniciativas futuras. A sequência passa a ser VitruChat → SofIA → Hub de Correções.
+
 ---
 
 ## 🔮 Próximos Passos
