@@ -100,6 +100,13 @@ Este documento inicia o histórico de alinhamento estratégico, decisões técni
 * **Objetivo:** Garantir que apenas o case do VitruChat LLM esteja ativo na subhome da Vitru, bloqueando as abas das oportunidades "SofIA" e "Hub de Correções" com badges de "Em breve" e desabilitando cliques.
 * **Componentes Modificados:** [page.tsx](file:///C:/Users/MacInBox/Documents/profissional/portfolio/src/app/transformations/vitru-oportunidades-tecnologicas/page.tsx) (added `locked` property to `ProjectItem` interface and conditional styles in the sidebar rendering).
 
+### 11. Case 002 — SofIA: Assistente Administrativa e evolução para Agente de Secretaria
+* **Objetivo:** Implementar o segundo Case Executivo a partir do Documento Mestre `case-002-sofia-administrative-ai-assistant-v1.0.md`, reutilizando a estrutura do Case 001 sem alterar o Hub do Innovation Lab, o Design System ou outros Cases.
+* **Implementação:** A aba SofIA foi liberada no hub existente `/transformations/vitru-oportunidades-tecnologicas` e passou a renderizar a narrativa completa do Case: contexto, problema, atuação, estratégia de retenção, comparação Web/Mobile, evolução do produto, limitações, aprendizados e resultado.
+* **Decisões tomadas:** A esfera-guia foi registrada como mecanismo de direcionamento da atenção, retenção e futura gamificação; a evolução foi explicitada como Onboarding → Assistente Administrativa → Agente de Secretaria. Questões pedagógicas permanecem fora do escopo inicial, conforme Documento Mestre.
+* **Evidências:** O bloco compartilhado `Evidências e Apoio à Decisão` foi posicionado imediatamente após o Executive Summary. Como não há ativos catalogados, ele está preparado e sinalizado como `Em atualização`, sem imagens, legendas ou conteúdos fictícios.
+* **Validação:** Lint específico da página aprovado. O lint completo foi executado, mas permanece bloqueado por um erro preexistente em `src/lib/analytics.ts` (`no-explicit-any`) e três avisos fora do Case. O build de produção foi aprovado com TypeScript e pré-renderização das 13 rotas. Os grids responsivos existentes foram preservados para mobile, tablet e desktop; a SofIA não abre modal enquanto não houver evidências catalogadas.
+
 ---
 
 ## 🔮 Próximos Passos

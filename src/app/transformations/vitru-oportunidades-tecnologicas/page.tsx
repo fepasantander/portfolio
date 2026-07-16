@@ -106,6 +106,173 @@ const vitruchatEvidenceGroups: EvidenceGroup[] = [
 const vitruchatImages = vitruchatEvidenceGroups.flatMap((group) => group.images.map((image) => ({ ...image, groupId: group.id, groupLabel: group.label })));
 const priorityEvidenceIndexes = [4, 0, 5, 8, 9, 17, 19, 20];
 
+interface EvidenceSupportProps {
+  headingId: string;
+  priorityEvidence?: { image: (typeof vitruchatImages)[number]; index: number }[];
+  onOpenGallery?: (imageIndex: number, event: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+function EvidenceSupport({ headingId, priorityEvidence, onOpenGallery }: EvidenceSupportProps) {
+  const hasCataloguedEvidence = priorityEvidence && onOpenGallery;
+
+  return (
+    <section className="space-y-3 border-t border-zinc-100 pt-6 dark:border-zinc-900" aria-labelledby={headingId}>
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <Heading id={headingId} level={3} className="block text-xs font-mono uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Evidências e Apoio à Decisão (Anexos)</Heading>
+          <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
+            {hasCataloguedEvidence ? `Seleção inicial: ${priorityEvidence.length} de ${vitruchatImages.length} capturas.` : "Em atualização: evidências visuais ainda não catalogadas."}
+          </p>
+        </div>
+        {hasCataloguedEvidence ? (
+          <button type="button" onClick={(event) => onOpenGallery(0, event)} className="inline-flex items-center gap-2 rounded-lg border border-zinc-200 px-3 py-2 text-xs font-semibold text-zinc-700 transition-colors hover:border-cyan-500 hover:text-cyan-700 dark:border-zinc-800 dark:text-zinc-200 dark:hover:border-cyan-400 dark:hover:text-cyan-300">
+            <ImageIcon className="size-4" aria-hidden="true" />
+            Abrir galeria completa
+          </button>
+        ) : (
+          <span className="inline-flex items-center gap-2 rounded-lg border border-zinc-200 px-3 py-2 text-xs font-semibold text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">
+            <ImageIcon className="size-4" aria-hidden="true" />
+            Em atualização
+          </span>
+        )}
+      </div>
+      {hasCataloguedEvidence ? (
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+          {priorityEvidence.map(({ image, index }) => (
+            <button key={image.src} type="button" onClick={(event) => onOpenGallery(index, event)} aria-label={`Abrir ${image.caption}`} className="group relative aspect-[16/9] overflow-hidden rounded-lg border border-zinc-200 bg-zinc-100 text-left transition-colors hover:border-cyan-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-cyan-400">
+              <Image src={image.src} alt="" fill sizes="(min-width: 640px) 20vw, 45vw" className="object-cover transition-transform duration-300 group-hover:scale-[1.02]" />
+              <span className="sr-only">{image.caption}</span>
+            </button>
+          ))}
+        </div>
+      ) : (
+        <div className="flex items-center gap-3 rounded-xl border border-dashed border-zinc-200 bg-zinc-50/30 p-4 text-sm text-zinc-500 dark:border-zinc-800 dark:bg-zinc-900/20 dark:text-zinc-400">
+          <ImageIcon className="size-5 shrink-0" aria-hidden="true" />
+          <p>O componente está preparado para receber a galeria assim que os ativos forem catalogados.</p>
+        </div>
+      )}
+    </section>
+  );
+}
+
+function SofiaCaseContent() {
+  return (
+    <div className="space-y-12 animate-in fade-in duration-300">
+      <div className="space-y-4">
+        <span className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-cyan-600 dark:text-cyan-400">
+          <Sparkles className="h-4 w-4" />
+          Case 002 • Versão 1.0 • Official Source • 2025–2026
+        </span>
+        <Heading level={2} className="text-3xl font-semibold tracking-tight text-zinc-900 dark:text-white leading-tight">
+          SofIA — Da Apresentação do Ambiente Virtual ao Primeiro Agente de Secretaria
+        </Heading>
+      </div>
+
+      <div className="relative space-y-3 overflow-hidden rounded-2xl border border-cyan-500/20 bg-cyan-500/[0.02] p-6 dark:border-cyan-500/10 dark:bg-cyan-500/[0.01]">
+        <div className="pointer-events-none absolute right-0 top-0 h-24 w-24 rounded-full bg-cyan-500/10 blur-2xl" />
+        <h3 className="flex items-center gap-2 text-sm font-semibold text-cyan-600 dark:text-cyan-400">
+          <Sparkles className="h-4.5 w-4.5" />
+          Executive Summary
+        </h3>
+        <div className="space-y-4">
+          <Paragraph variant="base" className="text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">O SofIA nasceu como uma iniciativa do Innovation Lab para reduzir um dos maiores gargalos operacionais de instituições de ensino a distância: o grande volume de contatos administrativos realizados pelos alunos junto às áreas de atendimento.</Paragraph>
+          <Paragraph variant="base" className="text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">A visão do produto não era substituir professores ou atuar em questões pedagógicas. Seu primeiro objetivo era tornar a relação entre aluno e universidade mais simples, reduzindo atritos em processos burocráticos e preparando o caminho para uma futura evolução rumo a um Agente de Secretaria Inteligente.</Paragraph>
+          <Paragraph variant="base" className="text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">Minha participação concentrou-se na criação da primeira experiência de uso da plataforma, desenvolvendo um tour guiado capaz de apresentar o Ambiente Virtual de Aprendizagem de forma intuitiva, envolvente e memorável.</Paragraph>
+        </div>
+      </div>
+
+      <EvidenceSupport headingId="sofia-evidences-title" />
+
+      <div className="space-y-4">
+        <h3 className="flex items-center gap-2 text-lg font-semibold text-zinc-900 dark:text-zinc-100"><Brain className="h-5 w-5 shrink-0 text-cyan-500" />O Contexto</h3>
+        <Paragraph variant="base" className="text-sm leading-relaxed text-zinc-650 dark:text-zinc-300">A maioria dos alunos ingressa na universidade sem conhecer o funcionamento do Ambiente Virtual de Aprendizagem.</Paragraph>
+        <Paragraph variant="base" className="text-sm leading-relaxed text-zinc-650 dark:text-zinc-300">Questões simples acabam gerando centenas de contatos que poderiam ser evitados caso o ambiente fosse melhor apresentado desde o primeiro acesso.</Paragraph>
+        <ul className="grid grid-cols-1 gap-3.5 pl-1 sm:grid-cols-2">
+          {["localizar disciplinas;", "consultar notas;", "acessar informações financeiras;", "encontrar provas;", "localizar documentos acadêmicos;"].map((item) => <li key={item} className="flex items-center gap-2.5 text-sm leading-relaxed text-zinc-650 dark:text-zinc-300"><CheckCircle2 className="h-4.5 w-4.5 shrink-0 text-cyan-500" />{item}</li>)}
+        </ul>
+        <Paragraph variant="base" className="text-sm leading-relaxed text-zinc-650 dark:text-zinc-300">O SofIA surgiu para reduzir essa curva de aprendizado.</Paragraph>
+      </div>
+
+      <div className="space-y-4">
+        <h3 className="flex items-center gap-2 text-lg font-semibold text-zinc-900 dark:text-zinc-100"><Cpu className="h-5 w-5 shrink-0 text-cyan-500" />O Problema</h3>
+        <Paragraph variant="base" className="text-sm leading-relaxed text-zinc-650 dark:text-zinc-300">Criar um tour guiado parece simples. Na prática, existe um problema conhecido em UX: a maioria dos usuários ignora completamente esse tipo de experiência, clicando rapidamente em “Pular” ou “Ver depois”.</Paragraph>
+        <Paragraph variant="base" className="text-sm leading-relaxed text-zinc-650 dark:text-zinc-300">O desafio era construir uma apresentação suficientemente interessante para manter o aluno engajado até sua conclusão. Além disso, era necessário projetar duas experiências completamente diferentes:</Paragraph>
+        <ul className="grid grid-cols-1 gap-3.5 pl-1 sm:grid-cols-2">
+          {["versão Web;", "versão Mobile."].map((item) => <li key={item} className="flex items-center gap-2.5 text-sm leading-relaxed text-zinc-650 dark:text-zinc-300"><CheckCircle2 className="h-4.5 w-4.5 shrink-0 text-cyan-500" />{item}</li>)}
+        </ul>
+      </div>
+
+      <div className="space-y-4">
+        <h3 className="flex items-center gap-2 text-lg font-semibold text-zinc-900 dark:text-zinc-100"><User className="h-5 w-5 shrink-0 text-cyan-500" />Minha Atuação</h3>
+        <Paragraph variant="base" className="text-sm leading-relaxed text-zinc-650 dark:text-zinc-300">Entrei no projeto com a responsabilidade de mapear os principais pontos de contato do aluno com a plataforma e estruturar toda a experiência inicial de navegação.</Paragraph>
+        <Paragraph variant="base" className="text-sm leading-relaxed text-zinc-650 dark:text-zinc-300">Meu trabalho envolveu:</Paragraph>
+        <ul className="space-y-3.5 pl-1">
+          {["definição do roteiro do tour;", "priorização dos pontos apresentados;", "desenho dos fluxos;", "adaptação da experiência para Web e Mobile;", "definição das animações;", "estudo de estratégias para retenção do usuário durante toda a apresentação."].map((item) => <li key={item} className="flex gap-3 text-sm leading-relaxed text-zinc-650 dark:text-zinc-300"><CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-cyan-500" />{item}</li>)}
+        </ul>
+        <Paragraph variant="base" className="text-sm leading-relaxed text-zinc-650 dark:text-zinc-300">Durante o desenvolvimento também participei de discussões sobre futuras evoluções da SofIA como Agente de Secretaria baseado em Inteligência Artificial.</Paragraph>
+      </div>
+
+      <div className="space-y-4">
+        <h3 className="flex items-center gap-2 text-lg font-semibold text-zinc-900 dark:text-zinc-100"><Sparkles className="h-5 w-5 shrink-0 text-cyan-500" />Uma Estratégia para Prender a Atenção</h3>
+        <Paragraph variant="base" className="text-sm leading-relaxed text-zinc-650 dark:text-zinc-300">A contribuição que considero mais relevante foi propor um elemento visual animado que passou a conduzir o olhar do aluno durante toda a experiência.</Paragraph>
+        <Paragraph variant="base" className="text-sm leading-relaxed text-zinc-650 dark:text-zinc-300">Ao invés de utilizar apenas balões estáticos de instrução, desenvolvi uma pequena esfera inspirada em elementos reconhecíveis da cultura pop, personalizada com a identidade visual da instituição. Seu objetivo era atrair naturalmente a atenção do aluno para cada elemento da interface antes da abertura das mensagens explicativas.</Paragraph>
+        <Card hoverEffect={false} className="space-y-3 border-zinc-200/60 bg-zinc-50/10 p-5 dark:border-zinc-900 dark:bg-zinc-950/10">
+          <h4 className="flex items-center gap-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100"><Sparkles className="h-4.5 w-4.5 text-cyan-500" />Esfera-guia: mecanismo de direcionamento</h4>
+          <Paragraph variant="base" className="text-xs leading-relaxed text-zinc-600 dark:text-zinc-300">Mais do que uma animação, esse elemento tornou-se um mecanismo de direcionamento visual, com possibilidades futuras para destacar novos recursos, comunicar novidades, apoiar campanhas internas, incentivar mecânicas de gamificação e criar uma identidade própria para a SofIA.</Paragraph>
+        </Card>
+      </div>
+
+      <div className="space-y-6">
+        <h3 className="flex items-center gap-2 text-lg font-semibold text-zinc-900 dark:text-zinc-100"><Activity className="h-5 w-5 shrink-0 text-cyan-500" />Web e Mobile Exigem Soluções Diferentes</h3>
+        <Paragraph variant="base" className="text-sm leading-relaxed text-zinc-650 dark:text-zinc-300">Outro desafio importante foi adaptar o tour para dois contextos completamente distintos.</Paragraph>
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          <Card hoverEffect={false} className="space-y-3 border-zinc-200/60 bg-zinc-50/10 p-5 dark:border-zinc-900 dark:bg-zinc-950/10">
+            <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Web</h4>
+            <Paragraph variant="base" className="text-xs leading-relaxed text-zinc-600 dark:text-zinc-300">Havia liberdade para movimentação da esfera-guia pela interface.</Paragraph>
+          </Card>
+          <Card hoverEffect={false} className="space-y-3 border-zinc-200/60 bg-zinc-50/10 p-5 dark:border-zinc-900 dark:bg-zinc-950/10">
+            <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Mobile</h4>
+            <Paragraph variant="base" className="text-xs leading-relaxed text-zinc-600 dark:text-zinc-300">O espaço reduzido exigia outra estratégia: os balões passaram a utilizar rolagem interna para preservar o elemento destacado na tela, evitando esconder informações importantes. Também foi prevista uma função de leitura das instruções para alunos que preferissem ouvir as orientações.</Paragraph>
+          </Card>
+        </div>
+      </div>
+
+      <div className="space-y-6">
+        <h3 className="flex items-center gap-2 text-lg font-semibold text-zinc-900 dark:text-zinc-100"><Brain className="h-5 w-5 shrink-0 text-cyan-500" />Evolução do Produto</h3>
+        <Paragraph variant="base" className="text-sm leading-relaxed text-zinc-650 dark:text-zinc-300">A SofIA foi concebida como uma evolução progressiva, sem deslocar questões pedagógicas para este escopo inicial.</Paragraph>
+        <ol className="grid grid-cols-1 gap-4 md:grid-cols-3">
+          {[
+            ["Onboarding", "Apresentar o Ambiente Virtual de Aprendizagem, reduzir a curva de aprendizado e preparar a adoção desde o primeiro acesso."],
+            ["Assistente Administrativa", "Na versão implementada, indicar ao aluno onde encontrar funcionalidades como segunda via de boletos, informações financeiras ou serviços acadêmicos."],
+            ["Agente de Secretaria", "Visão futura para executar tarefas em nome do aluno e reduzir ainda mais a necessidade de contatos humanos."],
+          ].map(([title, description], index) => <li key={title}><Card hoverEffect={false} className="h-full space-y-3 border-zinc-200/60 bg-zinc-50/10 p-5 dark:border-zinc-900 dark:bg-zinc-950/10"><span className="text-xs font-mono text-cyan-600 dark:text-cyan-400">0{index + 1}</span><h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">{title}</h4><Paragraph variant="base" className="text-xs leading-relaxed text-zinc-600 dark:text-zinc-300">{description}</Paragraph></Card></li>)}
+        </ol>
+      </div>
+
+      <div className="space-y-4 rounded-2xl border border-zinc-200/50 bg-zinc-50/20 p-6 dark:border-zinc-900 dark:bg-zinc-900/10">
+        <h3 className="flex items-center gap-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100"><Cpu className="h-4.5 w-4.5 text-cyan-500" />Limitações</h3>
+        <Paragraph variant="base" className="text-xs leading-relaxed text-zinc-650 dark:text-zinc-300">Durante o desenvolvimento algumas etapas do tour precisaram ser reduzidas para atender ao escopo do projeto. A proposta inicial previa aproximadamente trinta interações; na versão final foram implementados cerca de dezoito passos. Essa simplificação permitiu manter uma experiência objetiva sem comprometer a compreensão do ambiente.</Paragraph>
+      </div>
+
+      <div className="space-y-4 rounded-2xl border border-zinc-200/50 bg-zinc-50/20 p-6 dark:border-zinc-900 dark:bg-zinc-900/10">
+        <h3 className="flex items-center gap-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100"><Brain className="h-4.5 w-4.5 text-cyan-400" />Aprendizados</h3>
+        <Paragraph variant="base" className="text-xs leading-relaxed text-zinc-650 dark:text-zinc-300">O SofIA reforçou uma percepção importante: projetar produtos baseados em Inteligência Artificial não começa pela IA. Começa pela experiência.</Paragraph>
+        <Paragraph variant="base" className="text-xs leading-relaxed text-zinc-650 dark:text-zinc-300">Antes de automatizar processos complexos, é necessário garantir que o usuário compreenda o ambiente em que está inserido. Uma boa experiência de onboarding reduz atritos, acelera adoção e prepara terreno para funcionalidades muito mais sofisticadas no futuro.</Paragraph>
+      </div>
+
+      <div className="space-y-4 rounded-2xl border border-cyan-500/20 bg-cyan-500/[0.02] p-6 dark:border-cyan-500/10 dark:bg-cyan-500/[0.01]">
+        <h3 className="flex items-center gap-2 text-sm font-semibold text-cyan-600 dark:text-cyan-400"><Award className="h-4.5 w-4.5 shrink-0" />Resultado</h3>
+        <Paragraph variant="base" className="text-xs leading-relaxed text-zinc-650 dark:text-zinc-300">Minha principal contribuição foi transformar um tour guiado convencional em uma experiência de apresentação capaz de gerar maior retenção, reconhecimento visual e possibilidades futuras de evolução.</Paragraph>
+        <Paragraph variant="base" className="text-xs leading-relaxed text-zinc-650 dark:text-zinc-300">Embora simples à primeira vista, esse projeto mostrou como pequenas decisões de UX podem influenciar diretamente a adoção de um produto baseado em Inteligência Artificial.</Paragraph>
+      </div>
+
+      <div className="grid grid-cols-1 gap-6 border-t border-zinc-100 pt-6 md:grid-cols-3 dark:border-zinc-900">
+        {[[User, "Empresa", "Vitru Educação"], [Calendar, "Área", "Innovation Lab"], [Activity, "Produto", "SofIA"]].map(([Icon, label, value]) => <Card key={label as string} hoverEffect={false} className="flex items-start gap-3 border border-zinc-200/50 bg-zinc-50/50 p-5 dark:border-zinc-800/50 dark:bg-zinc-900/30"><Icon className="h-5 w-5 shrink-0 text-zinc-400 dark:text-zinc-500" /><div><span className="mb-1 block text-[9px] font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500">{label as string}</span><span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">{value as string}</span></div></Card>)}
+      </div>
+    </div>
+  );
+}
+
 export default function VitruSubhomePage() {
   const [selectedProjectId, setSelectedProjectId] = useState<string>("vitruchat");
   const [activeModal, setActiveModal] = useState<"imagens" | "videos" | "prototipos" | "boards" | null>(null);
@@ -181,9 +348,8 @@ export default function VitruSubhomePage() {
     {
       id: "sofia",
       title: "SofIA",
-      description: "Assistente conversacional baseado em LLM para suporte pedagógico ao aluno.",
-      icon: <Brain className="h-5 w-5" />,
-      locked: true
+      description: "Onboarding e assistência administrativa para preparar a evolução a um Agente de Secretaria.",
+      icon: <Brain className="h-5 w-5" />
     },
     {
       id: "hub-correcoes",
@@ -195,19 +361,6 @@ export default function VitruSubhomePage() {
   ];
 
   const caseStudies: Record<string, CaseStudyData> = {
-    sofia: {
-      title: "Otimizando a retenção e humanização do atendimento estudantil escalável com IA",
-      challenge: "Gargalo no suporte ao cliente e custo operacional elevado devido à sobrecarga de chamados de atendimento acadêmico de rotina em polo e canais manuais de triagem.",
-      contribution: [
-        "Cenário Encontrado: Estudantes enfrentavam longas esperas para dúvidas básicas de matrícula/notas, sobrecarregando atendentes físicos com tarefas repetitivas.",
-        "Decisões Tomadas: Concepção de fluxos conversacionais integrando regras pedagógicas em linguagem natural e micro-interações de onboarding para guiar o usuário no prompt.",
-        "Impacto Gerado: Implementação de metas de contenção baseadas em árvore de decisão integrada a APIs de secretaria, organizando a esteira de suporte da instituição."
-      ],
-      results: "Redução do fluxo de transbordo de chamados de atendimento repetitivo na plataforma Uniasselvi, otimizando o suporte acadêmico diário.",
-      role: "Senior UX Designer (IA)",
-      duration: "Junho de 2025 – Atual",
-      metric: "Contenção de chamados de rotina"
-    },
     "hub-correcoes": {
       title: "Garantindo precisão e acessibilidade na correção automatizada de redações com IA",
       challenge: "Falta de credibilidade e resistência de revisores na adoção de algoritmos de inteligência artificial para correção automática de provas discursivas de grande escala.",
@@ -223,33 +376,12 @@ export default function VitruSubhomePage() {
     }
   };
 
-  const activeCase = caseStudies[selectedProjectId] || caseStudies.sofia;
+  const activeCase = caseStudies[selectedProjectId] || caseStudies["hub-correcoes"];
   const activeImage = vitruchatImages[activeImageIndex];
   const activeGroup = vitruchatEvidenceGroups.find((group) => group.id === activeImage.groupId) ?? vitruchatEvidenceGroups[0];
   const activeGroupImageIndex = activeGroup.images.findIndex((image) => image.src === activeImage.src) + 1;
   const priorityEvidence = priorityEvidenceIndexes.map((index) => ({ image: vitruchatImages[index], index }));
-  const evidenceBox = (
-    <section className="space-y-3 border-t border-zinc-100 pt-6 dark:border-zinc-900" aria-labelledby="evidences-title">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div>
-          <Heading id="evidences-title" level={3} className="block text-xs font-mono uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Evidências e Apoio à Decisão (Anexos)</Heading>
-          <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">Seleção inicial: 8 de {vitruchatImages.length} capturas.</p>
-        </div>
-        <button type="button" onClick={(event) => openGallery(0, event)} className="inline-flex items-center gap-2 rounded-lg border border-zinc-200 px-3 py-2 text-xs font-semibold text-zinc-700 transition-colors hover:border-cyan-500 hover:text-cyan-700 dark:border-zinc-800 dark:text-zinc-200 dark:hover:border-cyan-400 dark:hover:text-cyan-300">
-          <ImageIcon className="size-4" aria-hidden="true" />
-          Abrir galeria completa
-        </button>
-      </div>
-      <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-        {priorityEvidence.map(({ image, index }) => (
-          <button key={image.src} type="button" onClick={(event) => openGallery(index, event)} aria-label={`Abrir ${image.caption}`} className="group relative aspect-[16/9] overflow-hidden rounded-lg border border-zinc-200 bg-zinc-100 text-left transition-colors hover:border-cyan-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-cyan-400">
-            <Image src={image.src} alt="" fill sizes="(min-width: 640px) 20vw, 45vw" className="object-cover transition-transform duration-300 group-hover:scale-[1.02]" />
-            <span className="sr-only">{image.caption}</span>
-          </button>
-        ))}
-      </div>
-    </section>
-  );
+  const evidenceBox = <EvidenceSupport headingId="vitruchat-evidences-title" priorityEvidence={priorityEvidence} onOpenGallery={openGallery} />;
 
   return (
     <div className="min-h-screen flex flex-col bg-white dark:bg-black text-zinc-950 dark:text-zinc-50 font-sans transition-colors duration-300">
@@ -640,6 +772,8 @@ export default function VitruSubhomePage() {
                   </div>
 
                 </div>
+              ) : selectedProjectId === "sofia" ? (
+                <SofiaCaseContent />
               ) : (
                 <div className="space-y-12 animate-in fade-in duration-300">
                   
