@@ -34,6 +34,7 @@ interface ProjectItem {
   title: string;
   description: string;
   icon: React.ReactNode;
+  href?: string;
   locked?: boolean;
 }
 
@@ -121,13 +122,13 @@ function EvidenceSupport({ headingId, priorityEvidence, onOpenGallery }: Evidenc
         <div>
           <Heading id={headingId} level={3} className="block text-xs font-mono uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Evidências e Apoio à Decisão (Anexos)</Heading>
           <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
-            {hasCataloguedEvidence ? `Seleção inicial: ${priorityEvidence.length} de ${vitruchatImages.length} capturas.` : "Em atualização: evidências visuais ainda não catalogadas."}
+            {hasCataloguedEvidence ? `${vitruchatImages.length} capturas catalogadas em quatro grupos. Os layouts apoiam a leitura do case; não substituem sua narrativa.` : "Em atualização: evidências visuais ainda não catalogadas."}
           </p>
         </div>
         {hasCataloguedEvidence ? (
-          <button type="button" onClick={(event) => onOpenGallery(0, event)} className="inline-flex items-center gap-2 rounded-lg border border-zinc-200 px-3 py-2 text-xs font-semibold text-zinc-700 transition-colors hover:border-cyan-500 hover:text-cyan-700 dark:border-zinc-800 dark:text-zinc-200 dark:hover:border-cyan-400 dark:hover:text-cyan-300">
+          <button type="button" onClick={(event) => onOpenGallery(0, event)} className="inline-flex items-center gap-2 rounded-lg border border-zinc-200 px-3 py-2 text-xs font-semibold text-zinc-700 transition-colors hover:border-cyan-500 hover:text-cyan-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500 dark:border-zinc-800 dark:text-zinc-200 dark:hover:border-cyan-400 dark:hover:text-cyan-300">
             <ImageIcon className="size-4" aria-hidden="true" />
-            Abrir galeria completa
+            Ver evidências visuais
           </button>
         ) : (
           <span className="inline-flex items-center gap-2 rounded-lg border border-zinc-200 px-3 py-2 text-xs font-semibold text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">
@@ -136,21 +137,31 @@ function EvidenceSupport({ headingId, priorityEvidence, onOpenGallery }: Evidenc
           </span>
         )}
       </div>
-      {hasCataloguedEvidence ? (
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-          {priorityEvidence.map(({ image, index }) => (
-            <button key={image.src} type="button" onClick={(event) => onOpenGallery(index, event)} aria-label={`Abrir ${image.caption}`} className="group relative aspect-[16/9] overflow-hidden rounded-lg border border-zinc-200 bg-zinc-100 text-left transition-colors hover:border-cyan-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-cyan-400">
-              <Image src={image.src} alt="" fill sizes="(min-width: 640px) 20vw, 45vw" className="object-cover transition-transform duration-300 group-hover:scale-[1.02]" />
-              <span className="sr-only">{image.caption}</span>
-            </button>
-          ))}
-        </div>
-      ) : (
+      {!hasCataloguedEvidence && (
         <div className="flex items-center gap-3 rounded-xl border border-dashed border-zinc-200 bg-zinc-50/30 p-4 text-sm text-zinc-500 dark:border-zinc-800 dark:bg-zinc-900/20 dark:text-zinc-400">
           <ImageIcon className="size-5 shrink-0" aria-hidden="true" />
           <p>O componente está preparado para receber a galeria assim que os ativos forem catalogados.</p>
         </div>
       )}
+    </section>
+  );
+}
+
+function EvidenceHighlights({ priorityEvidence, onOpenGallery }: Required<Pick<EvidenceSupportProps, "priorityEvidence" | "onOpenGallery">>) {
+  return (
+    <section className="space-y-4 border-t border-zinc-100 pt-8 dark:border-zinc-900" aria-labelledby="vitruchat-highlights-title">
+      <div>
+        <Heading id="vitruchat-highlights-title" level={3} className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">Destaques visuais selecionados</Heading>
+        <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">Seleção inicial de {priorityEvidence.length} capturas. As legendas permanecem provisórias até o catálogo oficial.</p>
+      </div>
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+        {priorityEvidence.map(({ image, index }) => (
+          <button key={image.src} type="button" onClick={(event) => onOpenGallery(index, event)} aria-label={`Abrir ${image.caption}`} className="group relative aspect-[16/9] overflow-hidden rounded-xl border border-zinc-200 bg-zinc-100 text-left transition-colors hover:border-cyan-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-cyan-400">
+            <Image src={image.src} alt="" fill sizes="(min-width: 640px) 36vw, 90vw" className="object-cover transition-transform duration-300 group-hover:scale-[1.02]" />
+            <span className="absolute inset-x-0 bottom-0 bg-zinc-950/80 px-3 py-2 text-xs text-white">{image.caption}</span>
+          </button>
+        ))}
+      </div>
     </section>
   );
 }
@@ -273,8 +284,8 @@ function SofiaCaseContent() {
   );
 }
 
-export default function VitruSubhomePage() {
-  const [selectedProjectId, setSelectedProjectId] = useState<string>("vitruchat");
+export function VitruSubhomePage({ initialProjectId = "vitruchat" }: { initialProjectId?: "vitruchat" | "sofia" }) {
+  const [selectedProjectId] = useState<string>(initialProjectId);
   const [activeModal, setActiveModal] = useState<"imagens" | "videos" | "prototipos" | "boards" | null>(null);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const triggerRef = React.useRef<HTMLElement | null>(null);
@@ -343,13 +354,15 @@ export default function VitruSubhomePage() {
       id: "vitruchat",
       title: "VitruChat LLM",
       description: "Plataforma corporativa de IA Generativa para uso interno dos colaboradores.",
-      icon: <Brain className="h-5 w-5" />
+      icon: <Brain className="h-5 w-5" />,
+      href: "/transformations/vitru-oportunidades-tecnologicas"
     },
     {
       id: "sofia",
       title: "SofIA",
       description: "Onboarding e assistência administrativa para preparar a evolução a um Agente de Secretaria.",
-      icon: <Brain className="h-5 w-5" />
+      icon: <Brain className="h-5 w-5" />,
+      href: "/transformations/sofia-administrative-ai-assistant"
     },
     {
       id: "hub-correcoes",
@@ -380,7 +393,7 @@ export default function VitruSubhomePage() {
   const activeImage = vitruchatImages[activeImageIndex];
   const activeGroup = vitruchatEvidenceGroups.find((group) => group.id === activeImage.groupId) ?? vitruchatEvidenceGroups[0];
   const activeGroupImageIndex = activeGroup.images.findIndex((image) => image.src === activeImage.src) + 1;
-  const priorityEvidence = priorityEvidenceIndexes.map((index) => ({ image: vitruchatImages[index], index }));
+  const priorityEvidence = priorityEvidenceIndexes.slice(0, 4).map((index) => ({ image: vitruchatImages[index], index }));
   const evidenceBox = <EvidenceSupport headingId="vitruchat-evidences-title" priorityEvidence={priorityEvidence} onOpenGallery={openGallery} />;
 
   return (
@@ -389,16 +402,19 @@ export default function VitruSubhomePage() {
 
       <main className="flex-grow pt-32 pb-24">
         <Container>
-          {/* Back link */}
-          <div className="mb-10">
-            <Link
-              href="/#transformations"
-              className="inline-flex items-center gap-2 text-sm font-medium text-zinc-500 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-50 transition-colors"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              Voltar para as Transformações
-            </Link>
-          </div>
+          <nav className="mb-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-zinc-500 dark:text-zinc-400" aria-label="Breadcrumb">
+            <Link href="/#transformations" className="transition-colors hover:text-zinc-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500 dark:hover:text-white">Início</Link>
+            <span aria-hidden="true">/</span>
+            <Link href="/transformations/vitru-innovation-lab" className="transition-colors hover:text-zinc-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500 dark:hover:text-white">Vitru Educação</Link>
+            <span aria-hidden="true">/</span>
+            <Link href="/transformations/vitru-innovation-lab" className="transition-colors hover:text-zinc-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500 dark:hover:text-white">Innovation Lab</Link>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">{selectedProjectId === "sofia" ? "SofIA" : "VitruChat LLM"}</span>
+          </nav>
+          <Link href="/transformations/vitru-innovation-lab" className="mb-10 inline-flex items-center gap-2 text-sm font-medium text-zinc-500 transition-colors hover:text-zinc-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500 dark:text-zinc-400 dark:hover:text-zinc-50">
+            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+            Voltar ao Innovation Lab
+          </Link>
 
           {/* Subhome Header */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pb-12 border-b border-zinc-100 dark:border-zinc-900">
@@ -433,64 +449,42 @@ export default function VitruSubhomePage() {
               {projects.map((proj) => {
                 const isActive = selectedProjectId === proj.id;
 
-                return (
-                  <button
-                    key={proj.id}
-                    disabled={proj.locked}
-                    onClick={() => setSelectedProjectId(proj.id)}
-                    className={`w-full text-left p-4 rounded-xl border transition-all duration-300 flex items-start gap-3.5 relative overflow-hidden group ${
-                      proj.locked
-                        ? "bg-zinc-50/50 dark:bg-zinc-950/40 border-zinc-200/40 dark:border-zinc-900/60 opacity-55 cursor-not-allowed text-zinc-400 dark:text-zinc-650"
-                        : isActive
-                        ? "bg-zinc-950 border-zinc-950 dark:bg-zinc-905 dark:border-zinc-800 text-white shadow-md shadow-cyan-500/5"
-                        : "bg-white dark:bg-zinc-950 border-zinc-200/60 dark:border-zinc-900 hover:border-zinc-400 dark:hover:border-zinc-700 text-zinc-800 dark:text-zinc-200"
-                    }`}
-                  >
-                    {/* Active highlight bar */}
+                const content = (
+                  <>
                     {isActive && (
                       <span className="absolute left-0 top-0 bottom-0 w-1 bg-cyan-400" />
                     )}
-
                     <div className={`p-2 rounded-lg shrink-0 ${
                       proj.locked
                         ? "bg-zinc-100/50 dark:bg-zinc-900/50 text-zinc-400 dark:text-zinc-650"
-                        : isActive 
-                        ? "bg-zinc-800 text-cyan-400" 
+                        : isActive
+                        ? "bg-zinc-800 text-cyan-400"
                         : "bg-zinc-100 dark:bg-zinc-900 text-zinc-500"
                     }`}>
                       {proj.icon}
                     </div>
-
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
-                        <span className={`font-semibold text-sm leading-none block ${
-                          proj.locked
-                            ? "text-zinc-400 dark:text-zinc-550"
-                            : "text-zinc-900 dark:text-zinc-100"
-                        }`}>
-                          {proj.title}
-                        </span>
-                        {proj.locked ? (
-                          <span className="inline-flex items-center gap-0.5 text-[8px] font-mono tracking-wide uppercase px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-900 text-zinc-400 dark:text-zinc-500 shrink-0 font-semibold border border-zinc-200/50 dark:border-zinc-800/50">
-                            Em breve
-                          </span>
-                        ) : isActive && (
-                          <span className="inline-flex items-center gap-0.5 text-[8px] font-mono tracking-wide uppercase px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-400 shrink-0 font-semibold">
-                            Ativo
-                          </span>
-                        )}
+                        <span className={`font-semibold text-sm leading-none block ${proj.locked ? "text-zinc-400 dark:text-zinc-550" : "text-zinc-900 dark:text-zinc-100"}`}>{proj.title}</span>
+                        {proj.locked ? <span className="inline-flex items-center gap-0.5 text-[8px] font-mono tracking-wide uppercase px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-900 text-zinc-400 dark:text-zinc-500 shrink-0 font-semibold border border-zinc-200/50 dark:border-zinc-800/50">Em breve</span> : isActive && <span className="inline-flex items-center gap-0.5 text-[8px] font-mono tracking-wide uppercase px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-400 shrink-0 font-semibold">Ativo</span>}
                       </div>
-                      <p className={`text-[11px] leading-relaxed ${
-                        proj.locked
-                          ? "text-zinc-400/80 dark:text-zinc-650"
-                          : isActive 
-                          ? "text-zinc-300" 
-                          : "text-zinc-500"
-                      }`}>
-                        {proj.description}
-                      </p>
+                      <p className={`text-[11px] leading-relaxed ${proj.locked ? "text-zinc-400/80 dark:text-zinc-650" : isActive ? "text-zinc-300" : "text-zinc-500"}`}>{proj.description}</p>
                     </div>
-                  </button>
+                  </>
+                );
+
+                const className = `w-full text-left p-4 rounded-xl border transition-all duration-300 flex items-start gap-3.5 relative overflow-hidden group ${
+                  proj.locked
+                    ? "bg-zinc-50/50 dark:bg-zinc-950/40 border-zinc-200/40 dark:border-zinc-900/60 opacity-55 cursor-not-allowed text-zinc-400 dark:text-zinc-650"
+                    : isActive
+                    ? "bg-zinc-950 border-zinc-950 dark:bg-zinc-905 dark:border-zinc-800 text-white shadow-md shadow-cyan-500/5"
+                    : "bg-white dark:bg-zinc-950 border-zinc-200/60 dark:border-zinc-900 hover:border-zinc-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500 dark:hover:border-zinc-700 text-zinc-800 dark:text-zinc-200"
+                }`;
+
+                return proj.locked ? (
+                  <div key={proj.id} aria-disabled="true" className={className}>{content}</div>
+                ) : (
+                  <Link key={proj.id} href={proj.href!} aria-current={isActive ? "page" : undefined} className={className}>{content}</Link>
                 );
               })}
             </div>
@@ -617,6 +611,8 @@ export default function VitruSubhomePage() {
                       ))}
                     </ul>
                   </div>
+
+                  <EvidenceHighlights priorityEvidence={priorityEvidence} onOpenGallery={openGallery} />
 
                   {/* Contextualização acadêmica e camada gerencial */}
                   <div className="space-y-6">
@@ -980,6 +976,15 @@ export default function VitruSubhomePage() {
 
           </div>
 
+          <nav className="mt-16 flex flex-col gap-3 border-t border-zinc-100 pt-8 text-sm dark:border-zinc-900 sm:flex-row sm:items-center sm:justify-between" aria-label="Navegação entre cases">
+            {selectedProjectId === "sofia" ? (
+              <Link href="/transformations/vitru-oportunidades-tecnologicas" className="inline-flex items-center gap-2 font-medium text-zinc-600 transition-colors hover:text-zinc-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500 dark:text-zinc-300 dark:hover:text-white"><ArrowLeft className="size-4" aria-hidden="true" />Case anterior: VitruChat LLM</Link>
+            ) : <span aria-disabled="true" className="text-zinc-400 dark:text-zinc-500">Case anterior</span>}
+            {selectedProjectId === "vitruchat" ? (
+              <Link href="/transformations/sofia-administrative-ai-assistant" className="inline-flex items-center gap-2 font-medium text-zinc-600 transition-colors hover:text-zinc-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500 dark:text-zinc-300 dark:hover:text-white">Próximo case: SofIA<ChevronRight className="size-4" aria-hidden="true" /></Link>
+            ) : <span aria-disabled="true" className="text-zinc-400 dark:text-zinc-500">Próximo case</span>}
+          </nav>
+
         </Container>
       </main>
 
@@ -1081,3 +1086,5 @@ export default function VitruSubhomePage() {
     </div>
   );
 }
+
+export default VitruSubhomePage;

@@ -107,6 +107,12 @@ Este documento inicia o histórico de alinhamento estratégico, decisões técni
 * **Evidências:** O bloco compartilhado `Evidências e Apoio à Decisão` foi posicionado imediatamente após o Executive Summary. Como não há ativos catalogados, ele está preparado e sinalizado como `Em atualização`, sem imagens, legendas ou conteúdos fictícios.
 * **Validação:** Lint específico da página aprovado. O lint completo foi executado, mas permanece bloqueado por um erro preexistente em `src/lib/analytics.ts` (`no-explicit-any`) e três avisos fora do Case. O build de produção foi aprovado com TypeScript e pré-renderização das 13 rotas. Os grids responsivos existentes foram preservados para mobile, tablet e desktop; a SofIA não abre modal enquanto não houver evidências catalogadas.
 
+### 12. Navegação entre o Innovation Lab, VitruChat e SofIA
+* **Objetivo:** Eliminar fricção entre a Home, o Hub do Innovation Lab, os dois Cases publicados e as evidências visuais.
+* **Rotas públicas:** Criado o Hub em `/transformations/vitru-innovation-lab` e estabelecida a rota canônica pública do SofIA em `/transformations/sofia-administrative-ai-assistant`. A Home direciona o card Vitru para o Hub; a partir dele, VitruChat e SofIA estão a um clique.
+* **Navegação:** Foram adicionados breadcrumbs, ação `Voltar ao Innovation Lab`, links reais entre os Cases e estados explícitos de foco, hover, ativo e indisponível. Iniciativas futuras permanecem visíveis e sem interação simulada.
+* **Evidências:** O bloco de evidências permanece logo após o Executive Summary, agora compacto, com CTA `Ver evidências visuais`. Quatro destaques selecionados foram posicionados após a contribuição do VitruChat; a galeria completa preserva as 28 imagens e sua navegação por teclado e foco controlado.
+
 ---
 
 ## 🔮 Próximos Passos

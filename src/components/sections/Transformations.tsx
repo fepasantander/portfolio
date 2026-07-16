@@ -104,13 +104,8 @@ const TransformationCard = ({
       {/* Button Action */}
       <div className="mt-8 pt-6 border-t border-zinc-100 dark:border-zinc-900/50">
         {slug ? (
-          <Link href={`/transformations/${slug}`} onClick={handleTransformationClick} className="w-full block">
-            <Button 
-              variant="secondary" 
-              className="w-full hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors"
-            >
-              Visualizar Transformação
-            </Button>
+          <Link href={`/transformations/${slug}`} onClick={handleTransformationClick} className="inline-flex w-full items-center justify-center rounded-md border border-zinc-200 bg-transparent px-5 py-2.5 text-sm font-medium text-zinc-950 transition-colors hover:bg-zinc-50 focus:outline-none focus:ring-1 focus:ring-zinc-400 dark:border-zinc-800 dark:text-zinc-50 dark:hover:bg-zinc-900">
+            Visualizar Transformação
           </Link>
         ) : (
           <Button 
@@ -172,7 +167,7 @@ export const Transformations = () => {
       logoPath: "/imagem/vitru/logo-vitru-negative.png",
       logoAlt: "Vitru Logo",
       logoBg: "bg-zinc-950 dark:bg-black",
-      slug: "vitru-oportunidades-tecnologicas",
+      slug: "vitru-innovation-lab",
       challenge: "Imprevisibilidade e quebra de interfaces corporativas em sistemas multiagentes baseados em IA Generativa.",
       contribution: "Modelagem de fluxogramas cognitivos de dados e design de interfaces adaptáveis com streaming e controle de latência de LLM.",
       impact: "Consolidação da infraestrutura estratégica de IA do grupo, alcançando o 1º lugar nacional do Prêmio Valor Inovação Brasil 2025."
