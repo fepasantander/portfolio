@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-07-17 — Hub de Correções: Integração de Evidências
+
+- Cataloged and published 12 real Hub de Correções assets in three evidence groups.
+- Added six selected visual highlights, complete gallery and accessible lightbox.
+- Added descriptive evidence labels without new metrics, context or interpretation.
+
 ## 2026-07-16 — Hub de Correções: Preparação Estrutural
 
 - Added the public canonical route `/transformations/hub-correcoes`.

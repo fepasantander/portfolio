@@ -3,6 +3,8 @@
 **Date:** 2026-07-16  
 **Status:** Implemented
 
+> **Evidence update — 2026-07-17:** Placeholders in `Evidências e Apoio à Decisão` were replaced by the cataloged Hub de Correções assets. See `IMPLEMENTATION-HUB-EVIDENCE-INTEGRATION.md`.
+
 ## Scope
 
 This Sprint prepares the third Innovation Lab Case without introducing narrative, metrics, decisions, captions or visual assets that are not supported by an approved Master Document.
