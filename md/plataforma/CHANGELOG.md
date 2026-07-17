@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-07-17 — Innovation Lab v1.0 Release Baseline
+
+- Consolidated the Innovation Lab Hub, VitruChat LLM, SofIA and Hub de Correções into the v1.0 release baseline.
+- Recorded the chronological delivery sequence: Hub creation, VitruChat publication, SofIA publication, navigation improvements, Hub infrastructure and real-evidence integration.
+- Confirmed breadcrumbs, inter-case navigation, evidence galleries, lightboxes, keyboard support, focus management and responsive layouts as release scope.
+- Known release constraint: global lint remains blocked by the pre-existing `no-explicit-any` error in `src/lib/analytics.ts`.
+
 ## 2026-07-17 — Hub de Correções: Integração de Evidências
 
 - Cataloged and published 12 real Hub de Correções assets in three evidence groups.

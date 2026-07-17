@@ -39,3 +39,7 @@ The full gallery retains all 12 cataloged assets.
 - Image delivery: all 12 public image URLs returned HTTP 200 with image content types.
 - Responsiveness and performance: highlights use responsive Tailwind grids and `next/image` lazy loading; gallery content is mounted only when opened.
 - Lightbox and keyboard navigation: verified in implementation for Escape, Arrow keys, Tab focus trap, initial focus and focus return to the opening control.
+
+## v1.0 release consolidation
+
+The catalog of 12 real assets, six selected highlights and responsive gallery/lightbox behavior were reviewed for the 2026-07-17 Innovation Lab v1.0 baseline.

@@ -31,3 +31,7 @@ The approved narratives, Design System, visual identity and unrelated Programs/C
 - `npm run lint`: executed; blocked only by the pre-existing `no-explicit-any` error in `src/lib/analytics.ts`. The changed files pass targeted lint.
 - `npm run build`: passed with temporary public Supabase placeholders. Without those environment variables, the existing Home pre-render fails before this feature is evaluated.
 - Public-route and navigation checks: passed for Hub, VitruChat and SofIA (HTTP 200), including Hub CTAs, return-to-Hub, Case navigation and evidence states.
+
+## v1.0 release consolidation
+
+This record was reviewed for the Innovation Lab v1.0 baseline on 2026-07-17. The navigation model, breadcrumbs, available/coming-soon states, galleries, lightboxes, focus handling and keyboard paths remain part of the release scope.

@@ -31,3 +31,7 @@ This Sprint prepares the third Innovation Lab Case without introducing narrative
 - `npm run build`: passed with temporary public Supabase placeholders required by the existing Home pre-render.
 - Route, breadcrumbs and Case navigation: passed via HTTP 200 and rendered-HTML checks for the Hub, VitruChat, SofIA and Hub de Correções routes.
 - Responsive layout: verified from the responsive Tailwind grid and stack breakpoints used by the shared Case architecture.
+
+## v1.0 release consolidation
+
+The public route, evidence boundary and the VitruChat → SofIA → Hub de Correções sequence were reviewed for the 2026-07-17 Innovation Lab v1.0 baseline.
