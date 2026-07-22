@@ -7,7 +7,7 @@ import { Paragraph } from "../ui/Paragraph";
 
 export const About = () => {
   return (
-    <section id="about" className="py-24 border-y border-zinc-100 dark:border-zinc-900 bg-zinc-50/20 dark:bg-zinc-950/5 group">
+    <section id="sobre" className="py-24 border-y border-zinc-100 dark:border-zinc-900 bg-zinc-50/20 dark:bg-zinc-950/5 group">
       <Container className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
         {/* Left Column Label */}
         <div className="lg:col-span-4">

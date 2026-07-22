@@ -9,7 +9,7 @@ export const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
     return (
       <div
         ref={ref}
-        className={`mx-auto max-w-[1280px] px-6 sm:px-8 lg:px-12 w-full ${className}`}
+        className={`mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12 ${className}`}
         {...props}
       >
         {children}

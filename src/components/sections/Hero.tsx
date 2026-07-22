@@ -33,7 +33,7 @@ export const Hero = () => {
   useEffect(() => {
     const testSupabaseConnection = async () => {
       try {
-        const { data, error } = await supabase.auth.getSession();
+        const { error } = await supabase.auth.getSession();
         if (error) {
           console.error("Supabase API Error:", error.message);
         } else {
@@ -47,8 +47,8 @@ export const Hero = () => {
   }, []);
 
   const handlePrimaryClick = () => {
-    analytics.trackCTA("Hero: Explore Problems", "#problem");
-    const element = document.getElementById("problem");
+    analytics.trackCTA("Hero: Explore Cases", "#cases");
+    const element = document.getElementById("cases");
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
@@ -70,16 +70,16 @@ export const Hero = () => {
         {/* Left Content Column */}
         <div className="lg:col-span-7 flex flex-col items-start text-left">
           <Heading level={1} className="leading-tight sm:leading-none">
-            Quando Produto, Negócio e Engenharia deixam de compartilhar a mesma visão, a inovação desacelera.
+            Felipe Santander transforma desafios complexos em produtos claros, escaláveis e orientados por estratégia.
           </Heading>
           
           <Paragraph variant="lead" className="mt-6 max-w-xl">
-            Acelerar a evolução de produtos complexos exige alinhar estratégia comercial, experiência do usuário e viabilidade de engenharia. Alinhar essas frentes elimina o retrabalho técnico, reduz o tempo de lançamento no mercado e garante que as soluções gerem valor prático de negócio.
+            Uno Product Discovery, UX, IA Generativa e desenvolvimento front-end para conectar Produto, Engenharia e Negócio em decisões que avançam produtos digitais.
           </Paragraph>
           
           <div className="mt-10 flex flex-wrap gap-4 items-center">
             <Button variant="primary" onClick={handlePrimaryClick} className="gap-2 group">
-              Analisar o desafio
+              Ver Cases
               <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
             </Button>
             
@@ -88,11 +88,10 @@ export const Hero = () => {
               target="_blank" 
               rel="noopener noreferrer"
               onClick={handleLinkedInClick}
+              className="inline-flex items-center justify-center gap-2 rounded-md border border-zinc-200 bg-transparent px-5 py-2.5 text-sm font-medium text-zinc-950 transition-all duration-200 hover:bg-zinc-50 focus:outline-none focus:ring-1 focus:ring-zinc-400 dark:border-zinc-800 dark:text-zinc-50 dark:hover:bg-zinc-900"
             >
-              <Button variant="secondary" className="gap-2">
-                <LinkedinIcon className="h-4 w-4" />
-                LinkedIn
-              </Button>
+              <LinkedinIcon className="h-4 w-4" />
+              LinkedIn
             </a>
           </div>
         </div>

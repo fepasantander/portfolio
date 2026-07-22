@@ -4,8 +4,7 @@ import React from "react";
 import { Container } from "../ui/Container";
 import { Heading } from "../ui/Heading";
 import { Paragraph } from "../ui/Paragraph";
-import { Button } from "../ui/Button";
-import { Download, FileText, Mail, MessageCircle } from "lucide-react";
+import { Download, Mail, MessageCircle } from "lucide-react";
 import { analytics } from "@/lib/analytics";
 
 const LinkedinIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -40,10 +39,6 @@ export const CTA = () => {
   const handleDownloadCVResumoClick = () => {
     analytics.trackDownload("cv-2026-07--felipe-santander-resumo.pdf");
     analytics.trackCTA("CTA Section: Download CV Resumo", "/pdf/cv-2026-07--felipe-santander-resumo.pdf");
-  };
-
-  const handleExecutivePortfolioClick = () => {
-    analytics.trackEvent("CTA Section: Executive Portfolio Clicked (Disabled)");
   };
 
   return (
@@ -90,47 +85,32 @@ export const CTA = () => {
             target="_blank" 
             rel="noopener noreferrer"
             onClick={handleLinkedInClick}
-            className="w-full sm:w-auto"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-md border border-zinc-950 bg-zinc-950 px-5 py-2.5 text-sm font-medium text-zinc-50 shadow-sm transition-all duration-200 hover:bg-zinc-800 focus:outline-none focus:ring-1 focus:ring-zinc-400 sm:w-auto dark:border-zinc-50 dark:bg-zinc-50 dark:text-zinc-950 dark:hover:bg-zinc-200"
           >
-            <Button variant="primary" className="w-full sm:w-auto gap-2">
-              <LinkedinIcon className="h-4 w-4" />
-              LinkedIn
-            </Button>
+            <LinkedinIcon className="h-4 w-4" />
+            LinkedIn
           </a>
 
           <a 
             href="/pdf/cv-2026-07--felipe-santander-completo.pdf" 
             download="cv-2026-07--felipe-santander-completo.pdf"
             onClick={handleDownloadCVCompletoClick}
-            className="w-full sm:w-auto"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-md border border-zinc-200 bg-transparent px-5 py-2.5 text-sm font-medium text-zinc-950 transition-all duration-200 hover:bg-zinc-50 focus:outline-none focus:ring-1 focus:ring-zinc-400 sm:w-auto dark:border-zinc-800 dark:text-zinc-50 dark:hover:bg-zinc-900"
           >
-            <Button variant="secondary" className="w-full sm:w-auto gap-2">
-              <Download className="h-4 w-4" />
-              CV Completo (PDF)
-            </Button>
+            <Download className="h-4 w-4" />
+            CV Completo (PDF)
           </a>
 
           <a 
             href="/pdf/cv-2026-07--felipe-santander-resumo.pdf" 
             download="cv-2026-07--felipe-santander-resumo.pdf"
             onClick={handleDownloadCVResumoClick}
-            className="w-full sm:w-auto"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-md border border-zinc-200 bg-transparent px-5 py-2.5 text-sm font-medium text-zinc-950 transition-all duration-200 hover:bg-zinc-50 focus:outline-none focus:ring-1 focus:ring-zinc-400 sm:w-auto dark:border-zinc-800 dark:text-zinc-50 dark:hover:bg-zinc-900"
           >
-            <Button variant="secondary" className="w-full sm:w-auto gap-2">
-              <Download className="h-4 w-4" />
-              CV Resumo (PDF)
-            </Button>
+            <Download className="h-4 w-4" />
+            CV Resumo (PDF)
           </a>
 
-          <Button 
-            variant="secondary" 
-            disabled 
-            onClick={handleExecutivePortfolioClick}
-            className="w-full sm:w-auto gap-2 text-zinc-400 border-zinc-200 dark:text-zinc-600 dark:border-zinc-900 bg-zinc-50/50 dark:bg-zinc-950/20"
-          >
-            <FileText className="h-4 w-4" />
-            Executive Portfolio (Em breve)
-          </Button>
         </div>
       </Container>
     </section>

@@ -21,7 +21,7 @@ Este documento inicia o histórico de alinhamento estratégico, decisões técni
   * **[Header.tsx](file:///C:/Users/MacInBox/Documents/profissional/portfolio/src/components/sections/Header.tsx):** Atualização dos rótulos visuais de navegação para *"Método"* e *"Resultados"*.
 * **Casos Subhomes Refatorados:**
   * Atualizei os títulos das subhomes e cases em `listo-sistemas`, `carenet-longevity`, `vm-comunicacao`, `vitru-oportunidades-tecnologicas` e `uniasselvi-plataformas-educacionais` para expressarem problemas operacionais específicos em vez de meras marcas ou produtos.
-* **Relatório Detalhado:** Todos os itens, decisões de design e justificativas técnicas foram registrados em [IMPLEMENTATION-RFC-0003.md](file:///C:/Users/MacInBox/Documents/profissional/portfolio/md/plataforma/IMPLEMENTATION-RFC-0003.md).
+* **Relatório Detalhado:** Todos os itens, decisões de design e justificativas técnicas foram registrados em [IMPLEMENTATION-RFC-0003.md](../implementations/IMPLEMENTATION-RFC-0003.md).
 
 ### 2. Refatoração de Exibição de Mídia nas Subhomes (Modais & Thumbnails)
 * **Remoção de Imagens Inline:** Removi as capturas de tela e o emulador de celular que ficavam no meio do texto, limpando a verticalidade da página e focando na leitura de contexto e desafios.
@@ -66,7 +66,7 @@ Este documento inicia o histórico de alinhamento estratégico, decisões técni
 ### 6. Reposicionamento Narrativo Transversal (Design Directive 0001)
 * **Diretriz Executada:** Re-roteirizei todos os estudos de caso da plataforma (incluindo as 5 subhomes de transformação e o feed da homepage) para migrar o foco de "atividades operacionais executadas" para "problemas organizacionais resolvidos".
 * **Estrutura de Storytelling unificada:** Cada caso de uso agora adota a lógica implícita de **Cenário Encontrado** (diagnóstico de dores), **Decisões Tomadas** (estratégia e processos de squads) e **Impacto Gerado** (retorno prático ao negócio, engenharia e produto).
-* **Documentação Técnica:** Elaborei o relatório consolidado [md/plataforma/IMPLEMENTATION-DD-0001.md](file:///C:/Users/MacInBox/Documents/profissional/portfolio/md/plataforma/IMPLEMENTATION-DD-0001.md) descrevendo as mudanças efetuadas, itens mantidos e próximos passos de conformidade.
+* **Documentação Técnica:** Elaborei o relatório consolidado [md/plataforma/IMPLEMENTATION-DD-0001.md](../implementations/IMPLEMENTATION-DD-0001.md) descrevendo as mudanças efetuadas, itens mantidos e próximos passos de conformidade.
 
 ### 7. Implementação do Estudo de Caso 001 - VitruChat LLM (Versão 1.0)
 * **Objetivo:** Implementação da narrativa integral baseada no documento oficial de verdade `case-001-vitru-generative-ai-platform-v1.0.md`.
@@ -106,7 +106,133 @@ Este documento inicia o histórico de alinhamento estratégico, decisões técni
 1. **Playbook Alignment:** Validar se a página metodológica `/playbook` reflete o mesmo tom focado em destravar gargalos operacionais e sistêmicos.
 2. **Review de Marca:** Integrar novos feedbacks conceituais decorrentes do review executivo de portfólio.
 
+---
 
+## 11. Sprint 04 — Product Parity
 
+**Data:** 14 de julho de 2026
+**Objetivo:** eliminar divergências entre documentos aprovados, Strategic Log, implementação e publicação, sem introduzir funcionalidades, alterar narrativa, Design System ou arquitetura.
 
+### Paridade de publicação
 
+- Removidos os gates condicionados a `NODE_ENV` da Home para as transformações **Listo** e **Uniasselvi**. Ambas as rotas existentes agora recebem links públicos em produção.
+- Removido o gate de desenvolvimento da transformação **VM Comunicação**. As abas **Revistas** e **Eventos**, já registradas como implementadas e com assets aprovados, agora permanecem ativas em produção.
+
+### Estabilização técnica
+
+- Substituída a dependência de build em `next/font/google` pela pilha de fallback Geist/Inter já prevista pela Product Constitution. O build deixou de exigir acesso à rede para buscar fontes.
+- Corrigidos os erros e avisos identificados pelo lint: importações/variáveis não usadas, aspas em JSX e tipagem insegura em analytics.
+- Build de produção executado com sucesso: TypeScript, geração estática e as 13 rotas foram concluídos.
+- Lint executado com sucesso sobre todo o código em `src/`.
+
+### Acessibilidade e responsividade
+
+- Removidos controles interativos aninhados entre links e botões.
+- Adicionados `aria-expanded` e `aria-controls` ao menu móvel.
+- Os modais de casos agora expõem semântica de diálogo, foco inicial no fechamento e fechamento via `Escape`.
+- Confirmada por inspeção estática a preservação dos breakpoints existentes de Home e hubs; a validação visual automatizada em navegador não foi concluída devido à restrição de permissões do ambiente local.
+
+### Registro da implementação
+
+- O detalhamento de escopo, arquivos alterados e validações está em `IMPLEMENTATION-SPRINT-04-PRODUCT-PARITY.md`.
+
+---
+
+## 12. Case 001 VitruChat — Documento Mestre v2.0
+
+**Data:** 14 de julho de 2026
+
+### Implementação
+
+- A página ativa de `VitruChat LLM` em `/transformations/vitru-oportunidades-tecnologicas` foi atualizada integralmente a partir de `case-001-vitru-generative-ai-platform-v2.0.md`.
+- A narrativa agora preserva todas as seções da fonte oficial: Executive Summary, Contexto, Problema, Contribuição, universo acadêmico, camada gerencial, escalabilidade, limitações, aprendizados e resultado.
+- Referências legadas da experiência ativa que não constavam no Documento Mestre v2.0 foram removidas, incluindo métricas e reconhecimentos não presentes na fonte oficial.
+- O Fact Sheet passou a apresentar somente Empresa, Área e Produto, conforme o cabeçalho do documento mestre.
+- Foram reutilizados `Container`, `Heading`, `Paragraph`, `Card`, a estrutura de hub, grids responsivos e anexos existentes; não foram criadas rotas, dependências ou componentes visuais novos.
+
+### Validação
+
+- Lint aprovado em `src/`.
+- Build de produção aprovado, incluindo TypeScript e geração das 13 rotas.
+- A estrutura responsiva existente foi preservada em mobile, tablet e desktop por meio dos breakpoints `sm`, `md` e `lg`.
+- A página mantém listas semânticas, hierarquia de headings e o diálogo acessível do hub.
+
+### Registro da implementação
+
+- O relatório completo está em `IMPLEMENTATION-CASE-001-VITRU-V2.0.md`.
+
+---
+
+## 13. Sprint 06 - Programa 001 Innovation Lab
+
+**Data:** 15 de julho de 2026
+
+### Implementação
+
+- Criada a rota `/transformations/vitru-innovation-lab` como Hub Executivo do Programa 001 - Innovation Lab.
+- A página preserva a narrativa do Documento Mestre: resumo executivo, contexto, objetivos, contribuição, iniciativas, princípios de atuação, resultado e navegação do programa.
+- Foram reutilizados `Header`, `Footer`, `Container`, `Heading`, `Paragraph` e `Card`; não houve alteração de Design System, identidade visual ou arquitetura.
+- O card da Vitru na Home agora direciona para o Hub do programa. O Hub destaca e direciona explicitamente para o Case Completo do VitruChat em `/transformations/vitru-oportunidades-tecnologicas`.
+- SofIA, Hub de Correções e Pesquisa Corporativa sobre IA foram registrados apenas como iniciativas do mesmo programa. Nenhum novo Case foi iniciado.
+
+### Validação
+
+- Lint e build de produção foram executados após a implementação.
+- A página usa grids `md` e `lg`, tipografia fluida e espaçamentos responsivos para mobile, tablet e desktop.
+- A estrutura inclui `main`, seções identificadas por headings, listas semânticas, links com texto descritivo e ícones decorativos ocultos de leitores de tela.
+
+### Registro da implementação
+
+- O detalhamento desta Sprint está em `SPRINT-06-REPORT.md`.
+
+---
+
+## 14. VitruChat - Evidências Visuais
+
+**Data:** 15 de julho de 2026
+
+### Implementação
+
+- A galeria do Case VitruChat passou a utilizar as 28 capturas organizadas em `v1-light`, `v1-tour-guiado`, `v2-dark` e `v2-light`.
+- O modal apresenta uma captura por vez, ocupa 90% da viewport e oferece navegação acessível entre as imagens, com legenda provisória de versão, tema ou tour.
+- O bloco `Evidências e Apoio à Decisão (Anexos)` foi posicionado imediatamente após o Executive Summary, preservando o foco do Case em transformação organizacional antes dos demais aprofundamentos.
+- Os ativos públicos foram atualizados sob `public/imagem/vitru/vitruchat/`; não houve alteração de narrativa, Design System, arquitetura ou outros Cases.
+
+### Registro da implementação
+
+- O registro compartilhável desta atualização está em `IMPLEMENTATION-VITRUCHAT-EVIDENCIAS-2026-07-15.md`.
+
+### Publicação
+
+- O Case VitruChat foi publicado em produção no projeto isolado `portfolio-vitruchat-deploy`: `https://portfolio-vitruchat-deploy.vercel.app`.
+- O deploy usou uma worktree limpa do commit VitruChat e concluiu build, TypeScript e pré-renderização com sucesso.
+
+## Navegação — Innovation Lab, VitruChat e SofIA
+
+**Data:** 16 de julho de 2026
+
+### Implementação
+
+- Criado o Hub público do Innovation Lab em `/transformations/vitru-innovation-lab` e a rota canônica pública do SofIA em `/transformations/sofia-administrative-ai-assistant`.
+- A Home agora direciona o card Vitru para o Hub; VitruChat e SofIA estão acessíveis a partir dele em um clique.
+- Foram adicionados breadcrumbs, ação `Voltar ao Innovation Lab`, links entre Cases e estados claros para itens disponíveis e iniciativas `Em breve`.
+- O bloco de evidências permanece após o Executive Summary com CTA compacto `Ver evidências visuais`; quatro destaques foram posicionados após a contribuição do VitruChat e a galeria completa mantém as 28 imagens.
+
+### Registro da implementação
+
+- O registro compartilhável desta atualização está em `IMPLEMENTATION-NAVIGATION-VITRU-INNOVATION-LAB-CASES.md`.
+
+## Sprint 08 — Hub de Correções: Preparação Estrutural
+
+**Data:** 16 de julho de 2026
+
+### Implementação
+
+- Criada a rota canônica pública `/transformations/hub-correcoes` com estrutura de Case pronta para receber Documento Mestre.
+- As seções Executive Summary, Evidências e Apoio à Decisão, Contexto, Problema, Minha Atuação, Processo, Decisões de Produto, Resultados e Aprendizados exibem somente `Conteúdo em preparação`.
+- O componente de evidências foi preparado para imagens, boards, FigJam e documentos, sem ativos ou conteúdo fictício.
+- O Hub de Correções passou a ser apresentado no Innovation Lab como `Case em preparação`, separado das iniciativas futuras; a sequência agora é VitruChat → SofIA → Hub de Correções.
+
+### Registro da implementação
+
+- O registro compartilhável desta atualização está em `IMPLEMENTATION-HUB-INFRASTRUCTURE.md`.

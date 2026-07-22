@@ -1,16 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: {
@@ -18,7 +7,7 @@ export const metadata: Metadata = {
     template: "%s | Felipe Santander"
   },
   description: "Transformo desafios complexos de negócios em produtos digitais escaláveis conectando Produto, Negócio e Engenharia.",
-  metadataBase: new URL("https://felipesantander.com"),
+  metadataBase: new URL("https://felipe-santander.vercel.app"),
   alternates: {
     canonical: "/"
   },
@@ -29,8 +18,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Felipe Santander — Líder de Produto & Executivo de Estratégia",
     description: "Transformo desafios complexos de negócios em produtos digitais escaláveis conectando Produto, Negócio e Engenharia.",
-    url: "https://felipesantander.com",
-    siteName: "Felipe Santander Platform",
+    url: "https://felipe-santander.vercel.app",
+    siteName: "Felipe Santander — Portfolio",
     type: "website",
     locale: "pt_BR",
     images: [
@@ -58,9 +47,10 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
+      className="h-full antialiased scroll-smooth"
     >
       <body className="min-h-full flex flex-col bg-white dark:bg-black text-zinc-950 dark:text-zinc-50 font-sans">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@graph": [{ "@type": "Person", name: "Felipe Santander", jobTitle: "Product Designer", url: "https://felipe-santander.vercel.app" }, { "@type": "WebSite", name: "Felipe Santander — Portfolio", url: "https://felipe-santander.vercel.app" }] }) }} />
         {children}
       </body>
     </html>
