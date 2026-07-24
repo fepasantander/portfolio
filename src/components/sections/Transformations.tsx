@@ -35,14 +35,10 @@ const TransformationCard = ({
     analytics.trackCTA(`Transformation: ${company}`, `/transformations/${slug}`);
   };
 
-  const handleComingSoonClick = () => {
-    analytics.trackEvent("Transformations: Clicked (Coming Soon)", { company });
-  };
-
   return (
     <Card className="flex flex-col justify-between h-full bg-white dark:bg-zinc-950 border border-zinc-200/60 dark:border-zinc-900 shadow-sm relative overflow-hidden group">
       <div>
-        {/* Card Header with Logo/Placeholder */}
+        {/* Card header */}
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-3">
             {logoPath ? (
@@ -107,24 +103,13 @@ const TransformationCard = ({
           <Link href={`/transformations/${slug}`} onClick={handleTransformationClick} className="inline-flex w-full items-center justify-center rounded-md border border-zinc-200 bg-transparent px-5 py-2.5 text-sm font-medium text-zinc-950 transition-colors hover:bg-zinc-50 focus:outline-none focus:ring-1 focus:ring-zinc-400 dark:border-zinc-800 dark:text-zinc-50 dark:hover:bg-zinc-900">
             Visualizar Transformação
           </Link>
-        ) : (
-          <Button 
-            variant="secondary" 
-            disabled 
-            onClick={handleComingSoonClick} 
-            className="w-full text-zinc-400 border-zinc-200 dark:text-zinc-600 dark:border-zinc-900 bg-zinc-50/50 dark:bg-zinc-950/20"
-          >
-            Em breve
-          </Button>
-        )}
+        ) : null}
       </div>
     </Card>
   );
 };
 
 export const Transformations = () => {
-  const isDev = process.env.NODE_ENV === "development";
-
   const cases: TransformationCardProps[] = [
     {
       company: "VM Comunicação",
@@ -137,7 +122,7 @@ export const Transformations = () => {
       company: "Listo",
       logoPath: "/imagem/listo/logo_listo_22a683e3e4.svg",
       logoAlt: "Listo Logo",
-      slug: isDev ? "listo-sistemas" : undefined,
+      slug: "listo-sistemas",
       challenge: "Desperdício recorrente em engenharia e retrabalho de desenvolvimento em fluxos de crédito veicular complexos.",
       contribution: "Implantação da governança de UX e modelagem da esteira de Product Discovery para testes e validação com lojistas antes da escrita de código.",
       impact: "Redução de 80% nos custos de desenvolvimento de squads e conquista do Prêmio 'Cada Real Importa' por eficiência operacional.",
@@ -156,7 +141,7 @@ export const Transformations = () => {
       company: "Uniasselvi",
       logoPath: "/imagem/vitru/logo-uniasselvi-black.png",
       logoAlt: "Uniasselvi Logo",
-      slug: isDev ? "uniasselvi-plataformas-educacionais" : undefined,
+      slug: "uniasselvi-plataformas-educacionais",
       logoBg: "bg-white",
       challenge: "Lentidão operacional e risco regulatório severo do MEC no fluxo de biblioteca e curricularização nacional.",
       contribution: "Integração contínua de Design System corporativo e especificação taxonômica das jornadas de tutoria e autoatendimento de alunos.",
@@ -175,7 +160,7 @@ export const Transformations = () => {
   ];
 
   return (
-    <section id="transformations" className="py-24 border-t border-zinc-100 dark:border-zinc-900 bg-zinc-50/20 dark:bg-zinc-950/5">
+    <section id="cases" className="py-24 border-t border-zinc-100 dark:border-zinc-900 bg-zinc-50/20 dark:bg-zinc-950/5">
       <Container>
         <div className="max-w-3xl">
           <span className="text-xs uppercase tracking-widest font-mono text-zinc-400 dark:text-zinc-600 block mb-3">

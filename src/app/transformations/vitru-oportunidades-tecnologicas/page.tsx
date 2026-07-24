@@ -34,9 +34,7 @@ interface ProjectItem {
   title: string;
   description: string;
   icon: React.ReactNode;
-  href?: string;
   locked?: boolean;
-  preparing?: boolean;
 }
 
 interface CaseStudyData {
@@ -52,298 +50,51 @@ interface CaseStudyData {
   boardUrl?: string;
 }
 
-interface EvidenceImage {
-  src: string;
-  alt: string;
-  caption: string;
-}
-
-interface EvidenceGroup {
-  id: string;
-  label: string;
-  images: EvidenceImage[];
-}
-
-const imagePath = (folder: string, filename: string) => `/imagem/vitru/vitruchat/${folder}/${filename.replaceAll("&", "%26")}`;
-
-const vitruchatEvidenceGroups: EvidenceGroup[] = [
-  {
-    id: "v1-light",
-    label: "Versão 1.0 — Tema claro",
-    images: ["Chat_filterOpen&Boxes.png", "Indicadores_filterClose&boxes.png", "Indicadores_filterClose&lista.png", "VitruChat_AprendaUsar.png", "VitruChat_home.png"].map((filename) => ({
-      src: imagePath("v1-light", filename),
-      alt: "VitruChat LLM — versão 1.0, tema claro",
-      caption: "VitruChat LLM — versão 1.0 · Tema claro",
-    })),
-  },
-  {
-    id: "v1-tour-guiado",
-    label: "Versão 1.0 — Tour guiado",
-    images: ["tour_home-step-01.png", "tour_home-step-10-b.png", "tour_home-step-15.png", "tour_home-step-17-b.png"].map((filename) => ({
-      src: imagePath("v1-tour-guiado", filename),
-      alt: "VitruChat LLM — Tour Guiado",
-      caption: "VitruChat LLM — Tour Guiado",
-    })),
-  },
-  {
-    id: "v2-light",
-    label: "Versão 2.0 — Tema claro",
-    images: ["Acessibilidade_MenuOpen&PropOpen&PromptClosed.png", "chatViewProposta.png", "Pastas_MenuClosed&PropClosed&PromptClosed-2.png", "Pastas_MenuClosed&PropClosed&PromptOpen.png", "Pastas_MenuClosed&PropOpen&PromptClosed.png", "Pastas_MenuClosed&PropOpen&PromptOpen.png", "Pastas_MenuOpen&PropClosed&PromptClosed.png", "Pastas_MenuOpen&PropClosed&PromptOpen.png", "Pastas_MenuOpen&PropOpen&PromptClosed-2.png", "Pastas_MenuOpen&PropOpen&PromptOpen.png"].map((filename) => ({
-      src: imagePath("v2-light", filename),
-      alt: "VitruChat LLM — versão 2.0, tema claro",
-      caption: "VitruChat LLM — versão 2.0 · Tema claro",
-    })),
-  },
-  {
-    id: "v2-dark",
-    label: "Versão 2.0 — Tema escuro",
-    images: ["Pastas_MenuClosed&PropClosed&PromptClosed.png", "Pastas_MenuClosed&PropClosed&PromptOpen-2.png", "Pastas_MenuClosed&PropOpen&PromptClosed-2.png", "Pastas_MenuClosed&PropOpen&PromptOpen-2.png", "Pastas_MenuOpen&PropClosed&PromptClosed-2.png", "Pastas_MenuOpen&PropClosed&PromptOpen-2.png", "Pastas_MenuOpen&PropOpen&PromptClosed-3.png", "Pastas_MenuOpen&PropOpen&PromptClosed.png", "Pastas_MenuOpen&PropOpen&PromptOpen-2.png"].map((filename) => ({
-      src: imagePath("v2-dark", filename),
-      alt: "VitruChat LLM — versão 2.0, tema escuro",
-      caption: "VitruChat LLM — versão 2.0 · Tema escuro",
-    })),
-  },
+const vitruchatImages = [
+  ...["Chat_filterOpen&Boxes.png", "Indicadores_filterClose&boxes.png", "Indicadores_filterClose&lista.png", "VitruChat_AprendaUsar.png", "VitruChat_home.png"].map((filename) => ({ src: `/imagem/vitru/vitruchat/v1-light/${filename.replaceAll("&", "%26")}`, alt: "VitruChat LLM — versão 1.0, tema claro", caption: "VitruChat LLM — versão 1.0 · Tema claro" })),
+  ...["tour_home-step-01.png", "tour_home-step-10-b.png", "tour_home-step-15.png", "tour_home-step-17-b.png"].map((filename) => ({ src: `/imagem/vitru/vitruchat/v1-tour-guiado/${filename}`, alt: "VitruChat LLM — Tour Guiado", caption: "VitruChat LLM — Tour Guiado" })),
+  ...["Pastas_MenuClosed&PropClosed&PromptClosed.png", "Pastas_MenuClosed&PropClosed&PromptOpen-2.png", "Pastas_MenuClosed&PropOpen&PromptClosed-2.png", "Pastas_MenuClosed&PropOpen&PromptOpen-2.png", "Pastas_MenuOpen&PropClosed&PromptClosed-2.png", "Pastas_MenuOpen&PropClosed&PromptOpen-2.png", "Pastas_MenuOpen&PropOpen&PromptClosed-3.png", "Pastas_MenuOpen&PropOpen&PromptClosed.png", "Pastas_MenuOpen&PropOpen&PromptOpen-2.png"].map((filename) => ({ src: `/imagem/vitru/vitruchat/v2-dark/${filename.replaceAll("&", "%26")}`, alt: "VitruChat LLM — versão 2.0, tema escuro", caption: "VitruChat LLM — versão 2.0 · Tema escuro" })),
+  ...["Acessibilidade_MenuOpen&PropOpen&PromptClosed.png", "chatViewProposta.png", "Pastas_MenuClosed&PropClosed&PromptClosed-2.png", "Pastas_MenuClosed&PropClosed&PromptOpen.png", "Pastas_MenuClosed&PropOpen&PromptClosed.png", "Pastas_MenuClosed&PropOpen&PromptOpen.png", "Pastas_MenuOpen&PropClosed&PromptClosed.png", "Pastas_MenuOpen&PropClosed&PromptOpen.png", "Pastas_MenuOpen&PropOpen&PromptClosed-2.png", "Pastas_MenuOpen&PropOpen&PromptOpen.png"].map((filename) => ({ src: `/imagem/vitru/vitruchat/v2-light/${filename.replaceAll("&", "%26")}`, alt: "VitruChat LLM — versão 2.0, tema claro", caption: "VitruChat LLM — versão 2.0 · Tema claro" })),
 ];
 
-const vitruchatImages = vitruchatEvidenceGroups.flatMap((group) => group.images.map((image) => ({ ...image, groupId: group.id, groupLabel: group.label })));
-const priorityEvidenceIndexes = [4, 0, 5, 8, 9, 17, 19, 20];
+const unavailableEvidence = [
+  { label: "Vídeos / Demo", Icon: Video },
+  { label: "Protótipo Figma", Icon: ExternalLink },
+  { label: "Decisão / Boards", Icon: LayoutGrid },
+];
 
-interface EvidenceSupportProps {
-  headingId: string;
-  priorityEvidence?: { image: (typeof vitruchatImages)[number]; index: number }[];
-  onOpenGallery?: (imageIndex: number, event: React.MouseEvent<HTMLButtonElement>) => void;
-}
-
-function EvidenceSupport({ headingId, priorityEvidence, onOpenGallery }: EvidenceSupportProps) {
-  const hasCataloguedEvidence = priorityEvidence && onOpenGallery;
-
-  return (
-    <section className="space-y-3 border-t border-zinc-100 pt-6 dark:border-zinc-900" aria-labelledby={headingId}>
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div>
-          <Heading id={headingId} level={3} className="block text-xs font-mono uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Evidências e Apoio à Decisão (Anexos)</Heading>
-          <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
-            {hasCataloguedEvidence ? `${vitruchatImages.length} capturas catalogadas em quatro grupos. Os layouts apoiam a leitura do case; não substituem sua narrativa.` : "Em atualização: evidências visuais ainda não catalogadas."}
-          </p>
-        </div>
-        {hasCataloguedEvidence ? (
-          <button type="button" onClick={(event) => onOpenGallery(0, event)} className="inline-flex items-center gap-2 rounded-lg border border-zinc-200 px-3 py-2 text-xs font-semibold text-zinc-700 transition-colors hover:border-cyan-500 hover:text-cyan-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500 dark:border-zinc-800 dark:text-zinc-200 dark:hover:border-cyan-400 dark:hover:text-cyan-300">
-            <ImageIcon className="size-4" aria-hidden="true" />
-            Ver evidências visuais
-          </button>
-        ) : (
-          <span className="inline-flex items-center gap-2 rounded-lg border border-zinc-200 px-3 py-2 text-xs font-semibold text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">
-            <ImageIcon className="size-4" aria-hidden="true" />
-            Em atualização
-          </span>
-        )}
-      </div>
-      {!hasCataloguedEvidence && (
-        <div className="flex items-center gap-3 rounded-xl border border-dashed border-zinc-200 bg-zinc-50/30 p-4 text-sm text-zinc-500 dark:border-zinc-800 dark:bg-zinc-900/20 dark:text-zinc-400">
-          <ImageIcon className="size-5 shrink-0" aria-hidden="true" />
-          <p>O componente está preparado para receber a galeria assim que os ativos forem catalogados.</p>
-        </div>
-      )}
-    </section>
-  );
-}
-
-function EvidenceHighlights({ priorityEvidence, onOpenGallery }: Required<Pick<EvidenceSupportProps, "priorityEvidence" | "onOpenGallery">>) {
-  return (
-    <section className="space-y-4 border-t border-zinc-100 pt-8 dark:border-zinc-900" aria-labelledby="vitruchat-highlights-title">
-      <div>
-        <Heading id="vitruchat-highlights-title" level={3} className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">Destaques visuais selecionados</Heading>
-        <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">Seleção inicial de {priorityEvidence.length} capturas. As legendas permanecem provisórias até o catálogo oficial.</p>
-      </div>
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-        {priorityEvidence.map(({ image, index }) => (
-          <button key={image.src} type="button" onClick={(event) => onOpenGallery(index, event)} aria-label={`Abrir ${image.caption}`} className="group relative aspect-[16/9] overflow-hidden rounded-xl border border-zinc-200 bg-zinc-100 text-left transition-colors hover:border-cyan-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-cyan-400">
-            <Image src={image.src} alt="" fill sizes="(min-width: 640px) 36vw, 90vw" className="object-cover transition-transform duration-300 group-hover:scale-[1.02]" />
-            <span className="absolute inset-x-0 bottom-0 bg-zinc-950/80 px-3 py-2 text-xs text-white">{image.caption}</span>
-          </button>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function SofiaCaseContent() {
-  return (
-    <div className="space-y-12 animate-in fade-in duration-300">
-      <div className="space-y-4">
-        <span className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-cyan-600 dark:text-cyan-400">
-          <Sparkles className="h-4 w-4" />
-          Case 002 • Versão 1.0 • Official Source • 2025–2026
-        </span>
-        <Heading level={2} className="text-3xl font-semibold tracking-tight text-zinc-900 dark:text-white leading-tight">
-          SofIA — Da Apresentação do Ambiente Virtual ao Primeiro Agente de Secretaria
-        </Heading>
-      </div>
-
-      <div className="relative space-y-3 overflow-hidden rounded-2xl border border-cyan-500/20 bg-cyan-500/[0.02] p-6 dark:border-cyan-500/10 dark:bg-cyan-500/[0.01]">
-        <div className="pointer-events-none absolute right-0 top-0 h-24 w-24 rounded-full bg-cyan-500/10 blur-2xl" />
-        <h3 className="flex items-center gap-2 text-sm font-semibold text-cyan-600 dark:text-cyan-400">
-          <Sparkles className="h-4.5 w-4.5" />
-          Executive Summary
-        </h3>
-        <div className="space-y-4">
-          <Paragraph variant="base" className="text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">O SofIA nasceu como uma iniciativa do Innovation Lab para reduzir um dos maiores gargalos operacionais de instituições de ensino a distância: o grande volume de contatos administrativos realizados pelos alunos junto às áreas de atendimento.</Paragraph>
-          <Paragraph variant="base" className="text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">A visão do produto não era substituir professores ou atuar em questões pedagógicas. Seu primeiro objetivo era tornar a relação entre aluno e universidade mais simples, reduzindo atritos em processos burocráticos e preparando o caminho para uma futura evolução rumo a um Agente de Secretaria Inteligente.</Paragraph>
-          <Paragraph variant="base" className="text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">Minha participação concentrou-se na criação da primeira experiência de uso da plataforma, desenvolvendo um tour guiado capaz de apresentar o Ambiente Virtual de Aprendizagem de forma intuitiva, envolvente e memorável.</Paragraph>
-        </div>
-      </div>
-
-      <EvidenceSupport headingId="sofia-evidences-title" />
-
-      <div className="space-y-4">
-        <h3 className="flex items-center gap-2 text-lg font-semibold text-zinc-900 dark:text-zinc-100"><Brain className="h-5 w-5 shrink-0 text-cyan-500" />O Contexto</h3>
-        <Paragraph variant="base" className="text-sm leading-relaxed text-zinc-650 dark:text-zinc-300">A maioria dos alunos ingressa na universidade sem conhecer o funcionamento do Ambiente Virtual de Aprendizagem.</Paragraph>
-        <Paragraph variant="base" className="text-sm leading-relaxed text-zinc-650 dark:text-zinc-300">Questões simples acabam gerando centenas de contatos que poderiam ser evitados caso o ambiente fosse melhor apresentado desde o primeiro acesso.</Paragraph>
-        <ul className="grid grid-cols-1 gap-3.5 pl-1 sm:grid-cols-2">
-          {["localizar disciplinas;", "consultar notas;", "acessar informações financeiras;", "encontrar provas;", "localizar documentos acadêmicos;"].map((item) => <li key={item} className="flex items-center gap-2.5 text-sm leading-relaxed text-zinc-650 dark:text-zinc-300"><CheckCircle2 className="h-4.5 w-4.5 shrink-0 text-cyan-500" />{item}</li>)}
-        </ul>
-        <Paragraph variant="base" className="text-sm leading-relaxed text-zinc-650 dark:text-zinc-300">O SofIA surgiu para reduzir essa curva de aprendizado.</Paragraph>
-      </div>
-
-      <div className="space-y-4">
-        <h3 className="flex items-center gap-2 text-lg font-semibold text-zinc-900 dark:text-zinc-100"><Cpu className="h-5 w-5 shrink-0 text-cyan-500" />O Problema</h3>
-        <Paragraph variant="base" className="text-sm leading-relaxed text-zinc-650 dark:text-zinc-300">Criar um tour guiado parece simples. Na prática, existe um problema conhecido em UX: a maioria dos usuários ignora completamente esse tipo de experiência, clicando rapidamente em “Pular” ou “Ver depois”.</Paragraph>
-        <Paragraph variant="base" className="text-sm leading-relaxed text-zinc-650 dark:text-zinc-300">O desafio era construir uma apresentação suficientemente interessante para manter o aluno engajado até sua conclusão. Além disso, era necessário projetar duas experiências completamente diferentes:</Paragraph>
-        <ul className="grid grid-cols-1 gap-3.5 pl-1 sm:grid-cols-2">
-          {["versão Web;", "versão Mobile."].map((item) => <li key={item} className="flex items-center gap-2.5 text-sm leading-relaxed text-zinc-650 dark:text-zinc-300"><CheckCircle2 className="h-4.5 w-4.5 shrink-0 text-cyan-500" />{item}</li>)}
-        </ul>
-      </div>
-
-      <div className="space-y-4">
-        <h3 className="flex items-center gap-2 text-lg font-semibold text-zinc-900 dark:text-zinc-100"><User className="h-5 w-5 shrink-0 text-cyan-500" />Minha Atuação</h3>
-        <Paragraph variant="base" className="text-sm leading-relaxed text-zinc-650 dark:text-zinc-300">Entrei no projeto com a responsabilidade de mapear os principais pontos de contato do aluno com a plataforma e estruturar toda a experiência inicial de navegação.</Paragraph>
-        <Paragraph variant="base" className="text-sm leading-relaxed text-zinc-650 dark:text-zinc-300">Meu trabalho envolveu:</Paragraph>
-        <ul className="space-y-3.5 pl-1">
-          {["definição do roteiro do tour;", "priorização dos pontos apresentados;", "desenho dos fluxos;", "adaptação da experiência para Web e Mobile;", "definição das animações;", "estudo de estratégias para retenção do usuário durante toda a apresentação."].map((item) => <li key={item} className="flex gap-3 text-sm leading-relaxed text-zinc-650 dark:text-zinc-300"><CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-cyan-500" />{item}</li>)}
-        </ul>
-        <Paragraph variant="base" className="text-sm leading-relaxed text-zinc-650 dark:text-zinc-300">Durante o desenvolvimento também participei de discussões sobre futuras evoluções da SofIA como Agente de Secretaria baseado em Inteligência Artificial.</Paragraph>
-      </div>
-
-      <div className="space-y-4">
-        <h3 className="flex items-center gap-2 text-lg font-semibold text-zinc-900 dark:text-zinc-100"><Sparkles className="h-5 w-5 shrink-0 text-cyan-500" />Uma Estratégia para Prender a Atenção</h3>
-        <Paragraph variant="base" className="text-sm leading-relaxed text-zinc-650 dark:text-zinc-300">A contribuição que considero mais relevante foi propor um elemento visual animado que passou a conduzir o olhar do aluno durante toda a experiência.</Paragraph>
-        <Paragraph variant="base" className="text-sm leading-relaxed text-zinc-650 dark:text-zinc-300">Ao invés de utilizar apenas balões estáticos de instrução, desenvolvi uma pequena esfera inspirada em elementos reconhecíveis da cultura pop, personalizada com a identidade visual da instituição. Seu objetivo era atrair naturalmente a atenção do aluno para cada elemento da interface antes da abertura das mensagens explicativas.</Paragraph>
-        <Card hoverEffect={false} className="space-y-3 border-zinc-200/60 bg-zinc-50/10 p-5 dark:border-zinc-900 dark:bg-zinc-950/10">
-          <h4 className="flex items-center gap-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100"><Sparkles className="h-4.5 w-4.5 text-cyan-500" />Esfera-guia: mecanismo de direcionamento</h4>
-          <Paragraph variant="base" className="text-xs leading-relaxed text-zinc-600 dark:text-zinc-300">Mais do que uma animação, esse elemento tornou-se um mecanismo de direcionamento visual, com possibilidades futuras para destacar novos recursos, comunicar novidades, apoiar campanhas internas, incentivar mecânicas de gamificação e criar uma identidade própria para a SofIA.</Paragraph>
-        </Card>
-      </div>
-
-      <div className="space-y-6">
-        <h3 className="flex items-center gap-2 text-lg font-semibold text-zinc-900 dark:text-zinc-100"><Activity className="h-5 w-5 shrink-0 text-cyan-500" />Web e Mobile Exigem Soluções Diferentes</h3>
-        <Paragraph variant="base" className="text-sm leading-relaxed text-zinc-650 dark:text-zinc-300">Outro desafio importante foi adaptar o tour para dois contextos completamente distintos.</Paragraph>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          <Card hoverEffect={false} className="space-y-3 border-zinc-200/60 bg-zinc-50/10 p-5 dark:border-zinc-900 dark:bg-zinc-950/10">
-            <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Web</h4>
-            <Paragraph variant="base" className="text-xs leading-relaxed text-zinc-600 dark:text-zinc-300">Havia liberdade para movimentação da esfera-guia pela interface.</Paragraph>
-          </Card>
-          <Card hoverEffect={false} className="space-y-3 border-zinc-200/60 bg-zinc-50/10 p-5 dark:border-zinc-900 dark:bg-zinc-950/10">
-            <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Mobile</h4>
-            <Paragraph variant="base" className="text-xs leading-relaxed text-zinc-600 dark:text-zinc-300">O espaço reduzido exigia outra estratégia: os balões passaram a utilizar rolagem interna para preservar o elemento destacado na tela, evitando esconder informações importantes. Também foi prevista uma função de leitura das instruções para alunos que preferissem ouvir as orientações.</Paragraph>
-          </Card>
-        </div>
-      </div>
-
-      <div className="space-y-6">
-        <h3 className="flex items-center gap-2 text-lg font-semibold text-zinc-900 dark:text-zinc-100"><Brain className="h-5 w-5 shrink-0 text-cyan-500" />Evolução do Produto</h3>
-        <Paragraph variant="base" className="text-sm leading-relaxed text-zinc-650 dark:text-zinc-300">A SofIA foi concebida como uma evolução progressiva, sem deslocar questões pedagógicas para este escopo inicial.</Paragraph>
-        <ol className="grid grid-cols-1 gap-4 md:grid-cols-3">
-          {[
-            ["Onboarding", "Apresentar o Ambiente Virtual de Aprendizagem, reduzir a curva de aprendizado e preparar a adoção desde o primeiro acesso."],
-            ["Assistente Administrativa", "Na versão implementada, indicar ao aluno onde encontrar funcionalidades como segunda via de boletos, informações financeiras ou serviços acadêmicos."],
-            ["Agente de Secretaria", "Visão futura para executar tarefas em nome do aluno e reduzir ainda mais a necessidade de contatos humanos."],
-          ].map(([title, description], index) => <li key={title}><Card hoverEffect={false} className="h-full space-y-3 border-zinc-200/60 bg-zinc-50/10 p-5 dark:border-zinc-900 dark:bg-zinc-950/10"><span className="text-xs font-mono text-cyan-600 dark:text-cyan-400">0{index + 1}</span><h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">{title}</h4><Paragraph variant="base" className="text-xs leading-relaxed text-zinc-600 dark:text-zinc-300">{description}</Paragraph></Card></li>)}
-        </ol>
-      </div>
-
-      <div className="space-y-4 rounded-2xl border border-zinc-200/50 bg-zinc-50/20 p-6 dark:border-zinc-900 dark:bg-zinc-900/10">
-        <h3 className="flex items-center gap-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100"><Cpu className="h-4.5 w-4.5 text-cyan-500" />Limitações</h3>
-        <Paragraph variant="base" className="text-xs leading-relaxed text-zinc-650 dark:text-zinc-300">Durante o desenvolvimento algumas etapas do tour precisaram ser reduzidas para atender ao escopo do projeto. A proposta inicial previa aproximadamente trinta interações; na versão final foram implementados cerca de dezoito passos. Essa simplificação permitiu manter uma experiência objetiva sem comprometer a compreensão do ambiente.</Paragraph>
-      </div>
-
-      <div className="space-y-4 rounded-2xl border border-zinc-200/50 bg-zinc-50/20 p-6 dark:border-zinc-900 dark:bg-zinc-900/10">
-        <h3 className="flex items-center gap-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100"><Brain className="h-4.5 w-4.5 text-cyan-400" />Aprendizados</h3>
-        <Paragraph variant="base" className="text-xs leading-relaxed text-zinc-650 dark:text-zinc-300">O SofIA reforçou uma percepção importante: projetar produtos baseados em Inteligência Artificial não começa pela IA. Começa pela experiência.</Paragraph>
-        <Paragraph variant="base" className="text-xs leading-relaxed text-zinc-650 dark:text-zinc-300">Antes de automatizar processos complexos, é necessário garantir que o usuário compreenda o ambiente em que está inserido. Uma boa experiência de onboarding reduz atritos, acelera adoção e prepara terreno para funcionalidades muito mais sofisticadas no futuro.</Paragraph>
-      </div>
-
-      <div className="space-y-4 rounded-2xl border border-cyan-500/20 bg-cyan-500/[0.02] p-6 dark:border-cyan-500/10 dark:bg-cyan-500/[0.01]">
-        <h3 className="flex items-center gap-2 text-sm font-semibold text-cyan-600 dark:text-cyan-400"><Award className="h-4.5 w-4.5 shrink-0" />Resultado</h3>
-        <Paragraph variant="base" className="text-xs leading-relaxed text-zinc-650 dark:text-zinc-300">Minha principal contribuição foi transformar um tour guiado convencional em uma experiência de apresentação capaz de gerar maior retenção, reconhecimento visual e possibilidades futuras de evolução.</Paragraph>
-        <Paragraph variant="base" className="text-xs leading-relaxed text-zinc-650 dark:text-zinc-300">Embora simples à primeira vista, esse projeto mostrou como pequenas decisões de UX podem influenciar diretamente a adoção de um produto baseado em Inteligência Artificial.</Paragraph>
-      </div>
-
-      <div className="grid grid-cols-1 gap-6 border-t border-zinc-100 pt-6 md:grid-cols-3 dark:border-zinc-900">
-        {[[User, "Empresa", "Vitru Educação"], [Calendar, "Área", "Innovation Lab"], [Activity, "Produto", "SofIA"]].map(([Icon, label, value]) => <Card key={label as string} hoverEffect={false} className="flex items-start gap-3 border border-zinc-200/50 bg-zinc-50/50 p-5 dark:border-zinc-800/50 dark:bg-zinc-900/30"><Icon className="h-5 w-5 shrink-0 text-zinc-400 dark:text-zinc-500" /><div><span className="mb-1 block text-[9px] font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500">{label as string}</span><span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">{value as string}</span></div></Card>)}
-      </div>
-    </div>
-  );
-}
-
-export function VitruSubhomePage({ initialProjectId = "vitruchat" }: { initialProjectId?: "vitruchat" | "sofia" }) {
-  const [selectedProjectId] = useState<string>(initialProjectId);
+export default function VitruSubhomePage() {
+  const [selectedProjectId, setSelectedProjectId] = useState<string>("vitruchat");
   const [activeModal, setActiveModal] = useState<"imagens" | "videos" | "prototipos" | "boards" | null>(null);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
-  const triggerRef = React.useRef<HTMLElement | null>(null);
-  const modalRef = React.useRef<HTMLDivElement | null>(null);
-  const closeButtonRef = React.useRef<HTMLButtonElement | null>(null);
 
-  const closeModal = () => setActiveModal(null);
-  const openGallery = (imageIndex: number, event: React.MouseEvent<HTMLButtonElement>) => {
-    triggerRef.current = event.currentTarget;
-    setActiveImageIndex(imageIndex);
-    setActiveModal("imagens");
+  const selectProject = (projectId: string) => {
+    if (!["vitruchat", "sofia", "hub-correcoes"].includes(projectId)) return;
+
+    setSelectedProjectId(projectId);
+    const params = new URLSearchParams(window.location.search);
+    params.set("tab", projectId);
+    window.history.replaceState(null, "", `${window.location.pathname}?${params.toString()}`);
   };
 
   React.useEffect(() => {
-    if (!activeModal) {
-      triggerRef.current?.focus();
-      return;
-    }
+    const syncProjectFromUrl = () => {
+      const tab = new URLSearchParams(window.location.search).get("tab");
+      if (tab && ["vitruchat", "sofia", "hub-correcoes"].includes(tab)) {
+        setSelectedProjectId(tab);
+      }
+    };
 
-    closeButtonRef.current?.focus();
+    syncProjectFromUrl();
+    window.addEventListener("popstate", syncProjectFromUrl);
+    return () => window.removeEventListener("popstate", syncProjectFromUrl);
+  }, []);
+
+  React.useEffect(() => {
+    if (!activeModal) return;
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        event.preventDefault();
-        closeModal();
-        return;
-      }
-
-      if (activeModal === "imagens" && event.key === "ArrowLeft") {
-        event.preventDefault();
-        setActiveImageIndex((index) => Math.max(0, index - 1));
-        return;
-      }
-
-      if (activeModal === "imagens" && event.key === "ArrowRight") {
-        event.preventDefault();
-        setActiveImageIndex((index) => Math.min(vitruchatImages.length - 1, index + 1));
-        return;
-      }
-
-      if (event.key !== "Tab" || !modalRef.current) return;
-
-      const focusableElements = Array.from(
-        modalRef.current.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])')
-      );
-      const firstElement = focusableElements[0];
-      const lastElement = focusableElements[focusableElements.length - 1];
-
-      if (!firstElement || !lastElement) return;
-
-      if (event.shiftKey && document.activeElement === firstElement) {
-        event.preventDefault();
-        lastElement.focus();
-      } else if (!event.shiftKey && document.activeElement === lastElement) {
-        event.preventDefault();
-        firstElement.focus();
-      }
+      if (event.key === "Escape") setActiveModal(null);
     };
 
     window.addEventListener("keydown", handleKeyDown);
@@ -355,27 +106,38 @@ export function VitruSubhomePage({ initialProjectId = "vitruchat" }: { initialPr
       id: "vitruchat",
       title: "VitruChat LLM",
       description: "Plataforma corporativa de IA Generativa para uso interno dos colaboradores.",
-      icon: <Brain className="h-5 w-5" />,
-      href: "/transformations/vitru-oportunidades-tecnologicas"
+      icon: <Brain className="h-5 w-5" />
     },
     {
       id: "sofia",
       title: "SofIA",
-      description: "Onboarding e assistência administrativa para preparar a evolução a um Agente de Secretaria.",
+      description: "Assistente conversacional baseado em LLM para suporte pedagógico ao aluno.",
       icon: <Brain className="h-5 w-5" />,
-      href: "/transformations/sofia-administrative-ai-assistant"
+      locked: true
     },
     {
       id: "hub-correcoes",
       title: "Hub de Correções",
-      description: "Conteúdo em preparação.",
+      description: "Motor de inteligência artificial para correção automatizada de provas discursivas.",
       icon: <FileCheck2 className="h-5 w-5" />,
-      href: "/transformations/hub-correcoes",
-      preparing: true
+      locked: true
     }
   ];
 
   const caseStudies: Record<string, CaseStudyData> = {
+    sofia: {
+      title: "Otimizando a retenção e humanização do atendimento estudantil escalável com IA",
+      challenge: "Gargalo no suporte ao cliente e custo operacional elevado devido à sobrecarga de chamados de atendimento acadêmico de rotina em polo e canais manuais de triagem.",
+      contribution: [
+        "Cenário Encontrado: Estudantes enfrentavam longas esperas para dúvidas básicas de matrícula/notas, sobrecarregando atendentes físicos com tarefas repetitivas.",
+        "Decisões Tomadas: Concepção de fluxos conversacionais integrando regras pedagógicas em linguagem natural e micro-interações de onboarding para guiar o usuário no prompt.",
+        "Impacto Gerado: Implementação de metas de contenção baseadas em árvore de decisão integrada a APIs de secretaria, organizando a esteira de suporte da instituição."
+      ],
+      results: "Redução do fluxo de transbordo de chamados de atendimento repetitivo na plataforma Uniasselvi, otimizando o suporte acadêmico diário.",
+      role: "Senior UX Designer (IA)",
+      duration: "Junho de 2025 – Atual",
+      metric: "Contenção de chamados de rotina"
+    },
     "hub-correcoes": {
       title: "Garantindo precisão e acessibilidade na correção automatizada de redações com IA",
       challenge: "Falta de credibilidade e resistência de revisores na adoção de algoritmos de inteligência artificial para correção automática de provas discursivas de grande escala.",
@@ -391,12 +153,20 @@ export function VitruSubhomePage({ initialProjectId = "vitruchat" }: { initialPr
     }
   };
 
-  const activeCase = caseStudies[selectedProjectId] || caseStudies["hub-correcoes"];
-  const activeImage = vitruchatImages[activeImageIndex];
-  const activeGroup = vitruchatEvidenceGroups.find((group) => group.id === activeImage.groupId) ?? vitruchatEvidenceGroups[0];
-  const activeGroupImageIndex = activeGroup.images.findIndex((image) => image.src === activeImage.src) + 1;
-  const priorityEvidence = priorityEvidenceIndexes.slice(0, 4).map((index) => ({ image: vitruchatImages[index], index }));
-  const evidenceBox = <EvidenceSupport headingId="vitruchat-evidences-title" priorityEvidence={priorityEvidence} onOpenGallery={openGallery} />;
+  const activeCase = caseStudies[selectedProjectId] || caseStudies.sofia;
+  const evidenceBox = (
+    <section className="space-y-4 border-t border-zinc-100 pt-6 dark:border-zinc-900" aria-labelledby="evidences-title">
+      <Heading id="evidences-title" level={3} className="mb-2 block text-xs font-mono uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Evidências e Apoio à Decisão (Anexos)</Heading>
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+        <button type="button" onClick={() => { setActiveImageIndex(0); setActiveModal("imagens"); }} className="group flex w-full flex-col items-start rounded-xl border border-zinc-200/60 bg-zinc-50/30 p-4 text-left shadow-sm transition-all duration-300 hover:border-cyan-500 dark:border-zinc-800 dark:bg-zinc-900/20 dark:hover:border-cyan-400">
+          <div className="mb-3 rounded-lg border border-zinc-200/50 bg-white p-2 text-zinc-600 transition-colors group-hover:bg-cyan-500/10 group-hover:text-cyan-500 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"><ImageIcon className="h-5 w-5" /></div>
+          <span className="mb-1 block text-xs font-semibold text-zinc-850 dark:text-zinc-100">Imagens / Mocks</span>
+          <span className="text-[10px] font-medium text-cyan-600 dark:text-cyan-400">Ver galeria</span>
+        </button>
+        {unavailableEvidence.map(({ label, Icon }) => <button key={label} type="button" disabled className="flex w-full cursor-not-allowed flex-col items-start rounded-xl border border-zinc-100 bg-zinc-50/10 p-4 text-left opacity-40 dark:border-zinc-900 dark:bg-zinc-950/10"><div className="mb-3 rounded-lg bg-zinc-100 p-2 text-zinc-400 dark:bg-zinc-900 dark:text-zinc-600"><Icon className="h-5 w-5" /></div><span className="mb-1 block text-xs font-semibold text-zinc-400 dark:text-zinc-500">{label}</span><span className="text-[10px] text-zinc-400 dark:text-zinc-600">Em breve</span></button>)}
+      </div>
+    </section>
+  );
 
   return (
     <div className="min-h-screen flex flex-col bg-white dark:bg-black text-zinc-950 dark:text-zinc-50 font-sans transition-colors duration-300">
@@ -404,19 +174,16 @@ export function VitruSubhomePage({ initialProjectId = "vitruchat" }: { initialPr
 
       <main className="flex-grow pt-32 pb-24">
         <Container>
-          <nav className="mb-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-zinc-500 dark:text-zinc-400" aria-label="Breadcrumb">
-            <Link href="/#transformations" className="transition-colors hover:text-zinc-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500 dark:hover:text-white">Início</Link>
-            <span aria-hidden="true">/</span>
-            <Link href="/transformations/vitru-innovation-lab" className="transition-colors hover:text-zinc-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500 dark:hover:text-white">Vitru Educação</Link>
-            <span aria-hidden="true">/</span>
-            <Link href="/transformations/vitru-innovation-lab" className="transition-colors hover:text-zinc-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500 dark:hover:text-white">Innovation Lab</Link>
-            <span aria-hidden="true">/</span>
-            <span aria-current="page">{selectedProjectId === "sofia" ? "SofIA" : "VitruChat LLM"}</span>
-          </nav>
-          <Link href="/transformations/vitru-innovation-lab" className="mb-10 inline-flex items-center gap-2 text-sm font-medium text-zinc-500 transition-colors hover:text-zinc-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500 dark:text-zinc-400 dark:hover:text-zinc-50">
-            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-            Voltar ao Innovation Lab
-          </Link>
+          {/* Back link */}
+          <div className="mb-10">
+            <Link
+              href="/journal"
+              className="inline-flex items-center gap-2 text-sm font-medium text-zinc-500 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-50 transition-colors"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              Voltar para as Transformações
+            </Link>
+          </div>
 
           {/* Subhome Header */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pb-12 border-b border-zinc-100 dark:border-zinc-900">
@@ -451,42 +218,64 @@ export function VitruSubhomePage({ initialProjectId = "vitruchat" }: { initialPr
               {projects.map((proj) => {
                 const isActive = selectedProjectId === proj.id;
 
-                const content = (
-                  <>
+                return (
+                  <button
+                    key={proj.id}
+                    disabled={proj.locked}
+                    onClick={() => selectProject(proj.id)}
+                    className={`w-full text-left p-4 rounded-xl border transition-all duration-300 flex items-start gap-3.5 relative overflow-hidden group ${
+                      proj.locked
+                        ? "bg-zinc-50/50 dark:bg-zinc-950/40 border-zinc-200/40 dark:border-zinc-900/60 opacity-55 cursor-not-allowed text-zinc-400 dark:text-zinc-650"
+                        : isActive
+                        ? "bg-zinc-950 border-zinc-950 dark:bg-zinc-905 dark:border-zinc-800 text-white shadow-md shadow-cyan-500/5"
+                        : "bg-white dark:bg-zinc-950 border-zinc-200/60 dark:border-zinc-900 hover:border-zinc-400 dark:hover:border-zinc-700 text-zinc-800 dark:text-zinc-200"
+                    }`}
+                  >
+                    {/* Active highlight bar */}
                     {isActive && (
                       <span className="absolute left-0 top-0 bottom-0 w-1 bg-cyan-400" />
                     )}
+
                     <div className={`p-2 rounded-lg shrink-0 ${
                       proj.locked
                         ? "bg-zinc-100/50 dark:bg-zinc-900/50 text-zinc-400 dark:text-zinc-650"
-                        : isActive
-                        ? "bg-zinc-800 text-cyan-400"
+                        : isActive 
+                        ? "bg-zinc-800 text-cyan-400" 
                         : "bg-zinc-100 dark:bg-zinc-900 text-zinc-500"
                     }`}>
                       {proj.icon}
                     </div>
+
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
-                        <span className={`font-semibold text-sm leading-none block ${proj.locked ? "text-zinc-400 dark:text-zinc-550" : "text-zinc-900 dark:text-zinc-100"}`}>{proj.title}</span>
-                        {proj.locked ? <span className="inline-flex items-center gap-0.5 text-[8px] font-mono tracking-wide uppercase px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-900 text-zinc-400 dark:text-zinc-500 shrink-0 font-semibold border border-zinc-200/50 dark:border-zinc-800/50">Em breve</span> : proj.preparing ? <span className="inline-flex items-center gap-0.5 text-[8px] font-mono tracking-wide uppercase px-1.5 py-0.5 rounded bg-zinc-100 text-zinc-500 shrink-0 font-semibold dark:bg-zinc-900 dark:text-zinc-400">Em preparação</span> : isActive && <span className="inline-flex items-center gap-0.5 text-[8px] font-mono tracking-wide uppercase px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-400 shrink-0 font-semibold">Ativo</span>}
+                        <span className={`font-semibold text-sm leading-none block ${
+                          proj.locked
+                            ? "text-zinc-400 dark:text-zinc-550"
+                            : "text-zinc-900 dark:text-zinc-100"
+                        }`}>
+                          {proj.title}
+                        </span>
+                        {proj.locked ? (
+                          <span className="inline-flex items-center gap-0.5 text-[8px] font-mono tracking-wide uppercase px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-900 text-zinc-400 dark:text-zinc-500 shrink-0 font-semibold border border-zinc-200/50 dark:border-zinc-800/50">
+                            Em breve
+                          </span>
+                        ) : isActive && (
+                          <span className="inline-flex items-center gap-0.5 text-[8px] font-mono tracking-wide uppercase px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-400 shrink-0 font-semibold">
+                            Ativo
+                          </span>
+                        )}
                       </div>
-                      <p className={`text-[11px] leading-relaxed ${proj.locked ? "text-zinc-400/80 dark:text-zinc-650" : isActive ? "text-zinc-300" : "text-zinc-500"}`}>{proj.description}</p>
+                      <p className={`text-[11px] leading-relaxed ${
+                        proj.locked
+                          ? "text-zinc-400/80 dark:text-zinc-650"
+                          : isActive 
+                          ? "text-zinc-300" 
+                          : "text-zinc-500"
+                      }`}>
+                        {proj.description}
+                      </p>
                     </div>
-                  </>
-                );
-
-                const className = `w-full text-left p-4 rounded-xl border transition-all duration-300 flex items-start gap-3.5 relative overflow-hidden group ${
-                  proj.locked
-                    ? "bg-zinc-50/50 dark:bg-zinc-950/40 border-zinc-200/40 dark:border-zinc-900/60 opacity-55 cursor-not-allowed text-zinc-400 dark:text-zinc-650"
-                    : isActive
-                    ? "bg-zinc-950 border-zinc-950 dark:bg-zinc-905 dark:border-zinc-800 text-white shadow-md shadow-cyan-500/5"
-                    : "bg-white dark:bg-zinc-950 border-zinc-200/60 dark:border-zinc-900 hover:border-zinc-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500 dark:hover:border-zinc-700 text-zinc-800 dark:text-zinc-200"
-                }`;
-
-                return proj.locked ? (
-                  <div key={proj.id} aria-disabled="true" className={className}>{content}</div>
-                ) : (
-                  <Link key={proj.id} href={proj.href!} aria-current={isActive ? "page" : undefined} className={className}>{content}</Link>
+                  </button>
                 );
               })}
             </div>
@@ -613,8 +402,6 @@ export function VitruSubhomePage({ initialProjectId = "vitruchat" }: { initialPr
                       ))}
                     </ul>
                   </div>
-
-                  <EvidenceHighlights priorityEvidence={priorityEvidence} onOpenGallery={openGallery} />
 
                   {/* Contextualização acadêmica e camada gerencial */}
                   <div className="space-y-6">
@@ -770,8 +557,6 @@ export function VitruSubhomePage({ initialProjectId = "vitruchat" }: { initialPr
                   </div>
 
                 </div>
-              ) : selectedProjectId === "sofia" ? (
-                <SofiaCaseContent />
               ) : (
                 <div className="space-y-12 animate-in fade-in duration-300">
                   
@@ -978,24 +763,13 @@ export function VitruSubhomePage({ initialProjectId = "vitruchat" }: { initialPr
 
           </div>
 
-          <nav className="mt-16 flex flex-col gap-3 border-t border-zinc-100 pt-8 text-sm dark:border-zinc-900 sm:flex-row sm:items-center sm:justify-between" aria-label="Navegação entre cases">
-            {selectedProjectId === "sofia" ? (
-              <Link href="/transformations/vitru-oportunidades-tecnologicas" className="inline-flex items-center gap-2 font-medium text-zinc-600 transition-colors hover:text-zinc-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500 dark:text-zinc-300 dark:hover:text-white"><ArrowLeft className="size-4" aria-hidden="true" />Case anterior: VitruChat LLM</Link>
-            ) : <span aria-disabled="true" className="text-zinc-400 dark:text-zinc-500">Case anterior</span>}
-            {selectedProjectId === "vitruchat" ? (
-              <Link href="/transformations/sofia-administrative-ai-assistant" className="inline-flex items-center gap-2 font-medium text-zinc-600 transition-colors hover:text-zinc-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500 dark:text-zinc-300 dark:hover:text-white">Próximo case: SofIA<ChevronRight className="size-4" aria-hidden="true" /></Link>
-            ) : selectedProjectId === "sofia" ? (
-              <Link href="/transformations/hub-correcoes" className="inline-flex items-center gap-2 font-medium text-zinc-600 transition-colors hover:text-zinc-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500 dark:text-zinc-300 dark:hover:text-white">Próximo case: Hub de Correções<ChevronRight className="size-4" aria-hidden="true" /></Link>
-            ) : <span aria-disabled="true" className="text-zinc-400 dark:text-zinc-500">Próximo case</span>}
-          </nav>
-
         </Container>
       </main>
 
       {/* FULLSCREEN OVERLAY MODAL */}
       {activeModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/15 backdrop-blur-md p-4 animate-in fade-in duration-200">
-          <div ref={modalRef} role="dialog" aria-modal="true" aria-labelledby="gallery-title" aria-describedby="gallery-position" className="relative flex h-[90vh] w-[90vw] max-w-none flex-col overflow-hidden rounded-3xl border border-zinc-200/20 bg-zinc-950 p-4 shadow-2xl sm:p-6 lg:p-8">
+          <div role="dialog" aria-modal="true" aria-label="Visualização de material de projeto" className="relative flex h-[90vh] w-[90vw] max-w-none flex-col overflow-hidden rounded-3xl border border-zinc-200/20 bg-zinc-950 p-4 shadow-2xl sm:p-6 lg:p-8">
             
             {/* Modal Header */}
             <div className="flex items-center justify-between pb-4 border-b border-zinc-900 mb-6">
@@ -1003,14 +777,13 @@ export function VitruSubhomePage({ initialProjectId = "vitruchat" }: { initialPr
                 <span className="text-[10px] uppercase font-mono tracking-widest text-zinc-500">
                   {selectedProjectId === "vitruchat" ? "VitruChat LLM" : selectedProjectId === "sofia" ? "SofIA" : "Hub de Correções"} — Anexo de Projeto
                 </span>
-                <Heading id="gallery-title" level={3} className="text-lg sm:text-xl font-semibold text-white m-0">
+                <Heading level={3} className="text-lg sm:text-xl font-semibold text-white m-0">
                   {activeModal === "imagens" && "Galeria de Capturas de Tela"}
                 </Heading>
               </div>
               <button
-                ref={closeButtonRef}
-                type="button"
-                onClick={closeModal}
+                onClick={() => setActiveModal(null)}
+                autoFocus
                 className="p-2 rounded-full border border-zinc-800 bg-zinc-900 text-zinc-400 hover:text-white transition-colors"
                 aria-label="Fechar modal"
               >
@@ -1022,31 +795,11 @@ export function VitruSubhomePage({ initialProjectId = "vitruchat" }: { initialPr
             <div className="min-h-0 flex-grow p-2">
               {activeModal === "imagens" && selectedProjectId === "vitruchat" && (
                 <div className="flex h-full flex-col gap-4">
-                  <div className="flex flex-wrap items-center gap-2" aria-label="Grupos de evidências">
-                    {vitruchatEvidenceGroups.map((group) => {
-                      const groupStartIndex = vitruchatImages.findIndex((image) => image.groupId === group.id);
-
-                      return (
-                        <button
-                          key={group.id}
-                          type="button"
-                          aria-pressed={activeGroup.id === group.id}
-                          onClick={() => setActiveImageIndex(groupStartIndex)}
-                          className="rounded-full border border-zinc-700 px-3 py-1.5 text-xs font-medium text-zinc-300 transition-colors hover:border-zinc-500 hover:text-white aria-pressed:border-cyan-400 aria-pressed:bg-cyan-400/10 aria-pressed:text-cyan-200"
-                        >
-                          {group.label}
-                        </button>
-                      );
-                    })}
-                  </div>
-                  <p id="gallery-position" className="text-xs text-zinc-400" aria-live="polite">
-                    Grupo atual: {activeGroup.label} · {activeGroupImageIndex} de {activeGroup.images.length} · Total: {activeImageIndex + 1} de {vitruchatImages.length}
-                  </p>
                   <figure className="flex min-h-0 flex-1 flex-col items-center justify-center overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900 p-2 sm:p-4">
                     <div className="relative min-h-0 w-full flex-1">
                       <Image
-                        src={activeImage.src}
-                        alt={activeImage.alt}
+                        src={vitruchatImages[activeImageIndex].src}
+                        alt={vitruchatImages[activeImageIndex].alt}
                         width={1440}
                         height={900}
                         className="h-full w-full object-contain"
@@ -1055,7 +808,7 @@ export function VitruSubhomePage({ initialProjectId = "vitruchat" }: { initialPr
                       />
                     </div>
                     <figcaption className="pt-3 text-center text-sm font-medium text-zinc-200" aria-live="polite">
-                      {activeImage.caption}
+                      {vitruchatImages[activeImageIndex].caption} · Imagem {activeImageIndex + 1} de {vitruchatImages.length}
                     </figcaption>
                   </figure>
 
@@ -1090,5 +843,3 @@ export function VitruSubhomePage({ initialProjectId = "vitruchat" }: { initialPr
     </div>
   );
 }
-
-export default VitruSubhomePage;
