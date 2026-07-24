@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title description">
+  <title id="title">Odonto1</title>
+  <desc id="description">Identidade visual tipográfica do case Odonto1</desc>
+  <rect width="1200" height="675" fill="#18181b"/>
+  <rect x="72" y="72" width="1056" height="531" rx="28" fill="none" stroke="#22d3ee" stroke-width="3"/>
+  <text x="600" y="365" fill="#fafafa" font-family="Arial, Helvetica, sans-serif" font-size="130" font-weight="700" letter-spacing="12" text-anchor="middle">ODONTO1</text>
+  <rect x="504" y="430" width="192" height="6" fill="#eab308"/>
+</svg>

@@ -1,7 +1,7 @@
 import { isPublishableCase, type EditorialCase } from "./editorial-model";
-import { vitruChat, odonto1 } from "./published-cases";
+import { hubCorrecoes, odonto1, sofia, vitruChat } from "./published-cases";
 
-export const productionOrder = ["vitruchat", "sofia-administrative-ai-assistant", "hub-correcoes", "harmonia", "diva", "odonto1", "listo", "portais-vm"] as const;
+export const productionOrder = ["vitruchat", "hub-correcoes", "sofia", "odonto1", "harmonia", "diva", "listo", "portais-vm"] as const;
 
 export interface CaseReviewChecklist {
   nda: boolean; spelling: boolean; consistency: boolean; terminology: boolean; evidence: boolean; links: boolean; images: boolean; stack: boolean;
@@ -22,6 +22,8 @@ export function generatePublishedCatalog(records: CaseProductionRecord[]): Edito
 
 export const caseProductionRecords: CaseProductionRecord[] = [
   { case: vitruChat, review: { nda: true, spelling: true, consistency: true, terminology: true, evidence: true, links: true, images: true, stack: true } },
+  { case: hubCorrecoes, review: { nda: true, spelling: true, consistency: true, terminology: true, evidence: true, links: true, images: true, stack: true } },
+  { case: sofia, review: { nda: true, spelling: true, consistency: true, terminology: true, evidence: true, links: true, images: true, stack: true } },
   { case: odonto1, review: { nda: true, spelling: true, consistency: true, terminology: true, evidence: true, links: true, images: true, stack: true } },
 ];
 export const publishedPortfolioCases = generatePublishedCatalog(caseProductionRecords);

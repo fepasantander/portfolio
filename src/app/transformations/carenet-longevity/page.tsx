@@ -34,6 +34,7 @@ interface ProjectItem {
   title: string;
   description: string;
   icon: React.ReactNode;
+  status?: "evolving";
 }
 
 interface CaseStudyData {
@@ -55,18 +56,53 @@ export default function CarenetSubhomePage() {
   const [dragStartX, setDragStartX] = useState<number | null>(null);
   const [activeModal, setActiveModal] = useState<"imagens" | "videos" | "prototipos" | "boards" | null>(null);
 
+  const selectProject = (projectId: string) => {
+    if (!["orchestra", "diva"].includes(projectId)) return;
+
+    setSelectedProjectId(projectId);
+    const params = new URLSearchParams(window.location.search);
+    params.set("tab", projectId);
+    window.history.replaceState(null, "", `${window.location.pathname}?${params.toString()}`);
+  };
+
+  React.useEffect(() => {
+    const syncProjectFromUrl = () => {
+      const tab = new URLSearchParams(window.location.search).get("tab");
+      if (tab && ["orchestra", "diva"].includes(tab)) {
+        setSelectedProjectId(tab);
+      }
+    };
+
+    syncProjectFromUrl();
+    window.addEventListener("popstate", syncProjectFromUrl);
+    return () => window.removeEventListener("popstate", syncProjectFromUrl);
+  }, []);
+
+  React.useEffect(() => {
+    if (!activeModal) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setActiveModal(null);
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [activeModal]);
+
   const projects: ProjectItem[] = [
     {
       id: "orchestra",
       title: "Orchestra",
       description: "Central hospitalar IoMT de telemetria e monitoramento de leitos em tempo real.",
-      icon: <Monitor className="h-5 w-5" />
+      icon: <Monitor className="h-5 w-5" />,
+      status: "evolving"
     },
     {
       id: "diva",
       title: "Diva",
       description: "Aplicativo de registro beira-leito integrado com leitores de sinais vitais de pacientes.",
-      icon: <Smartphone className="h-5 w-5" />
+      icon: <Smartphone className="h-5 w-5" />,
+      status: "evolving"
     }
   ];
 
@@ -158,7 +194,7 @@ export default function CarenetSubhomePage() {
           {/* Back link */}
           <div className="mb-10">
             <Link
-              href="/#transformations"
+              href="/journal"
               className="inline-flex items-center gap-2 text-sm font-medium text-zinc-500 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-50 transition-colors"
             >
               <ArrowLeft className="h-4 w-4" />
@@ -209,7 +245,7 @@ export default function CarenetSubhomePage() {
                   <button
                     key={proj.id}
                     onClick={() => {
-                      setSelectedProjectId(proj.id);
+                      selectProject(proj.id);
                       setDivaIndex(0);
                     }}
                     className={`w-full text-left p-4 rounded-xl border transition-all duration-300 flex items-start gap-3.5 relative overflow-hidden group ${
@@ -236,6 +272,11 @@ export default function CarenetSubhomePage() {
                         <span className="font-semibold text-sm leading-none block text-zinc-900 dark:text-zinc-100">
                           {proj.title}
                         </span>
+                        {proj.status === "evolving" && (
+                          <span className="inline-flex items-center text-[8px] font-mono tracking-wide uppercase px-1.5 py-0.5 rounded bg-zinc-200/50 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300 shrink-0">
+                            Em evolução
+                          </span>
+                        )}
                         {isActive && (
                           <span className="inline-flex items-center gap-0.5 text-[8px] font-mono tracking-wide uppercase px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-400 shrink-0 font-semibold">
                             Ativo
@@ -473,7 +514,7 @@ export default function CarenetSubhomePage() {
       {/* FULLSCREEN OVERLAY MODAL */}
       {activeModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/15 backdrop-blur-md p-4 animate-in fade-in duration-200">
-          <div className="relative w-full max-w-4xl bg-zinc-950 border border-zinc-200/20 dark:border-zinc-800 rounded-3xl p-6 sm:p-8 overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
+          <div role="dialog" aria-modal="true" aria-label="Visualização de material de projeto" className="relative w-full max-w-4xl bg-zinc-950 border border-zinc-200/20 dark:border-zinc-800 rounded-3xl p-6 sm:p-8 overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
             
             {/* Modal Header */}
             <div className="flex items-center justify-between pb-4 border-b border-zinc-900 mb-6">
@@ -487,6 +528,7 @@ export default function CarenetSubhomePage() {
               </div>
               <button
                 onClick={() => setActiveModal(null)}
+                autoFocus
                 className="p-2 rounded-full border border-zinc-800 bg-zinc-900 text-zinc-400 hover:text-white transition-colors"
                 aria-label="Fechar modal"
               >

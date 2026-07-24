@@ -35,7 +35,7 @@ interface ProjectItem {
   title: string;
   description: string;
   icon: React.ReactNode;
-  status: "active" | "coming-soon";
+  status: "active" | "coming-soon" | "evolving";
 }
 
 interface CaseStudyData {
@@ -58,29 +58,60 @@ export default function VmComunicacaoSubhomePage() {
   const [activeModal, setActiveModal] = useState<"imagens" | "videos" | "prototipos" | "boards" | null>(null);
   const [revistasIndex, setRevistasIndex] = useState(0);
   const [eventosIndex, setEventosIndex] = useState(0);
-  const isDev = process.env.NODE_ENV === "development";
 
+  const selectProject = (projectId: string) => {
+    if (!["odonto1", "revistas", "eventos"].includes(projectId)) return;
+
+    setSelectedProjectId(projectId);
+    const params = new URLSearchParams(window.location.search);
+    params.set("tab", projectId);
+    window.history.replaceState(null, "", `${window.location.pathname}?${params.toString()}`);
+  };
+
+  React.useEffect(() => {
+    const syncProjectFromUrl = () => {
+      const tab = new URLSearchParams(window.location.search).get("tab");
+      if (tab && ["odonto1", "revistas", "eventos"].includes(tab)) {
+        setSelectedProjectId(tab);
+      }
+    };
+
+    syncProjectFromUrl();
+    window.addEventListener("popstate", syncProjectFromUrl);
+    return () => window.removeEventListener("popstate", syncProjectFromUrl);
+  }, []);
+
+  React.useEffect(() => {
+    if (!activeModal) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setActiveModal(null);
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [activeModal]);
   const projects: ProjectItem[] = [
     {
       id: "odonto1",
       title: "Odonto 1",
       description: "Plataforma multimídia integrada de educação continuada e conteúdo odontológico.",
       icon: <BookOpen className="h-5 w-5" />,
-      status: "active"
+      status: "evolving"
     },
     {
       id: "revistas",
       title: "Revistas",
       description: "Portais editoriais e periódicos científicos de odontologia (INPN, ImplantNews, PerioNews, PróteseNews, ImplantNewsPerio, OrtociênciaSPO, PCP).",
       icon: <FileText className="h-5 w-5" />,
-      status: isDev ? "active" : "coming-soon"
+      status: "evolving"
     },
     {
       id: "eventos",
       title: "Eventos",
       description: "Plataformas digitais para feiras, congressos científicos e relacionamento.",
       icon: <CalendarDays className="h-5 w-5" />,
-      status: isDev ? "active" : "coming-soon"
+      status: "active"
     }
   ];
 
@@ -180,7 +211,7 @@ export default function VmComunicacaoSubhomePage() {
           {/* Back link */}
           <div className="mb-10">
             <Link
-              href="/#transformations"
+              href="/journal"
               className="inline-flex items-center gap-2 text-sm font-medium text-zinc-500 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-50 transition-colors"
             >
               <ArrowLeft className="h-4 w-4" />
@@ -227,7 +258,7 @@ export default function VmComunicacaoSubhomePage() {
                     key={proj.id}
                     disabled={isComingSoon}
                     onClick={() => {
-                      setSelectedProjectId(proj.id);
+                      selectProject(proj.id);
                       setRevistasIndex(0);
                       setEventosIndex(0);
                     }}
@@ -261,6 +292,11 @@ export default function VmComunicacaoSubhomePage() {
                           <span className="inline-flex items-center gap-0.5 text-[8px] font-mono tracking-wide uppercase px-1.5 py-0.5 rounded bg-zinc-200/50 dark:bg-zinc-800 text-zinc-500 shrink-0">
                             <Lock className="h-2 w-2" />
                             Em breve
+                          </span>
+                        )}
+                        {proj.status === "evolving" && (
+                          <span className="inline-flex items-center text-[8px] font-mono tracking-wide uppercase px-1.5 py-0.5 rounded bg-zinc-200/50 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300 shrink-0">
+                            Em evolução
                           </span>
                         )}
                         {isActive && (
@@ -509,7 +545,7 @@ export default function VmComunicacaoSubhomePage() {
       {/* FULLSCREEN OVERLAY MODAL */}
       {activeModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/15 backdrop-blur-md p-4 animate-in fade-in duration-200">
-          <div className="relative w-full max-w-4xl bg-zinc-950 border border-zinc-200/20 dark:border-zinc-800 rounded-3xl p-6 sm:p-8 overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
+          <div role="dialog" aria-modal="true" aria-label="Visualização de material de projeto" className="relative w-full max-w-4xl bg-zinc-950 border border-zinc-200/20 dark:border-zinc-800 rounded-3xl p-6 sm:p-8 overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
             
             {/* Modal Header */}
             <div className="flex items-center justify-between pb-4 border-b border-zinc-900 mb-6">
@@ -523,6 +559,7 @@ export default function VmComunicacaoSubhomePage() {
               </div>
               <button
                 onClick={() => setActiveModal(null)}
+                autoFocus
                 className="p-2 rounded-full border border-zinc-850 bg-zinc-900 text-zinc-400 hover:text-white transition-colors"
                 aria-label="Fechar modal"
               >

@@ -68,6 +68,28 @@ export default function VitruSubhomePage() {
   const [activeModal, setActiveModal] = useState<"imagens" | "videos" | "prototipos" | "boards" | null>(null);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
+  const selectProject = (projectId: string) => {
+    if (!["vitruchat", "sofia", "hub-correcoes"].includes(projectId)) return;
+
+    setSelectedProjectId(projectId);
+    const params = new URLSearchParams(window.location.search);
+    params.set("tab", projectId);
+    window.history.replaceState(null, "", `${window.location.pathname}?${params.toString()}`);
+  };
+
+  React.useEffect(() => {
+    const syncProjectFromUrl = () => {
+      const tab = new URLSearchParams(window.location.search).get("tab");
+      if (tab && ["vitruchat", "sofia", "hub-correcoes"].includes(tab)) {
+        setSelectedProjectId(tab);
+      }
+    };
+
+    syncProjectFromUrl();
+    window.addEventListener("popstate", syncProjectFromUrl);
+    return () => window.removeEventListener("popstate", syncProjectFromUrl);
+  }, []);
+
   React.useEffect(() => {
     if (!activeModal) return;
 
@@ -155,7 +177,7 @@ export default function VitruSubhomePage() {
           {/* Back link */}
           <div className="mb-10">
             <Link
-              href="/#transformations"
+              href="/journal"
               className="inline-flex items-center gap-2 text-sm font-medium text-zinc-500 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-50 transition-colors"
             >
               <ArrowLeft className="h-4 w-4" />
@@ -200,7 +222,7 @@ export default function VitruSubhomePage() {
                   <button
                     key={proj.id}
                     disabled={proj.locked}
-                    onClick={() => setSelectedProjectId(proj.id)}
+                    onClick={() => selectProject(proj.id)}
                     className={`w-full text-left p-4 rounded-xl border transition-all duration-300 flex items-start gap-3.5 relative overflow-hidden group ${
                       proj.locked
                         ? "bg-zinc-50/50 dark:bg-zinc-950/40 border-zinc-200/40 dark:border-zinc-900/60 opacity-55 cursor-not-allowed text-zinc-400 dark:text-zinc-650"

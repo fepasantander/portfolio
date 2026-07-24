@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { Container } from "../ui/Container";
+import { ProductTransformationJournal } from "./ProductTransformationJournal";
 
 export default function Journal() {
-  return <section aria-labelledby="journal-title" className="py-20"><Container><div className="max-w-2xl"><h2 id="journal-title" className="text-2xl font-semibold tracking-tight">Product Transformation Journal</h2><p className="mt-3 text-zinc-600 dark:text-zinc-400">O Portfolio mostra resultados. O Journal mostra decisões.</p><Link href="/journal" className="mt-6 inline-flex font-medium underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500">Explorar o Journal</Link></div></Container></section>;
+  return <section className="py-20"><Container><ProductTransformationJournal title="As decisões por trás das transformações." description="Um arquivo editorial para líderes de produto, design e tecnologia que querem entender os critérios, trade-offs e aprendizados que não cabem em uma apresentação final." buttonLabel="Explorar o Product Transformation Journal" href="/journal" /></Container></section>;
 }

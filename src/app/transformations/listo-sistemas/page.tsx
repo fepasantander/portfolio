@@ -49,6 +49,17 @@ export default function ListoSubhomePage() {
   const [selectedProjectId, setSelectedProjectId] = useState<string>("cdc-listo");
   const [activeModal, setActiveModal] = useState<"imagens" | "videos" | "prototipos" | "boards" | null>(null);
 
+  React.useEffect(() => {
+    if (!activeModal) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setActiveModal(null);
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [activeModal]);
+
   const projects: ProjectItem[] = [
     {
       id: "cdc-listo",
@@ -85,7 +96,7 @@ export default function ListoSubhomePage() {
           {/* Back link */}
           <div className="mb-10">
             <Link
-              href="/#transformations"
+              href="/journal"
               className="inline-flex items-center gap-2 text-sm font-medium text-zinc-500 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-50 transition-colors"
             >
               <ArrowLeft className="h-4 w-4" />
@@ -389,7 +400,7 @@ export default function ListoSubhomePage() {
       {/* FULLSCREEN OVERLAY MODAL */}
       {activeModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/15 backdrop-blur-md p-4 animate-in fade-in duration-200">
-          <div className="relative w-full max-w-4xl bg-zinc-950 border border-zinc-200/20 dark:border-zinc-800 rounded-3xl p-6 sm:p-8 overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
+          <div role="dialog" aria-modal="true" aria-label="Visualização de material de projeto" className="relative w-full max-w-4xl bg-zinc-950 border border-zinc-200/20 dark:border-zinc-800 rounded-3xl p-6 sm:p-8 overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
             
             {/* Modal Header */}
             <div className="flex items-center justify-between pb-4 border-b border-zinc-900 mb-6">
@@ -403,6 +414,7 @@ export default function ListoSubhomePage() {
               </div>
               <button
                 onClick={() => setActiveModal(null)}
+                autoFocus
                 className="p-2 rounded-full border border-zinc-800 bg-zinc-900 text-zinc-400 hover:text-white transition-colors"
                 aria-label="Fechar modal"
               >

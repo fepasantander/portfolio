@@ -110,7 +110,7 @@ export const Problem = () => {
           {/* Connection Lines (Desktop only) */}
           <div className="hidden md:block absolute top-1/2 left-0 right-0 h-[1px] bg-zinc-200 dark:bg-zinc-900 -translate-y-1/2 z-0 pointer-events-none" />
           
-          {pillars.map((pillar, index) => (
+          {pillars.map((pillar) => (
             <Card 
               key={pillar.title} 
               className="relative z-10 flex flex-col justify-between h-full bg-white dark:bg-zinc-950 border border-zinc-200/60 dark:border-zinc-900 shadow-sm group hover:border-cyan-500/80 dark:hover:border-[#00ffff]/80 transition-all duration-300"

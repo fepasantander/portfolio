@@ -39,6 +39,17 @@ export default function CaseStudyPage({ params }: PageProps) {
   const { slug } = use(params);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  React.useEffect(() => {
+    if (!isModalOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsModalOpen(false);
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isModalOpen]);
+
   const study = caseStudies.find((c) => c.slug === slug);
 
   if (!study) {
@@ -54,7 +65,7 @@ export default function CaseStudyPage({ params }: PageProps) {
           {/* Back link */}
           <div className="mb-10">
             <Link
-              href="/#transformations"
+              href="/journal"
               className="inline-flex items-center gap-2 text-sm font-medium text-zinc-500 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-50 transition-colors"
             >
               <ArrowLeft className="h-4 w-4" />
@@ -233,12 +244,12 @@ export default function CaseStudyPage({ params }: PageProps) {
       {/* Modal Acolhedor */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-300">
-          <Card hoverEffect={false} className="w-full max-w-md bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-900 shadow-2xl p-6 sm:p-8 rounded-2xl flex flex-col items-center text-center animate-in zoom-in-95 duration-200">
+          <Card role="dialog" aria-modal="true" aria-labelledby="external-link-modal-title" hoverEffect={false} className="w-full max-w-md bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-900 shadow-2xl p-6 sm:p-8 rounded-2xl flex flex-col items-center text-center animate-in zoom-in-95 duration-200">
             <div className="h-12 w-12 rounded-full bg-zinc-100 dark:bg-zinc-900 flex items-center justify-center text-zinc-850 dark:text-zinc-200 mb-6 border border-zinc-200/40 dark:border-zinc-800">
               <ShieldAlert className="h-6 w-6" />
             </div>
             
-            <Heading level={3} className="text-xl font-semibold mb-4 text-zinc-955 dark:text-zinc-50">
+            <Heading id="external-link-modal-title" level={3} className="text-xl font-semibold mb-4 text-zinc-955 dark:text-zinc-50">
               Permanecendo no Domínio
             </Heading>
             
@@ -253,17 +264,18 @@ export default function CaseStudyPage({ params }: PageProps) {
             <div className="flex flex-col w-full gap-3">
               <button
                 onClick={() => setIsModalOpen(false)}
+                autoFocus
                 className="w-full inline-flex items-center justify-center font-medium transition-all duration-200 text-sm rounded-md bg-zinc-950 text-zinc-50 hover:bg-zinc-800 border border-zinc-950 dark:bg-zinc-50 dark:text-zinc-950 dark:hover:bg-zinc-200 dark:border-zinc-50 py-3 shadow-sm"
               >
                 Entendi, continuar no site
               </button>
               
-              <Link href="/#contact" onClick={() => setIsModalOpen(false)} className="w-full">
-                <button
-                  className="w-full inline-flex items-center justify-center font-medium transition-all duration-200 text-sm rounded-md bg-transparent text-zinc-950 border border-zinc-200 hover:bg-zinc-50 dark:text-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900 py-3"
-                >
-                  Falar com Felipe
-                </button>
+              <Link
+                href="/#contact"
+                onClick={() => setIsModalOpen(false)}
+                className="inline-flex w-full items-center justify-center rounded-md border border-zinc-200 bg-transparent py-3 text-sm font-medium text-zinc-950 transition-all duration-200 hover:bg-zinc-50 dark:border-zinc-800 dark:text-zinc-50 dark:hover:bg-zinc-900"
+              >
+                Falar com Felipe
               </Link>
             </div>
           </Card>

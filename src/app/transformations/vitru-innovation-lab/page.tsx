@@ -30,7 +30,7 @@ export default function VitruInnovationLabPage() {
       <Header />
       <main className="flex-grow pb-24 pt-32">
         <Container>
-          <Link href="/#transformations" className="mb-10 inline-flex items-center gap-2 text-sm font-medium text-zinc-600 transition-colors hover:text-violet-600 dark:text-zinc-300 dark:hover:text-violet-400">
+          <Link href="/journal" className="mb-10 inline-flex items-center gap-2 text-sm font-medium text-zinc-600 transition-colors hover:text-violet-600 dark:text-zinc-300 dark:hover:text-violet-400">
             <ArrowLeft className="size-4" aria-hidden="true" /> Voltar para Transformações
           </Link>
 
