@@ -8,9 +8,9 @@ export function CaseNavigation({ slug }: { slug: string }) {
 
   return (
     <nav aria-label="Navegação entre cases" className="flex flex-wrap gap-4">
-      <Link href="/" className="underline underline-offset-4">Voltar para Home</Link>
-      {previous && <Link href={`/cases/${previous.slug}`} className="underline underline-offset-4">Case anterior</Link>}
-      {next && <Link href={`/cases/${next.slug}`} className="underline underline-offset-4">Próximo case</Link>}
+      <Link href="/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">Voltar para Home</Link>
+      {previous && <Link href={`/cases/${previous.slug}`} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">Case anterior</Link>}
+      {next && <Link href={`/cases/${next.slug}`} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">Próximo case</Link>}
     </nav>
   );
 }

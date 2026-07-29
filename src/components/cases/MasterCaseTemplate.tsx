@@ -3,16 +3,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { track } from "@/lib/analytics";
 import type { EditorialCase } from "@/data/editorial-model";
 import { CaseNavigation } from "./CaseNavigation";
 import { ExecutiveSummary } from "./ExecutiveSummary";
 import { ProjectHighlights } from "./ProjectHighlights";
-import { ProductTransformationJournal } from "../sections/ProductTransformationJournal";
 
 const odonto1Brands = ["Odonto1", "ImplantNews", "PerioNews", "Ortodontia SPO", "IN Congress", "Orto Congress"];
 
-export function MasterCaseTemplate({ item, journalHref }: { item: EditorialCase; journalHref?: string }) {
+export function MasterCaseTemplate({ item }: { item: EditorialCase }) {
   const [evidenceIndex, setEvidenceIndex] = useState(0);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const isVitruChat = item.slug === "vitruchat";
@@ -22,14 +20,6 @@ export function MasterCaseTemplate({ item, journalHref }: { item: EditorialCase;
   const hero = isVitruChat
     ? { src: "/imagem/vitru/vitruchat/v2-light/Pastas_MenuClosed&PropOpen&PromptOpen.png", alt: "Interface do VitruChat com painel de prompts" }
     : item.heroImage;
-  const journalContent = item.slug === "sofia"
-    ? { title: "As decisões de onboarding que prepararam a evolução da SofIA.", description: "Acompanhe os critérios de jornada, retenção e arquitetura conversacional que orientaram a experiência inicial do produto." }
-    : item.slug === "hub-correcoes"
-    ? { title: "As decisões de governança por trás do Hub de Correções.", description: "Conheça os critérios de Human-in-the-Loop, revisão humana, acessibilidade e consistência que orientaram a avaliação assistida por IA." }
-    : isOdonto1
-    ? { title: "Estratégia editorial, relacionamento e recorrência.", description: "Conheça a construção da estratégia Premium do Odonto1: pesquisa, arquitetura de produto, Inbound Marketing e automação para fortalecer o ecossistema digital." }
-    : { title: "As decisões que fizeram o VitruChat evoluir.", description: "Acompanhe os critérios de discovery, governança, acessibilidade e evolução que orientaram a plataforma corporativa de IA Generativa." };
-
   const changeEvidence = (offset: number) => {
     setEvidenceIndex((current) => (current + offset + item.evidence.length) % item.evidence.length);
   };
@@ -38,7 +28,7 @@ export function MasterCaseTemplate({ item, journalHref }: { item: EditorialCase;
     <article className="mx-auto max-w-5xl space-y-16 px-5 py-24 sm:px-8">
       <header className="space-y-6">
         <nav aria-label="Breadcrumb" className="text-sm text-zinc-500 dark:text-zinc-400">
-          <Link href="/" className="hover:text-zinc-950 dark:hover:text-white">Home</Link>
+          <Link href="/" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-950 dark:hover:text-white">Home</Link>
           <span className="px-2" aria-hidden="true">›</span>
           <span aria-current="page">{caseLabel}</span>
         </nav>
@@ -52,7 +42,7 @@ export function MasterCaseTemplate({ item, journalHref }: { item: EditorialCase;
             <p className="mt-5 text-sm text-zinc-300">{item.contribution.slice(0, 3).join(" · ")}</p>
           </div>
         </div>
-        <Link href="/" className="inline-flex font-medium underline underline-offset-4">← Voltar para Home</Link>
+        <Link href="/" target="_blank" rel="noopener noreferrer" className="inline-flex font-medium underline underline-offset-4">← Voltar para Home</Link>
       </header>
 
       <ExecutiveSummary item={item} />
@@ -127,7 +117,6 @@ export function MasterCaseTemplate({ item, journalHref }: { item: EditorialCase;
         </ul>
       </section>
 
-      {journalHref && <ProductTransformationJournal title={journalContent.title} description={journalContent.description} buttonLabel="Explorar o Product Transformation Journal" href={journalHref} onClick={() => track("journal_cta", { case_slug: item.slug })} />}
       <CaseNavigation slug={item.slug} />
     </article>
   );

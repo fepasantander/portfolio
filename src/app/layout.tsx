@@ -8,9 +8,6 @@ export const metadata: Metadata = {
   },
   description: "Transformo desafios complexos de negócios em produtos digitais escaláveis conectando Produto, Negócio e Engenharia.",
   metadataBase: new URL("https://felipe-santander.vercel.app"),
-  alternates: {
-    canonical: "/"
-  },
   robots: {
     index: true,
     follow: true,
@@ -18,7 +15,6 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Felipe Santander — Líder de Produto & Executivo de Estratégia",
     description: "Transformo desafios complexos de negócios em produtos digitais escaláveis conectando Produto, Negócio e Engenharia.",
-    url: "https://felipe-santander.vercel.app",
     siteName: "Felipe Santander — Portfolio",
     type: "website",
     locale: "pt_BR",

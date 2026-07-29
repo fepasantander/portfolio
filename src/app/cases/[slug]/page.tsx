@@ -3,13 +3,6 @@ import { notFound } from "next/navigation";
 import { MasterCaseTemplate } from "@/components/cases/MasterCaseTemplate";
 import { publishedPortfolioCases } from "@/data/case-production-pipeline";
 
-const journalDestinations: Record<string, string> = {
-  vitruchat: "/transformations/vitru-oportunidades-tecnologicas?tab=vitruchat",
-  "hub-correcoes": "/transformations/vitru-oportunidades-tecnologicas?tab=hub-correcoes",
-  sofia: "/transformations/vitru-oportunidades-tecnologicas?tab=sofia",
-  odonto1: "/transformations/vm-comunicacao?tab=odonto1",
-};
-
 export function generateStaticParams() {
   return publishedPortfolioCases.map((item) => ({ slug: item.slug }));
 }
@@ -40,6 +33,6 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
 
   return <>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": ["CreativeWork", "Project"], name: item.title, description: item.summary }) }} />
-    <MasterCaseTemplate item={item} journalHref={journalDestinations[item.slug]} />
+    <MasterCaseTemplate item={item} />
   </>;
 }

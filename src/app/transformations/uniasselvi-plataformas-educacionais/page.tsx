@@ -195,6 +195,8 @@ export default function UniasselviSubhomePage() {
           <div className="mb-10">
             <Link
               href="/journal"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-sm font-medium text-zinc-500 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-50 transition-colors"
             >
               <ArrowLeft className="h-4 w-4" />

@@ -44,6 +44,10 @@ export const About = () => {
             </span>
             . Utilizo sistemas de design estruturados para estabelecer um vocabulário comum, prototipagem ágil para validar ideias com dados reais, e um entendimento técnico aprofundado para colaborar diretamente com engenheiros.
           </Paragraph>
+
+          <Paragraph variant="base">
+            Inteligência Artificial amplia minha capacidade de investigar, experimentar e prototipar — sem substituir julgamento humano. Com Vibe Coding, aproximo Design de software executável para testar comportamentos, validar tecnicamente com Engenharia e aprender antes de transformar hipóteses em produto.
+          </Paragraph>
           
           <Paragraph variant="base" className="font-serif italic border-l-2 border-zinc-300 dark:border-zinc-800 pl-4 py-1 text-zinc-700 dark:text-zinc-300">
             &ldquo;O sucesso de um produto digital não é medido pela beleza da sua interface nas apresentações executivas. É medido pelo{" "}

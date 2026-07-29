@@ -100,7 +100,7 @@ const TransformationCard = ({
       {/* Button Action */}
       <div className="mt-8 pt-6 border-t border-zinc-100 dark:border-zinc-900/50">
         {slug ? (
-          <Link href={`/transformations/${slug}`} onClick={handleTransformationClick} className="inline-flex w-full items-center justify-center rounded-md border border-zinc-200 bg-transparent px-5 py-2.5 text-sm font-medium text-zinc-950 transition-colors hover:bg-zinc-50 focus:outline-none focus:ring-1 focus:ring-zinc-400 dark:border-zinc-800 dark:text-zinc-50 dark:hover:bg-zinc-900">
+          <Link href={`/transformations/${slug}`} target="_blank" rel="noopener noreferrer" onClick={handleTransformationClick} className="inline-flex w-full items-center justify-center rounded-md border border-zinc-200 bg-transparent px-5 py-2.5 text-sm font-medium text-zinc-950 transition-colors hover:bg-zinc-50 focus:outline-none focus:ring-1 focus:ring-zinc-400 dark:border-zinc-800 dark:text-zinc-50 dark:hover:bg-zinc-900">
             Visualizar Transformação
           </Link>
         ) : null}
