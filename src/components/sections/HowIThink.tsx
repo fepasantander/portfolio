@@ -1,111 +1,49 @@
-"use client";
-
-import React from "react";
 import { Container } from "../ui/Container";
 import { Heading } from "../ui/Heading";
 import { Paragraph } from "../ui/Paragraph";
-import { Card } from "../ui/Card";
-import { Search, Target, Code, Brain } from "lucide-react";
 
-export const HowIThink = () => {
-  const pillars = [
-    {
-      title: "Pesquisa quanti-quali aplicada",
-      icon: <Search className="h-5 w-5 text-zinc-950 dark:text-zinc-50 transition-colors duration-300 group-hover:text-yellow-600 dark:group-hover:text-[#ffff00]" />,
-      description: (
-        <>
-          Redução de incerteza operacional por meio de{" "}
-          <span className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-yellow-600 dark:group-hover:text-[#ffff00] transition-colors duration-300">
-            pesquisas de amostragem, entrevistas estruturadas
-          </span>{" "}
-          e testes de usabilidade com usuários finais e conselhos consultivos de especialistas.
-        </>
-      ),
-    },
-    {
-      title: "Concepção de fluxos e viabilidade",
-      icon: <Target className="h-5 w-5 text-zinc-950 dark:text-zinc-50 transition-colors duration-300 group-hover:text-yellow-600 dark:group-hover:text-[#ffff00]" />,
-      description: (
-        <>
-          Mapeamento detalhado de jornadas complexas,{" "}
-          <span className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-yellow-600 dark:group-hover:text-[#ffff00] transition-colors duration-300">
-            fluxogramas funcionais e protótipos de alta fidelidade
-          </span>{" "}
-          antes da escrita do código, eliminando ambiguidades estratégicas iniciais.
-        </>
-      ),
-    },
-    {
-      title: "Integração técnica e Handoff",
-      icon: <Code className="h-5 w-5 text-zinc-950 dark:text-zinc-50 transition-colors duration-300 group-hover:text-yellow-600 dark:group-hover:text-[#ffff00]" />,
-      description: (
-        <>
-          Alinhamento simbiótico diário com engenharia, definindo{" "}
-          <span className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-yellow-600 dark:group-hover:text-[#ffff00] transition-colors duration-300">
-            limitações de banco de dados, APIs e arquitetura
-          </span>{" "}
-          de componentes reutilizáveis para mitigar retrabalho de código.
-        </>
-      ),
-    },
-    {
-      title: "UX aplicada a IA & Data Systems",
-      icon: <Brain className="h-5 w-5 text-zinc-950 dark:text-zinc-50 transition-colors duration-300 group-hover:text-yellow-600 dark:group-hover:text-[#ffff00]" />,
-      description: (
-        <>
-          Modelagem de interfaces inteligentes tratando{" "}
-          <span className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-yellow-600 dark:group-hover:text-[#ffff00] transition-colors duration-300">
-            problemas de latência, tolerância a falhas
-          </span>{" "}
-          e feedback de status em tempo real em jornadas de agentes conversacionais e LLMs.
-        </>
-      ),
-    },
-  ];
+const capabilities = [
+  ["Research", "Investigo usuários, contexto, comportamento e necessidades para transformar hipóteses em evidências. Combino pesquisa qualitativa e quantitativa conforme o problema, reduzindo decisões baseadas apenas em percepção interna."],
+  ["Análise de Negócios", "Entendo objetivos, regras, restrições, atores e oportunidades antes de desenhar a solução. Conecto necessidades dos usuários ao que gera valor para o negócio e ao que realmente pode ser implementado."],
+  ["Arquitetura da Informação", "Organizo conteúdos, funcionalidades, hierarquias e fluxos para tornar sistemas complexos compreensíveis. Estruturo a informação para reduzir carga cognitiva e facilitar decisões."],
+  ["Visual & Interaction", "Transformo estratégia e arquitetura em interfaces claras e consistentes. Trabalho hierarquia visual, comportamento, estados e interação para que a experiência comunique tanto quanto funciona."],
+  ["Validação com T.I.", "Aproximo Design e Engenharia antes da entrega final. Valido viabilidade, componentes, integrações, responsividade, estados e restrições técnicas para reduzir retrabalho e distância entre proposta e implementação."],
+  ["UX Writing", "Trato linguagem como parte da interface. Estruturo mensagens, labels, feedbacks e orientações para reduzir ambiguidade, explicar decisões do sistema e ajudar o usuário a avançar."],
+  ["Prototipação", "Transformo hipóteses em experiências testáveis antes de comprometer esforço de desenvolvimento. Uso diferentes níveis de fidelidade conforme a pergunta que precisamos responder."],
+  ["Vibe Coding", "Uso desenvolvimento assistido por IA para aproximar design e software executável. Isso permite explorar hipóteses, criar protótipos funcionais e validar comportamento e viabilidade com muito mais velocidade."],
+  ["Inteligência Artificial", "Desenho experiências que incorporam IA considerando não apenas a interface, mas contexto, comportamento, confiança, governança e participação humana. Trabalho IA como capacidade de produto, não como feature isolada."],
+  ["UX Strategy", "Conecto evidências de usuários, objetivos de negócio, produto e tecnologia para orientar decisões de médio e longo prazo. UX deixa de ser apenas execução de interface e passa a participar da direção do produto."],
+] as const;
 
+function CapabilityCard({ capability, index, isClosing }: { capability: (typeof capabilities)[number]; index: number; isClosing?: boolean }) {
   return (
-    <section id="how-i-think" className="py-24 border-b border-zinc-100 dark:border-zinc-900">
-      <Container>
-        <div className="max-w-3xl">
-          <span className="text-xs uppercase tracking-widest font-mono text-zinc-400 dark:text-zinc-600 block mb-3">
-            Estratégia e Execução
-          </span>
-          <Heading level={2}>
-            Como resolvo problemas.
-          </Heading>
-          <Paragraph variant="lead" className="mt-4 max-w-2xl">
-            A evolução de um produto digital começa na clareza do método de trabalho. Sigo processos estruturados que reduzem o desperdício de esforço técnico e alinham a equipe aos objetivos do negócio.
-          </Paragraph>
-        </div>
-
-        {/* 4 Pillars Grid */}
-        <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8">
-          {pillars.map((pillar) => (
-            <Card 
-              key={pillar.title} 
-              className="relative z-10 flex flex-col bg-white dark:bg-zinc-950 border border-zinc-200/60 dark:border-zinc-900 shadow-sm group hover:border-yellow-500/80 dark:hover:border-[#ffff00]/80 transition-all duration-300"
-            >
-              <div className="flex items-center gap-3 mb-5">
-                <div className="p-2 rounded-md bg-zinc-100 dark:bg-zinc-900 text-zinc-950 dark:text-zinc-50 border border-zinc-200/40 dark:border-zinc-800 transition-colors duration-300 group-hover:border-yellow-500/40 dark:group-hover:border-[#ffff00]/40">
-                  {pillar.icon}
-                </div>
-                <Heading level={3} className="text-lg sm:text-xl font-medium m-0 transition-colors duration-300 group-hover:text-yellow-600 dark:group-hover:text-[#ffff00]">
-                  {pillar.title}
-                </Heading>
-              </div>
-              
-              <Paragraph variant="base" className="text-zinc-600 dark:text-zinc-400 leading-relaxed z-10 relative">
-                {pillar.description}
-              </Paragraph>
-
-              {/* Neon Underglow below the card body (CMYK Yellow & Subtle) */}
-              <div className="absolute -bottom-[1px] left-12 right-12 h-[1px] bg-[#ffff00]/30 rounded-full opacity-0 group-hover:opacity-100 blur-[3px] group-hover:blur-[6px] group-hover:shadow-[0_8px_20px_6px_rgba(255,255,0,0.35)] transition-all duration-500 pointer-events-none z-0" />
-            </Card>
-          ))}
-        </div>
-      </Container>
-    </section>
+    <article
+      tabIndex={0}
+      className={`group relative isolate overflow-hidden rounded-xl border border-zinc-200 bg-white p-6 outline-none transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-1 hover:border-[#e8f7ff] hover:shadow-lg focus-visible:-translate-y-1 focus-visible:border-[#e8f7ff] focus-visible:ring-2 focus-visible:ring-[#e8f7ff] focus-visible:ring-offset-4 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-[#e8f7ff] dark:focus-visible:border-[#e8f7ff] dark:focus-visible:ring-offset-black motion-reduce:transform-none ${isClosing ? "lg:col-start-2" : ""}`}
+    >
+      <span aria-hidden="true" className="pointer-events-none absolute -bottom-16 left-1/2 -z-10 h-44 w-[112%] -translate-x-1/2 rounded-full bg-[#e8f7ff] opacity-0 blur-2xl transition-opacity duration-300 group-hover:opacity-20 group-focus-visible:opacity-20 motion-reduce:transition-none" />
+      <span className="font-mono text-xs tracking-widest text-zinc-400 dark:text-zinc-500">{String(index + 1).padStart(2, "0")}</span>
+      <h3 className="mt-8 text-xl font-semibold tracking-tight text-zinc-950 dark:text-zinc-50">{capability[0]}</h3>
+      <p className="mt-4 text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">{capability[1]}</p>
+    </article>
   );
-};
+}
+
+export const HowIThink = () => (
+  <section id="how-i-think" aria-labelledby="how-i-think-title" className="border-b border-zinc-100 py-24 dark:border-zinc-900">
+    <Container>
+      <div className="max-w-3xl">
+        <span className="mb-3 block font-mono text-xs uppercase tracking-widest text-zinc-400 dark:text-zinc-600">Repertório conectado</span>
+        <Heading level={2} id="how-i-think-title">Como resolvo problemas.</Heading>
+        <Paragraph variant="lead" className="mt-4 max-w-3xl">Eu não aplico uma receita pronta. Combino diferentes disciplinas conforme a natureza do problema.</Paragraph>
+      </div>
+
+      <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {capabilities.slice(0, 9).map((capability, index) => <CapabilityCard key={capability[0]} capability={capability} index={index} />)}
+        <CapabilityCard capability={capabilities[9]} index={9} isClosing />
+      </div>
+    </Container>
+  </section>
+);
 
 export default HowIThink;

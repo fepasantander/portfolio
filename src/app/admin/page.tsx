@@ -14,6 +14,8 @@ export default function AdminPage() {
         <div className="mt-8">
           <Link
             href="/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-sm font-medium hover:underline"
           >
             <ArrowLeft className="h-4 w-4" />

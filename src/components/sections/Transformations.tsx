@@ -100,7 +100,7 @@ const TransformationCard = ({
       {/* Button Action */}
       <div className="mt-8 pt-6 border-t border-zinc-100 dark:border-zinc-900/50">
         {slug ? (
-          <Link href={`/transformations/${slug}`} onClick={handleTransformationClick} className="w-full block">
+          <Link href={`/transformations/${slug}`} target="_blank" rel="noopener noreferrer" onClick={handleTransformationClick} className="w-full block">
             <Button 
               variant="secondary" 
               className="w-full hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors"

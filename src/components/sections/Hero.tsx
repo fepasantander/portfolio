@@ -1,57 +1,17 @@
 "use client";
 
-import React, { useEffect } from "react";
 import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 import { Container } from "../ui/Container";
 import { Button } from "../ui/Button";
 import { Heading } from "../ui/Heading";
 import { Paragraph } from "../ui/Paragraph";
-import { ArrowRight } from "lucide-react";
 import { analytics } from "@/lib/analytics";
-import { supabase } from "@/lib/supabase/client";
-
-const LinkedinIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    {...props}
-  >
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-    <rect width="4" height="12" x="2" y="9" />
-    <circle cx="4" cy="4" r="2" />
-  </svg>
-);
 
 export const Hero = () => {
-  useEffect(() => {
-    const testSupabaseConnection = async () => {
-      try {
-        const { error } = await supabase.auth.getSession();
-        if (error) {
-          console.error("Supabase API Error:", error.message);
-        } else {
-          console.log("Supabase conectado com sucesso! Conexão ativa.");
-        }
-      } catch (err) {
-        console.error("Erro inesperado ao conectar ao Supabase:", err);
-      }
-    };
-    testSupabaseConnection();
-  }, []);
-
   const handlePrimaryClick = () => {
-    analytics.trackCTA("Hero: Explore Cases", "#cases");
-    const element = document.getElementById("cases");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+    analytics.trackCTA("Hero: Explore Cases", "#areas");
+    document.getElementById("areas")?.scrollIntoView({ behavior: "smooth" });
   };
 
   const handleLinkedInClick = () => {
@@ -59,74 +19,32 @@ export const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen pt-32 pb-20 flex items-center overflow-hidden">
-      {/* Background soft ambient glow */}
-      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-zinc-100/50 dark:bg-zinc-900/10 blur-[100px] pointer-events-none z-0" />
-      
-      {/* Background grid lines at 33% opacity */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(128,128,128,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(128,128,128,0.08)_1px,transparent_1px)] bg-[size:48px_48px] opacity-[0.33] pointer-events-none z-0" />
-      
-      <Container className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-        {/* Left Content Column */}
-        <div className="lg:col-span-7 flex flex-col items-start text-left">
-          <Heading level={1} className="leading-tight sm:leading-none">
-            Felipe Santander transforma desafios complexos em produtos claros, escaláveis e orientados por estratégia.
-          </Heading>
-          
-          <Paragraph variant="lead" className="mt-6 max-w-xl">
-            Uno Product Discovery, UX, IA Generativa e desenvolvimento front-end para conectar Produto, Engenharia e Negócio em decisões que avançam produtos digitais.
-          </Paragraph>
-          
-          <div className="mt-10 flex flex-wrap gap-4 items-center">
-            <Button variant="primary" onClick={handlePrimaryClick} className="gap-2 group">
-              Ver Cases
-              <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+    <section className="relative flex min-h-screen items-center overflow-hidden pb-20 pt-32">
+      <div className="pointer-events-none absolute left-1/4 top-1/4 z-0 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-zinc-100/50 blur-[100px] dark:bg-zinc-900/10" />
+      <div className="pointer-events-none absolute inset-0 z-0 bg-[linear-gradient(to_right,rgba(128,128,128,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(128,128,128,0.08)_1px,transparent_1px)] bg-[size:48px_48px] opacity-[0.33]" />
+
+      <Container className="relative z-10 grid items-center gap-12 lg:grid-cols-12 lg:gap-8">
+        <div className="flex flex-col items-start text-left lg:col-span-7">
+          <p className="mb-5 font-mono text-xs uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400">Felipe Santander</p>
+          <Heading level={1} className="max-w-4xl leading-tight sm:leading-none">Complexidade transformada em estratégia, design e impacto.</Heading>
+          <Paragraph variant="lead" className="mt-6 max-w-xl">Eu conecto usuários, negócio e tecnologia para transformar problemas complexos em produtos digitais melhores.</Paragraph>
+
+          <div className="mt-10 flex flex-wrap items-center gap-4">
+            <Button variant="primary" onClick={handlePrimaryClick} className="group gap-2">
+              Conheça as áreas
+              <ArrowRight aria-hidden="true" className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1 motion-reduce:transform-none" />
             </Button>
-            
-            <a 
-              href="https://www.linkedin.com/in/felipe-santander/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              onClick={handleLinkedInClick}
-              className="inline-flex items-center justify-center gap-2 rounded-md border border-zinc-200 bg-transparent px-5 py-2.5 text-sm font-medium text-zinc-950 transition-all duration-200 hover:bg-zinc-50 focus:outline-none focus:ring-1 focus:ring-zinc-400 dark:border-zinc-800 dark:text-zinc-50 dark:hover:bg-zinc-900"
-            >
-              <LinkedinIcon className="h-4 w-4" />
+            <a href="https://www.linkedin.com/in/felipe-santander/" target="_blank" rel="noopener noreferrer" onClick={handleLinkedInClick} className="inline-flex items-center justify-center rounded-md border border-zinc-200 bg-transparent px-5 py-2.5 text-sm font-medium text-zinc-950 transition-colors duration-200 hover:bg-zinc-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:ring-offset-2 dark:border-zinc-800 dark:text-zinc-50 dark:hover:bg-zinc-900 dark:focus-visible:ring-offset-black">
               LinkedIn
             </a>
           </div>
         </div>
 
-        {/* Right Visual Column (Systems Abstract Composition) */}
-        <div className="lg:col-span-5 flex flex-col items-center lg:items-end w-full relative z-10">
-          <div className="w-full max-w-[480px] h-[350px] sm:h-[450px] lg:h-[480px] bg-zinc-100/[0.01] dark:bg-zinc-900/[0.01] overflow-hidden flex items-center justify-center relative group">
-            <Image 
-              src="/imagem/hero_alignment_visualization.png"
-              alt="Conectar sistemas, pessoas e decisões para transformar complexidade em produtos escaláveis (Estratégia, Design e Impacto)"
-              width={480}
-              height={480}
-              priority
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-85 group-hover:opacity-100"
-            />
-            {/* Vignette overlay fading borders to page background (white in light mode / black in dark mode) */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_15%,white_75%)] dark:bg-[radial-gradient(circle_at_center,transparent_15%,black_75%)] pointer-events-none transition-colors duration-300" />
-            
-            {/* High-visibility active branding label - Larger area & font */}
-            <div className="absolute bottom-8 bg-black/95 dark:bg-zinc-950/95 backdrop-blur-md px-8 sm:px-10 py-3.5 sm:py-4 rounded-xl border border-zinc-800/80 shadow-[0_25px_60px_rgba(0,0,0,0.85)] text-[11px] sm:text-xs font-bold uppercase tracking-[0.25em] text-zinc-100 font-mono transition-all duration-300 group-hover:scale-105 hover:border-zinc-500">
-              Estratégia, Design e Impacto.
-            </div>
-          </div>
-
-          {/* Premium Reflection Below */}
-          <div className="w-full max-w-[480px] h-[100px] sm:h-[120px] overflow-hidden pointer-events-none select-none relative opacity-20 dark:opacity-15 transform scale-y-[-1] origin-top bg-zinc-100/[0.01] dark:bg-zinc-900/[0.01]">
-            <Image 
-              src="/imagem/hero_alignment_visualization.png"
-              alt=""
-              width={480}
-              height={480}
-              className="w-full h-[350px] sm:h-[450px] lg:h-[480px] object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-black via-white/85 dark:via-black/85 to-transparent" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_15%,white_75%)] dark:bg-[radial-gradient(circle_at_center,transparent_15%,black_75%)]" />
+        <div className="relative flex w-full flex-col items-center lg:col-span-5 lg:items-end">
+          <div className="group relative flex h-[350px] w-full max-w-[480px] items-center justify-center overflow-hidden sm:h-[450px] lg:h-[480px]">
+            <Image src="/imagem/hero_alignment_visualization.png" alt="Conexão entre sistemas, pessoas e decisões" width={480} height={480} priority className="h-full w-full object-cover opacity-85 transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transform-none" />
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_15%,white_75%)] dark:bg-[radial-gradient(circle_at_center,transparent_15%,black_75%)]" />
+            <p className="absolute bottom-8 rounded-xl border border-zinc-800/80 bg-black/95 px-8 py-3.5 font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-zinc-100 shadow-[0_25px_60px_rgba(0,0,0,0.85)]">Estratégia, Design e Impacto</p>
           </div>
         </div>
       </Container>

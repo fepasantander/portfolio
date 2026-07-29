@@ -1,119 +1,89 @@
 "use client";
 
-import React from "react";
+import Link from "next/link";
+import { BriefcaseBusiness, Download, Mail, MessageCircle, MoveUpRight } from "lucide-react";
 import { Container } from "../ui/Container";
 import { Heading } from "../ui/Heading";
 import { Paragraph } from "../ui/Paragraph";
-import { Download, Mail, MessageCircle } from "lucide-react";
 import { analytics } from "@/lib/analytics";
+import { contactNavigation, getPlatformArea, getWhatsAppHref } from "@/lib/platform-navigation";
 
-const LinkedinIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    {...props}
-  >
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-    <rect width="4" height="12" x="2" y="9" />
-    <circle cx="4" cy="4" r="2" />
-  </svg>
-);
+const studioArea = getPlatformArea("studio33");
+const careerWhatsAppHref = getWhatsAppHref(contactNavigation.careerWhatsAppMessage);
+const studioWhatsAppHref = getWhatsAppHref(contactNavigation.studio33WhatsAppMessage);
+const executiveWhatsAppHref = getWhatsAppHref("Olá Felipe, venho através de seu Portfólio - Executive e gostaria de ...");
 
-export const CTA = () => {
-  const handleLinkedInClick = () => {
-    analytics.trackCTA("CTA Section: LinkedIn", "https://www.linkedin.com/in/felipe-santander/");
-  };
+const focusClass = "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-50 focus-visible:ring-offset-2 focus-visible:ring-offset-black";
 
-  const handleDownloadCVCompletoClick = () => {
-    analytics.trackDownload("cv-2026-07--felipe-santander-completo.pdf");
-    analytics.trackCTA("CTA Section: Download CV Completo", "/pdf/cv-2026-07--felipe-santander-completo.pdf");
-  };
-
-  const handleDownloadCVResumoClick = () => {
-    analytics.trackDownload("cv-2026-07--felipe-santander-resumo.pdf");
-    analytics.trackCTA("CTA Section: Download CV Resumo", "/pdf/cv-2026-07--felipe-santander-resumo.pdf");
-  };
-
+function ExecutiveCTA() {
   return (
-    <section id="contact" className="py-28 relative overflow-hidden bg-white dark:bg-black">
-      {/* Background ambient lighting */}
-      <div className="absolute bottom-0 right-1/4 translate-x-1/2 translate-y-1/2 w-[350px] h-[350px] rounded-full bg-zinc-50 dark:bg-zinc-950/10 blur-[100px] pointer-events-none z-0" />
-
-      <Container className="relative z-10 text-center max-w-4xl">
-        <Heading level={2} className="text-3xl sm:text-4xl lg:text-5xl tracking-tight">
-          Vamos construir produtos melhores juntos.
-        </Heading>
-        
-        <Paragraph variant="lead" className="mt-6 max-w-xl mx-auto">
-          Estou disponível para apoiar organizações por meio de consultorias estratégicas, estruturação de times de design e posições executivas de produto. Vamos conversar sobre como acelerar a maturidade do seu ecossistema digital.
-        </Paragraph>
-
-        {/* Informações de Contato Direto */}
-        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-6 text-sm text-zinc-500 dark:text-zinc-400 font-mono">
-          <a 
-            href="mailto:fepasantander@gmail.com" 
-            onClick={() => analytics.trackCTA("CTA Section: Email", "mailto:fepasantander@gmail.com")}
-            className="flex items-center gap-2 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors"
-          >
-            <Mail className="h-4 w-4" />
-            fepasantander@gmail.com
-          </a>
-          <span className="hidden sm:inline text-zinc-300 dark:text-zinc-800">|</span>
-          <a 
-            href={`https://wa.me/5511953423954?text=${encodeURIComponent("Olá Felipe, venho através de seu Portfólio e gostaria de ...")}`}
-            onClick={() => analytics.trackCTA("CTA Section: WhatsApp", "https://wa.me/5511953423954")}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors"
-          >
-            <MessageCircle className="h-4 w-4" />
-            +55 11 953.423.954
-          </a>
-        </div>
-
-        {/* Dynamic CTAs grid */}
-        <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a 
-            href="https://www.linkedin.com/in/felipe-santander/" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            onClick={handleLinkedInClick}
-            className="inline-flex w-full items-center justify-center gap-2 rounded-md border border-zinc-950 bg-zinc-950 px-5 py-2.5 text-sm font-medium text-zinc-50 shadow-sm transition-all duration-200 hover:bg-zinc-800 focus:outline-none focus:ring-1 focus:ring-zinc-400 sm:w-auto dark:border-zinc-50 dark:bg-zinc-50 dark:text-zinc-950 dark:hover:bg-zinc-200"
-          >
-            <LinkedinIcon className="h-4 w-4" />
-            LinkedIn
-          </a>
-
-          <a 
-            href="/pdf/cv-2026-07--felipe-santander-completo.pdf" 
-            download="cv-2026-07--felipe-santander-completo.pdf"
-            onClick={handleDownloadCVCompletoClick}
-            className="inline-flex w-full items-center justify-center gap-2 rounded-md border border-zinc-200 bg-transparent px-5 py-2.5 text-sm font-medium text-zinc-950 transition-all duration-200 hover:bg-zinc-50 focus:outline-none focus:ring-1 focus:ring-zinc-400 sm:w-auto dark:border-zinc-800 dark:text-zinc-50 dark:hover:bg-zinc-900"
-          >
-            <Download className="h-4 w-4" />
-            CV Completo (PDF)
-          </a>
-
-          <a 
-            href="/pdf/cv-2026-07--felipe-santander-resumo.pdf" 
-            download="cv-2026-07--felipe-santander-resumo.pdf"
-            onClick={handleDownloadCVResumoClick}
-            className="inline-flex w-full items-center justify-center gap-2 rounded-md border border-zinc-200 bg-transparent px-5 py-2.5 text-sm font-medium text-zinc-950 transition-all duration-200 hover:bg-zinc-50 focus:outline-none focus:ring-1 focus:ring-zinc-400 sm:w-auto dark:border-zinc-800 dark:text-zinc-50 dark:hover:bg-zinc-900"
-          >
-            <Download className="h-4 w-4" />
-            CV Resumo (PDF)
-          </a>
-
+    <section id="contact" aria-labelledby="executive-contact-title" className="bg-black py-28 text-zinc-50 sm:py-36">
+      <Container>
+        <div className="border-t border-zinc-800 pt-12 sm:pt-16">
+          <Heading level={2} id="executive-contact-title" className="max-w-5xl text-left text-5xl leading-[0.98] tracking-[-0.04em] text-white sm:text-6xl lg:text-7xl">Vamos construir produtos melhores juntos.</Heading>
+          <Paragraph variant="lead" className="mx-auto mt-14 max-w-2xl text-center leading-relaxed text-zinc-300">Estou disponível para apoiar organizações em contextos que precisam estruturar UX, conectar Produto, Design, Tecnologia e Negócio e transformar complexidade em direção, processos e entregas mais consistentes.</Paragraph>
+          <div className="mt-9 flex flex-wrap items-center justify-center gap-x-4 gap-y-3 text-sm text-zinc-300">
+            <a href={`mailto:${contactNavigation.email}`} onClick={() => analytics.trackCTA("Executive CTA: Email", `mailto:${contactNavigation.email}`)} className={`inline-flex items-center gap-2 transition-colors hover:text-[#ff00ff] ${focusClass}`}><Mail aria-hidden="true" className="h-4 w-4" />{contactNavigation.email}</a>
+            <span aria-hidden="true" className="text-zinc-600">|</span>
+            <a href={executiveWhatsAppHref} target="_blank" rel="noopener noreferrer" onClick={() => analytics.trackCTA("Executive CTA: WhatsApp", executiveWhatsAppHref)} className={`inline-flex items-center gap-2 transition-colors hover:text-[#ff00ff] ${focusClass}`}><MessageCircle aria-hidden="true" className="h-4 w-4" />WhatsApp</a>
+          </div>
+          <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
+            <a href={contactNavigation.linkedInHref} target="_blank" rel="noopener noreferrer" className={`inline-flex w-full items-center justify-center rounded-md bg-white px-5 py-3 text-sm font-medium text-zinc-950 transition-colors hover:bg-[#ff00ff] sm:w-auto ${focusClass}`}>LinkedIn</a>
+            <a href={contactNavigation.curriculum.complete} download className={`inline-flex w-full items-center justify-center gap-2 rounded-md border border-zinc-700 px-5 py-3 text-sm font-medium text-zinc-100 transition-colors hover:border-[#ff00ff] hover:text-[#ff00ff] sm:w-auto ${focusClass}`}><Download aria-hidden="true" className="h-4 w-4" />CV Completo (PDF)</a>
+            <a href={contactNavigation.curriculum.summary} download className={`inline-flex w-full items-center justify-center gap-2 rounded-md border border-zinc-700 px-5 py-3 text-sm font-medium text-zinc-100 transition-colors hover:border-[#ff00ff] hover:text-[#ff00ff] sm:w-auto ${focusClass}`}><Download aria-hidden="true" className="h-4 w-4" />CV Resumo (PDF)</a>
+          </div>
         </div>
       </Container>
     </section>
+  );
+}
+
+export const CTA = ({ variant = "default" }: { variant?: "default" | "executive" }) => {
+  const executive = variant === "executive";
+
+  if (executive) return <ExecutiveCTA />;
+
+  return (
+  <section id="contact" aria-labelledby="contact-title" className="relative overflow-hidden bg-black py-28 text-zinc-50">
+    <Container>
+      <div className="mx-auto max-w-3xl text-center">
+        <Heading level={2} id="contact-title" className="text-3xl tracking-tight text-zinc-50 sm:text-4xl lg:text-5xl">Vamos construir produtos melhores juntos.</Heading>
+        <Paragraph variant="lead" className="mx-auto mt-6 max-w-2xl text-zinc-300">Escolha o contexto da conversa. Para oportunidades de carreira, fale diretamente comigo. Para um projeto digital objetivo, conheça o Studio 33.</Paragraph>
+      </div>
+
+      <div className="mx-auto mt-12 grid max-w-4xl gap-5 md:grid-cols-2">
+        <div className="group relative isolate overflow-hidden rounded-xl border border-zinc-700 bg-black p-7">
+          <span aria-hidden="true" className="pointer-events-none absolute -bottom-28 left-0 -z-10 h-64 w-64 rounded-full bg-[#00ffff] opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-25 group-focus-within:opacity-25 motion-reduce:transition-none" />
+          <span aria-hidden="true" className="pointer-events-none absolute -top-28 right-0 -z-10 h-64 w-64 rounded-full bg-[#ff00ff] opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-25 group-focus-within:opacity-25 motion-reduce:transition-none" />
+          <BriefcaseBusiness aria-hidden="true" className="h-5 w-5" />
+          <h3 className="mt-8 text-xl font-semibold tracking-tight">Carreira</h3>
+          <p className="mt-3 text-sm leading-relaxed text-zinc-300">Para contratação de Felipe em um time, posição ou desafio de produto.</p>
+          <a href={careerWhatsAppHref} target="_blank" rel="noopener noreferrer" onClick={() => analytics.trackCTA("CTA Section: WhatsApp", careerWhatsAppHref)} className={`mt-8 inline-flex items-center gap-2 rounded-md bg-zinc-50 px-4 py-2.5 text-sm font-medium text-zinc-950 transition-colors hover:bg-[#00ffff] ${focusClass}`}>
+            <MessageCircle aria-hidden="true" className="h-4 w-4" />Conversar pelo WhatsApp
+          </a>
+          <div className="mt-6 flex flex-wrap gap-x-5 gap-y-3 text-sm">
+            <a href={`mailto:${contactNavigation.email}`} onClick={() => analytics.trackCTA("CTA Section: Email", `mailto:${contactNavigation.email}`)} className={`inline-flex items-center gap-2 text-zinc-300 transition-colors hover:text-[#00ffff] ${focusClass}`}><Mail aria-hidden="true" className="h-4 w-4" />E-mail</a>
+            <a href={contactNavigation.linkedInHref} target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-2 text-zinc-300 transition-colors hover:text-[#00ffff] ${focusClass}`}><span aria-hidden="true" className="inline-flex h-4 w-4 items-center justify-center rounded-sm border border-current text-[10px] font-semibold">in</span>LinkedIn</a>
+          </div>
+          <div className="mt-6 flex flex-wrap gap-x-5 gap-y-3 text-sm">
+            <a href={contactNavigation.curriculum.complete} download className={`inline-flex items-center gap-2 text-zinc-300 transition-colors hover:text-[#ff00ff] ${focusClass}`}><Download aria-hidden="true" className="h-4 w-4" />Currículo completo</a>
+            <a href={contactNavigation.curriculum.summary} download className={`inline-flex items-center gap-2 text-zinc-300 transition-colors hover:text-[#ff00ff] ${focusClass}`}><Download aria-hidden="true" className="h-4 w-4" />Currículo resumo</a>
+          </div>
+        </div>
+
+        <div className="group relative isolate overflow-hidden rounded-xl border border-zinc-700 bg-black p-7">
+          <span aria-hidden="true" className="pointer-events-none absolute -bottom-28 left-1/2 -z-10 h-72 w-[130%] -translate-x-1/2 rounded-full bg-[#ffff00] opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-25 group-focus-within:opacity-25 motion-reduce:transition-none" />
+          <MoveUpRight aria-hidden="true" className="h-5 w-5" />
+          <h3 className="mt-8 text-xl font-semibold tracking-tight">Projeto</h3>
+          <p className="mt-3 text-sm leading-relaxed text-zinc-300">Para projetos digitais objetivos: descubra como o {studioArea.label} pode apoiar a sua iniciativa.</p>
+          <a href={studioWhatsAppHref} target="_blank" rel="noopener noreferrer" onClick={() => analytics.trackCTA("CTA Section: Studio WhatsApp", studioWhatsAppHref)} className={`mt-8 inline-flex items-center gap-2 rounded-md bg-[#ffff00] px-4 py-2.5 text-sm font-medium text-zinc-950 transition-colors hover:bg-zinc-50 ${focusClass}`}>
+            <MessageCircle aria-hidden="true" className="h-4 w-4" />Quero fazer um projeto pelo Studio 33
+          </a>
+          <Link href={studioArea.href} target="_blank" rel="noopener noreferrer" className={`mt-6 inline-flex items-center gap-2 text-sm font-medium text-zinc-300 transition-colors hover:text-[#ffff00] ${focusClass}`}>Conhecer o Studio 33 <MoveUpRight aria-hidden="true" className="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 motion-reduce:transform-none" /></Link>
+        </div>
+      </div>
+    </Container>
+  </section>
   );
 };
 

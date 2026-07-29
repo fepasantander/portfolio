@@ -1,8 +1,9 @@
-export const portfolioNavigation = [
-  { label: "Sobre", href: "/sobre" },
-  { label: "Journal", href: "/journal" },
-  { label: "Contato", href: "/#contact" },
-] as const;
+import { journalCaseReferences } from "@/data/portfolio-content";
+
+export {
+  contactNavigation,
+  institutionalNavigation,
+  platformAreas,
+} from "./platform-navigation";
 
 export const publishedJournalCases = journalCaseReferences;
-import { journalCaseReferences } from "@/data/portfolio-content";

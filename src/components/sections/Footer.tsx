@@ -1,44 +1,40 @@
 "use client";
 
-import React from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Container } from "../ui/Container";
-import { analytics } from "@/lib/analytics";
+import { contactNavigation, institutionalNavigation, platformAreas } from "@/lib/platform-navigation";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
-
-  const handleLinkClick = (label: string) => {
-    analytics.trackCTA(`Footer: ${label}`, "https://www.linkedin.com/in/felipe-santander/");
-  };
+  const pathname = usePathname() ?? "/";
+  const opensAnotherDocument = (href: string) => (href.split("#")[0] || "/") !== pathname;
 
   return (
-    <footer className="py-12 border-t border-zinc-100 dark:border-zinc-900 bg-white dark:bg-black text-zinc-500 dark:text-zinc-500 text-xs">
-      <Container className="flex flex-col sm:flex-row items-center justify-between gap-4">
-        {/* Name and Positioning */}
-        <div className="flex flex-col items-center sm:items-start text-center sm:text-left gap-1">
-          <span className="font-semibold text-zinc-900 dark:text-zinc-100">
+    <footer className="border-t border-zinc-100 bg-white py-12 text-xs text-zinc-500 dark:border-zinc-900 dark:bg-black dark:text-zinc-500">
+      <Container className="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
+        <div className="flex flex-col gap-1">
+          <Link href="/" target={opensAnotherDocument("/") ? "_blank" : undefined} rel={opensAnotherDocument("/") ? "noopener noreferrer" : undefined} className="w-fit font-semibold text-zinc-900 transition-colors hover:text-zinc-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:ring-offset-2 dark:text-zinc-100 dark:hover:text-zinc-300 dark:focus-visible:ring-offset-black">
             Felipe Santander
-          </span>
-          <span>
-            Líder de Produto &amp; Executivo de Estratégia
-          </span>
+          </Link>
+          <span>Líder de Produto &amp; Executivo de Estratégia</span>
         </div>
 
-        {/* Links and Copyright */}
-        <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8">
-          <a
-            href="https://www.linkedin.com/in/felipe-santander/"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => handleLinkClick("LinkedIn")}
-            className="hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors"
-          >
-            LinkedIn
-          </a>
-          <span>
-            &copy; {currentYear} Felipe Santander. Todos os direitos reservados.
-          </span>
-        </div>
+        <nav aria-label="Navegação do rodapé" className="flex max-w-xl flex-wrap gap-x-5 gap-y-3 sm:justify-end">
+          {platformAreas.map((area) => (
+            <Link key={area.id} href={area.href} target={opensAnotherDocument(area.href) ? "_blank" : undefined} rel={opensAnotherDocument(area.href) ? "noopener noreferrer" : undefined} className="transition-colors hover:text-zinc-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:ring-offset-2 dark:hover:text-zinc-50 dark:focus-visible:ring-offset-black">
+              {area.label}
+            </Link>
+          ))}
+          <Link href={institutionalNavigation.href} target={opensAnotherDocument(institutionalNavigation.href) ? "_blank" : undefined} rel={opensAnotherDocument(institutionalNavigation.href) ? "noopener noreferrer" : undefined} className="transition-colors hover:text-zinc-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:ring-offset-2 dark:hover:text-zinc-50 dark:focus-visible:ring-offset-black">
+            {institutionalNavigation.label}
+          </Link>
+          <Link href={contactNavigation.href} target={opensAnotherDocument(contactNavigation.href) ? "_blank" : undefined} rel={opensAnotherDocument(contactNavigation.href) ? "noopener noreferrer" : undefined} className="transition-colors hover:text-zinc-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:ring-offset-2 dark:hover:text-zinc-50 dark:focus-visible:ring-offset-black">
+            {contactNavigation.label}
+          </Link>
+        </nav>
+
+        <span>&copy; {currentYear} Felipe Santander. Todos os direitos reservados.</span>
       </Container>
     </footer>
   );

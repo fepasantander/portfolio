@@ -15,37 +15,41 @@ interface TestimonialData {
   linkedin: string;
   whatsapp?: string;
   whatsappLocked?: boolean;
+  accent?: "cyan" | "magenta" | "yellow";
   text: React.ReactNode;
 }
 
-const getHoverStyles = (index: number) => {
-  const mode = index % 3;
-  if (mode === 0) {
+const getHoverStyles = (accent: "cyan" | "magenta" | "yellow") => {
+  if (accent === "cyan") {
     // Cyan
     return {
-      border: "hover:border-cyan-500/80 dark:hover:border-[#00ffff]/80",
-      quote: "group-hover:text-cyan-600 dark:group-hover:text-[#00ffff]",
-      initials: "group-hover:border-cyan-500/40 dark:group-hover:border-[#00ffff]/40 group-hover:text-cyan-600 dark:group-hover:text-[#00ffff]",
-      underglow: "bg-[#00ffff]/30 group-hover:shadow-[0_8px_20px_6px_rgba(0,255,255,0.35)]",
+      border: "hover:border-[#00ffff] focus-within:border-[#00ffff] dark:hover:border-[#00ffff] dark:focus-within:border-[#00ffff]",
+      quote: "group-hover:text-[#00ffff] group-focus-within:text-[#00ffff]",
+      initials: "group-hover:border-[#00ffff] group-hover:bg-[#00ffff] group-hover:text-zinc-950 group-focus-within:border-[#00ffff] group-focus-within:bg-[#00ffff] group-focus-within:text-zinc-950",
+      underglow: "bg-[#00ffff]/30 group-hover:opacity-100 group-hover:shadow-[0_8px_20px_6px_rgba(0,255,255,0.35)] group-focus-within:opacity-100 group-focus-within:shadow-[0_8px_20px_6px_rgba(0,255,255,0.35)]",
     };
-  } else if (mode === 1) {
+  } else if (accent === "yellow") {
     // Yellow
     return {
-      border: "hover:border-yellow-500/80 dark:hover:border-[#ffff00]/80",
-      quote: "group-hover:text-yellow-600 dark:group-hover:text-[#ffff00]",
-      initials: "group-hover:border-yellow-500/40 dark:group-hover:border-[#ffff00]/40 group-hover:text-yellow-600 dark:group-hover:text-[#ffff00]",
-      underglow: "bg-[#ffff00]/30 group-hover:shadow-[0_8px_20px_6px_rgba(255,255,0,0.35)]",
+      border: "hover:border-[#ffff00] focus-within:border-[#ffff00] dark:hover:border-[#ffff00] dark:focus-within:border-[#ffff00]",
+      quote: "group-hover:text-[#ffff00] group-focus-within:text-[#ffff00]",
+      initials: "group-hover:border-[#ffff00] group-hover:bg-[#ffff00] group-hover:text-zinc-950 group-focus-within:border-[#ffff00] group-focus-within:bg-[#ffff00] group-focus-within:text-zinc-950",
+      underglow: "bg-[#ffff00]/30 group-hover:opacity-100 group-hover:shadow-[0_8px_20px_6px_rgba(255,255,0,0.35)] group-focus-within:opacity-100 group-focus-within:shadow-[0_8px_20px_6px_rgba(255,255,0,0.35)]",
     };
   } else {
     // Magenta
     return {
-      border: "hover:border-pink-500/80 dark:hover:border-[#ff00ff]/80",
-      quote: "group-hover:text-pink-600 dark:group-hover:text-[#ff00ff]",
-      initials: "group-hover:border-pink-500/40 dark:group-hover:border-[#ff00ff]/40 group-hover:text-pink-600 dark:group-hover:text-[#ff00ff]",
-      underglow: "bg-[#ff00ff]/30 group-hover:shadow-[0_8px_20px_6px_rgba(255,0,255,0.35)]",
+      border: "hover:border-[#ff00ff] focus-within:border-[#ff00ff] dark:hover:border-[#ff00ff] dark:focus-within:border-[#ff00ff]",
+      quote: "group-hover:text-[#ff00ff] group-focus-within:text-[#ff00ff]",
+      initials: "group-hover:border-[#ff00ff] group-hover:bg-[#ff00ff] group-hover:text-zinc-950 group-focus-within:border-[#ff00ff] group-focus-within:bg-[#ff00ff] group-focus-within:text-zinc-950",
+      underglow: "bg-[#ff00ff]/30 group-hover:opacity-100 group-hover:shadow-[0_8px_20px_6px_rgba(255,0,255,0.35)] group-focus-within:opacity-100 group-focus-within:shadow-[0_8px_20px_6px_rgba(255,0,255,0.35)]",
     };
   }
 };
+
+const cyanHighlight = "font-semibold text-zinc-900 transition-colors duration-300 dark:text-zinc-100 group-hover:text-[#00ffff] group-focus-within:text-[#00ffff]";
+const yellowHighlight = "font-semibold text-zinc-900 transition-colors duration-300 dark:text-zinc-100 group-hover:text-[#ffff00] group-focus-within:text-[#ffff00]";
+const magentaHighlight = "font-semibold text-zinc-900 transition-colors duration-300 dark:text-zinc-100 group-hover:text-[#ff00ff] group-focus-within:text-[#ff00ff]";
 
 export const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -61,11 +65,11 @@ export const Testimonials = () => {
       text: (
         <>
           Trabalho há anos com o Felipe, passamos por três empresas em comum (...). Recomendo-o tanto pela{" "}
-          <span className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-cyan-600 dark:group-hover:text-[#00ffff] transition-colors duration-300">
+          <span className={cyanHighlight}>
             expertise técnica no desenvolvimento front-end
           </span>
           , quanto pela proatividade em aprender habilidades como marketing digital, UX, gestão de projetos web e{" "}
-          <span className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-cyan-600 dark:group-hover:text-[#00ffff] transition-colors duration-300">
+          <span className={cyanHighlight}>
             planejamento estratégico de negócios, buscando sempre a excelência
           </span>
           .
@@ -81,15 +85,15 @@ export const Testimonials = () => {
       text: (
         <>
           O Felipe é um profissional extremamente habilidoso,{" "}
-          <span className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-yellow-600 dark:group-hover:text-[#ffff00] transition-colors duration-300">
+          <span className={yellowHighlight}>
             guiado pelas boas práticas de UX
           </span>
           . Abraça e supera desafios{" "}
-          <span className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-yellow-600 dark:group-hover:text-[#ffff00] transition-colors duration-300">
+          <span className={yellowHighlight}>
             tornando questões complexas em soluções simples
           </span>
           , práticas e de alta qualidade. Possui alto padrão de qualidade nas entregas e busca constante auto-aperfeiçoamento. É ético, resiliente e de{" "}
-          <span className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-yellow-600 dark:group-hover:text-[#ffff00] transition-colors duration-300">
+          <span className={yellowHighlight}>
             alta performance
           </span>
           .
@@ -106,11 +110,11 @@ export const Testimonials = () => {
       text: (
         <>
           Felipe Santander é um grande profissional! Humano,{" "}
-          <span className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-pink-600 dark:group-hover:text-[#ff00ff] transition-colors duration-300">
+          <span className={magentaHighlight}>
             bastante técnico e sabe conduzir bem os processos de UX
           </span>
           . Estabelece{" "}
-          <span className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-pink-600 dark:group-hover:text-[#ff00ff] transition-colors duration-300">
+          <span className={magentaHighlight}>
             boa interação entre os objetivos de negócio, o time de desenvolvimento e as necessidades do usuário
           </span>
           . Dedicado e entusiasta da área, busca desenvolver a cultura de Design.
@@ -127,15 +131,15 @@ export const Testimonials = () => {
       text: (
         <>
           Profissional excepcional! Se dedica em{" "}
-          <span className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-cyan-600 dark:group-hover:text-[#00ffff] transition-colors duration-300">
+          <span className={cyanHighlight}>
             fazer seu trabalho do jeito certo, com muito capricho
           </span>{" "}
           e{" "}
-          <span className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-cyan-600 dark:group-hover:text-[#00ffff] transition-colors duration-300">
+          <span className={cyanHighlight}>
             suportado por pilares técnicos
           </span>
           . O entusiasmo no resultado é contagiante, e o que mais chama atenção é que está o tempo todo antenado e se atualizando.{" "}
-          <span className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-cyan-600 dark:group-hover:text-[#00ffff] transition-colors duration-300">
+          <span className={cyanHighlight}>
             Eu trabalharia com o Santander em qualquer empreitada
           </span>
           .
@@ -152,18 +156,37 @@ export const Testimonials = () => {
       text: (
         <>
           Felipe é{" "}
-          <span className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-yellow-600 dark:group-hover:text-[#ffff00] transition-colors duration-300">
+          <span className={yellowHighlight}>
             ágil e com grande energia para entregar
           </span>
           . Destaca-se pelo{" "}
-          <span className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-yellow-600 dark:group-hover:text-[#ffff00] transition-colors duration-300">
+          <span className={yellowHighlight}>
             apreço aos detalhes que fazem a diferença na experiência
           </span>{" "}
           do usuário final, sempre pensando em como tornar tudo ainda melhor. Nos projetos que trabalhamos,{" "}
-          <span className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-yellow-600 dark:group-hover:text-[#ffff00] transition-colors duration-300">
+          <span className={yellowHighlight}>
             entregou além do esperado com interfaces lindas, funcionais e amigáveis
           </span>
           .
+        </>
+      )
+    },
+    {
+      initials: "RT",
+      name: "Raphael Tajiki",
+      role: "Marketing · Inovação · Produto · UX/UI",
+      linkedin: "https://www.linkedin.com/in/raphael-tajiki/",
+      whatsappLocked: true,
+      accent: "magenta",
+      text: (
+        <>
+          O Felipe é um profissional muito completo: transita com facilidade e excelência desde as fases de{" "}
+          <span className={magentaHighlight}>Discovery e UI Design</span>{" "}
+          até a definição de{" "}
+          <span className={magentaHighlight}>diretrizes estratégicas focadas no cliente</span>
+          . Além das entregas técnicas, sua{" "}
+          <span className={magentaHighlight}>capacidade de colaboração e visão centrada no usuário</span>{" "}
+          fazem dele um ponto focal valioso para qualquer time.
         </>
       )
     },
@@ -174,14 +197,15 @@ export const Testimonials = () => {
       linkedin: "https://www.linkedin.com/in/caio-cesar-barreira-luvisotto/",
       whatsapp: "5511955514555",
       whatsappLocked: false,
+      accent: "yellow",
       text: (
         <>
           O período que trabalhei com Felipe Santander foi de grande satisfação, um profissional{" "}
-          <span className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-pink-600 dark:group-hover:text-[#ff00ff] transition-colors duration-300">
+          <span className={yellowHighlight}>
             muito comprometido e criativo
           </span>
           , habilidoso tanto no âmbito técnico quanto em relacionamentos interpessoais. Suas entregas contribuíram muito à organização, bem como suas{" "}
-          <span className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-pink-600 dark:group-hover:text-[#ff00ff] transition-colors duration-300">
+          <span className={yellowHighlight}>
             ideias inovadoras que tracionaram bastante a evolução
           </span>{" "}
           das soluções sustentadas pelo time. Recomendo Felipe Santander com segurança e espero poder voltar a trabalhar com ele.
@@ -209,8 +233,9 @@ export const Testimonials = () => {
 
   const renderCard = (offset: number) => {
     const realIdx = getVisibleIndex(offset);
-    const styles = getHoverStyles(realIdx);
     const item = testimonials[realIdx];
+    const accent = item.accent ?? (["cyan", "yellow", "magenta"] as const)[realIdx % 3];
+    const styles = getHoverStyles(accent);
 
     return (
       <Card className={`relative z-10 flex flex-col justify-between h-full bg-white dark:bg-zinc-950 border border-zinc-200/60 dark:border-zinc-900 shadow-sm p-6 sm:p-8 group ${styles.border} transition-all duration-300`}>
