@@ -7,6 +7,13 @@ import type { EditorialCase } from "@/data/editorial-model";
 import { CaseNavigation } from "./CaseNavigation";
 import { ExecutiveSummary } from "./ExecutiveSummary";
 import { ProjectHighlights } from "./ProjectHighlights";
+import { VisualEvidenceGallery } from "./VisualEvidenceGallery";
+import {
+  hubCorrecoesCover,
+  hubCorrecoesVisualEvidence,
+  vitruChatCover,
+  vitruChatVisualEvidence,
+} from "@/data/case-visual-evidence";
 
 const odonto1Brands = ["Odonto1", "ImplantNews", "PerioNews", "Ortodontia SPO", "IN Congress", "Orto Congress"];
 
@@ -14,12 +21,11 @@ export function MasterCaseTemplate({ item }: { item: EditorialCase }) {
   const [evidenceIndex, setEvidenceIndex] = useState(0);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const isVitruChat = item.slug === "vitruchat";
+  const isHubCorrecoes = item.slug === "hub-correcoes";
   const isOdonto1 = item.slug === "odonto1";
   const isEvidenceHidden = ["vitruchat", "sofia", "hub-correcoes", "odonto1"].includes(item.slug);
   const caseLabel = item.slug === "sofia" ? "SofIA" : item.slug === "hub-correcoes" ? "Hub de Correções" : isOdonto1 ? "Odonto1" : "VitruChat";
-  const hero = isVitruChat
-    ? { src: "/imagem/vitru/vitruchat/v2-light/Pastas_MenuClosed&PropOpen&PromptOpen.png", alt: "Interface do VitruChat com painel de prompts" }
-    : item.heroImage;
+  const hero = item.heroImage;
   const changeEvidence = (offset: number) => {
     setEvidenceIndex((current) => (current + offset + item.evidence.length) % item.evidence.length);
   };
@@ -46,6 +52,8 @@ export function MasterCaseTemplate({ item }: { item: EditorialCase }) {
       </header>
 
       <ExecutiveSummary item={item} />
+      {isVitruChat ? <VisualEvidenceGallery title="Por dentro do VitruChat" description="Uma visão da experiência construída — fluxos, decisões de interface e diferentes momentos do produto." cover={vitruChatCover} evidence={vitruChatVisualEvidence} /> : null}
+      {isHubCorrecoes ? <VisualEvidenceGallery title="Por dentro do Hub de Correções" description="Uma visão da experiência construída para apoiar correção, revisão humana, rastreabilidade e decisões pedagógicas ao longo do fluxo." cover={hubCorrecoesCover} evidence={hubCorrecoesVisualEvidence} /> : null}
       <ProjectHighlights item={item} />
 
       <section className="max-w-3xl space-y-5">
