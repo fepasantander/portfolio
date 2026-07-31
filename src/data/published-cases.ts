@@ -36,7 +36,7 @@ export const vitruChat: EditorialCase = {
   stack: [{ group: "UX", items: ["UX Strategy", "Interaction Design", "Design System"] }, { group: "Research", items: ["Product Discovery", "UX Research", "FigJam"] }, { group: "IA", items: ["Generative AI", "LLM", "MCP"] }, { group: "Infraestrutura", items: ["Supabase", "Vercel"] }],
   learnings: ["Consolidei minha experiência em produtos baseados em IA Generativa.", "Reforcei a importância de governança, acessibilidade e evolução contínua em plataformas conversacionais."],
   cta: "journal",
-  heroImage: { src: `${vitruChatBasePath}/v2-dark/Pastas_MenuOpen&PropOpen&PromptClosed-3.png`, alt: "Interface do VitruChat com navegação e painel de prompts" },
+  heroImage: { src: "/imagem/cases/vitruchat/vitruchat-capa.png", alt: "Capa do VitruChat" },
 };
 
 export const sofia: EditorialCase = {
@@ -123,7 +123,7 @@ export const hubCorrecoes: EditorialCase = {
     "A tecnologia acelera o processo; a decisão continua sendo humana.",
   ],
   cta: "journal",
-  heroImage: { src: "/imagem/cases/hub-correcoes/hero.png", alt: "Visão do Hub de Correções" },
+  heroImage: { src: "/imagem/cases/hub-correcoes/hub-de-correcoes-capa.png", alt: "Capa do Hub de Correções" },
 };
 
 export const odonto1: EditorialCase = {

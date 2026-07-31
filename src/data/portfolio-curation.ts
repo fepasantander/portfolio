@@ -11,8 +11,8 @@ export interface PortfolioCatalogEntry {
 }
 
 export const portfolioCatalog: readonly PortfolioCatalogEntry[] = [
-  { id: "vitruchat", label: "VitruChat", company: "VitruLab", order: 1, status: "published", publishedCaseSlug: "vitruchat", thumbnail: { src: "/imagem/vitru/vitruchat/v2-light/Pastas_MenuClosed&PropOpen&PromptOpen.png", alt: "Interface do VitruChat" } },
-  { id: "hub-correcoes", label: "Hub de Correções", company: "VitruLab", order: 2, status: "published", publishedCaseSlug: "hub-correcoes", thumbnail: { src: "/imagem/cases/hub-correcoes/hero.png", alt: "Visão do Hub de Correções" } },
+  { id: "vitruchat", label: "VitruChat", company: "VitruLab", order: 1, status: "published", publishedCaseSlug: "vitruchat", thumbnail: { src: "/imagem/cases/vitruchat/vitruchat-capa.png", alt: "Capa do VitruChat" } },
+  { id: "hub-correcoes", label: "Hub de Correções", company: "VitruLab", order: 2, status: "published", publishedCaseSlug: "hub-correcoes", thumbnail: { src: "/imagem/cases/hub-correcoes/hub-de-correcoes-capa.png", alt: "Capa do Hub de Correções" } },
   { id: "sofia", label: "SofIA", company: "VitruLab", order: 3, status: "published", publishedCaseSlug: "sofia", thumbnail: { src: "/imagem/uniasselvi/sofia/sofia-avatar.png", alt: "Avatar da SofIA" } },
   { id: "revistas", label: "Revistas", company: "VM", order: 4, status: "work-in-progress", thumbnail: { src: "/imagem/vm/revistas/aprovadas/2-site-revistaimplantnews.png", alt: "Portal da Revista ImplantNews" } },
   { id: "eventos", label: "Eventos", company: "VM", order: 5, status: "work-in-progress", thumbnail: { src: "/imagem/vm/eventos/aprovadas/site-in26.png", alt: "Portal do Congresso IN 2026" } },
