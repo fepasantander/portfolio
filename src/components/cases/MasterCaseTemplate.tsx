@@ -6,11 +6,20 @@ import { useState } from "react";
 import type { EditorialCase } from "@/data/editorial-model";
 import { CaseNavigation } from "./CaseNavigation";
 import { ExecutiveSummary } from "./ExecutiveSummary";
+import { NdaEvidenceNotice } from "./NdaEvidenceNotice";
 import { ProjectHighlights } from "./ProjectHighlights";
 import { VisualEvidenceGallery } from "./VisualEvidenceGallery";
 import {
+  eventosVmCover,
+  eventosVmVisualEvidence,
+  divaCover,
+  divaVisualEvidence,
   hubCorrecoesCover,
   hubCorrecoesVisualEvidence,
+  renegociacaoCover,
+  renegociacaoVisualEvidence,
+  revistasVmCover,
+  revistasVmVisualEvidence,
   vitruChatCover,
   vitruChatVisualEvidence,
 } from "@/data/case-visual-evidence";
@@ -23,8 +32,13 @@ export function MasterCaseTemplate({ item }: { item: EditorialCase }) {
   const isVitruChat = item.slug === "vitruchat";
   const isHubCorrecoes = item.slug === "hub-correcoes";
   const isOdonto1 = item.slug === "odonto1";
-  const isEvidenceHidden = ["vitruchat", "sofia", "hub-correcoes", "odonto1"].includes(item.slug);
-  const caseLabel = item.slug === "sofia" ? "SofIA" : item.slug === "hub-correcoes" ? "Hub de Correções" : isOdonto1 ? "Odonto1" : "VitruChat";
+  const isRenegociacao = item.slug === "renegociacao";
+  const isRevistasVm = item.slug === "revistas-vm";
+  const isEventosVm = item.slug === "eventos-vm";
+  const isDiva = item.slug === "diva";
+  const hasNdaEvidence = ["sofia", "odonto1", "biblioteca-virtual-ppc", "curricularizacao-extensao", "autonomia-docencia", "cdc", "kgc", "gestao-multiunidades"].includes(item.slug);
+  const isEvidenceHidden = ["vitruchat", "sofia", "hub-correcoes", "odonto1", "renegociacao", "revistas-vm", "eventos-vm", "diva", "biblioteca-virtual-ppc", "curricularizacao-extensao", "autonomia-docencia", "cdc", "kgc", "gestao-multiunidades"].includes(item.slug);
+  const caseLabel = item.slug === "sofia" ? "SofIA" : item.slug === "hub-correcoes" ? "Hub de Correções" : isOdonto1 ? "Odonto1" : isRenegociacao ? "Renegociação" : isRevistasVm ? "Revistas VM" : isEventosVm ? "Eventos VM" : isDiva ? "Diva" : item.slug === "biblioteca-virtual-ppc" ? "Biblioteca Virtual – PPC" : item.slug === "curricularizacao-extensao" ? "Curricularização da Extensão" : item.slug === "autonomia-docencia" ? "Autonomia Docência" : item.slug === "cdc" ? "CDC" : item.slug === "kgc" ? "KGC" : item.slug === "gestao-multiunidades" ? "Gestão Multiunidades" : "VitruChat";
   const hero = item.heroImage;
   const changeEvidence = (offset: number) => {
     setEvidenceIndex((current) => (current + offset + item.evidence.length) % item.evidence.length);
@@ -54,6 +68,28 @@ export function MasterCaseTemplate({ item }: { item: EditorialCase }) {
       <ExecutiveSummary item={item} />
       {isVitruChat ? <VisualEvidenceGallery title="Por dentro do VitruChat" description="Uma visão da experiência construída — fluxos, decisões de interface e diferentes momentos do produto." cover={vitruChatCover} evidence={vitruChatVisualEvidence} /> : null}
       {isHubCorrecoes ? <VisualEvidenceGallery title="Por dentro do Hub de Correções" description="Uma visão da experiência construída para apoiar correção, revisão humana, rastreabilidade e decisões pedagógicas ao longo do fluxo." cover={hubCorrecoesCover} evidence={hubCorrecoesVisualEvidence} /> : null}
+      {isHubCorrecoes ? (
+        <section className="border-l-2 border-cyan-500 bg-cyan-50/60 px-7 py-8 dark:bg-cyan-950/20" aria-labelledby="hub-pcd-title">
+          <p className="text-xs font-medium uppercase tracking-[0.2em] text-cyan-700 dark:text-cyan-300">Pesquisa</p>
+          <h2 id="hub-pcd-title" className="mt-3 text-3xl font-semibold">Como a pesquisa revelou necessidades invisíveis</h2>
+          <p className="mt-5 max-w-3xl leading-relaxed text-zinc-700 dark:text-zinc-300">Entrevistas com pessoas envolvidas na avaliação trouxeram situações de estudantes PCD que poderiam permanecer ocultas em um desenvolvimento orientado apenas por fluxo e tecnologia. Esse aprendizado orientou a discussão de guard rails, acessibilidade e transparência como parte da experiência.</p>
+        </section>
+      ) : null}
+      {isRenegociacao ? <VisualEvidenceGallery title="Por dentro da Renegociação" description="Uma visão da experiência construída para tornar regras financeiras, opções de negociação e próximos passos mais claros para o estudante." cover={renegociacaoCover} evidence={renegociacaoVisualEvidence} /> : null}
+      {isRevistasVm ? <VisualEvidenceGallery title="Por dentro das Revistas VM" description="Uma seleção de superfícies editoriais que materializa a integração entre publicação impressa, presença digital e descoberta de conteúdo." cover={revistasVmCover} evidence={revistasVmVisualEvidence} /> : null}
+      {isEventosVm ? <VisualEvidenceGallery title="Por dentro dos Eventos VM" description="Uma seleção de superfícies digitais para congressos e experiências de relacionamento do ecossistema VM." cover={eventosVmCover} evidence={eventosVmVisualEvidence} /> : null}
+      {isDiva ? (
+        <>
+          <aside className="border-l-2 border-cyan-500 bg-cyan-50/60 px-7 py-8 dark:bg-cyan-950/20" aria-labelledby="diva-visual-notice-title">
+            <p className="text-xs font-medium uppercase tracking-[0.2em] text-cyan-700 dark:text-cyan-300">Nota editorial</p>
+            <h2 id="diva-visual-notice-title" className="mt-3 text-2xl font-semibold">Interfaces ilustrativas</h2>
+            <p className="mt-4 max-w-3xl leading-relaxed text-zinc-700 dark:text-zinc-300">As interfaces completas do Diva estão protegidas por acordo de confidencialidade. As imagens exibidas a seguir foram capturadas em baixa resolução a partir de vídeos públicos do canal oficial da Carenet no YouTube e têm finalidade exclusivamente ilustrativa.</p>
+            <p className="mt-3 max-w-3xl leading-relaxed text-zinc-700 dark:text-zinc-300">A narrativa deste Case concentra-se na atuação de UX, nas decisões de projeto e no processo que apoiou a evolução do produto.</p>
+          </aside>
+          <VisualEvidenceGallery title="Por dentro do Diva" description="Uma seleção de telas aprovadas que evidencia a evolução da experiência, dos fluxos e dos padrões de interface do produto." cover={divaCover} evidence={divaVisualEvidence} />
+        </>
+      ) : null}
+      {hasNdaEvidence ? <NdaEvidenceNotice /> : null}
       <ProjectHighlights item={item} />
 
       <section className="max-w-3xl space-y-5">
@@ -77,6 +113,16 @@ export function MasterCaseTemplate({ item }: { item: EditorialCase }) {
           {item.contribution.map((text) => <li key={text} className="rounded-full border border-zinc-200 px-4 py-2 text-sm dark:border-zinc-700">{text}</li>)}
         </ul>
       </section>
+
+      {isRenegociacao ? (
+        <section className="border-l-2 border-magenta-500 bg-zinc-50 px-7 py-8 dark:bg-zinc-900/40" aria-labelledby="design-track-title">
+          <p className="text-xs uppercase tracking-[0.2em] text-magenta-600">Processo</p>
+          <h2 id="design-track-title" className="mt-3 text-3xl font-semibold">Esteira de Design</h2>
+          <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+            {["Levantamento de Requisitos Funcionais", "Levantamento de Requisitos Não Funcionais", "Regras de Negócio", "Entrevistas em Profundidade", "Fluxogramas", "Mapa de Empatia", "Matriz CSD", "Painel Semântico", "Timeline de Entregas"].map((item) => <li key={item} className="rounded-full border border-zinc-200 px-4 py-2 text-sm dark:border-zinc-700">{item}</li>)}
+          </ul>
+        </section>
+      ) : null}
 
       <section className="max-w-3xl">
         <h2 className="text-3xl font-semibold">Solução</h2>

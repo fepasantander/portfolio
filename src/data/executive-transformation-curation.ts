@@ -11,8 +11,8 @@ export interface ExecutiveTransformationEntry {
 }
 
 export const executiveTransformationCatalog: readonly ExecutiveTransformationEntry[] = [
-  { id: "vitru-lab", label: "VitruLab", company: "Vitru", order: 1, status: "published", destination: "/transformations/vitru-oportunidades-tecnologicas?tab=vitruchat", thumbnail: { src: "/imagem/journal/vitruchat-logotipo.png", alt: "VitruLab" } },
-  { id: "carenet", label: "Carenet", company: "Carenet Longevity", order: 2, status: "published", destination: "/transformations/carenet-longevity?tab=orchestra", thumbnail: { src: "/imagem/carenet/logo-white.png", alt: "Carenet" } },
-  { id: "odonto1", label: "Odonto1", company: "VM Comunicação", order: 3, status: "published", destination: "/transformations/vm-comunicacao?tab=odonto1", thumbnail: { src: "/imagem/vm/odonto1-thumbnail.svg", alt: "Odonto1" } },
+  { id: "vitru-lab", label: "Vitru Educação", company: "Vitru Educação", order: 1, status: "published", destination: "/transformations/vitru-oportunidades-tecnologicas", thumbnail: { src: "/imagem/journal/vitruchat-logotipo.png", alt: "Vitru Educação" } },
+  { id: "carenet", label: "Carenet", company: "Carenet", order: 2, status: "published", destination: "/transformations/carenet-longevity", thumbnail: { src: "/imagem/carenet/logo-white.png", alt: "Carenet" } },
+  { id: "odonto1", label: "VM Comunicação", company: "VM Comunicação", order: 3, status: "published", destination: "/transformations/vm-comunicacao", thumbnail: { src: "/imagem/vm/odonto1-thumbnail.svg", alt: "VM Comunicação" } },
   { id: "listo", label: "Listo", company: "Listo Sistemas", order: 4, status: "work-in-progress", thumbnail: { src: "/imagem/listo/logo-white-v2.png", alt: "Listo" } },
 ] as const;
